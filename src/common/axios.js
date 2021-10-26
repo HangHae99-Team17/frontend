@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const USER_TOKEN = localStorage.getItem("token");
+
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
   baseURL: 'http://localhost:4000/',
@@ -10,13 +12,34 @@ const instance = axios.create({
   },
 });
 
-instance.interceptors.request.use(function (config) {
-	const accessToken = document.cookie.split('=')[1];
-	config.headers.common['X-AUTH-TOKEN'] = `${accessToken}`;
-	return config;
-});
+instance.interceptors.request.use(
+  function (config) {
+    config.headers.Authorization = `Bearer ${USER_TOKEN}`;
+    return config;
+  },
+  function (error) {
+    console.log("err");
+    return Promise.reject(error);
+  }
+);
 
 export const apis = {
+
+  login: (id, pw) =>
+  instance.post("/api/users/login", {
+    loginId: id,
+    userPw: pw,
+  }),
+signup: (id, pw, name, nick) =>
+  instance.post("/api/users/register", {
+    userId: id,
+    userPw: pw,
+    userName: name,
+    userNameId: nick,
+  }),
+
+
+
   // 게시물 불러오기
   getPost: () => instance.get('/api/posts'),
 
