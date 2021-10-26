@@ -3,7 +3,7 @@ import React from 'react';
 const Header = () => {
     return (
         <div>
-            first commit
+            first_commit
         </div>
     );
 };
