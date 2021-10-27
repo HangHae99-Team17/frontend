@@ -34,14 +34,16 @@ export const loginFB = (user) => {
   return async (dispatch, getState, {history}) => {
     try {
       const res = await apis.loginuser(user)
-      console.log(res.data.data.nickname)
+      console.log(res.data.data)
       const token = res.data.data.token;
-      const nickname = res.data.data.nickname;
+      const user_name = res.data.data.nickname;
+
       if (token) {
         sessionStorage.setItem("token", `${token}`);
-        sessionStorage.setItem("nickname", `${nickname}`);
+        sessionStorage.setItem("nickname", `${user_name}`);
       }
-      dispatch(setUser(nickname));
+
+      dispatch(setUser(res.data.data));
       history.push("/");
     } catch (e) {
       console.log("error");
@@ -84,6 +86,7 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
+        console.log(draft.user)
         draft.is_login = action.payload.user !== null ? true : false;
       }),
     [CHECK_EMAIL]: (state, action) => 
