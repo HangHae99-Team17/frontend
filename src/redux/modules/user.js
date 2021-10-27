@@ -1,4 +1,3 @@
-// @mida_작업__user__
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../common/axios";
@@ -97,6 +96,7 @@ export default handleActions(
   },
   initialState
 );
+
 
 const actionCreators = {
   signupFB,
