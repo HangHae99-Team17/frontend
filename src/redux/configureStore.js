@@ -4,6 +4,7 @@ import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
 import Forder from "./modules/folder";
+import main from "./modules/main";
 
 
 
@@ -11,6 +12,7 @@ export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
     folder: Forder,
+    main: main,
 
     router: connectRouter(history),
 });

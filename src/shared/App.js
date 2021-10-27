@@ -5,6 +5,7 @@ import { history } from "../redux/configureStore";
 import { Grid } from "../elements";
 import { useDispatch } from "react-redux";
 import MyPage from "../pages/MyPage";
+import LgMain from "../pages/LgMain";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <Grid>
       <ConnectedRouter history={history}>
           <Route path="/mypage" exact component={MyPage} />
+          <Route path="/lgmain" exact component={LgMain} />
       </ConnectedRouter>
       </Grid>
     </React.Fragment>
