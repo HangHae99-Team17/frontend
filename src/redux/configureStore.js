@@ -3,14 +3,14 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
-import Forder from "./modules/folder";
+import User from "./modules/user";
 
 
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-    folder: Forder,
+    user: User,
 
     router: connectRouter(history),
 });
