@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import { listCreators } from '../redux/modules/main';
 import styled from 'styled-components'
+import InterestType from '../components/InterestType'
 
 const LgMain = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,9 @@ const LgMain = () => {
 return(
     <div>
     메인 페이지가 될 것 입니다.
+    <div>
+      <InterestType/>
+    </div>
     <DcBox>
         {
         dc_list?.map((item) => {
