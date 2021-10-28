@@ -14,22 +14,6 @@ instance.interceptors.request.use((config) => {
 });
 
 export const apis = {
-
-  login: (id, pw) =>
-  instance.post("/api/users/login", {
-    loginId: id,
-    userPw: pw,
-  }),
-signup: (id, pw, name, nick) =>
-  instance.post("/api/users/register", {
-    userId: id,
-    userPw: pw,
-    userName: name,
-    userNameId: nick,
-  }),
-
-
-
   // 게시물 불러오기
   adduser: (user_info) => instance.post('/api/user/signup',user_info),
   loginuser: (user_info) => instance.post('/api/user/login',user_info),
