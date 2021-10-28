@@ -4,11 +4,9 @@ import { apis } from '../../common/axios'
 
 // action 생성
 const LOAD_FOLDERS = 'LOAD_FOLDERS';
-const ADD_FOLDERS = 'ADD_FOLDERS';
 
 // action creators
 const loadFolders = createAction(LOAD_FOLDERS, (list) => ({ list }));
-const AddFolders = createAction(ADD_FOLDERS, (post) => ({ post }));
 
 // initialState
 const initialState = {
@@ -29,36 +27,19 @@ const getFoldersMiddleware = () => {
   };
 };
 
-const addFoldersMiddleware = (post) => {
-  return (dispatch) => {
-    apis.createFolders(post)
-      .then(() => {
-        dispatch(AddFolders(post));
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-};
-
 // reducer
 export default handleActions(
   {
     [LOAD_FOLDERS]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.list;
-      }),
-    [ADD_FOLDERS]: (state, action) =>
-      produce(state, (draft) => {
-        draft.list.push(action.payload.post);
-      }),
+      })
   },
   initialState
 );
 
 const foldersCreators = {
   getFoldersMiddleware,
-  addFoldersMiddleware,
 };
 
 export { foldersCreators };
