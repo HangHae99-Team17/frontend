@@ -1,11 +1,11 @@
 import React,{useState} from 'react';
 import { useDispatch,useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { checkValue } from "../shared/regExp";
 
 const SignUp = () => {
     const dispatch = useDispatch();
     const [email_double, setEmail_Double] = useState("");
-    const [email_check_text, setEamil_Check_Text] = useState("");
     const emailcheck = useSelector((state) => state.user.useremail);
     const [signup_info, setSignUp_Info] = useState({
         email: "",
@@ -27,6 +27,15 @@ const SignUp = () => {
 
     const signup = () => {
 
+
+
+        if(!email){
+            setEmail_Double("엥 이메일이 비었는데요?")
+            return
+        }
+
+
+
         const user_info = {
             userEmail: email,
             password: password,
@@ -42,10 +51,7 @@ const SignUp = () => {
     }
 
     const checkemail = () => {
-        if(!email){
-            console.log("이메일을 적어줘")
-            return
-        }
+
         const user_email = {
             userEmail: email,
         }
@@ -57,8 +63,8 @@ const SignUp = () => {
         <React.Fragment>
             <p>이메일</p>
             <input type="text" name="email" value={email} onChange={onChange}/>
+            <p>{email_double}</p>
             <button onClick={checkemail}>중복체크</button>
-            <p className={email_double === true ? "inputCheckDoubleEmailGreen" : "inputCheckDoubleEmailRed"}>{email_check_text}</p>
             <p>유저이름</p>
             <input type="text" name="username" value={username} onChange={onChange}/>
             <p>비밀번호</p>
