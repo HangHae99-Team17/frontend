@@ -9,7 +9,7 @@ import { history } from "../redux/configureStore";
 const LgMain = (props) => {
     const dispatch = useDispatch();
     const dc_list = useSelector(( state )=> state.main.list.data);
-    console.log(props)
+    console.log(dc_list)
     
      React.useEffect(() => {
     dispatch(listCreators.getListMW())

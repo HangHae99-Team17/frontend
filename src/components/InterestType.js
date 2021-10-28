@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const InterestType = () => {
     const userMenu = useSelector((state)=>state.user.user)
-    console.log(userMenu?.telecom)
+    console.log(userMenu)
     const is_login = useSelector((state) => state.user.is_login);
     console.log(is_login)
 

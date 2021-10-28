@@ -22,25 +22,15 @@ export const apis = {
   // 할인 정보 리스트 가지고 오기
   getList: () => instance.get('/api/main'),
   
-  login: (id, pw) =>
-  instance.post("/api/users/login", {
-    loginId: id,
-    userPw: pw,
-  }),
-signup: (id, pw, name, nick) =>
-  instance.post("/api/users/register", {
-    userId: id,
-    userPw: pw,
-    userName: name,
-    userNameId: nick,
-  }),
-
   // 게시물 불러오기
   adduser: (user_info) => instance.post('/api/user/signup',user_info),
   loginuser: (user_info) => instance.post('/api/user/login',user_info),
   emailconfirm: (user_email) => instance.post('/api/user/redunancy',user_email),
 
   // 쿠폰 상세페이지 데이터 불러오기
-  getDetail:(param)=>instance.get(`api/detail/${param}`)
-};
+  getDetail:(param)=>instance.get(`api/detail/${param}`),
 
+  logincheck: () => instance.get('api/user/show'),
+  emailconfirm: (user_email) => instance.post('/api/user/redunancy',user_email),
+  edituser: (user_info) => instance.put('api/user/change',user_info)
+};

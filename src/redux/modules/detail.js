@@ -14,12 +14,12 @@ const initialState = {
     info :[],
 };
 // 디테일 가지고 오는 미들웨어
-const getDetailMW = ()=>{
+const getDetailMW = (params)=>{
     return async (dispatch)=>{
         await apis 
-        .getDetail()
+        .getDetail(params)
         .then((res)=>{
-            console.log(res.data)
+            console.log(res.data.data)
             dispatch(getDetail(res.data))
         })
         .catch((err)=>{
