@@ -8,6 +8,8 @@ import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import Main from "../pages/Main";
 import MyPage from "../pages/MyPage";
+import Folders from "../pages/Folders";
+import Category from "../pages/Category";
 import Header from "../components/Header";
 import { actionCreators as userActions } from "../redux/modules/user";
 
@@ -32,6 +34,8 @@ function App() {
         <Route path="/signup" exact component={SignUp} />
         <Route path="/login" exact component={Login} />
         <Route path="/mypage" exact component={MyPage} />
+        <Route path="/folders" exact component={Folders} />
+        <Route path="/category" exact component={Category} />
       </ConnectedRouter>
       </Grid>
     </React.Fragment>

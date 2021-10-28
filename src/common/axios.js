@@ -4,7 +4,8 @@ const USER_TOKEN = localStorage.getItem("token");
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: 'http://13.209.12.105:8080/',
+  // baseURL: 'http://13.209.12.105:8080/',
+  baseURL: 'http://3.34.199.152/',
 });
 
 instance.interceptors.request.use((config) => {
@@ -19,5 +20,9 @@ export const apis = {
   loginuser: (user_info) => instance.post('/api/user/login',user_info),
   logincheck: () => instance.get('api/user/show'),
   emailconfirm: (user_email) => instance.post('/api/user/redunancy',user_email),
-  edituser: (user_info) => instance.put('api/user/change',user_info)
+  edituser: (user_info) => instance.put('api/user/change',user_info),
+  
+  getCategory:() => instance.get('api/detail'),
+  
+  getFolders:() => instance.get('api/folders'),
 };

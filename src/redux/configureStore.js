@@ -4,6 +4,8 @@ import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
 import User from "./modules/user";
+import Category from "./modules/category";
+import Folders from "./modules/folders";
 
 
 
@@ -11,6 +13,9 @@ export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
     user: User,
+
+    category: Category,
+    folders: Folders,
 
     router: connectRouter(history),
 });
