@@ -17,5 +17,7 @@ export const apis = {
   // 게시물 불러오기
   adduser: (user_info) => instance.post('/api/user/signup',user_info),
   loginuser: (user_info) => instance.post('/api/user/login',user_info),
-  emailconfirm: (user_email) => instance.post('/api/user/redunancy',user_email)
+  logincheck: () => instance.get('api/user/show'),
+  emailconfirm: (user_email) => instance.post('/api/user/redunancy',user_email),
+  edituser: (user_info) => instance.put('api/user/change',user_info)
 };
