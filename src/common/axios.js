@@ -38,6 +38,9 @@ signup: (id, pw, name, nick) =>
   // 게시물 불러오기
   adduser: (user_info) => instance.post('/api/user/signup',user_info),
   loginuser: (user_info) => instance.post('/api/user/login',user_info),
-  emailconfirm: (user_email) => instance.post('/api/user/redunancy',user_email)
+  emailconfirm: (user_email) => instance.post('/api/user/redunancy',user_email),
+
+  // 쿠폰 상세페이지 데이터 불러오기
+  getDetail:(param)=>instance.get(`api/detail/${param}`)
 };
 

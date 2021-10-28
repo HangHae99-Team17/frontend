@@ -34,13 +34,19 @@ export const loginFB = (user) => {
   return async (dispatch, getState, {history}) => {
     try {
       const res = await apis.loginuser(user)
-      console.log(res.data.data)
-      const token = res.data.data.token;
-      const user_name = res.data.data.nickname;
+      
+      if(res.data.data !== "유저네임을 찾을 수 없습니다." && res.data.data !== "비밀번호가 맞지 않습니다."){
 
-      if (token) {
-        sessionStorage.setItem("token", `${token}`);
-        sessionStorage.setItem("nickname", `${user_name}`);
+        const token = res.data.data.token;
+        const user_name = res.data.data.nickname;
+
+        if (token) {
+          sessionStorage.setItem("token", `${token}`);
+          sessionStorage.setItem("nickname", `${user_name}`);
+        }
+  
+        dispatch(setUser(res.data.data));
+        history.push("/");
       }
 
       dispatch(setUser(res.data.data));
@@ -86,7 +92,6 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
-        console.log(draft.user)
         draft.is_login = action.payload.user !== null ? true : false;
       }),
     [CHECK_EMAIL]: (state, action) => 

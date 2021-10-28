@@ -1,27 +1,38 @@
 import React from "react";
-import {useDispatch, useSelector} from 'react-redux'
-import {actionCreators} from '../redux/modules/user'
+import {useSelector} from 'react-redux'
+import styled from 'styled-components'
 
 const InterestType = () => {
-    const dispatch = useDispatch();
     const userMenu = useSelector((state)=>state.user.user)
-    console.log(userMenu)
+    console.log(userMenu?.telecom)
     const is_login = useSelector((state) => state.user.is_login);
     console.log(is_login)
 
-    React.useEffect(()=>{
-        dispatch(actionCreators.signupFB())
-    },[]);
+    const MenuArr = [userMenu?.type1,userMenu?.type2,userMenu?.type3,userMenu?.telecom, userMenu?.cardType]
+    console.log(MenuArr)
 
     return(
         is_login?(
-            <div>
-
-            </div>
+        <div>
+        <ul>
+        {
+        MenuArr?.map((item) => {
+          return (
+                <Bar>{item}</Bar>
+          );
+        })}
+        </ul>
+        </div>
         ):(
             <div> </div>
         )
     )    
 }
+
+const Bar = styled.li`
+display : inline-block;
+margin : 20px;
+cursor : pointer;
+`
 
 export default InterestType;
