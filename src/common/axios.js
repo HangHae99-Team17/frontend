@@ -2,7 +2,7 @@ import axios from 'axios';
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
   // 우진님 서버 주소 http://3.34.199.152/
-  baseURL: 'http://13.209.12.105:8080/',
+  baseURL: 'http://3.34.199.152/',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json',
