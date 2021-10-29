@@ -74,8 +74,8 @@ export const logoutFB = () => {
 //회원정보 수정
 export const edituserFB = (user_info) => {
   return async(dispatch, {history}) => {
+    console.log(user_info)
     try{
-
       const res = await apis.edituser(user_info);
       if(res.data.data === "비밀번호가 맞지 않습니다."){
         window.alert("비밀번호가 맞지 않습니다.")
@@ -93,13 +93,14 @@ export const edituserFB = (user_info) => {
 //회원정보 삭제
 export const deluserFB = (password) => {
   return async (dispatch, {history}) => {
+    
     try {
       const res = await apis.deluser(password)
       console.log(res)
       sessionStorage.removeItem("token");
       sessionStorage.removeItem("nickname");
       dispatch(setUser(null));
-      history.push("/");
+      history.replace("/");
     } catch (e) {
       console.log(e);
     }

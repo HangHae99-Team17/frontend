@@ -16,5 +16,5 @@ export const apis = {
   loginuser: (user_info) => instance.post('/api/user/login',user_info),
   logincheck: () => instance.get('api/user/show'),
   edituser: (user_info) => instance.put('/api/user/change',user_info),
-  deluser: (password) => instance.delete('/api/user/delete',password)
+  deluser: (password) => instance.post('/api/user/delete',password)
 };

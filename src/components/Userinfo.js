@@ -41,7 +41,12 @@ const Userinfo = (props) => {
     }
 
     const deluser = () => { 
-        dispatch(userActions.deluserFB(password));
+
+        const user_password = {
+            password:password
+        }
+
+        dispatch(userActions.deluserFB(user_password));
     }
 
     const editUser = () => {
@@ -55,6 +60,7 @@ const Userinfo = (props) => {
             type2:type2,
             type3:type3
         }
+
         dispatch(userActions.edituserFB(user_info));
         setPassword("");
     }
