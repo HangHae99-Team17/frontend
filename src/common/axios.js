@@ -19,6 +19,11 @@ export const apis = {
   adduser: (user_info) => instance.post('/api/user/signup',user_info),
   loginuser: (user_info) => instance.post('/api/user/login',user_info),
   logincheck: () => instance.get('api/user/show'),
+  
+  getCategory:() => instance.get('api/main'),
+  
+  getFolders:() => instance.get('api/folders'),
+
   edituser: (user_info) => instance.put('/api/user/change',user_info),
   deluser: (password) => instance.post('/api/user/delete',password),
   // 쿠폰 상세페이지 데이터 불러오기

@@ -6,6 +6,8 @@ import { connectRouter } from "connected-react-router";
 // import Forder from "./modules/folder";
 import main from "./modules/main";
 import User from "./modules/user";
+import Category from "./modules/category";
+import Folders from "./modules/folders";
 import detail from "./modules/detail";
 
 
@@ -17,6 +19,9 @@ const rootReducer = combineReducers({
     main: main,
     user: User,
     detail : detail,
+
+    category: Category,
+    folders: Folders,
 
     router: connectRouter(history),
 });

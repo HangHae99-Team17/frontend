@@ -10,6 +10,8 @@ import Login from "../pages/Login";
 import MyPage from "../pages/MyPage";
 import Detail from "../pages/Detail";
 import SaleBox from "../pages/SaleBox";
+import Folders from "../pages/Folders";
+import Category from "../pages/Category";
 import Header from "../components/Header";
 import { actionCreators as userActions } from "../redux/modules/user";
 
@@ -35,6 +37,8 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/mypage" exact component={MyPage} />
         <Route path="/salebox" exact component={SaleBox} />
+        <Route path="/folders" exact component={Folders} />
+        <Route path="/category" exact component={Category} />
         <Route path="/api/detail/:id" exact component={Detail} />
       </ConnectedRouter>
       </Grid>
