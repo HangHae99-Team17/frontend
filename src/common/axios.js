@@ -1,7 +1,4 @@
 import axios from 'axios';
-
-const USER_TOKEN = localStorage.getItem("token");
-
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
   baseURL: 'http://13.209.12.105:8080/',
@@ -18,6 +15,6 @@ export const apis = {
   adduser: (user_info) => instance.post('/api/user/signup',user_info),
   loginuser: (user_info) => instance.post('/api/user/login',user_info),
   logincheck: () => instance.get('api/user/show'),
-  emailconfirm: (user_email) => instance.post('/api/user/redunancy',user_email),
-  edituser: (user_info) => instance.put('api/user/change',user_info)
+  edituser: (user_info) => instance.put('/api/user/change',user_info),
+  deluser: (password) => instance.delete('/api/user/delete',password)
 };
