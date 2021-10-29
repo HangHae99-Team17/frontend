@@ -16,6 +16,7 @@ const initialState = {
   is_login: false,
 };
 
+//회원가입
 export const signupFB = (user) => {
   return async (dispatch, getState, { history }) => {
     console.log(user)
@@ -29,6 +30,7 @@ export const signupFB = (user) => {
   };
 };
 
+//로그인
 export const loginFB = (user) => {
   return async (dispatch, getState, {history}) => {
     try {
@@ -55,17 +57,52 @@ export const loginFB = (user) => {
 export const loginCheckFB = () => {
   return async (dispatch) => {
       const res = await apis.logincheck()
-      console.log("deeee")
       dispatch(setUser(res.data.data));
   };
 };
 
+//로그아웃
 export const logoutFB = () => {
   return(dispatch) => {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("nickname");
     dispatch(setUser(null));
     alert("로그아웃 되었습니다.");
+  }
+}
+
+//회원정보 수정
+export const edituserFB = (user_info) => {
+  return async(dispatch, {history}) => {
+    try{
+
+      const res = await apis.edituser(user_info);
+      if(res.data.data === "비밀번호가 맞지 않습니다."){
+        window.alert("비밀번호가 맞지 않습니다.")
+        history.replace('/mypage')
+      }
+      dispatch(setUser(res.data.data));
+      window.alert("개인정보가 수정되었습니다")
+      history.replace('/mypage')
+    }catch(e){
+      console.log(e);
+    }
+  }
+}
+
+//회원정보 삭제
+export const deluserFB = (password) => {
+  return async (dispatch, {history}) => {
+    try {
+      const res = await apis.deluser(password)
+      console.log(res)
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("nickname");
+      dispatch(setUser(null));
+      history.push("/");
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
 
@@ -76,7 +113,6 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
-        console.log(draft.user);
         draft.is_login = action.payload.user !== null ? true : false;
       }),
     [CHECK_EMAIL]: (state, action) => 
@@ -93,6 +129,8 @@ const actionCreators = {
   loginFB,
   loginCheckFB,
   logoutFB,
+  edituserFB,
+  deluserFB
 };
 
 export { actionCreators };

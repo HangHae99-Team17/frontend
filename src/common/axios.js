@@ -18,6 +18,6 @@ export const apis = {
   adduser: (user_info) => instance.post('/api/user/signup',user_info),
   loginuser: (user_info) => instance.post('/api/user/login',user_info),
   logincheck: () => instance.get('api/user/show'),
-  emailconfirm: (user_email) => instance.post('/api/user/redunancy',user_email),
-  edituser: (user_info) => instance.put('api/user/change',user_info)
+  edituser: (user_info) => instance.put('/api/user/change',user_info),
+  deluser: (password) => instance.delete('/api/user/delete',password)
 };
