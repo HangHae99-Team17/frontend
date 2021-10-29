@@ -6,7 +6,6 @@ import { apis } from "../../common/axios";
 const SET_USER = "SET_USER";
 const CHECK_EMAIL = "CHECK_EMAIL";
 
-
 //action creator
 const setUser = createAction(SET_USER, (user) => ({ user }));
 
@@ -56,7 +55,7 @@ export const loginFB = (user) => {
 // 로그인 여부 체크
 export const loginCheckFB = () => {
   return async (dispatch) => {
-      const res = await apis.logincheck()
+      const res = await apis.logincheck();
       dispatch(setUser(res.data.data));
   };
 };
