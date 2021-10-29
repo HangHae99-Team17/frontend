@@ -4,7 +4,6 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Grid } from "../elements";
 import { useDispatch } from "react-redux";
-// import MyPage from "../pages/MyPage";
 import LgMain from "../pages/LgMain";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
