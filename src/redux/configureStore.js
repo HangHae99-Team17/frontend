@@ -3,18 +3,25 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
+// import Forder from "./modules/folder";
+import main from "./modules/main";
 import User from "./modules/user";
+import detail from "./modules/detail";
 
 
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+    // folder: Forder,
+    main: main,
     user: User,
+    detail : detail,
 
     router: connectRouter(history),
 });
 
+// 미들웨어에서 히스토리 사용하기
 const middlewares = [thunk.withExtraArgument({ history: history })];
 
 // 지금이 어느 환경인 지 알려줘요. (개발환경, 프로덕션(배포)환경 ...)

@@ -43,7 +43,7 @@ export const loginFB = (user) => {
           sessionStorage.setItem("nickname", `${user_name}`);
         }
         dispatch(setUser(res.data.data));
-        history.push("/");
+        history.push("/lgmain");
       }else{
         window.alert(res.data.data)
       }
