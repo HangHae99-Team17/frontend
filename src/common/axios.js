@@ -22,7 +22,7 @@ export const apis = {
   emailconfirm: (user_email) => instance.post('/api/user/redunancy',user_email),
   edituser: (user_info) => instance.put('api/user/change',user_info),
   
-  getCategory:() => instance.get('api/detail'),
+  getCategory:() => instance.get('api/main'),
   
   getFolders:() => instance.get('api/folders'),
 };

@@ -18,8 +18,8 @@ const getCategoryMiddleware = () => {
   return (dispatch) => {
     apis.getCategory()
       .then((res) => {
-        const post_list = res.data;
-        dispatch(loadCategory(post_list));
+        const category_list = res.data;
+        dispatch(loadCategory(category_list));
       })
       .catch((err) => {
         console.error(err);
