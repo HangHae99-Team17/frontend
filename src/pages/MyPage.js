@@ -4,8 +4,6 @@ import Userinfo from '../components/Userinfo';
 
 const MyPage = () => {
 
-    
-
     return (
         <React.Fragment>
             <Userinfo/>

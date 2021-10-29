@@ -1,7 +1,4 @@
 import axios from 'axios';
-
-const USER_TOKEN = localStorage.getItem("token");
-
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
   baseURL: 'http://13.209.12.105:8080/',
