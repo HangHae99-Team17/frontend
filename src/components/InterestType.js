@@ -15,11 +15,8 @@ const InterestType = () => {
         is_login?(
         <div>
         <ul>
-        {
-        MenuArr?.map((item) => {
-          return (
-                <Bar>{item}</Bar>
-          );
+        {MenuArr?.map((item) => {
+            return (<Bar>{item}</Bar>);
         })}
         </ul>
         </div>

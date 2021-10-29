@@ -27,8 +27,8 @@ return(
         dc_list?.map((item) => {
           return (
             <DcList key={item.id} onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
-                <Img>{item.couponImage}</Img>
-              ㅋ<Text>{item.couponTitle}</Text>
+              <Img>{item.couponImage}</Img>
+              <Text>{item.couponTitle}</Text>
               <Text>{item.couponDespire}</Text>
             </DcList>
           );

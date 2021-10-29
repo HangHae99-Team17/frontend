@@ -8,9 +8,11 @@ import LgMain from "../pages/LgMain";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import MyPage from "../pages/MyPage";
+import Detail from "../pages/Detail";
+import SaleBox from "../pages/SaleBox";
 import Header from "../components/Header";
 import { actionCreators as userActions } from "../redux/modules/user";
-import Detail from "../pages/Detail";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +34,7 @@ function App() {
         <Route path="/signup" exact component={SignUp} />
         <Route path="/login" exact component={Login} />
         <Route path="/mypage" exact component={MyPage} />
+        <Route path="/salebox" exact component={SaleBox} />
         <Route path="/api/detail/:id" exact component={Detail} />
       </ConnectedRouter>
       </Grid>
