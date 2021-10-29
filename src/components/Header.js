@@ -21,6 +21,9 @@ const Header = () => {
                 <p>로그인됨</p>
                 <button onClick={logout}>로그아웃</button>
                 <button onClick={mypage}>마이페이지</button>
+                <button onClick={()=>{
+                    history.push('/salebox')
+                }}>쿠폰함</button>
             </div>):(<div>
                 <p>로그인안됨</p>
                 <button onClick={()=>{
