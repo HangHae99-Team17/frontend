@@ -26,7 +26,6 @@ function App() {
 
   return (
     <React.Fragment>
-      
       <Grid>
       <ConnectedRouter history={history}>
       <Header></Header>
