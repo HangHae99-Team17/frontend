@@ -8,6 +8,8 @@ import LgMain from "../pages/LgMain";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import MyPage from "../pages/MyPage";
+import Folders from "../pages/Folders";
+import Category from "../pages/Category";
 import Header from "../components/Header";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Detail from "../pages/Detail";
@@ -32,6 +34,8 @@ function App() {
         <Route path="/signup" exact component={SignUp} />
         <Route path="/login" exact component={Login} />
         <Route path="/mypage" exact component={MyPage} />
+        <Route path="/folders" exact component={Folders} />
+        <Route path="/category" exact component={Category} />
         <Route path="/api/detail/:id" exact component={Detail} />
       </ConnectedRouter>
       </Grid>
