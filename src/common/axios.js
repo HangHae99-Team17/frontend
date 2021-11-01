@@ -13,7 +13,8 @@ instance.interceptors.request.use((config) => {
 
 
 export const apis = {
-  // 할인 정보 리스트 가지고 오기
+  // 메인 페이지 할인 정보 리스트 가지고 오기
+  // 여기서 사용되는 param은 type이 됩니다.(request)
   getList: (param) => instance.get(`/api/main/${param}`),
   
   // 게시물 불러오기

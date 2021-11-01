@@ -8,12 +8,20 @@ import { history } from "../redux/configureStore";
 
 const LgMain = (props) => {
     const dispatch = useDispatch();
+
+    // history가 이동되면서 받은 props가 뭐가있는지 찍어본다.
     console.log(props)
+
+    // 내가 디스패치 하면서 넘겨줄 값(여기선 type이 됩니다)
+    // 이 type이 우리가 api에서 적어둔 param 부분이 됩니다.
     const type = props.match.params.type
     console.log(type)
+
+    // 내가 받아올 type의 할인정보 데이터들(리스트)
     const dc_list = useSelector(( state )=> state.main.list.data);
     console.log(dc_list)
     
+    // 디스패치 시에 type을 넣어줘야 request를 제대로해서 데려옵니다.
      React.useEffect(() => {
     dispatch(listCreators.getListMW(type))
     }, []);

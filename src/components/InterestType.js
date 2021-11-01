@@ -21,6 +21,7 @@ const InterestType = (props) => {
         {
         MenuArr?.map((item) => {
           return (
+                //목록을 누르면 history가 넘어가도록 한다.
                 <Bar onClick={()=>{history.push(`/api/main/${item}`)}}>{item}</Bar>
           );
         })}
