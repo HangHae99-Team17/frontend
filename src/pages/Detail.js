@@ -6,7 +6,7 @@ import styled from "styled-components";
 const Detail = (props) => {
     // 해당 할인 정보 id값만 추출하기
     const Id = props.match.params.id
-    // console.log()
+    console.log(Id)
 
     const dispatch = useDispatch();
     // 리덕스에서 info를 불러올때 해당 Id값의 info만 불러올 수 있도록 디스패치 해준다.

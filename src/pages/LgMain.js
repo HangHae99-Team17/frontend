@@ -8,11 +8,14 @@ import { history } from "../redux/configureStore";
 
 const LgMain = (props) => {
     const dispatch = useDispatch();
+    console.log(props)
+    const type = props.match.params.type
+    console.log(type)
     const dc_list = useSelector(( state )=> state.main.list.data);
     console.log(dc_list)
     
      React.useEffect(() => {
-    dispatch(listCreators.getListMW())
+    dispatch(listCreators.getListMW(type))
     }, []);
     
 

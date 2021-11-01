@@ -7,11 +7,13 @@ import { useDispatch } from "react-redux";
 import LgMain from "../pages/LgMain";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
-import Main from "../pages/Main";
 import MyPage from "../pages/MyPage";
+import Folders from "../pages/Folders";
+import Category from "../pages/Category";
 import Header from "../components/Header";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Detail from "../pages/Detail";
+import InterestType from '../components/InterestType';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,12 +31,14 @@ function App() {
       <Grid>
       <ConnectedRouter history={history}>
       <Header></Header>
-          <Route path="/lgmain" exact component={LgMain} />
-        <Route path="/" exact component={Main} />
+        <Route path="/api/main" exact component={InterestType} />
+        <Route path="/api/main/:type" exact component={LgMain} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/login" exact component={Login} />
-        <Route path="/api/detail/:id" exact component={Detail} />
         <Route path="/mypage" exact component={MyPage} />
+        <Route path="/folders" exact component={Folders} />
+        <Route path="/category" exact component={Category} />
+        <Route path="/api/detail/:id" exact component={Detail} />
       </ConnectedRouter>
       </Grid>
     </React.Fragment>

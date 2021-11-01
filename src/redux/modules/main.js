@@ -15,12 +15,12 @@ const initialState = {
 };
 
 // 리스트 가지고 오는 미들웨어_백에서 받아올땐 시간이 걸려
-const  getListMW = () => {
-  return  async (dispatch) => {
+const  getListMW = (params) => {
+  return  async (dispatch,getState,{history}) => {
     await apis 
-      .getList()
+      .getList(params)
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         dispatch(getList(res.data));
       })
       .catch((err) => {

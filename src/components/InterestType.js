@@ -1,8 +1,11 @@
 import React from "react";
 import {useSelector} from 'react-redux'
 import styled from 'styled-components'
+import { history } from "../redux/configureStore";
 
-const InterestType = () => {
+
+
+const InterestType = (props) => {
     const userMenu = useSelector((state)=>state.user.user)
     console.log(userMenu)
     const is_login = useSelector((state) => state.user.is_login);
@@ -18,7 +21,7 @@ const InterestType = () => {
         {
         MenuArr?.map((item) => {
           return (
-                <Bar>{item}</Bar>
+                <Bar onClick={()=>{history.push(`/api/main/${item}`)}}>{item}</Bar>
           );
         })}
         </ul>
