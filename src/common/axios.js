@@ -10,7 +10,6 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-
 export const apis = {
   // 할인 정보 리스트 가지고 오기
   getList: () => instance.get('/api/main'),
@@ -21,10 +20,10 @@ export const apis = {
   deluser: (password) => instance.post('/api/user/delete',password),
   getCategory:(param) => instance.get(`api/category/${param}`),
   getFolders:() => instance.get('api/folders'),
-  
   // 쿠폰 상세페이지 데이터 불러오기
   getDetail:(param)=>instance.get(`api/detail/${param}`),
+  getCoupon:()=>instance.get('api/admin/main'),
+  addCoupon:(coupon_content)=>instance.post('api/admin/coupon',coupon_content),
+  delCoupon:(coupon_id)=>instance.delete(`/api/admin/coupon/${coupon_id}`)
 };
-
-  
 

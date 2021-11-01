@@ -5,6 +5,7 @@ import { checkValue } from "../shared/regExp";
 
 const SignUp = () => {
     const dispatch = useDispatch();
+    const [admin, setAdmin] = useState(false);
     const [email_double, setEmail_Double] = useState("");
     const [passwordcheck, setPasswordcheck] = useState("");
     const emailcheck = useSelector((state) => state.user.useremail);
@@ -17,14 +18,15 @@ const SignUp = () => {
         cardtype:"",
         type1:"",
         type2:"",
-        type3:""
+        type3:"",
+        admintoken:""
     });
 
     const onChange = (e) => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
     }
 
-    const {email, username, password, password1, telecom, cardtype, type1, type2, type3} = signup_info;
+    const {email, username, password, password1, telecom, cardtype, type1, type2, type3, admintoken} = signup_info;
 
     const signup = () => {
 
@@ -36,7 +38,9 @@ const SignUp = () => {
             cardType:cardtype,
             type1:type1,
             type2:type2,
-            type3:type3
+            type3:type3,
+            admin:admin,
+            adminToken:admintoken
         }
 
         dispatch(userActions.signupFB(user_info))
@@ -50,6 +54,14 @@ const SignUp = () => {
         dispatch(userActions.checkemailFB(user_email))
 
         console.log(emailcheck)
+    }
+
+    const admincheck = () => {
+        if(admin === false){
+            setAdmin(true);
+        }else{
+            setAdmin(false)
+        }
     }
 
     useEffect(()=> {
@@ -95,6 +107,10 @@ const SignUp = () => {
             <input type="text"  name="type2" value={type2} onChange={onChange}/>
             <p>타입3</p>
             <input type="text" name="type3" value={type3} onChange={onChange}/>
+            <p>관리자십니까?</p>
+            <button onClick={admincheck}>예</button>
+            <button onClick={admincheck}>아니요</button>
+            {admin?(<input type="text" name="admintoken" value={admintoken} onChange={onChange}/>):("")}
             <button onClick={signup}>가입하기</button>
         </React.Fragment>
     );

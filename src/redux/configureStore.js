@@ -9,6 +9,7 @@ import User from "./modules/user";
 import Category from "./modules/category";
 import Folders from "./modules/folders";
 import detail from "./modules/detail";
+import Sale from "./modules/sale";
 
 
 
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
 
     category: Category,
     folders: Folders,
+    sale:Sale,
 
     router: connectRouter(history),
 });
