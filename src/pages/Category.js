@@ -1,14 +1,16 @@
 import React,{ useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { categoryCreators } from '../redux/modules/category';
-import Category2 from '../components/Category2';
+import Categorys from '../components/Categorys';
 
-const Category = () => {
+const Category = (props) => {
     const dispatch = useDispatch();
+    const Type = props.match.params.type;
     const categorys = useSelector((state) => state.category.list);
+    
 
     useEffect(() => {
-        dispatch(categoryCreators.getCategoryMiddleware());
+        dispatch(categoryCreators.getCategoryMiddleware(Type));
       }, []);
 
     return (
@@ -16,7 +18,7 @@ const Category = () => {
           <div>
           {categorys.map((category) => {
             return (
-              <Category2 key={category.id} {...category}/>
+              <Categorys key={category.id} {...category}/>
             );
           })}
           </div>

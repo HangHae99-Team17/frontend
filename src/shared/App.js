@@ -13,6 +13,7 @@ import SaleBox from "../pages/SaleBox";
 import Folders from "../pages/Folders";
 import Category from "../pages/Category";
 import Header from "../components/Header";
+import  Categorys from "../components/Categorys"
 import { actionCreators as userActions } from "../redux/modules/user";
 
 
@@ -38,8 +39,9 @@ function App() {
         <Route path="/mypage" exact component={MyPage} />
         <Route path="/salebox" exact component={SaleBox} />
         <Route path="/folders" exact component={Folders} />
-        <Route path="/category" exact component={Category} />
+        <Route path="/api/category" exact component={Categorys} />
         <Route path="/api/detail/:id" exact component={Detail} />
+        <Route path="/api/category/:type" exact component={Category}/>
       </ConnectedRouter>
       </Grid>
     </React.Fragment>
