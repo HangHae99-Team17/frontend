@@ -69,7 +69,8 @@ export default handleActions(
       }),
     [DEL_SALE]: (state, action) =>
       produce(state, (draft)=>{
-        let idx = draft.list.findIndex((p) => p.id.toString() === action.payload.coupon_id);
+        let idx = draft.list.findIndex((p) => p.id === action.payload.coupon_id);
+        console.log(idx)
         if (idx !== -1) {
           draft.list.splice(idx, 1);
         }

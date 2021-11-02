@@ -9,6 +9,9 @@ const SignUp = () => {
     const [email_double, setEmail_Double] = useState("");
     const [passwordcheck, setPasswordcheck] = useState("");
     const emailcheck = useSelector((state) => state.user.useremail);
+    const [type1,setType1] = useState("");
+    const [type2,setType2] = useState("");
+    const [type3,setType3] = useState("");
     const [signup_info, setSignUp_Info] = useState({
         email: "",
         username: "",
@@ -16,9 +19,6 @@ const SignUp = () => {
         password1: "",
         telecom:"",
         cardtype:"",
-        type1:"",
-        type2:"",
-        type3:"",
         admintoken:""
     });
 
@@ -26,7 +26,7 @@ const SignUp = () => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
     }
 
-    const {email, username, password, password1, telecom, cardtype, type1, type2, type3, admintoken} = signup_info;
+    const {email, username, password, password1, telecom, cardtype, admintoken} = signup_info;
 
     const signup = () => {
 
@@ -61,6 +61,49 @@ const SignUp = () => {
             setAdmin(true);
         }else{
             setAdmin(false)
+        }
+    }
+
+    const typeselect = (e) => {
+
+        if(type1 === "" && type2 === "" && type3 === ""){
+            setType1(e.target.value);
+        }
+
+        if(type1 && type2 === "" && type3 === ""){
+            setType2(e.target.value);
+        }
+
+        if(type1 === "" && type2 && type3 === ""){
+            setType2(e.target.value);
+        }
+
+        if(type1 === "" && type2 === "" && type3){
+            setType1(e.target.value);
+        }  
+
+        if(type1 === "" && type2 && type3){
+            setType1(e.target.value);
+        }
+        
+        if(type1 && type2 === "" && type3){
+            setType2(e.target.value);
+        }
+        
+        if(type1 && type2 && type3 === ""){
+            setType3(e.target.value);
+        }
+    }
+
+    const typecancle = (e) => {
+        if(e.target.value === type1){
+            setType1("");
+        }
+        if(e.target.value === type2){
+            setType2("");
+        }
+        if(e.target.value === type3){
+            setType3("");
         }
     }
 
@@ -101,15 +144,18 @@ const SignUp = () => {
             <input type="text" name="telecom" value={telecom} onChange={onChange}/>
             <p>카드사</p>
             <input type="text" name="cardtype" value={cardtype} onChange={onChange}/>
-            <p>타입1</p>
-            <input type="text" name="type1" value={type1} onChange={onChange}/>
-            <p>타입2</p>
-            <input type="text"  name="type2" value={type2} onChange={onChange}/>
-            <p>타입3</p>
-            <input type="text" name="type3" value={type3} onChange={onChange}/>
+            <div>
+            <p>타입 선택</p>
+            {type1 !== "타입1" && type2 !== "타입1" && type3 !== "타입1" ?(<button onClick={typeselect} value="타입1">타입1선택</button>):(<button onClick={typecancle} value="타입1">타입1취소</button>)}
+            {type1 !== "타입2"&&type2 !== "타입2"&&type3 !== "타입2"?(<button onClick={typeselect} value="타입2">타입2선택</button>):(<button onClick={typecancle} value="타입2">타입2취소</button>)}
+            {type1 !== "타입3"&&type2 !== "타입3"&&type3 !== "타입3"?(<button onClick={typeselect} value="타입3">타입3선택</button>):(<button onClick={typecancle} value="타입3">타입3취소</button>)}
+            {type1 !== "타입4"&&type2 !== "타입4"&&type3 !== "타입4"?(<button onClick={typeselect} value="타입4">타입4선택</button>):(<button onClick={typecancle} value="타입4">타입4취소</button>)}
+            {type1 !== "타입5"&&type2 !== "타입5"&&type3 !== "타입5"?(<button onClick={typeselect} value="타입5">타입5선택</button>):(<button onClick={typecancle} value="타입5">타입5취소</button>)}
+            {type1 !== "타입6"&&type2 !== "타입6"&&type3 !== "타입6"?(<button onClick={typeselect} value="타입6">타입6선택</button>):(<button onClick={typecancle} value="타입6">타입6취소</button>)}
+            </div>
+            
             <p>관리자십니까?</p>
             <button onClick={admincheck}>예</button>
-            <button onClick={admincheck}>아니요</button>
             {admin?(<input type="text" name="admintoken" value={admintoken} onChange={onChange}/>):("")}
             <button onClick={signup}>가입하기</button>
         </React.Fragment>
