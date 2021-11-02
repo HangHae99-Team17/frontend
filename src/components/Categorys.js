@@ -6,9 +6,10 @@ const Categorys = (props) => {
    
 
     return (
+        // history.go(0) -> 새로고침을 안해도 카테고리를 옮길 수 있도록 하는것
         <React.Fragment>
              {category.map((item)=>{
-                return <div onClick={()=>{history.push(`/api/category/${item}`)}}>{item}</div>
+                return <div onClick={()=>{history.push(`/api/category/${item}`); history.go(0)}}>{item}</div>
             })
 
             }
@@ -19,7 +20,7 @@ const Categorys = (props) => {
             <p>couponTitle : {props.couponTitle}</p>
             <p>couponType : {props.couponType}</p>
             <p>couponUrl : {props.couponUrl}</p>
-           
+
         </React.Fragment>
     );
 };
