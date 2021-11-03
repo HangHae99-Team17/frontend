@@ -9,7 +9,9 @@ const POST_COUPON = 'POST_COUPON';
 
 // action creators
 const loadFolders = createAction(LOAD_FOLDERS, (list) => ({ list }));
-const delFolders = createAction(DEL_FOLDERS, (list) => ({ list }));
+
+const delFolders = createAction(DEL_FOLDERS, (coupon_id) => ({coupon_id}));
+
 const postCoupon = createAction(POST_COUPON, (id)=>({id}))
 
 // initialState
@@ -23,6 +25,7 @@ const getFoldersMiddleware = () => {
     apis.getFolders()
       .then((res) => {
         const folders_list = res.data;
+        console.log(folders_list)
         dispatch(loadFolders(folders_list));
       })
       .catch((err) => {
@@ -31,17 +34,17 @@ const getFoldersMiddleware = () => {
   };
 };
 
-const delFoldersMiddleware = () => {
-  return (dispatch) => {
-    apis.delFolders()
-      .then((res) => {
-        const folders_list = res.data;
-        dispatch(delFolders(folders_list));
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+
+export const delFoldersMiddleware= (coupon_id) => {
+  return async(dispatch,getState,{history}) => {
+    try{
+      await apis.delFolders(coupon_id);
+      dispatch(delFolders(coupon_id));
+      history.replace('/folders');
+    }catch(e){
+      console.log(e);
+    }
+  }
 };
 
 // 찜하기 기능 post 미들웨어_ 이거는 백에 보내주는 일이라 async안씀
@@ -66,9 +69,14 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list = action.payload.list;
       }),
+      
       [DEL_FOLDERS]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.list;
+        let idx = draft.list.findIndex((p) => p.id === action.payload.coupon_id);
+        console.log(idx)
+        if (idx !== -1) {
+          draft.list.splice(idx, 1);
+        }
       }),
       
       // 폴더의 get요청 리스트에 post할 걸 밀어넣는과정

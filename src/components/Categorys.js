@@ -3,6 +3,7 @@ import { history } from "../redux/configureStore"
 
 const Categorys = (props) => {
     const category = ["뷰티","식품","가전","kt","skt"]
+    console.log(props)
    
 
     return (
@@ -13,6 +14,8 @@ const Categorys = (props) => {
             })
 
             }
+            <div onClick={()=>{history.push(`/api/detail/${props.id}`)}}>
+                
             <p>couponCreate : {props.couponCreate}</p>
             <p>couponDesc : {props.couponDesc}</p>
             <p>couponDespire : {props.couponDespire}</p>
@@ -20,7 +23,8 @@ const Categorys = (props) => {
             <p>couponTitle : {props.couponTitle}</p>
             <p>couponType : {props.couponType}</p>
             <p>couponUrl : {props.couponUrl}</p>
-
+            </div>
+            
         </React.Fragment>
     );
 };

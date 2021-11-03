@@ -23,7 +23,7 @@ export const apis = {
   deluser: (password) => instance.post('/api/user/delete',password),
   getCategory:(param) => instance.get(`api/category/${param}`),
   getFolders:() => instance.get('api/folders'),
-  delFolders:(couponId) => instance.post(`api/folders/${couponId}`,couponId),
+  delFolders:(param) => instance.delete(`api/folders/${param}`),
   // 쿠폰 상세페이지 데이터 불러오기
   getDetail:(param)=>instance.get(`api/detail/${param}`),
   // 찜하기 기능(폴더에 포스트), couponId가 request값 ->json값으로 보내줘야 함

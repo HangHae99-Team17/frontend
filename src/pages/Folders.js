@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { foldersCreators } from '../redux/modules/folders';
-import Folder from '../components/Folder';
+import { history } from '../redux/configureStore'
 
 const Folders = () => {
     const dispatch = useDispatch();
     const folders = useSelector((state) => state.folders.list);
+    console.log(folders?.data?.coupons);
+    const list = folders?.data?.coupons;
 
     useEffect(() => {
         dispatch(foldersCreators.getFoldersMiddleware());
       }, []);
 
       return (
-        <React.Fragment>
           <div>
-          {Folder.map((folders) => {
-            return (
-              <Folder key={folders.id} {...folders}/>
-            );
-          })}
+            {list?.map((item)=>{
+              return(
+                <div>
+                  {item.couponTitle}
+                  <button onClick={()=>{dispatch(foldersCreators.delFoldersMiddleware(item.couponId)); history.go(0)}}>삭제하기</button>
+                </div>
+              )
+
+            })}
           </div>
-        </React.Fragment>
     );
 };
 
