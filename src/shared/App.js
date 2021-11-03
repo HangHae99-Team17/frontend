@@ -15,7 +15,7 @@ import SaleList from "../pages/SaleList";
 import SaleWrite from "../pages/SaleWrite";
 import Header from "../components/Header";
 import { actionCreators as userActions } from "../redux/modules/user";
-
+import InterestType from '../components/InterestType';
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +33,8 @@ function App() {
       <Grid>
       <ConnectedRouter history={history}>
       <Header></Header>
-        <Route path="/lgmain" exact component={LgMain} />
+        <Route path="/api/main" exact component={InterestType} />
+        <Route path="/api/main/:type" exact component={LgMain} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/login" exact component={Login} />
         <Route path="/mypage" exact component={MyPage} />
