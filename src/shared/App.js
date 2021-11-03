@@ -13,6 +13,8 @@ import Category from "../pages/Category";
 import SaleList from "../pages/SaleList";
 import SaleWrite from "../pages/SaleWrite";
 import Header from "../components/Header";
+import InterestType from '../components/InterestType';
+
 
 function App() {
   
@@ -21,8 +23,9 @@ function App() {
     <React.Fragment>
       <Grid>
       <ConnectedRouter history={history}>
-      <Header/>
-        <Route path="/" exact component={LgMain} />
+      <Header></Header>
+        <Route path="/api/main" exact component={InterestType} />
+        <Route path="/api/main/:type" exact component={LgMain} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/login" exact component={Login} />
         <Route path="/mypage" exact component={MyPage} />
