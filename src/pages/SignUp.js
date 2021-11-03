@@ -129,31 +129,40 @@ const SignUp = () => {
 
     return (
         <React.Fragment>
-            <p>이메일</p>
-            <input type="text" name="email" value={email} onChange={onChange}/>
-            <p>{email_double}</p>
-            <button onClick={checkemail}>중복체크</button>
-            <p>유저이름</p>
-            <input type="text" name="username" value={username} onChange={onChange}/>
-            <p>비밀번호</p>
-            <input type="password" name="password" value={password} onChange={onChange}/>
-            <p>비밀번호확인</p>
-            <input type="password" name="password1" value={password1} onChange={onChange}/>
-            <p>{passwordcheck}</p>
-            <p>통신사</p>
-            <input type="text" name="telecom" value={telecom} onChange={onChange}/>
-            <p>카드사</p>
-            <input type="text" name="cardtype" value={cardtype} onChange={onChange}/>
             <div>
-            <p>타입 선택</p>
-            {type1 !== "타입1" && type2 !== "타입1" && type3 !== "타입1" ?(<button onClick={typeselect} value="타입1">타입1선택</button>):(<button onClick={typecancle} value="타입1">타입1취소</button>)}
-            {type1 !== "타입2"&&type2 !== "타입2"&&type3 !== "타입2"?(<button onClick={typeselect} value="타입2">타입2선택</button>):(<button onClick={typecancle} value="타입2">타입2취소</button>)}
-            {type1 !== "타입3"&&type2 !== "타입3"&&type3 !== "타입3"?(<button onClick={typeselect} value="타입3">타입3선택</button>):(<button onClick={typecancle} value="타입3">타입3취소</button>)}
-            {type1 !== "타입4"&&type2 !== "타입4"&&type3 !== "타입4"?(<button onClick={typeselect} value="타입4">타입4선택</button>):(<button onClick={typecancle} value="타입4">타입4취소</button>)}
-            {type1 !== "타입5"&&type2 !== "타입5"&&type3 !== "타입5"?(<button onClick={typeselect} value="타입5">타입5선택</button>):(<button onClick={typecancle} value="타입5">타입5취소</button>)}
-            {type1 !== "타입6"&&type2 !== "타입6"&&type3 !== "타입6"?(<button onClick={typeselect} value="타입6">타입6선택</button>):(<button onClick={typecancle} value="타입6">타입6취소</button>)}
+                <p>이메일</p>
+                <input type="text" name="email" value={email} onChange={onChange}/>
+                <p>{email_double}</p>
+                <button onClick={checkemail}>중복체크</button>
             </div>
-            
+            <div>
+                <p>유저이름</p>
+                <input type="text" name="username" value={username} onChange={onChange}/>
+            </div>
+            <div>
+                <p>비밀번호</p>
+                <input type="password" name="password" value={password} onChange={onChange}/>
+                <p>비밀번호확인</p>
+                <input type="password" name="password1" value={password1} onChange={onChange}/>
+                <p>{passwordcheck}</p>
+            </div>
+            <div>
+                <p>통신사</p>
+                <input type="text" name="telecom" value={telecom} onChange={onChange}/>
+            </div>
+            <div>
+                <p>카드사</p>
+                <input type="text" name="cardtype" value={cardtype} onChange={onChange}/>
+            </div>
+            <div>
+                <p>타입 선택</p>
+                {type1 !== "타입1" && type2 !== "타입1" && type3 !== "타입1" ?(<button onClick={typeselect} value="타입1">타입1선택</button>):(<button onClick={typecancle} value="타입1">타입1취소</button>)}
+                {type1 !== "타입2"&&type2 !== "타입2"&&type3 !== "타입2"?(<button onClick={typeselect} value="타입2">타입2선택</button>):(<button onClick={typecancle} value="타입2">타입2취소</button>)}
+                {type1 !== "타입3"&&type2 !== "타입3"&&type3 !== "타입3"?(<button onClick={typeselect} value="타입3">타입3선택</button>):(<button onClick={typecancle} value="타입3">타입3취소</button>)}
+                {type1 !== "타입4"&&type2 !== "타입4"&&type3 !== "타입4"?(<button onClick={typeselect} value="타입4">타입4선택</button>):(<button onClick={typecancle} value="타입4">타입4취소</button>)}
+                {type1 !== "타입5"&&type2 !== "타입5"&&type3 !== "타입5"?(<button onClick={typeselect} value="타입5">타입5선택</button>):(<button onClick={typecancle} value="타입5">타입5취소</button>)}
+                {type1 !== "타입6"&&type2 !== "타입6"&&type3 !== "타입6"?(<button onClick={typeselect} value="타입6">타입6선택</button>):(<button onClick={typecancle} value="타입6">타입6취소</button>)}
+            </div>
             <p>관리자십니까?</p>
             <button onClick={admincheck}>예</button>
             {admin?(<input type="text" name="admintoken" value={admintoken} onChange={onChange}/>):("")}

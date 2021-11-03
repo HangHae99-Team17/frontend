@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as saleActions } from "../redux/modules/sale";
 import Coupon from '../components/Coupon';
 
-const SaleList = () => {
+const SaleList = (props) => {
 
     const dispatch = useDispatch();
     const sale_list = useSelector((state) => state.sale.list);

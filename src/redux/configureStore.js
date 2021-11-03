@@ -20,7 +20,6 @@ const rootReducer = combineReducers({
     main: main,
     user: User,
     detail : detail,
-
     category: Category,
     folders: Folders,
     sale:Sale,

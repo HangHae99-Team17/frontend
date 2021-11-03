@@ -18,13 +18,12 @@ const initialState = {
 //회원가입
 export const signupFB = (user) => {
   return async (dispatch, getState, { history }) => {
-    console.log(user)
     try {
-      await apis.adduser(user)
+      await apis.adduser(user);
       alert("회원가입에 성공하셨습니다.");
       history.push("/login");
     } catch (e) {
-      console.log("error");
+      console.log(e);
     }
   };
 };
@@ -36,18 +35,16 @@ export const loginFB = (user) => {
       const res = await apis.loginuser(user)
       if(res.data.data !== "유저네임을 찾을 수 없습니다." && res.data.data !== "비밀번호가 맞지 않습니다."){
         const token = res.data.data.token;
-        const user_name = res.data.data.nickname;
         if (token) {
           sessionStorage.setItem("token", `${token}`);
-          sessionStorage.setItem("nickname", `${user_name}`);
         }
         dispatch(setUser(res.data.data));
         history.push(`api/main/`);
       }else{
-        window.alert(res.data.data)
+        window.alert(res.data.data);
       }
     } catch (e) {
-      console.log("error");
+      console.log(e);
     }
   }
 }
@@ -62,27 +59,27 @@ export const loginCheckFB = () => {
 
 //로그아웃
 export const logoutFB = () => {
-  return(dispatch) => {
+  return(dispatch,{ history }) => {
     sessionStorage.removeItem("token");
-    sessionStorage.removeItem("nickname");
     dispatch(setUser(null));
     alert("로그아웃 되었습니다.");
+    console.log(history);
+    history.push("/");
   }
 }
 
 //회원정보 수정
 export const edituserFB = (user_info) => {
   return async(dispatch, {history}) => {
-    console.log(user_info)
     try{
       const res = await apis.edituser(user_info);
       if(res.data.data === "비밀번호가 맞지 않습니다."){
-        window.alert("비밀번호가 맞지 않습니다.")
-        history.replace('/mypage')
+        window.alert("비밀번호가 맞지 않습니다.");
+        history.replace('/mypage');
       }
       dispatch(setUser(res.data.data));
-      window.alert("개인정보가 수정되었습니다")
-      history.replace('/mypage')
+      window.alert("개인정보가 수정되었습니다");
+      history.replace('/mypage');
     }catch(e){
       console.log(e);
     }
@@ -92,12 +89,9 @@ export const edituserFB = (user_info) => {
 //회원정보 삭제
 export const deluserFB = (password) => {
   return async (dispatch, {history}) => {
-    
     try {
-      const res = await apis.deluser(password)
-      console.log(res)
+      await apis.deluser(password);
       sessionStorage.removeItem("token");
-      sessionStorage.removeItem("nickname");
       dispatch(setUser(null));
       history.replace("/");
     } catch (e) {
