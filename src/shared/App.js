@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Grid } from "../elements";
-import { useDispatch } from "react-redux";
 import LgMain from "../pages/LgMain";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
@@ -16,25 +15,19 @@ import SaleWrite from "../pages/SaleWrite";
 import Header from "../components/Header";
 import  Categorys from "../components/Categorys"
 import { actionCreators as userActions } from "../redux/modules/user";
+import InterestType from '../components/InterestType';
 
 
 function App() {
-  const dispatch = useDispatch();
-
-  const is_session = sessionStorage.getItem("token") ? true : false;
-
-  React.useEffect(() => {
-    if(is_session){
-      dispatch(userActions.loginCheckFB());
-    }
-  }, []);
+  
 
   return (
     <React.Fragment>
       <Grid>
       <ConnectedRouter history={history}>
       <Header></Header>
-        <Route path="/lgmain" exact component={LgMain} />
+        <Route path="/api/main" exact component={InterestType} />
+        <Route path="/api/main/:type" exact component={LgMain} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/login" exact component={Login} />
         <Route path="/mypage" exact component={MyPage} />
@@ -44,6 +37,7 @@ function App() {
         <Route path="/api/category/:type" exact component={Category}/>
         <Route path="/salelist" exact component={SaleList} />
         <Route path="/salewrite" exact component={SaleWrite} />
+        <Route path="/salewrite/:id" exact component={SaleWrite} />
       </ConnectedRouter>
       </Grid>
     </React.Fragment>
