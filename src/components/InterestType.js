@@ -29,8 +29,12 @@ const InterestType = (props) => {
         </ul>
         </div>
         ):(
-            <div> </div>
-        )
+<Wrap> 
+  <P>로그인 먼저 해주세요!</P>
+  <button onClick={()=>{history.push('/login')}}>로그인 하러 가기</button>
+  <P2>앗! 아직 회원이 아니신가요?</P2>
+  <button onClick={()=>{history.push('/signup')}}>회원가입하기 하러 가기</button>
+</Wrap>)
     )    
 }
 
@@ -39,5 +43,22 @@ display : inline-block;
 margin : 20px;
 cursor : pointer;
 `
+const Wrap = styled.div`
+width : 400px;
+height : 400px;
+margin : auto;
+text-align : center;
+`
+const P = styled.p`
+font-weight : bold;
+font-size : 30px;
+color : rgb(59,59,59);
+margin-bottom :10px;
+`
+const P2 = styled.p`
+font-weight : bold;
+margin-bottom :10px;
+`
+
 
 export default InterestType;

@@ -12,8 +12,7 @@ const Folders = () => {
 
     return (
         <React.Fragment>
-           
-           {folders &&
+          {folders &&
           folders.map((item) => {
             return (
               <div key={item.id}>

@@ -5,26 +5,18 @@ import Category2 from '../components/Category2';
 
 const Category = () => {
     const dispatch = useDispatch();
-    const category = useSelector((state) => state.category.list);
-    const [title, setTitle] = useState('');
+    const categorys = useSelector((state) => state.category.list);
 
-
-    console.log(category.data)
-    
     useEffect(() => {
         dispatch(categoryCreators.getCategoryMiddleware());
-        setTitle(category)
-      }, [category]);
+      }, []);
 
     return (
         <React.Fragment>
           <div>
-            
-          
-          {title.map((item) => {
+          {categorys.map((category) => {
             return (
-              <Category2 {...item}/>
-              
+              <Category2 key={category.id} {...category}/>
             );
           })}
           </div>
