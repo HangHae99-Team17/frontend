@@ -30,4 +30,6 @@ export const apis = {
   deluser: (password) => instance.post('/api/user/delete',password),
   // 쿠폰 상세페이지 데이터 불러오기
   getDetail:(param)=>instance.get(`api/detail/${param}`),
+  // 찜하기 기능(폴더에 포스트), couponId가 request값 ->json값으로 보내줘야 함
+  postCoupon: (couponId)=>instance.post('/api/folders',couponId)
 };
