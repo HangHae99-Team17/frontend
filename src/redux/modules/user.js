@@ -63,8 +63,6 @@ export const logoutFB = () => {
     sessionStorage.removeItem("token");
     dispatch(setUser(null));
     alert("로그아웃 되었습니다.");
-    console.log(history);
-    history.push("/");
   }
 }
 
@@ -79,7 +77,8 @@ export const edituserFB = (user_info) => {
       }
       dispatch(setUser(res.data.data));
       window.alert("개인정보가 수정되었습니다");
-      history.replace('/mypage');
+      console.log(history)
+      history.push('/');
     }catch(e){
       console.log(e);
     }

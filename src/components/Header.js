@@ -18,7 +18,8 @@ const Header = (props) => {
     }, []);
 
     const logout = () => {
-        dispatch(userActions.logoutFB())
+        dispatch(userActions.logoutFB());
+        history.push("/");
     };
 
     useEffect(()=>{
