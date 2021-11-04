@@ -74,7 +74,6 @@ export default handleActions(
     [SET_SALE]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.sale
-        console.log(draft.list);
       }),
     [ADD_SALE]: (state, action) =>
       produce(state, (draft) => {

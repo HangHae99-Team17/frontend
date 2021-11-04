@@ -8,7 +8,11 @@ const SignUp = (props) => {
     const dispatch = useDispatch();
     const [admin, setAdmin] = useState(false);
     const [passwordcheck, setPasswordcheck] = useState("");
-    const [display,setDisplay] = useState("none");
+    const [emaildisplay,setEmailDisplay] = useState("block");
+    const [passworddisplay,setPasswordDisplay] = useState("none");
+    const [telecomdisplay,setTelecomDisplay]= useState("none");
+    const [carddisplay,setCardDisplay] = useState("none");
+    const [typedisplay,setTypeDisplay] = useState("none");
     const [type1,setType1] = useState("");
     const [type2,setType2] = useState("");
     const [type3,setType3] = useState("");
@@ -98,7 +102,19 @@ const SignUp = (props) => {
     }
 
     const next = () => {
-        setDisplay("block");
+        if(emaildisplay === "block"){
+            setEmailDisplay("none");
+            setPasswordDisplay("block");
+        }else if(passworddisplay === "block"){
+            setPasswordDisplay("none");
+            setTelecomDisplay("block");
+        }else if(telecomdisplay ==="block"){
+            setTelecomDisplay("none");
+            setCardDisplay("block");
+        }else if(carddisplay==="block"){
+            setCardDisplay("none");
+            setTypeDisplay("block");
+        }
     };
 
     useEffect(()=> {
@@ -113,29 +129,32 @@ const SignUp = (props) => {
 
     return (
         <React.Fragment>
-            <EmailBox>
+            <EmailBox display={emaildisplay}>
                 <p>이메일</p>
                 <input type="text" name="email" value={email} onChange={onChange}/>
                 <p>유저이름</p>
                 <input type="text" name="username" value={username} onChange={onChange}/>
                 <button onClick={next}>다음</button>
             </EmailBox>
-            <PasswordBox display={display}>
+            <PasswordBox display={passworddisplay}>
                 <p>비밀번호</p>
                 <input type="password" name="password" value={password} onChange={onChange}/>
                 <p>비밀번호확인</p>
                 <input type="password" name="password1" value={password1} onChange={onChange}/>
                 <p>{passwordcheck}</p>
+                <button onClick={next}>다음</button>
             </PasswordBox>
-            <TelecomBox>
+            <TelecomBox display={telecomdisplay}>
                 <p>통신사</p>
                 <input type="text" name="telecom" value={telecom} onChange={onChange}/>
+                <button onClick={next}>다음</button>
             </TelecomBox>
-            <CardtypeBox>
+            <CardtypeBox display={carddisplay}>
                 <p>카드사</p>
                 <input type="text" name="cardtype" value={cardtype} onChange={onChange}/>
+                <button onClick={next}>다음</button>
             </CardtypeBox>
-            <TypeBox>
+            <TypeBox display={typedisplay}>
                 <p>타입 선택</p>
                 {type1 !== "타입1" && type2 !== "타입1" && type3 !== "타입1" ?(<button onClick={typeselect} value="타입1">타입1선택</button>):(<button onClick={typecancle} value="타입1">타입1취소</button>)}
                 {type1 !== "타입2"&&type2 !== "타입2"&&type3 !== "타입2"?(<button onClick={typeselect} value="타입2">타입2선택</button>):(<button onClick={typecancle} value="타입2">타입2취소</button>)}
@@ -153,7 +172,7 @@ const SignUp = (props) => {
 };
 
 const EmailBox = styled.div`
-    display:block;
+    display: ${props => props.display};
 `;
 
 const PasswordBox = styled.div`
@@ -161,15 +180,15 @@ const PasswordBox = styled.div`
 `;
 
 const TelecomBox = styled.div`
-    display:none;
+    display: ${props => props.display};
 `;
 
 const CardtypeBox = styled.div`
-    display:none;
+    display:${props => props.display};
 `;
 
 const TypeBox = styled.div`
-    display:none;
+    display:${props => props.display};
 `;
 
 export default SignUp;
