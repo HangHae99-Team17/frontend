@@ -13,6 +13,8 @@ import Category from "../pages/Category";
 import SaleList from "../pages/SaleList";
 import SaleWrite from "../pages/SaleWrite";
 import Header from "../components/Header";
+import  Categorys from "../components/Categorys"
+import { actionCreators as userActions } from "../redux/modules/user";
 import InterestType from '../components/InterestType';
 
 
@@ -29,8 +31,9 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/mypage" exact component={MyPage} />
         <Route path="/folders" exact component={Folders} />
-        <Route path="/category" exact component={Category} />
+        <Route path="/api/category" exact component={Categorys} />
         <Route path="/api/detail/:id" exact component={Detail} />
+        <Route path="/api/category/:type" exact component={Category}/>
         <Route path="/salelist" exact component={SaleList} />
         <Route path="/salewrite" exact component={SaleWrite} />
         <Route path="/salewrite/:id" exact component={SaleWrite} />

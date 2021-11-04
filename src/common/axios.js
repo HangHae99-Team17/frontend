@@ -21,8 +21,9 @@ export const apis = {
   logincheck: () => instance.get('api/user/show'),
   edituser: (user_info) => instance.put('/api/user/change',user_info),
   deluser: (password) => instance.post('/api/user/delete',password),
-  getCategory:() => instance.get('api/main'),
+  getCategory:(param) => instance.get(`api/category/${param}`),
   getFolders:() => instance.get('api/folders'),
+  delFolders:(param) => instance.delete(`api/folders/${param}`),
   // 쿠폰 상세페이지 데이터 불러오기
   getDetail:(param)=>instance.get(`api/detail/${param}`),
   // 찜하기 기능(폴더에 포스트), couponId가 request값 ->json값으로 보내줘야 함

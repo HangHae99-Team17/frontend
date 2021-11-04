@@ -14,9 +14,10 @@ const initialState = {
 };
 
 // middleware
-const getCategoryMiddleware = () => {
-  return (dispatch) => {
-    apis.getCategory()
+const getCategoryMiddleware = (params) => {
+  return async (dispatch) => {
+    await apis
+    .getCategory(params)
       .then((res) => {
         console.log(res.data.data)
         const category_list = res.data.data;
