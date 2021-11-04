@@ -50,7 +50,7 @@ export const delSaleFB= (coupon_id) => {
     try{
       await apis.delCoupon(coupon_id);
       dispatch(delSale(coupon_id));
-      history.replace('/salelist');
+      history.goback();
     }catch(e){
       console.log(e);
     }
@@ -62,7 +62,6 @@ export const editSaleFB = (coupon_id,coupon_content) => {
     try{
       await apis.editCoupon(coupon_id,coupon_content);
       dispatch(editSale(coupon_id,coupon_content));
-      history.push('/salelist');
     }catch(e){
       console.log(e);
     }
@@ -75,7 +74,6 @@ export default handleActions(
     [SET_SALE]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.sale
-        console.log(draft.list);
       }),
     [ADD_SALE]: (state, action) =>
       produce(state, (draft) => {

@@ -20,7 +20,6 @@ import InterestType from '../components/InterestType';
 
 function App() {
   
-
   return (
     <React.Fragment>
       <Grid>
