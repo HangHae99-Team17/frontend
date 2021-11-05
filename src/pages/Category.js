@@ -2,6 +2,7 @@ import React,{ useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { categoryCreators } from '../redux/modules/category';
 import Categorys from '../components/Categorys';
+import styled from "styled-components";
 
 const Category = (props) => {
     const dispatch = useDispatch();
@@ -25,5 +26,6 @@ const Category = (props) => {
         </React.Fragment>
     );
 };
+
 
 export default Category;
