@@ -1,14 +1,18 @@
 import React,{useEffect, useState} from 'react';
 import { useDispatch,useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import styled from 'styled-components';
 import { checkValue } from "../shared/regExp";
 
-const SignUp = () => {
+const SignUp = (props) => {
     const dispatch = useDispatch();
     const [admin, setAdmin] = useState(false);
-    const [email_double, setEmail_Double] = useState("");
     const [passwordcheck, setPasswordcheck] = useState("");
-    const emailcheck = useSelector((state) => state.user.useremail);
+    const [emaildisplay,setEmailDisplay] = useState("block");
+    const [passworddisplay,setPasswordDisplay] = useState("none");
+    const [telecomdisplay,setTelecomDisplay]= useState("none");
+    const [carddisplay,setCardDisplay] = useState("none");
+    const [typedisplay,setTypeDisplay] = useState("none");
     const [type1,setType1] = useState("");
     const [type2,setType2] = useState("");
     const [type3,setType3] = useState("");
@@ -44,16 +48,6 @@ const SignUp = () => {
         }
 
         dispatch(userActions.signupFB(user_info))
-    }
-
-    const checkemail = () => {
-
-        const user_email = {
-            userEmail: email,
-        }
-        dispatch(userActions.checkemailFB(user_email))
-
-        console.log(emailcheck)
     }
 
     const admincheck = () => {
@@ -107,15 +101,21 @@ const SignUp = () => {
         }
     }
 
-    useEffect(()=> {
-        if(email === ""){
-            setEmail_Double("이메일이 비었어요!")
-            return
-        }else{
-            setEmail_Double("")
+    const next = () => {
+        if(emaildisplay === "block"){
+            setEmailDisplay("none");
+            setPasswordDisplay("block");
+        }else if(passworddisplay === "block"){
+            setPasswordDisplay("none");
+            setTelecomDisplay("block");
+        }else if(telecomdisplay ==="block"){
+            setTelecomDisplay("none");
+            setCardDisplay("block");
+        }else if(carddisplay==="block"){
+            setCardDisplay("none");
+            setTypeDisplay("block");
         }
-        
-    },[email])
+    };
 
     useEffect(()=> {
         if(password !== password1){
@@ -129,32 +129,32 @@ const SignUp = () => {
 
     return (
         <React.Fragment>
-            <div>
+            <EmailBox display={emaildisplay}>
                 <p>이메일</p>
                 <input type="text" name="email" value={email} onChange={onChange}/>
-                <p>{email_double}</p>
-                <button onClick={checkemail}>중복체크</button>
-            </div>
-            <div>
                 <p>유저이름</p>
                 <input type="text" name="username" value={username} onChange={onChange}/>
-            </div>
-            <div>
+                <button onClick={next}>다음</button>
+            </EmailBox>
+            <PasswordBox display={passworddisplay}>
                 <p>비밀번호</p>
                 <input type="password" name="password" value={password} onChange={onChange}/>
                 <p>비밀번호확인</p>
                 <input type="password" name="password1" value={password1} onChange={onChange}/>
                 <p>{passwordcheck}</p>
-            </div>
-            <div>
+                <button onClick={next}>다음</button>
+            </PasswordBox>
+            <TelecomBox display={telecomdisplay}>
                 <p>통신사</p>
                 <input type="text" name="telecom" value={telecom} onChange={onChange}/>
-            </div>
-            <div>
+                <button onClick={next}>다음</button>
+            </TelecomBox>
+            <CardtypeBox display={carddisplay}>
                 <p>카드사</p>
                 <input type="text" name="cardtype" value={cardtype} onChange={onChange}/>
-            </div>
-            <div>
+                <button onClick={next}>다음</button>
+            </CardtypeBox>
+            <TypeBox display={typedisplay}>
                 <p>타입 선택</p>
                 {type1 !== "타입1" && type2 !== "타입1" && type3 !== "타입1" ?(<button onClick={typeselect} value="타입1">타입1선택</button>):(<button onClick={typecancle} value="타입1">타입1취소</button>)}
                 {type1 !== "타입2"&&type2 !== "타입2"&&type3 !== "타입2"?(<button onClick={typeselect} value="타입2">타입2선택</button>):(<button onClick={typecancle} value="타입2">타입2취소</button>)}
@@ -162,7 +162,7 @@ const SignUp = () => {
                 {type1 !== "타입4"&&type2 !== "타입4"&&type3 !== "타입4"?(<button onClick={typeselect} value="타입4">타입4선택</button>):(<button onClick={typecancle} value="타입4">타입4취소</button>)}
                 {type1 !== "타입5"&&type2 !== "타입5"&&type3 !== "타입5"?(<button onClick={typeselect} value="타입5">타입5선택</button>):(<button onClick={typecancle} value="타입5">타입5취소</button>)}
                 {type1 !== "타입6"&&type2 !== "타입6"&&type3 !== "타입6"?(<button onClick={typeselect} value="타입6">타입6선택</button>):(<button onClick={typecancle} value="타입6">타입6취소</button>)}
-            </div>
+            </TypeBox>
             <p>관리자십니까?</p>
             <button onClick={admincheck}>예</button>
             {admin?(<input type="text" name="admintoken" value={admintoken} onChange={onChange}/>):("")}
@@ -170,5 +170,25 @@ const SignUp = () => {
         </React.Fragment>
     );
 };
+
+const EmailBox = styled.div`
+    display: ${props => props.display};
+`;
+
+const PasswordBox = styled.div`
+    display: ${props => props.display};
+`;
+
+const TelecomBox = styled.div`
+    display: ${props => props.display};
+`;
+
+const CardtypeBox = styled.div`
+    display:${props => props.display};
+`;
+
+const TypeBox = styled.div`
+    display:${props => props.display};
+`;
 
 export default SignUp;

@@ -18,7 +18,8 @@ const Header = (props) => {
     }, []);
 
     const logout = () => {
-        dispatch(userActions.logoutFB())
+        dispatch(userActions.logoutFB());
+        history.push("/");
     };
 
     useEffect(()=>{
@@ -52,6 +53,7 @@ const Header = (props) => {
                     {admin.role === "ADMIN"?(<button onClick={()=>{
                         history.push("/salelist");
                     }}>할인보기</button>):""}
+                    <button onClick={()=>{history.push("/burgermenu")}}>햄버거 메뉴</button>
                 </div>
             
         </React.Fragment>

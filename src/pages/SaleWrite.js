@@ -3,10 +3,10 @@ import {useDispatch,useSelector} from "react-redux";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { actionCreators as saleActions } from "../redux/modules/sale";
+import { history } from "../redux/configureStore";
 
 const SaleWrite = (props) => {
 
-    const { history } = props;
     const dispatch = useDispatch();
     const sale_id = props.match.params.id;
     const editmode = sale_id ? true : false;
@@ -57,6 +57,7 @@ const SaleWrite = (props) => {
             couponDespire: dateToString(endDate)
         }
         dispatch(saleActions.editSaleFB(sale_id,sale_content));
+        history.goBack();
     }
     
     useEffect(()=>{

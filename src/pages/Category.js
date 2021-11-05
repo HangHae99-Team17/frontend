@@ -1,31 +1,24 @@
-import React,{ useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { categoryCreators } from '../redux/modules/category';
-import Categorys from '../components/Categorys';
-import styled from "styled-components";
+import React from 'react';
+import { history } from '../redux/configureStore';
+import styled from 'styled-components';
 
-const Category = (props) => {
-    const dispatch = useDispatch();
-    const Type = props.match.params.type;
-    const categorys = useSelector((state) => state.category.list);
-    
-
-    useEffect(() => {
-        dispatch(categoryCreators.getCategoryMiddleware(Type));
-      }, []);
-
-    return (
-        <React.Fragment>
-          <div>
-          {categorys.map((category) => {
-            return (
-              <Categorys key={category.id} {...category}/>
-            );
-          })}
-          </div>
-        </React.Fragment>
-    );
-};
+const Category = ()=>{
+    const all_category = ["타입1","타입2","타입3","타입4","타입5","타입6"]
+    return(
+        <div>
+            <ul>
+            {all_category.map((item)=>{
+                return(
+                    <Li onClick={()=>{history.push(`/api/categorydetail/${item}`)}}> {item} </Li>
+                )
+            })}
+            </ul>
+        </div>
+    )
+}
 
 
+const Li = styled.li`
+list-style :  none;
+`
 export default Category;
