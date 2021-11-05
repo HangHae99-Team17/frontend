@@ -1,13 +1,11 @@
 import React from "react";
-import {useSelector,useDispatch} from 'react-redux'
-import { listCreators } from '../redux/modules/main';
+import {useSelector} from 'react-redux'
 import styled from 'styled-components'
 import { history } from "../redux/configureStore";
 
 
 
 const InterestType = (props) => {
-  const dispatch =useDispatch();
   // 회원가입시에 유저가 선택한 타입들을 뽑기 위해서 user을 갖고 옴
     const userMenu = useSelector((state)=>state.user.user)
     console.log(userMenu)
@@ -18,13 +16,6 @@ const InterestType = (props) => {
   // 그래서 필요한 정보만 추출해서 배열로 만들어줌(map을 돌리기 위해서)
     const MenuArr = [userMenu?.type1,userMenu?.type2,userMenu?.type3,userMenu?.telecom, userMenu?.cardType]
     console.log(MenuArr)
-
-    React.useEffect(() => {
-      dispatch(listCreators.getListMW(userMenu?.type1))
-      }, []);
-      const dc_list = useSelector(( state )=> state?.main?.list?.data);
-    console.log(dc_list)
-
 
     return(
         is_login?(
@@ -38,11 +29,6 @@ const InterestType = (props) => {
                 <Bar onClick={()=>{history.push(`/api/main/${item}`); history.go(0)}}>{item}</Bar>
         );
         })}
-        <div>
-          {dc_list?.map((item)=>{
-          <div>{item}</div>
-        })}
-        </div>
         </BarWrap>
         </div>
         ):(
