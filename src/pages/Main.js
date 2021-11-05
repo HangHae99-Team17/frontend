@@ -15,8 +15,8 @@ const Main = ()=>{
     console.log(list)
     return(
         <div>
-            <p>아는만큼</p>
-            <p>아낄 수 있게</p>
+            <P>아는만큼</P>
+            <P>아낄 수 있게</P>
             {list?.map((item)=>{
                 return(
                 <Box onClick={()=>{history.push(`api/detail/${item.id}`)}}>
@@ -32,6 +32,11 @@ const Main = ()=>{
     )
 }
 
+const P = styled.p`
+margin : 5px 0 0 0;
+font-size : 18px;
+font-weight : 400;
+`
 const Box = styled.div`
 width : 250px;
 height : 80px;
