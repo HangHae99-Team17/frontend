@@ -1,11 +1,13 @@
 import React from "react";
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
+import { listCreators } from '../redux/modules/main';
 import styled from 'styled-components'
 import { history } from "../redux/configureStore";
 
 
 
 const InterestType = (props) => {
+  const dispatch =useDispatch();
   // 회원가입시에 유저가 선택한 타입들을 뽑기 위해서 user을 갖고 옴
     const userMenu = useSelector((state)=>state.user.user)
     console.log(userMenu)
@@ -17,6 +19,13 @@ const InterestType = (props) => {
     const MenuArr = [userMenu?.type1,userMenu?.type2,userMenu?.type3,userMenu?.telecom, userMenu?.cardType]
     console.log(MenuArr)
 
+    React.useEffect(() => {
+      dispatch(listCreators.getListMW(userMenu?.type1))
+      }, []);
+      const dc_list = useSelector(( state )=> state?.main?.list?.data);
+    console.log(dc_list)
+
+
     return(
         is_login?(
         <div>
@@ -27,8 +36,13 @@ const InterestType = (props) => {
                 //목록을 누르면 history가 넘어가도록 한다.(백에 type을 보내줘야 하기때문에)
                 // history.go(0) -> 새로고침을 안해도 카테고리를 옮길 수 있도록 하는것
                 <Bar onClick={()=>{history.push(`/api/main/${item}`); history.go(0)}}>{item}</Bar>
-          );
+        );
         })}
+        <div>
+          {dc_list?.map((item)=>{
+          <div>{item}</div>
+        })}
+        </div>
         </BarWrap>
         </div>
         ):(
