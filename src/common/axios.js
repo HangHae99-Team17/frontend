@@ -30,6 +30,8 @@ export const apis = {
   // couponId가 request값 ->json값으로 보내줘야 함
   // 보내줘야 하는 json값은 컴포넌트에서 보내준다.
   postCoupon: (couponId)=>instance.post('/api/folders',couponId),
+  // 메인페이지 정보리스트 불러오기
+  getDcList: ()=>instance.get('api/main/rank'),
   // 관리자 페이지 api
   getCoupon:()=>instance.get('api/admin/main'),
   addCoupon:(coupon_content)=>instance.post('api/admin/coupon',coupon_content),
