@@ -27,7 +27,7 @@ const InterestType = (props) => {
                 //목록을 누르면 history가 넘어가도록 한다.(백에 type을 보내줘야 하기때문에)
                 // history.go(0) -> 새로고침을 안해도 카테고리를 옮길 수 있도록 하는것
                 <Bar onClick={()=>{history.push(`/api/main/${item}`); history.go(0)}}>{item}</Bar>
-          );
+        );
         })}
         </BarWrap>
         </div>
