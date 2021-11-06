@@ -80,7 +80,6 @@ const Header = (props) => {
     }else{
         return null;
     }
-    
 };
 
 
