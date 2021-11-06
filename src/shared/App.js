@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
@@ -12,14 +12,13 @@ import Folders from "../pages/Folders";
 import Category from "../pages/Category";
 import SaleList from "../pages/SaleList";
 import SaleWrite from "../pages/SaleWrite";
+import AdminSignup from "../pages/AdminSignup";
+import Errpage from "./Errpage";
 import Header from "../components/Header";
-import  Categorys from "../components/Categorys"
-import { actionCreators as userActions } from "../redux/modules/user";
+import Categorys from "../components/Categorys"
 import InterestType from '../components/InterestType';
 
-
 function App() {
-  
   return (
     <React.Fragment>
       <Grid>
@@ -28,6 +27,7 @@ function App() {
         <Route path="/api/main" exact component={InterestType} />
         <Route path="/api/main/:type" exact component={LgMain} />
         <Route path="/signup" exact component={SignUp} />
+        <Route path="/adminsignup" exact component={AdminSignup} />
         <Route path="/login" exact component={Login} />
         <Route path="/mypage" exact component={MyPage} />
         <Route path="/folders" exact component={Folders} />
@@ -37,6 +37,7 @@ function App() {
         <Route path="/salelist" exact component={SaleList} />
         <Route path="/salewrite" exact component={SaleWrite} />
         <Route path="/salewrite/:id" exact component={SaleWrite} />
+        <Route path="/errpage" exact component={Errpage} />
       </ConnectedRouter>
       </Grid>
     </React.Fragment>

@@ -19,18 +19,17 @@ const initialState = {
   list: [],
 };
 
-
 export const setSaleFB = () => {
-  return async(dispatch) => {
+  return async(dispatch, getState, { history }) => {
     try {
-      const res = await apis.getCoupon()
+      const res = await apis.getCoupon();
       dispatch(setSale(res.data.data))
     } catch(e) {
       console.log(e);
+      history.push('/errpage');
     }
   }
 }
-
 
 export const addSaleFB = (sale) => {
   return async (dispatch, getState, { history }) => {
@@ -46,7 +45,7 @@ export const addSaleFB = (sale) => {
 };
 
 export const delSaleFB= (coupon_id) => {
-  return async(dispatch,getState,{history}) => {
+  return async(dispatch,getState,{ history }) => {
     try{
       await apis.delCoupon(coupon_id);
       dispatch(delSale(coupon_id));
@@ -67,7 +66,6 @@ export const editSaleFB = (coupon_id,coupon_content) => {
     }
   }
 }
-
 
 export default handleActions(
   {
