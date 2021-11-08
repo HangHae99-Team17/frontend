@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { foldersCreators } from '../redux/modules/folders';
-import { history } from '../redux/configureStore'
-import styled from 'styled-components';
-import Grid from "../elements/Grid"
+import { history } from '../redux/configureStore';
+import styled from "styled-components";
+import Grid from "../elements/Grid";
+import Button from "../elements/Button";
+
 
 const Folders = () => {
     const dispatch = useDispatch();
@@ -19,11 +21,17 @@ const Folders = () => {
           <div>
             {list?.map((item)=>{
               return(
-                <Grid bg="red">
-                  <Div>
-                  {item.couponTitle}
-                  <button onClick={()=>{dispatch(foldersCreators.delFoldersMiddleware(item.couponId)); history.go(0)}}>삭제하기</button>
-                  </Div>
+                <Grid 
+                margin="0 auto"
+                width="500px"
+                bg="#F09643"
+                > 
+                  <Grid
+                  width="200px"
+                  bg="red"
+                  >{item.couponTitle}</Grid>
+                  <button
+                  onClick={()=>{dispatch(foldersCreators.delFoldersMiddleware(item.couponId)); history.go(0)}}>삭제하기</button>
                 </Grid>
               )
 
@@ -32,12 +40,5 @@ const Folders = () => {
     );
 };
 
-const Div = styled.div`
-display:flex;
-margin: 0 auto;
-width:750px;
-height:600px;
-background-color:black;
-`
 
 export default Folders;

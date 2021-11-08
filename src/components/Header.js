@@ -38,7 +38,7 @@ const Header = (props) => {
                     history.push("/mypage");
                 }}>마이페이지</button>
                 <button onClick={()=>{
-                    history.push('/salebox')
+                    history.push('/folders')
                 }}>쿠폰함</button>
             </div>):(<div>
                 <p>로그인안됨</p>
