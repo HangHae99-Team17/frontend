@@ -3,7 +3,6 @@ import {useDispatch,useSelector} from 'react-redux';
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 import styled from 'styled-components';
-import { Button } from '../elements';
 
 const Header = (props) => {
     const dispatch = useDispatch();
@@ -13,16 +12,12 @@ const Header = (props) => {
     const user = useSelector((state) => state.user.user);
     const [admin,setAdmin] = useState(user?user:"");
     const [show,setShow] = useState(true);
-    const [isOpen, setMenu] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const logout = () => {
         dispatch(userActions.logoutFB());
         history.push("/");
     };
-
-    const toggleMenu = () => {
-        setMenu(isOpen => !isOpen); // on,off 개념 boolean
-    }
 
     useEffect(()=>{
         if(user){
@@ -43,38 +38,22 @@ const Header = (props) => {
     if(show){
         return (
             <React.Fragment>
-                <HeaderBox>
-                {/* {is_login?(
-                <div>
-                    <p>로그인됨</p>
-                    <button onClick={logout}>로그아웃</button>
-                    <button onClick={()=>{
-                        history.push("/mypage");
-                    }}>마이페이지</button>
-                    <button onClick={()=>{
-                        history.push('/salebox');
-                    }}>쿠폰함</button>
-                </div>):(<div>
-                    <p>로그인안됨</p>
-                    <button onClick={()=>{
-                        window.location.replace("/signup")
-                    }}>회원가입</button>
-                    <button onClick={()=>{
-                        history.push('/login');
-                    }}>로그인</button>
-                    </div>)}
-                    <div>
-                        {admin.role === "ADMIN"?(<button onClick={()=>{
-                            history.push("/salelist");
-                        }}>할인보기</button>):""}
-                    </div> */}
-                    <LeftBox>
-                        <div>GOOD.DA</div>
-                    </LeftBox>
-                    <rightBox>
-                        <button onClick={toggleMenu}>햄버거</button>
-                    </rightBox>
+                <HeaderBox color={open?"black":"white"} fontcolor={open?"white":"black"}>
+                    <IconBox>
+                        GOOD.DA
+                    </IconBox>
+                    <ButtonBox>
+                        <StyledBurger open={open} onClick={()=> setOpen(!open)}>
+                            {open?"X":"버거버튼"}
+                        </StyledBurger>
+                        <Ul open={open}>
+                            <li>카테고리</li>
+                            <li>보관함</li>
+                            <li>마이페이지</li>
+                        </Ul>
+                    </ButtonBox>
                 </HeaderBox>
+                
             </React.Fragment>
         );
     }else{
@@ -82,20 +61,56 @@ const Header = (props) => {
     }
 };
 
-
 const HeaderBox = styled.div`
     display:flex;
     justify-content: space-between;
-    background-color:red;
-    padding: 10px;
+    background-color:${props => props.color};
+    color:${props => props.fontcolor};
+    align-items:center;
+    height: 80px;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    border-bottom: solid 1px grey;
 `;
 
-const LeftBox = styled.div`
+const IconBox = styled.div`
 
 `;
 
-const rightBox = styled.div`
+const ButtonBox = styled.div`
 
+`;
+
+const StyledBurger = styled.div`
+    width:  2rem;
+    height: 2rem;
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 20;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column nowrap;
+`;
+
+const Ul = styled.ul`
+    list-style: none;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: black;
+    position: fixed;
+    transform: ${({open}) => open? 'translateX(0)':'translateX(100%)'};
+    top: 64px;
+    right: 0;
+    height: 100vh;
+    width: 350px;
+    padding-top: 3.5rem;
+    transition: transform 0.3s ease-in-out;
+    li{
+        padding: 18px 10px;
+        color: #fff;
+    }
 `;
 
 export default Header;

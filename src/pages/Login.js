@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import styled from 'styled-components';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -34,13 +35,19 @@ const Login = () => {
 
     return (
         <React.Fragment>
-            <p>이메일</p>
-            <input type="text" name="email" value={email} onChange={onChange}/>
-            <p>패스워드</p>
-            <input type="password" name="password" value={password} onChange={onChange}/>
-            <button onClick={submitLogin}>로그인</button>
+            <LoginBox>
+                <p>이메일</p>
+                <input type="text" name="email" value={email} onChange={onChange}/>
+                <p>패스워드</p>
+                <input type="password" name="password" value={password} onChange={onChange}/>
+                <button onClick={submitLogin}>로그인</button>
+            </LoginBox>
         </React.Fragment>
     );
 };
+
+const LoginBox = styled.div`
+    
+`;
 
 export default Login;

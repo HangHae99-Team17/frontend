@@ -1,4 +1,5 @@
 import React from "react"
+import './App.css';
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
@@ -14,7 +15,6 @@ import SaleWrite from "../pages/SaleWrite";
 import AdminSignup from "../pages/AdminSignup";
 import Errpage from "./Errpage";
 import Header from "../components/Header";
-import Categorys from "../components/Categorys"
 import InterestType from '../components/InterestType';
 import CategoryDetail from '../pages/CategoryDetail';
 import Main from '../pages/Main';
