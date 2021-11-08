@@ -4,11 +4,11 @@ import { detailCreators } from "../redux/modules/detail";
 import styled from "styled-components";
 import { foldersCreators } from '../redux/modules/folders';
 import {history} from '../redux/configureStore'
+import { addImg,bookmarker,companyLogo } from '../image';
 
 const Detail = (props) => {
     // 해당 할인 정보 id값만 추출하기
     const Id = props.match.params.id
-    console.log(Id)
 
     const dispatch = useDispatch();
     // 리덕스에서 info를 불러올때 해당 Id값의 info만 불러올 수 있도록 디스패치 해준다.
@@ -19,37 +19,43 @@ const Detail = (props) => {
 
     // 리덕스에서 데이터 가지고 오기
     const detail_list = useSelector((store) => store.detail.info.data );
-    console.log(detail_list?.couponImage)
 
     // 찜한 쿠폰 백에 보내주기post
     // api에서 적은 couponId 가 아래 couponId이다. jason 형태로 보내져야 하는 것.
     function PostCoupon(){
         const couponId = {
-            couponId : Id
+            couponId : Id,
+
         };
         // 디스패치 할 때 couponId를 넘겨준다.
         dispatch(foldersCreators.addPostMW(couponId));
     } 
- function reload (){
-        if(PostCoupon){ history.go(0);
-        }
-    }
-
 
 
     return(
         <Wrap>
+            <Image><img src={addImg}></img></Image>
             <Info>
-            <h1>쿠폰 상세 페이지</h1>
-            <Image>{detail_list?.couponImage}</Image>
-            <TakeCoupon>
-            <Type>{detail_list?.couponType}</Type>
-            <Button onClick={PostCoupon,reload}> 찜하기  {detail_list?.couponLike}</Button>
-            </TakeCoupon>
-            <div>{detail_list?.couponTitle}</div>
-            <div>{detail_list?.couponDesc}</div>
-            <div>{detail_list?.couponUrl}</div>
+            <div>
+            <Title>{detail_list?.couponTitle}</Title>
+            <Div>{detail_list?.couponType}</Div>
+            </div>
+            <div><BrandLogo src={companyLogo}/></div>
             </Info>
+            <P>{detail_list?.couponDespire}</P>
+            <TakeCoupon>
+            <A href = {detail_list?.couponUrl}> 할인 사용처 바로가기 </A>
+            <PickCoupon onClick={PostCoupon}> 
+            <Bookmarker src={bookmarker}/> 
+            <Like>{detail_list?.couponLike}</Like>
+            </PickCoupon>
+            </TakeCoupon>
+            <Line/>
+            <Div>{detail_list?.couponDesc}</Div>
+            <Line/>
+            <ConditionBox>
+            <Condition>할인 적용 조건</Condition>
+            </ConditionBox>
         </Wrap>
     )
 }
@@ -59,45 +65,78 @@ width : 100vw;
 height : 100vh;
 `
 const TakeCoupon = styled.div`
-width : 300px;
+width : 328px;
+height : 50px;
+line-height : 50px;
+border : 2px solid #F09643;
 display : flex;
-margin : auto;
-position : relative;
+margin : 45px auto 30px auto;
+position :relative;
+border-radius : 4px;
 `
-const Type = styled.div`
-width :  60px;
-height : 25px;
-border :  none;
-line-height : 25px;
-background-color : rgb(239, 239, 239);
-border-radius : 15px;
-
-margin : 15px;
+const A = styled.a`
+text-decoration : none;
+font-size : 16px;
+font-weight : 700;
+color : #F09643;
+margin-left : 70px;
 `
-const Button = styled.div`
-width :  60px;
-height : 25px;
-position : absolute ;
-left : 215px;
-margin : 15px;
-border :  none;
-border-radius : 15px;
-cursor : pointer;
-background-color : rgb(239, 239, 239);
-color :rgb(59, 59, 59) ;
-line-height : 25px;
-font-size : 13px;
-font-weight : bold;
+const PickCoupon = styled.div`
+width : 60px;
+height : 50px;
+background-color : #F09643;
+position : absolute;
+right :0;
 `
-const Info = styled.div`
-margin : 20px;
-text-align : center;
+const BrandLogo = styled. img`
+width : 50px;
+height : 50px;
+position : absolute;
+right : 16px;
+`
+const P =styled.p`
+margin-top : 15px;
+position : absolute;
+right : 16px;
+`
+const Like = styled.div`
+display :inline-block;
+height : 10px;
+position : absolute;
+top : 13px;
+right : 25px;
+color : #fff;
+font-weight : 600;
+`
+const Bookmarker = styled.img`
+margin : 0 18px;
+`
+const Line = styled.hr`
+width : 100%
+`
+const Div = styled.div`
+margin-left: 16px;
+font-size : 14px;
 `
 const Image = styled.div`
-width : 300px;
+width : 100%;
 height : 200px;
-border : 1px solid grey;
 text-align: center;
 margin : 20px auto;
+`
+const Title = styled.div`
+font-size : 23px;
+font-weight : bold;
+margin-left : 16px;
+`
+const Info = styled.div`
+display : flex;
+`
+const Condition= styled.p`
+font-size : 17px;
+font-weight : 600;
+`
+const ConditionBox = styled.div`
+margin : 16px;
 `
 export default Detail;

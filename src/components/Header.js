@@ -81,6 +81,7 @@ const HeaderBox = styled.div`
     width: 100%;
     position: fixed;
     border-bottom: solid 1px grey;
+    z-index : 1;
 `;
 
 const IconBox = styled.div`
