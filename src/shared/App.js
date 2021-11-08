@@ -18,7 +18,6 @@ import Header from "../components/Header";
 import InterestType from '../components/InterestType';
 import CategoryDetail from '../pages/CategoryDetail';
 import Main from '../pages/Main';
-import BurgerMenu from '../pages/BurgerMenu';
 import Category from '../pages/Category';
 
 function App() {
@@ -41,7 +40,6 @@ function App() {
         <Route path="/salewrite/:id" exact component={SaleWrite} />
         <Route path="/errpage" exact component={Errpage} />
         <Route path="/" exact component={Main} />
-        <Route path="/burgermenu" exact component={BurgerMenu} />
         <Route path="/category" exact component={Category} />
       </ConnectedRouter>
       </Grid>
