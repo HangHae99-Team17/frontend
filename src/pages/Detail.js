@@ -3,6 +3,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { detailCreators } from "../redux/modules/detail";
 import styled from "styled-components";
 import { foldersCreators } from '../redux/modules/folders';
+import {history} from '../redux/configureStore'
 
 const Detail = (props) => {
     // 해당 할인 정보 id값만 추출하기
@@ -29,6 +30,11 @@ const Detail = (props) => {
         // 디스패치 할 때 couponId를 넘겨준다.
         dispatch(foldersCreators.addPostMW(couponId));
     } 
+ function reload (){
+        if(PostCoupon){ history.go(0);
+        }
+    }
+
 
 
     return(
@@ -38,7 +44,7 @@ const Detail = (props) => {
             <Image>{detail_list?.couponImage}</Image>
             <TakeCoupon>
             <Type>{detail_list?.couponType}</Type>
-            <Button onClick={PostCoupon}> 찜하기 </Button>
+            <Button onClick={PostCoupon,reload}> 찜하기  {detail_list?.couponLike}</Button>
             </TakeCoupon>
             <div>{detail_list?.couponTitle}</div>
             <div>{detail_list?.couponDesc}</div>
@@ -68,7 +74,7 @@ border-radius : 15px;
 
 margin : 15px;
 `
-const Button = styled.button`
+const Button = styled.div`
 width :  60px;
 height : 25px;
 position : absolute ;
@@ -77,8 +83,10 @@ margin : 15px;
 border :  none;
 border-radius : 15px;
 cursor : pointer;
-background-color : rgb(59, 59, 59);
-color : white;
+background-color : rgb(239, 239, 239);
+color :rgb(59, 59, 59) ;
+line-height : 25px;
+font-size : 13px;
 font-weight : bold;
 `
 const Info = styled.div`
