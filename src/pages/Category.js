@@ -20,26 +20,26 @@ const Category = ()=>{
 }
 
 const Div = styled.div`
-background-color:gray;
-height:750px;
+height:100vh;
 `
 
 const Litext = styled.div`
-font-size:20px;
-color:black;
+font-size:16px;
 margin: 0 auto;
-width:750px;
+width:355px;
 font-weight:bold;
 padding-top:30px;
 padding-bottom:20px;
+padding-left:20px;
 `
 
 const Ul = styled.ul`
 display:flex;
 margin: 0 auto;
-width:750px;
-height:600px;
-background-color:black;
+width:375px;
+flex-wrap: wrap;
+justify-content:space-evenly;
+padding-left:0px;
 `
 
 
@@ -47,13 +47,14 @@ const Li = styled.li`
 
 list-style :  none;
 background-color:white;
-border: 1px solid black;
+border: 1px solid #D4D4D4;
 margin:10px;
 height:100px;
 width:100px;
 border-radius:10px;
 text-align:center;
+color:#D4D4D4;
 font-size:20px;
-line-height:95px;
+line-height:100px;
 `
 export default Category;

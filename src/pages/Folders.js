@@ -23,15 +23,13 @@ const Folders = () => {
               return(
                 <Grid 
                 margin="0 auto"
-                width="500px"
-                bg="#F09643"
+                width="375px"
+                padding="10px 0"
                 > 
-                  <Grid
-                  width="200px"
-                  bg="red"
-                  >{item.couponTitle}</Grid>
+                  <Couponbox>{item.couponTitle}
                   <button
                   onClick={()=>{dispatch(foldersCreators.delFoldersMiddleware(item.couponId)); history.go(0)}}>삭제하기</button>
+                  </Couponbox>
                 </Grid>
               )
 
@@ -40,5 +38,10 @@ const Folders = () => {
     );
 };
 
+const Couponbox = styled.div`
+display:flex;
+justify-content: space-between;
+width : 375px;
+`
 
 export default Folders;

@@ -54,9 +54,6 @@ const GridBox = styled.div`
     ${(props) => props.center?`text-align: center` :""}
     ${(props) => props.is_grid?`display: grid; grid-template-columns: repeat(3, 1fr);` : ""}
     ${(props) => (props.box_shadow?`box-shadow:${props.box_shadow};`:"")}
-    @media (max-width:1028px) {
-        width:400px;
-    };
 `;
 
 const GridHoverBox = styled.div`

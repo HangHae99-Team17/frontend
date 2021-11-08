@@ -20,7 +20,7 @@ const CategoryDetail = (props) => {
     console.log(DcInfoList)
 
 return(
-    <Grid bg="gray">
+    <Grid width="375px" >
         <div>
         <P>{type} 할인</P>
         <P>다 모아두었어요</P>
@@ -47,34 +47,32 @@ return(
 const P = styled.p`
 margin: 0 auto;
 font-size : 18px;
-width: 600px;
-background-color:red;
+width: 355px;
+line-height:30px;
 font-weight : bold;
+padding-left:20px;
 `
 const DcBox = styled.div`
-width : 600px;
-height : 650px;
+width : 375px;
 margin: 20px auto;
-background-color:white;
 `
 const DcList = styled.div`
-margin : 10px 0 ;
 text-aling : center;
-border : 1px solid grey ; 
 padding : 5px;
 cursor : pointer;
 display : flex;
 `
 const DcInfo = styled.div`
-margin : 0 15px;
+margin : 0 5px;
 `
 const Text =styled.p `
-font-size : 17px;
+font-size : 13px;
 `
 const Img = styled.span`
-width : 80px;
-height : 80px;
+width : 40px;
+height : 40px;
 border : 1px solid grey;
-margin : 15px;
+margin : 18px;
+border-radius:5px;
 `
 export default CategoryDetail;
