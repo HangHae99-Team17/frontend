@@ -3,6 +3,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 import styled from 'styled-components';
+import {Frame_101, x, gooddablack, gooddawhite} from '../image'
 
 const Header = (props) => {
     const dispatch = useDispatch();
@@ -39,21 +40,29 @@ const Header = (props) => {
         return (
             <React.Fragment>
                 <HeaderBox color={open?"black":"white"} fontcolor={open?"white":"black"}>
-                    <IconBox>
-                        GOOD.DA
-                    </IconBox>
-                    <ButtonBox>
-                        <StyledBurger open={open} onClick={()=> setOpen(!open)}>
-                            {open?"X":"버거버튼"}
-                        </StyledBurger>
-                        <Ul open={open}>
-                            <li>카테고리</li>
-                            <li>보관함</li>
-                            <li>마이페이지</li>
-                        </Ul>
-                    </ButtonBox>
-                </HeaderBox>
-                
+                {open?(
+                <>
+                <IconBox>
+                    <img src={gooddawhite}/>
+                </IconBox>
+                <StyledBurger open={open} onClick={()=> setOpen(!open)}>
+                    <button>LOGIN</button>
+                    <img src={x}/>
+                </StyledBurger></>):(
+                <>
+                <IconBox>
+                    <img src={gooddablack}/>
+                </IconBox>
+                <StyledBurger open={open} onClick={()=> setOpen(!open)}>
+                    <img src={Frame_101}/>
+                </StyledBurger></>
+                )}
+                <Ul open={open}>
+                    <li>카테고리</li>
+                    <li>보관함</li>
+                    <li>마이페이지</li>
+                </Ul>
+                </HeaderBox>     
             </React.Fragment>
         );
     }else{
@@ -75,23 +84,19 @@ const HeaderBox = styled.div`
 `;
 
 const IconBox = styled.div`
-
-`;
-
-const ButtonBox = styled.div`
-
+    margin-left: 20px;
 `;
 
 const StyledBurger = styled.div`
-    width:  2rem;
-    height: 2rem;
-    position: fixed;
-    top: 15px;
-    right: 20px;
-    z-index: 20;
-    display: flex;
-    justify-content: space-around;
-    flex-flow: column nowrap;
+    display:flex;
+    margin-left: 20px;
+    padding-right: 20px;
+
+    button{
+        border: none;
+        cursor: pointer;
+        outline: 0;
+    }
 `;
 
 const Ul = styled.ul`
