@@ -20,9 +20,9 @@ const SaleWrite = (props) => {
         couponurl: _sale?_sale.couponUrl:"",
     });
 
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-
+    const [startDate, setStartDate] = useState(_sale?new Date(_sale.couponCreate):new Date());
+    const [endDate, setEndDate] = useState(_sale?new Date(_sale.couponDespire):new Date());
+    
     const onChange = (e) => {
         setSale_Info({...sale_info, [e.target.name]: e.target.value});
     };
