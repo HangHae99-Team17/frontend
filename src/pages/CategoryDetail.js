@@ -3,7 +3,8 @@ import { useSelector,useDispatch } from 'react-redux';
 import { listCreators } from '../redux/modules/main';
 import { history } from '../redux/configureStore';
 import styled from 'styled-components';
-import Grid from "../elements/Grid"
+import Grid from "../elements/Grid";
+import { colorBookmark, companyLogo } from '../image';
 
 const CategoryDetail = (props) => {
     const dispatch = useDispatch();
@@ -32,12 +33,16 @@ return(
             <DcList key={item.id} onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
                 <Img>{item.couponImage}</Img>
               <DcInfo>
-              <Text>{item.couponTitle}</Text>
-              <Text>{item.couponDespire}</Text>
-              </DcInfo>
+              <Text>{item.couponTitle}에서</Text>
+              <Text2><Text3>{item.couponSubTitle}</Text3>할인 받기</Text2>
+              
+       
+              </DcInfo> <Imgbox><img src={colorBookmark}/></Imgbox>
             </DcList>
+            
           );
         })}
+        
     </DcBox>
     </Grid>
 )
@@ -46,11 +51,12 @@ return(
 
 const P = styled.p`
 margin: 0 auto;
-font-size : 18px;
+font-size : 20px;
 width: 355px;
 line-height:30px;
 font-weight : bold;
 padding-left:20px;
+padding-top: 3px;
 `
 const DcBox = styled.div`
 width : 375px;
@@ -63,11 +69,21 @@ cursor : pointer;
 display : flex;
 `
 const DcInfo = styled.div`
-margin : 0 5px;
+margin : 0 8px;
 `
 const Text =styled.p `
-font-size : 13px;
+font-size : 14px;
 `
+
+const Text2 =styled.p `
+font-weight: bold;
+margin-top:-6px;
+`
+const Text3 =styled.p `
+font-weight: bold;
+color:#DADADA;
+`
+
 const Img = styled.span`
 width : 40px;
 height : 40px;
@@ -75,4 +91,13 @@ border : 1px solid grey;
 margin : 18px;
 border-radius:5px;
 `
+const Imgbox = styled.div`
+width:20px;
+height:20px;
+margin-top:28px;
+position:absolute;
+right:25px;
+`
+
+
 export default CategoryDetail;
