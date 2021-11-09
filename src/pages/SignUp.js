@@ -15,6 +15,8 @@ const SignUp = (props) => {
     const [telecomdisplay,setTelecomDisplay]= useState("none");
     const [carddisplay,setCardDisplay] = useState("none");
     const [typedisplay,setTypeDisplay] = useState("none");
+    const [telecom,setTelecom] = useState("");
+    const [cardtype,setCardtype] = useState("");
     const [type1,setType1] = useState("");
     const [type2,setType2] = useState("");
     const [type3,setType3] = useState("");
@@ -23,16 +25,116 @@ const SignUp = (props) => {
         username: "",
         password: "",
         password1: "",
-        telecom:"",
-        cardtype:"",
         admintoken:""
     });
+
+    const cards = [
+        {
+            card_id:0,
+            card_name:"신한카드"
+        },
+        {
+            card_id:1,
+            card_name:"현대카드"
+        },
+        {
+            card_id:2,
+            card_name:"삼성카드"
+        },
+        {
+            card_id:3,
+            card_name:"국민카드"
+        },
+        {
+            card_id:4,
+            card_name:"롯데카드"
+        },
+        {
+            card_id:5,
+            card_name:"하나카드"
+        },
+        {
+            card_id:6,
+            card_name:"우리카드"
+        },
+        {
+            card_id:7,
+            card_name:"농협카드"
+        },
+        {
+            card_id:8,
+            card_name:"씨티카드"
+        },
+        {
+            card_id:9,
+            card_name:"BC카드"
+        },
+        {
+            card_id:10,
+            card_name:"토스카드"
+        },
+        {
+            card_id:11,
+            card_name:"카카오카드"
+        },
+    ]
+
+    const interests = [
+        {
+            inter_id:0,
+            inter_type:"카페,디저트"
+        },
+        {
+            inter_id:1,
+            inter_type:"음식점"
+        },
+        {
+            inter_id:2,
+            inter_type:"패스트푸드"
+        },
+        {
+            inter_id:3,
+            inter_type:"편의점,마트"
+        },
+        {
+            inter_id:4,
+            inter_type:"뷰티,미용"
+        },
+        {
+            inter_id:5,
+            inter_type:"패션"
+        },
+        {
+            inter_id:6,
+            inter_type:"건강,스포츠"
+        },
+        {
+            inter_id:7,
+            inter_type:"여행,숙박"
+        },
+        {
+            inter_id:8,
+            inter_type:"문화"
+        },
+        {
+            inter_id:9,
+            inter_type:"가전,디지털"
+        },
+        {
+            inter_id:10,
+            inter_type:"가구,생활"
+        },
+        {
+            inter_id:11,
+            inter_type:"쇼핑,잡화"
+        },
+    ]
 
     const onChange = (e) => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
     }
 
-    const {email, username, password, password1, telecom, cardtype, admintoken} = signup_info;
+    const {email, username, password, password1, admintoken} = signup_info;
 
     const signup = () => {
         const user_info = {
@@ -58,8 +160,27 @@ const SignUp = (props) => {
         }
     }
 
-    const typeselect = (e) => {
+    const telecomtypeselect = (e) =>{
+        console.log(e.target.value)
+        if(e.target.value === telecom){
+            setTelecom("")
+        }else{
+            setTelecom(e.target.value);
+        }
+    };
 
+    const cardtypetypeselect = (e) => {
+        if(e.target.value === cardtype){
+            setCardtype("")
+        }else{
+            setCardtype(e.target.value);
+        }
+    }
+
+    const typeselect = (e) => {
+        console.log(type1)
+        console.log(type2)
+        console.log(type3)
         if(type1 === "" && type2 === "" && type3 === ""){
             setType1(e.target.value);
         }
@@ -69,7 +190,7 @@ const SignUp = (props) => {
         }
 
         if(type1 === "" && type2 && type3 === ""){
-            setType2(e.target.value);
+            setType1(e.target.value);
         }
 
         if(type1 === "" && type2 === "" && type3){
@@ -181,29 +302,93 @@ const SignUp = (props) => {
                     <button onClick={next}>다음</button>
                 </div>
             </TermsBox>
-            <TelecomBox display={telecomdisplay}>
-                <p>통신사</p>
-                <input type="text" name="telecom" value={telecom} onChange={onChange}/>
-                <button onClick={next}>다음</button>
+            <TelecomBox display={telecomdisplay} bgcolor={telecom?"orange":"gray"}>
+                <p>통신사를 선택해주세요.</p>
+                <div>
+                    {telecom==="SKT"?(<button className="telecomcancel" value="SKT" onClick={telecomtypeselect}>SKT</button>):(<button className="telecomselect" value="SKT" onClick={telecomtypeselect}>SKT</button>)}
+                    {telecom==="KT"?(<button className="telecomcancel" value="KT" onClick={telecomtypeselect}>KT</button>):(<button className="telecomselect" value="KT" onClick={telecomtypeselect}>KT</button>)}
+                    {telecom==="LG"?(<button className="telecomcancel" value="LG" onClick={telecomtypeselect}>LG</button>):(<button className="telecomselect" value="LG" onClick={telecomtypeselect}>LG</button>)}
+                </div>
+                <div className="nextbutton">
+                    <button onClick={next} >다음</button>
+                </div>
             </TelecomBox>
-            <CardtypeBox display={carddisplay}>
-                <p>카드사</p>
-                <input type="text" name="cardtype" value={cardtype} onChange={onChange}/>
-                <button onClick={next}>다음</button>
+            <CardtypeBox display={carddisplay} bgcolor={cardtype?"orange":"gray"}>
+                <p>카드사를 선택해주세요.</p>
+                <div>
+                    {cards.map((card) => {
+                        if(cardtype === card.card_name){
+                            return(
+                                <button className="cardtypecancel" value={card.card_name} onClick={cardtypetypeselect}>{card.card_name}</button>
+                            )
+                        }else{
+                            return(
+                                <button className="cardtypeselect" value={card.card_name} onClick={cardtypetypeselect}>{card.card_name}</button>
+                            )
+                        }
+                    })}
+                </div>
+                <div className="nextbutton">
+                    <button onClick={next} >다음</button>
+                </div>
             </CardtypeBox>
-            <TypeBox display={typedisplay}>
-                <p>타입 선택</p>
-                {type1 !== "타입1" && type2 !== "타입1" && type3 !== "타입1" ?(<button onClick={typeselect} value="타입1">타입1선택</button>):(<button onClick={typecancle} value="타입1">타입1취소</button>)}
-                {type1 !== "타입2"&&type2 !== "타입2"&&type3 !== "타입2"?(<button onClick={typeselect} value="타입2">타입2선택</button>):(<button onClick={typecancle} value="타입2">타입2취소</button>)}
-                {type1 !== "타입3"&&type2 !== "타입3"&&type3 !== "타입3"?(<button onClick={typeselect} value="타입3">타입3선택</button>):(<button onClick={typecancle} value="타입3">타입3취소</button>)}
-                {type1 !== "타입4"&&type2 !== "타입4"&&type3 !== "타입4"?(<button onClick={typeselect} value="타입4">타입4선택</button>):(<button onClick={typecancle} value="타입4">타입4취소</button>)}
-                {type1 !== "타입5"&&type2 !== "타입5"&&type3 !== "타입5"?(<button onClick={typeselect} value="타입5">타입5선택</button>):(<button onClick={typecancle} value="타입5">타입5취소</button>)}
-                {type1 !== "타입6"&&type2 !== "타입6"&&type3 !== "타입6"?(<button onClick={typeselect} value="타입6">타입6선택</button>):(<button onClick={typecancle} value="타입6">타입6취소</button>)}
-                <button onClick={signup}>가입하기</button>
+            <TypeBox display={typedisplay} bgcolor={type1?"orange":"gray"}>
+                <p>관심사를 선택해주세요.(최대 3개)</p>
+                <div>
+                    {interests.map((interest) => {
+                        if(type1 !== interest.inter_type && type2 !== interest.inter_type && type3 !== interest.inter_type){
+                            return(
+                                <button className="intertypeselect" onClick={typeselect} value={interest.inter_type}>{interest.inter_type}</button>
+                            )
+                        }else{
+                            return(
+                                <button className="intertypecancel" onClick={typecancle} value={interest.inter_type}>{interest.inter_type}</button>
+                            )
+                        }
+                    })}
+                </div>
             </TypeBox>
         </React.Fragment>
     );
 };
+
+const TypeBox = styled.div`
+    display: ${props => props.display};
+    p{
+        font-weight: bold;
+    }
+    div{
+        display:flex;
+        margin: 0 auto;
+        width: 375px;
+        flex-wrap: wrap;
+        justify-content:space-evenly;
+        padding-left:0px;
+
+        .intertypeselect{
+            color: grey;
+            margin-bottom: 15px;
+            border: none;
+            width:99px;
+            height:99px;
+            border-radius: 5px;
+            background-color: white;
+            border: solid 1px grey;
+        }
+        .intertypecancel{
+            color: orange;
+            margin-bottom: 15px;
+            border: none;
+            width:99px;
+            height:99px;
+            border-radius: 5px;
+            background-color: white;
+            border: solid 1px orange;
+        }
+        
+    }
+`;
+
 
 const TermsBox = styled.div`
     margin-left: 15px;
@@ -316,14 +501,102 @@ const PasswordBox = styled.div`
 
 const TelecomBox = styled.div`
     display: ${props => props.display};
+    p{
+        font-weight: bold;
+    }
+    div{
+        display:flex;
+        margin: 0 auto;
+        width: 375px;
+        flex-wrap: wrap;
+        justify-content:space-evenly;
+        padding-left:0px;
+
+        .telecomselect{
+            color: grey;
+            margin-bottom: 15px;
+            border: none;
+            width:99px;
+            height:99px;
+            border-radius: 5px;
+            background-color: white;
+            border: solid 1px grey;
+        }
+        .telecomcancel{
+            color: orange;
+            margin-bottom: 15px;
+            border: none;
+            width:99px;
+            height:99px;
+            border-radius: 5px;
+            background-color: white;
+            border: solid 1px orange;
+        }
+        
+    }
+
+    .nextbutton{
+        margin-top: 200px;
+        button{
+            border-radius: 5px;
+            border:none;
+            width:328px;
+            height:45px;
+            color: white;
+            background-color:${props => props.bgcolor};
+        }
+    }
 `;
 
 const CardtypeBox = styled.div`
     display: ${props => props.display};
+    p{
+        font-weight: bold;
+    }
+    div{
+        display:flex;
+        margin: 0 auto;
+        width: 375px;
+        flex-wrap: wrap;
+        justify-content:space-evenly;
+        padding-left:0px;
+
+        .cardtypeselect{
+            color: grey;
+            margin-bottom: 15px;
+            border: none;
+            width:99px;
+            height:99px;
+            border-radius: 5px;
+            background-color: white;
+            border: solid 1px grey;
+        }
+        .cardtypecancel{
+            color: orange;
+            margin-bottom: 15px;
+            border: none;
+            width:99px;
+            height:99px;
+            border-radius: 5px;
+            background-color: white;
+            border: solid 1px orange;
+        }
+        
+    }
+
+    .nextbutton{
+        margin-top: 40px;
+        button{
+            border-radius: 5px;
+            border:none;
+            width:328px;
+            height:45px;
+            color: white;
+            background-color:${props => props.bgcolor};
+        }
+    }
 `;
 
-const TypeBox = styled.div`
-    display: ${props => props.display};
-`;
+
 
 export default SignUp;
