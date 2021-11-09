@@ -14,6 +14,8 @@ const CategoryDetail = (props) => {
     React.useEffect(() => {
         dispatch(listCreators.getListMW(type))
         }, []);
+
+    const is_login = useSelector((state)=>state.user.is_login)
         
     const DcInfoList = useSelector((state) => state.main.list.data)
     console.log(DcInfoList)
@@ -38,9 +40,11 @@ return(
               </DcList>
 
               <Imgbox><img src={colorBookmark} onClick={()=>{
+                if(is_login){
                 const couponId = {couponId : item.id};
                 dispatch(foldersCreators.addPostMW(couponId));
-                alert("해당 쿠폰을 찜했습니다!")}}/></Imgbox>
+                alert("해당 쿠폰을 찜했습니다!")}
+                else{alert("로그인이 필요한 서비스 입니다!")}}}/></Imgbox>
             </Wrap>
           );
         })}
