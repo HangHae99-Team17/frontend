@@ -10,6 +10,7 @@ const SignUp = (props) => {
     const [passwordcheck, setPasswordcheck] = useState("");
     const [emaildisplay,setEmailDisplay] = useState("block");
     const [passworddisplay,setPasswordDisplay] = useState("none");
+    const [termsdisplay,setTermsDisplay] = useState("none");
     const [telecomdisplay,setTelecomDisplay]= useState("none");
     const [carddisplay,setCardDisplay] = useState("none");
     const [typedisplay,setTypeDisplay] = useState("none");
@@ -33,7 +34,6 @@ const SignUp = (props) => {
     const {email, username, password, password1, telecom, cardtype, admintoken} = signup_info;
 
     const signup = () => {
-
         const user_info = {
             userEmail: email,
             password: password,
@@ -46,9 +46,8 @@ const SignUp = (props) => {
             admin:admin,
             adminToken:admintoken
         }
-
         dispatch(userActions.signupFB(user_info))
-    }
+    };
 
     const admincheck = () => {
         if(admin === false){
@@ -107,6 +106,9 @@ const SignUp = (props) => {
             setPasswordDisplay("block");
         }else if(passworddisplay === "block"){
             setPasswordDisplay("none");
+            setTermsDisplay("block");
+        }else if(termsdisplay === "block"){
+            setTermsDisplay("none");
             setTelecomDisplay("block");
         }else if(telecomdisplay ==="block"){
             setTelecomDisplay("none");
@@ -125,25 +127,31 @@ const SignUp = (props) => {
             setPasswordcheck("비밀번호가 일치합니다")
             return
         }
-    },[password, password1])
+    },[password, password1]);
 
     return (
         <React.Fragment>
-            <EmailBox display={emaildisplay}>
-                <p>이메일</p>
+            <EmailBox display={emaildisplay} bgcolor={email?"orange":"gray"}>
+                <p>이메일을 입력해주세요.</p>
                 <input type="text" name="email" value={email} onChange={onChange}/>
-                <p>유저이름</p>
-                <input type="text" name="username" value={username} onChange={onChange}/>
-                <button onClick={next}>다음</button>
+                <div>
+                    <button onClick={next} >다음</button>
+                </div>
             </EmailBox>
-            <PasswordBox display={passworddisplay}>
+            <PasswordBox display={passworddisplay} bgcolor={password1?"orange":"gray"}>
                 <p>비밀번호</p>
                 <input type="password" name="password" value={password} onChange={onChange}/>
                 <p>비밀번호확인</p>
                 <input type="password" name="password1" value={password1} onChange={onChange}/>
                 <p>{passwordcheck}</p>
-                <button onClick={next}>다음</button>
+                <div>
+                    <button onClick={next}>다음</button>
+                </div>
             </PasswordBox>
+            <TermsBox>
+                모두 동의
+
+            </TermsBox>
             <TelecomBox display={telecomdisplay}>
                 <p>통신사</p>
                 <input type="text" name="telecom" value={telecom} onChange={onChange}/>
@@ -162,20 +170,69 @@ const SignUp = (props) => {
                 {type1 !== "타입4"&&type2 !== "타입4"&&type3 !== "타입4"?(<button onClick={typeselect} value="타입4">타입4선택</button>):(<button onClick={typecancle} value="타입4">타입4취소</button>)}
                 {type1 !== "타입5"&&type2 !== "타입5"&&type3 !== "타입5"?(<button onClick={typeselect} value="타입5">타입5선택</button>):(<button onClick={typecancle} value="타입5">타입5취소</button>)}
                 {type1 !== "타입6"&&type2 !== "타입6"&&type3 !== "타입6"?(<button onClick={typeselect} value="타입6">타입6선택</button>):(<button onClick={typecancle} value="타입6">타입6취소</button>)}
+                <button onClick={signup}>가입하기</button>
             </TypeBox>
-            <p>관리자십니까?</p>
-            <button onClick={admincheck}>예</button>
-            {admin?(<input type="text" name="admintoken" value={admintoken} onChange={onChange}/>):("")}
-            <button onClick={signup}>가입하기</button>
         </React.Fragment>
     );
 };
 
 const EmailBox = styled.div`
+    margin-left: 15px;
     display: ${props => props.display};
+
+    p{
+        font-weight: bold;
+    }
+
+    input{
+        width: 328px;
+        height: 37px;
+        border-radius: 5px;
+        border:1px solid #D5D5D5;
+    }
+
+    div{
+        margin-top: 200px;
+        button{
+            border-radius: 5px;
+            border:none;
+            width:328px;
+            height:45px;
+            color: white;
+            background-color:${props => props.bgcolor};
+        }
+    }
+    
 `;
 
 const PasswordBox = styled.div`
+    margin-left: 15px;
+    display: ${props => props.display};
+    p{
+        font-weight: bold;
+    }
+
+    input{
+        width: 328px;
+        height: 37px;
+        border-radius: 5px;
+        border:1px solid #D5D5D5;
+    }
+
+    div{
+        margin-top: 200px;
+        button{
+            border-radius: 5px;
+            border:none;
+            width:328px;
+            height:45px;
+            color: white;
+            background-color:${props => props.bgcolor};
+        }
+    }
+`;
+
+const TermsBox = styled.div`
     display: ${props => props.display};
 `;
 
@@ -184,11 +241,11 @@ const TelecomBox = styled.div`
 `;
 
 const CardtypeBox = styled.div`
-    display:${props => props.display};
+    display: ${props => props.display};
 `;
 
 const TypeBox = styled.div`
-    display:${props => props.display};
+    display: ${props => props.display};
 `;
 
 export default SignUp;

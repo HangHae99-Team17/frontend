@@ -3,15 +3,12 @@ import {useDispatch,useSelector} from 'react-redux';
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 import styled from 'styled-components';
-import {Frame_101, x, gooddablack, gooddawhite} from '../image'
+import {Frame_101, x, x_black, gooddablack, gooddawhite} from '../image'
 
 const Header = (props) => {
     const dispatch = useDispatch();
     const is_login = useSelector((state) => state.user.is_login);
     const is_session = sessionStorage.getItem("token") ? true : false;
-
-    const user = useSelector((state) => state.user.user);
-    const [admin,setAdmin] = useState(user?user:"");
     const [show,setShow] = useState(true);
     const [open, setOpen] = useState(false);
 
@@ -19,16 +16,11 @@ const Header = (props) => {
         dispatch(userActions.logoutFB());
         history.push("/");
     };
-
-    useEffect(()=>{
-        if(user){
-            setAdmin(user);
-        }
-    },[user]);
     
     useEffect(() => {
+
         if(history.location.pathname==="/signup"){
-            setShow(false);
+            setShow(!show);
         }
 
         if(is_session){
@@ -36,39 +28,60 @@ const Header = (props) => {
         }
     }, []);
 
-    if(show){
         return (
             <React.Fragment>
+                {show?(
                 <HeaderBox color={open?"black":"white"} fontcolor={open?"white":"black"}>
-                {open?(
-                <>
-                <IconBox>
-                    <img src={gooddawhite}/>
-                </IconBox>
-                <StyledBurger open={open} onClick={()=> setOpen(!open)}>
-                    <button>LOGIN</button>
-                    <img src={x}/>
-                </StyledBurger></>):(
-                <>
-                <IconBox>
-                    <img src={gooddablack}/>
-                </IconBox>
-                <StyledBurger open={open} onClick={()=> setOpen(!open)}>
-                    <img src={Frame_101}/>
-                </StyledBurger></>
-                )}
-                <Ul open={open}>
-                    <li>카테고리</li>
-                    <li>보관함</li>
-                    <li>마이페이지</li>
-                </Ul>
-                </HeaderBox>     
+                    {open?(
+                    <>
+                        <IconBox>
+                            <img src={gooddawhite}/>
+                        </IconBox>
+                        <StyledBurger open={open} onClick={()=> setOpen(!open)}>
+                            {is_login?(<button onClick={logout}>LOGOUT</button>):
+                            (<button onClick={()=>{history.push('/login');}}>LOGIN</button>)}
+                            <img src={x}/>
+                        </StyledBurger>
+                    </>
+                    ):(
+                    <>
+                        <IconBox>
+                            <img src={gooddablack}/>
+                        </IconBox>
+                        <StyledBurger open={open} onClick={()=> setOpen(!open)}>
+                            <img src={Frame_101}/>
+                        </StyledBurger>
+                    </>
+                    )}
+                    <Ul open={open}>
+                        <li>카테고리</li>
+                        <li>보관함</li>
+                        <li>마이페이지</li>
+                        <li>나의 카테고리</li>
+                    </Ul>
+                </HeaderBox>):(
+                <SignupHeaderBox>
+                    <div>
+                        <img src={x_black}/>
+                    </div>
+                </SignupHeaderBox>)}
             </React.Fragment>
         );
-    }else{
-        return null;
-    }
 };
+
+const SignupHeaderBox =  styled.div`
+    background-color: white;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    height: 60px;
+    border-bottom: solid 1px grey;
+    div{
+        margin-top:20px;
+        margin-right:10px;
+        float: right;
+    }
+`;
 
 const HeaderBox = styled.div`
     display:flex;
@@ -81,6 +94,7 @@ const HeaderBox = styled.div`
     width: 100%;
     position: fixed;
     border-bottom: solid 1px grey;
+    z-index: 1;
 `;
 
 const IconBox = styled.div`
@@ -95,7 +109,9 @@ const StyledBurger = styled.div`
     button{
         border: none;
         cursor: pointer;
-        outline: 0;
+        color:white;
+        background-color: black;
+        font-size: 20px;
     }
 `;
 
