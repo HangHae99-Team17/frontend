@@ -32,7 +32,8 @@ const Main = ()=>{
                     </div>
                     </Box>
                     <Bookmarker 
-                    onClick={()=>{ if(is_login===false){alert("로그인이 필요한 서비스 입니다!");history.push('/login')} 
+                    onClick={()=>{ if(is_login===false){alert("로그인이 필요한 서비스 입니다!");
+                        history.push('/login')} 
                         else {const couponId = {couponId : item.id};
                         dispatch(foldersCreators.addPostMW(couponId));
                         alert("해당 쿠폰이 찜 되었습니다!")}}}>

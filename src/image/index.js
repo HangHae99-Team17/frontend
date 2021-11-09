@@ -7,6 +7,7 @@ import bookmarker from "./bookmarker.png";
 import companyLogo from "./companyLogo.png";
 import colorBookmark from "./colorBookmark.png";
 import fullBookmark from "./fullBookmark.png"
+import x_black from "./x_black.png";
 
 export {
     Frame_101,
@@ -17,5 +18,6 @@ export {
     bookmarker,
     companyLogo,
     colorBookmark,
-    fullBookmark
+    fullBookmark,
+    x_black
 };
