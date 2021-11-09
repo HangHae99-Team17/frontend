@@ -1,13 +1,11 @@
 import React,{useEffect, useState} from 'react';
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import styled from 'styled-components';
-import { checkValue } from "../shared/regExp";
 import {checkgray, checkgray2} from '../image'
 
 const SignUp = (props) => {
     const dispatch = useDispatch();
-    const [admin, setAdmin] = useState(false);
     const [passwordcheck, setPasswordcheck] = useState("");
     const [emaildisplay,setEmailDisplay] = useState("block");
     const [passworddisplay,setPasswordDisplay] = useState("none");
@@ -24,8 +22,7 @@ const SignUp = (props) => {
         email: "",
         username: "",
         password: "",
-        password1: "",
-        admintoken:""
+        password1: ""
     });
 
     const cards = [
@@ -122,11 +119,11 @@ const SignUp = (props) => {
         },
         {
             inter_id:10,
-            inter_type:"가구,생활"
+            inter_type:"가구"
         },
         {
             inter_id:11,
-            inter_type:"쇼핑,잡화"
+            inter_type:"생활"
         },
     ]
 
@@ -134,9 +131,14 @@ const SignUp = (props) => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
     }
 
-    const {email, username, password, password1, admintoken} = signup_info;
+    const {email, username, password, password1 } = signup_info;
 
     const signup = () => {
+
+        if(!type1&&!type2&&!type3){
+            window.alert("관심사 1개 이상 선택해주세요!");
+            return;
+        }
         const user_info = {
             userEmail: email,
             password: password,
@@ -146,19 +148,11 @@ const SignUp = (props) => {
             type1:type1,
             type2:type2,
             type3:type3,
-            admin:admin,
-            adminToken:admintoken
+            admin:"",
+            adminToken:""
         }
         dispatch(userActions.signupFB(user_info))
     };
-
-    const admincheck = () => {
-        if(admin === false){
-            setAdmin(true);
-        }else{
-            setAdmin(false)
-        }
-    }
 
     const telecomtypeselect = (e) =>{
         console.log(e.target.value)
@@ -178,9 +172,6 @@ const SignUp = (props) => {
     }
 
     const typeselect = (e) => {
-        console.log(type1)
-        console.log(type2)
-        console.log(type3)
         if(type1 === "" && type2 === "" && type3 === ""){
             setType1(e.target.value);
         }
@@ -227,27 +218,55 @@ const SignUp = (props) => {
             setEmailDisplay("none");
             setPasswordDisplay("block");
         }else if(passworddisplay === "block"){
+            if(!password){
+                window.alert("비밀번호를 입력해주세요!")
+                return
+            }
+            if(passwordcheck === "최소 8 자 최대 10자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자를 입력해주세요."){
+                window.alert("비밀번호 규격에 맞게 입력해주세요")
+                return
+            }
+            if(passwordcheck === "비밀번호가 일치하지 않습니다."){
+                window.alert("비밀번호를 확인해주세요!")
+                return
+            }
             setPasswordDisplay("none");
             setTermsDisplay("block");
         }else if(termsdisplay === "block"){
             setTermsDisplay("none");
             setTelecomDisplay("block");
         }else if(telecomdisplay ==="block"){
+            if(!telecom){
+                window.alert("통신사를 선택해주세요!")
+                return
+            }
             setTelecomDisplay("none");
             setCardDisplay("block");
         }else if(carddisplay==="block"){
+            if(!cardtype){
+                window.alert("카드타입을 선택해주세요!")
+                return
+            }
             setCardDisplay("none");
             setTypeDisplay("block");
         }
     };
 
     useEffect(()=> {
-        if(password !== password1){
-            setPasswordcheck("비밀번호가 일치하지 않습니다.")
-            return
+        const pwregEXP = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,10}$/;
+        //최소 8 자 최대 10자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자
+        if(password){
+            if(!pwregEXP.test(password)){
+                setPasswordcheck("최소 8 자 최대 10자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자를 입력해주세요.")
+            }else{
+                if(password !== password1){
+                    setPasswordcheck("비밀번호가 일치하지 않습니다.")
+                }else{
+                    setPasswordcheck("비밀번호가 일치합니다.")
+                }
+            }
         }else{
-            setPasswordcheck("비밀번호가 일치합니다")
-            return
+            setPasswordcheck("");
         }
     },[password, password1]);
 
@@ -347,6 +366,9 @@ const SignUp = (props) => {
                         }
                     })}
                 </div>
+                <div className="nextbutton">
+                    <button onClick={signup}>회원가입</button>
+                </div>
             </TypeBox>
         </React.Fragment>
     );
@@ -386,6 +408,18 @@ const TypeBox = styled.div`
             border: solid 1px orange;
         }
         
+    }
+
+    .nextbutton{
+        margin-top: 50px;
+        button{
+            border-radius: 5px;
+            border:none;
+            width:328px;
+            height:45px;
+            color: white;
+            background-color:${props => props.bgcolor};
+        }
     }
 `;
 
@@ -596,7 +630,5 @@ const CardtypeBox = styled.div`
         }
     }
 `;
-
-
 
 export default SignUp;

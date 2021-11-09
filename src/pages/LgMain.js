@@ -97,7 +97,7 @@ const Strong = styled.span`
 color : #F09643;
 `
 const Img = styled.span`
-withd : 50px;
+width : 50px;
 height : 50px;
 border : 1px solid #DADADA;
 border-radius : 4px;
