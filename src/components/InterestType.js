@@ -19,7 +19,7 @@ const InterestType = (props) => {
 
     return(
         is_login?(
-        <div>
+          <div>
         <BarWrap>
         {
         MenuArr?.map((item) => {
@@ -30,6 +30,7 @@ const InterestType = (props) => {
         );
         })}
         </BarWrap>
+        <Line/>
         </div>
         ):(
 <Wrap> 
@@ -43,18 +44,23 @@ const InterestType = (props) => {
 
 const Bar = styled.li`
 display : inline-block;
-margin : 10px;
+margin : 0 16px;
 cursor : pointer;
-font-size : 15px;
+font-size : 16px;
+font-weight : 600 ;
 `
 const BarWrap = styled.ul`
-padding-left : 13px; 
+width : 375px;
+padding-left : 16px;
+`
+const Line = styled.hr`
+width : 100%;
+color : #D5D5D5;
 `
 const Wrap = styled.div`
 width : 400px;
 height : 400px;
 margin : auto;
-text-align : center;
 `
 const P = styled.p`
 font-weight : bold;

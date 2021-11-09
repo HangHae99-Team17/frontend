@@ -46,7 +46,7 @@ const Header = (props) => {
                     ):(
                     <>
                         <IconBox>
-                            <img src={gooddablack}/>
+                            <img src={gooddablack} onClick={()=>{history.push('/')}}/>
                         </IconBox>
                         <StyledBurger open={open} onClick={()=> setOpen(!open)}>
                             <img src={Frame_101}/>
@@ -54,10 +54,10 @@ const Header = (props) => {
                     </>
                     )}
                     <Ul open={open}>
-                        <li>카테고리</li>
-                        <li>보관함</li>
-                        <li>마이페이지</li>
-                        <li>나의 카테고리</li>
+                        <li onClick={()=>{history.push('/category');setOpen(!open)}}>카테고리</li>
+                        <li onClick={()=>{history.push('/folders');setOpen(!open)}}>보관함</li>
+                        <li onClick={()=>{history.push('/mypage');setOpen(!open)}}>마이페이지</li>
+                        <li onClick={()=>{history.push('/api/main');setOpen(!open)}}>나의 카테고리</li>
                     </Ul>
                 </HeaderBox>):(
                 <SignupHeaderBox>
@@ -94,7 +94,7 @@ const HeaderBox = styled.div`
     width: 100%;
     position: fixed;
     border-bottom: solid 1px grey;
-    z-index: 1;
+    z-index : 1;
 `;
 
 const IconBox = styled.div`
