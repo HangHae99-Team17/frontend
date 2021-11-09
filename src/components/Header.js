@@ -62,7 +62,7 @@ const Header = (props) => {
                 </HeaderBox>):(
                 <SignupHeaderBox>
                     <div>
-                        <img src={x_black}/>
+                        <img src={x_black} onClick={()=>{history.goBack();}}/>
                     </div>
                 </SignupHeaderBox>)}
             </React.Fragment>
