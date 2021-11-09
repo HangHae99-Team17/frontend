@@ -32,7 +32,6 @@ const Folders = () => {
                   </Couponbox>
                 </Grid>
               )
-
             })}
           </div>
     );
