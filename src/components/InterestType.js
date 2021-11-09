@@ -57,8 +57,7 @@ width : 100%;
 color : #D5D5D5;
 `
 const Wrap = styled.div`
-width : 400px;
-height : 400px;
+width : 375px;
 margin : auto;
 `
 const P = styled.p`

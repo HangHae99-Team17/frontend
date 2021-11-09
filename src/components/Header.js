@@ -58,6 +58,7 @@ const Header = (props) => {
                         <li onClick={()=>{history.push('/folders');setOpen(!open)}}>보관함</li>
                         <li onClick={()=>{history.push('/mypage');setOpen(!open)}}>마이페이지</li>
                         <li onClick={()=>{history.push('/api/main');setOpen(!open)}}>나의 카테고리</li>
+                        <li onClick={()=>{history.push('/signup');setOpen(!open)}}>회원가입</li>
                     </Ul>
                 </HeaderBox>):(
                 <SignupHeaderBox>
@@ -131,6 +132,8 @@ const Ul = styled.ul`
     li{
         padding: 18px 10px;
         color: #fff;
+        font-size : 20px;
+        font-weight : bold;
     }
 `;
 

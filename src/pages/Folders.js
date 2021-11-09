@@ -33,7 +33,7 @@ const Folders = () => {
                     <p>{item.couponSubTitle} 할인 받기</p>
                     </div>
                   <button
-                  onClick={()=>{dispatch(foldersCreators.delFoldersMiddleware(item.couponId)); history.go(0)}}>삭제하기</button>
+                  onClick={()=>{dispatch(foldersCreators.delFoldersMiddleware(item.id)); history.go(0)}}>삭제하기</button>
                   </Couponbox>
                 </Grid>
               )
