@@ -3,6 +3,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { listCreators } from '../redux/modules/main';
 import { history } from '../redux/configureStore';
 import styled from 'styled-components';
+import Grid from "../elements/Grid"
 
 const CategoryDetail = (props) => {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const CategoryDetail = (props) => {
     console.log(DcInfoList)
 
 return(
-    <div>
+    <Grid width="375px" >
         <div>
         <P>{type} 할인</P>
         <P>다 모아두었어요</P>
@@ -38,42 +39,40 @@ return(
           );
         })}
     </DcBox>
-    </div>
+    </Grid>
 )
 }
 
 
+const P = styled.p`
+margin: 0 auto;
+font-size : 18px;
+width: 355px;
+line-height:30px;
+font-weight : bold;
+padding-left:20px;
+`
 const DcBox = styled.div`
-width : 250px;
-height : 80px;
+width : 375px;
 margin: 20px auto;
 `
 const DcList = styled.div`
-margin : 10px 0 ;
 text-aling : center;
-border : 1px solid grey ; 
 padding : 5px;
 cursor : pointer;
 display : flex;
 `
 const DcInfo = styled.div`
-margin : 0 15px;
+margin : 0 5px;
 `
 const Text =styled.p `
-font-size : 12px;
+font-size : 13px;
 `
 const Img = styled.span`
-withd : 50px;
-height : 50px;
+width : 40px;
+height : 40px;
 border : 1px solid grey;
-margin : 6px 0;
-`
-const P = styled.p`
-font-size : 18px;
-font-weight : 400;
-margin : 0;
-`
-const TxtWrap = styled.div`
-margin : 
+margin : 18px;
+border-radius:5px;
 `
 export default CategoryDetail;
