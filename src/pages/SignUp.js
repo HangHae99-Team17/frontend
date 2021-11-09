@@ -3,6 +3,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import styled from 'styled-components';
 import { checkValue } from "../shared/regExp";
+import {checkgray, checkgray2} from '../image'
 
 const SignUp = (props) => {
     const dispatch = useDispatch();
@@ -148,9 +149,37 @@ const SignUp = (props) => {
                     <button onClick={next}>다음</button>
                 </div>
             </PasswordBox>
-            <TermsBox>
-                모두 동의
-
+            <TermsBox display={termsdisplay}>
+                <p>서비스 약관을 확인해주세요.</p>
+                <div className="allcheck">
+                    <div>
+                        <img src={checkgray}/>
+                        <span>모두 동의</span>
+                    </div>
+                </div>
+                <div className="checklist">
+                    <ul>
+                        <li>
+                            <img src={checkgray2}/>
+                            <span>[필수] 만 14세 이상</span>
+                        </li>
+                        <li>
+                            <img src={checkgray2}/>
+                            <span>[필수] 이용약관 동의</span>
+                        </li>
+                        <li>
+                            <img src={checkgray2}/>
+                            <span>[필수] 개인정보 처리방침 동의</span>
+                        </li>
+                        <li>
+                            <img src={checkgray2}/>
+                            <span>[선택] 광고성 정보 수신 및 마케팅 활용 동의</span>
+                        </li>
+                    </ul>
+                </div>
+                <div className="nextbutton">
+                    <button onClick={next}>다음</button>
+                </div>
             </TermsBox>
             <TelecomBox display={telecomdisplay}>
                 <p>통신사</p>
@@ -175,6 +204,56 @@ const SignUp = (props) => {
         </React.Fragment>
     );
 };
+
+const TermsBox = styled.div`
+    margin-left: 15px;
+    display: ${props => props.display};
+    p{
+        font-weight: bold;
+    }
+    .allcheck{
+        border-bottom: solid 1px grey;
+        width: 328px;
+        div{
+            display:flex;
+            align-items: center;
+            margin-bottom:10px;
+            span{
+                font-size: 13px;
+                margin-left: 5px;
+                color:grey;
+            }
+        }
+    }
+    
+    .checklist{
+        ul{
+            margin-left:-20px;
+            list-style:none;
+            li{
+                margin-bottom:10px;
+                span{
+                    margin-left:10px;
+                    color:grey;
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+
+    .nextbutton{
+        margin-top: 200px;
+        button{
+            border-radius: 5px;
+            border:none;
+            width:328px;
+            height:45px;
+            color: white;
+            background-color:${props => props.bgcolor};
+        }
+    }
+`;
+
 
 const EmailBox = styled.div`
     margin-left: 15px;
@@ -205,6 +284,7 @@ const EmailBox = styled.div`
     
 `;
 
+
 const PasswordBox = styled.div`
     margin-left: 15px;
     display: ${props => props.display};
@@ -232,9 +312,7 @@ const PasswordBox = styled.div`
     }
 `;
 
-const TermsBox = styled.div`
-    display: ${props => props.display};
-`;
+
 
 const TelecomBox = styled.div`
     display: ${props => props.display};
