@@ -11,24 +11,14 @@ import { colorBookmark, companyLogo,fullBookmark } from '../image';
 const LgMain = (props) => {
     const dispatch = useDispatch();
     const is_login = useSelector((state) => state.user.is_login);
-
-
-    // 내가 디스패치 하면서 넘겨줄 값(여기선 type)
-    // 이 type이 우리가 api에서 적어둔 param 부분
     const type = props.match.params.type
-
-    // 내가 받아올 type의 할인정보 데이터들(리덕스 데이터 데리고 오기)
     const dc_list = useSelector(( state )=> state.main.list.data);
     console.log(dc_list)
     
-    // 디스패치 시에 type을 넣어줘야 request를 제대로해서 데려옵니다.
-    // axios에 적은 param이 저 type이다.
-     React.useEffect(() => {
+    React.useEffect(() => {
     dispatch(listCreators.getListMW(type));
     }, []);
     
-
-
 return(is_login?(
     <div>
       <InterestType/>
@@ -44,7 +34,7 @@ return(is_login?(
               <Img>{} <img src={companyLogo}/> </Img>
               <DcInfo>
               <Text>{item.couponTitle}에서</Text>
-              <Subtitle><Strong>{item.couponDesc}</Strong> 할인 받기</Subtitle>
+              <Subtitle><Strong>{item.couponSubTitle}</Strong> 할인 받기</Subtitle>
               </DcInfo>
               </DcList>
               <div>

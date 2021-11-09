@@ -5,17 +5,17 @@ import { history } from '../redux/configureStore';
 import styled from 'styled-components';
 import Grid from "../elements/Grid";
 import { colorBookmark, companyLogo } from '../image';
+import { foldersCreators } from '../redux/modules/folders';
 
 const CategoryDetail = (props) => {
     const dispatch = useDispatch();
-    // 내가 넘겨줘야 할 값이 뭔지 props를 통해서 찾아내기
-    // 내가 넘겨줄 타입
     console.log("디테일",props)
     const type = props.match.params.type
-    // 내가 가지고 올 타입 디스패치
     React.useEffect(() => {
         dispatch(listCreators.getListMW(type))
         }, []);
+
+    const is_login = useSelector((state)=>state.user.is_login)
         
     const DcInfoList = useSelector((state) => state.main.list.data)
     console.log(DcInfoList)
@@ -30,16 +30,22 @@ return(
         {
         DcInfoList?.map((item) => {
           return (
+            <Wrap>
             <DcList key={item.id} onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
                 <Img>{item.couponImage}</Img>
               <DcInfo>
               <Text>{item.couponTitle}에서</Text>
               <Text2><Text3>{item.couponSubTitle}</Text3>할인 받기</Text2>
-              
-       
-              </DcInfo> <Imgbox><img src={colorBookmark}/></Imgbox>
-            </DcList>
-            
+              </DcInfo> 
+              </DcList>
+
+              <Imgbox><img src={colorBookmark} onClick={()=>{
+                if(is_login){
+                const couponId = {couponId : item.id};
+                dispatch(foldersCreators.addPostMW(couponId));
+                alert("해당 쿠폰을 찜했습니다!")}
+                else{alert("로그인이 필요한 서비스 입니다!")}}}/></Imgbox>
+            </Wrap>
           );
         })}
         
@@ -74,7 +80,11 @@ margin : 0 8px;
 const Text =styled.p `
 font-size : 14px;
 `
-
+const Wrap = styled.div`
+position : relative;
+width : 100%
+height : 72px;
+`
 const Text2 =styled.p `
 font-weight: bold;
 margin-top:-6px;
@@ -94,9 +104,9 @@ border-radius:5px;
 const Imgbox = styled.div`
 width:20px;
 height:20px;
-margin-top:28px;
 position:absolute;
 right:25px;
+top : 38%;
 `
 
 

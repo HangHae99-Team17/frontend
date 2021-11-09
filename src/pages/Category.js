@@ -39,21 +39,21 @@ margin: 0 auto;
 width:375px;
 flex-wrap: wrap;
 justify-content:space-evenly;
-padding-left:0px;
+padding-left:0px;    
 `
 
 
 const Li = styled.li`
-
 list-style :  none;
 background-color:white;
-border: 1px solid #D4D4D4;
+border: 2px solid #F09643;
 margin:10px;
 height:100px;
 width:100px;
 border-radius:10px;
+font-weight : 600;
 text-align:center;
-color:#D4D4D4;
+color:#F09643;
 font-size:20px;
 line-height:100px;
 `
