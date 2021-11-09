@@ -39,7 +39,7 @@ export const loginFB = (user) => {
           sessionStorage.setItem("token", `${token}`);
         }
         dispatch(setUser(res.data.data));
-        history.push(`api/main/`);
+        history.push(`api/main`);
       }else{
         window.alert(res.data.data);
       }

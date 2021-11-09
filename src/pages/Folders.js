@@ -5,7 +5,7 @@ import { history } from '../redux/configureStore';
 import styled from "styled-components";
 import Grid from "../elements/Grid";
 import Button from "../elements/Button";
-
+import {companyLogo} from '../image'
 
 const Folders = () => {
     const dispatch = useDispatch();
@@ -26,7 +26,12 @@ const Folders = () => {
                 width="375px"
                 padding="10px 0"
                 > 
-                  <Couponbox>{item.couponTitle}
+                  <Couponbox>
+                    <img src={companyLogo}/>
+                    <div>
+                    <p>{item.couponTitle}에서</p>
+                    <p>{item.couponSubTitle} 할인 받기</p>
+                    </div>
                   <button
                   onClick={()=>{dispatch(foldersCreators.delFoldersMiddleware(item.couponId)); history.go(0)}}>삭제하기</button>
                   </Couponbox>
