@@ -18,7 +18,6 @@ export const apis = {
   logincheck: () => instance.get('api/user/show'),
   edituser: (user_info) => instance.put('/api/user/change',user_info),
   deluser: (password) => instance.post('/api/user/delete',password),
-  getCategory:(param) => instance.get(`api/category/${param}`),
   getFolders:() => instance.get('api/folders'),
   delFolders:(param) => instance.delete(`api/folders/${param}`),
   // 쿠폰 상세페이지 데이터 불러오기(Get)

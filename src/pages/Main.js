@@ -4,7 +4,7 @@ import { listCreators } from '../redux/modules/main';
 import { foldersCreators } from '../redux/modules/folders';
 import { history } from '../redux/configureStore';
 import styled from 'styled-components';
-import { colorBookmark, companyLogo } from '../image';
+import { colorBookmark, companyLogo,fullBookmark } from '../image';
 
 const Main = ()=>{
     const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const Main = ()=>{
                     <div>
                     <Title>{item.couponTitle}에서 </Title>
                     {/* couponDesc이 부분은 subtitile로 바꿔서 받을예정_ api 바꾸고 변경하기 */}
-                    <Dsec><Strong>{item.couponDesc}</Strong> 할인 받기</Dsec>
+                    <Dsec><Strong>{item.couponSubTitle}</Strong> 할인 받기</Dsec>
                     </div>
                     </Box>
                     <Bookmarker 

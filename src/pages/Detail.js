@@ -7,27 +7,19 @@ import {history} from '../redux/configureStore'
 import { addImg,bookmarker,companyLogo } from '../image';
 
 const Detail = (props) => {
-    // 해당 할인 정보 id값만 추출하기
     const Id = props.match.params.id
 
     const dispatch = useDispatch();
-    // 리덕스에서 info를 불러올때 해당 Id값의 info만 불러올 수 있도록 디스패치 해준다.
-    // 액션이 먼저 발생하고 리덕스의 값을 데리고 와야 하기 때문에 디스패치 먼저 해준다.
     React.useEffect(()=>{
         dispatch(detailCreators.getDetailMW(Id))
-    },[])
+    },[]);
 
-    // 리덕스에서 데이터 가지고 오기
     const detail_list = useSelector((store) => store.detail.info.data );
 
-    // 찜한 쿠폰 백에 보내주기post
-    // api에서 적은 couponId 가 아래 couponId이다. jason 형태로 보내져야 하는 것.
     function PostCoupon(){
         const couponId = {
             couponId : Id,
-
         };
-        // 디스패치 할 때 couponId를 넘겨준다.
         dispatch(foldersCreators.addPostMW(couponId));
     } 
 
