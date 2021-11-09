@@ -14,14 +14,18 @@ const Detail = (props) => {
         dispatch(detailCreators.getDetailMW(Id))
     },[]);
 
-    const detail_list = useSelector((store) => store.detail.info.data );
+    const detail_list = useSelector((state) => state.detail.info.data );
+    const is_login = useSelector((state) => state.user.is_login)
 
     function PostCoupon(){
+        if(is_login){
         const couponId = {
             couponId : Id,
         };
         dispatch(foldersCreators.addPostMW(couponId));
-    } 
+         }
+         else{alert("로그인이 필요한 서비스 입니다!")}
+}
 
 
     return(
