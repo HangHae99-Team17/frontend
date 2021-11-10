@@ -13,6 +13,9 @@ const SaleWrite = (props) => {
     const sale_list = useSelector((state) => state.sale.list);
     const _sale = editmode ? sale_list.find((p) => p.id.toString() === sale_id): null;
     const [sale_info, setSale_Info] = useState({
+        couponbrand: _sale?_sale.couponBrand:"",
+        couponsubtitle: _sale?_sale.couponSubTitle:"",
+        couponlogo: _sale?_sale.couponLogo:"",
         couponimg: _sale?_sale.couponImage:"",
         coupontype: _sale?_sale.couponType:"",
         coupontitle: _sale?_sale.couponTitle:"",
@@ -27,7 +30,7 @@ const SaleWrite = (props) => {
         setSale_Info({...sale_info, [e.target.name]: e.target.value});
     };
 
-    const {couponimg, coupontype, coupontitle, coupondesc, couponurl} = sale_info;
+    const {couponimg, coupontype, coupontitle, coupondesc, couponurl , couponbrand, couponsubtitle, couponlogo} = sale_info;
 
     const dateToString = (date) => {
         return date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
@@ -35,6 +38,9 @@ const SaleWrite = (props) => {
 
     const addSale = () => {
         const sale_content = {
+            couponBrand: couponbrand,
+            couponSubTitle: couponsubtitle,
+            couponLogo: couponlogo,
             couponImage: couponimg,
             couponType: coupontype,
             couponTitle: coupontitle,
@@ -48,6 +54,9 @@ const SaleWrite = (props) => {
 
     const editSale = () => {
         const sale_content = {
+            couponBrand: couponbrand,
+            couponSubTitle: couponsubtitle,
+            couponLogo: couponlogo,
             couponImage: couponimg,
             couponType: coupontype,
             couponTitle: coupontitle,
@@ -71,12 +80,18 @@ const SaleWrite = (props) => {
     return (
         <div>
             <h3>할인정보입력</h3>
-            <p>쿠폰이미지</p>
-            <input type="text" name="couponimg" value={couponimg} onChange={onChange}/>
-            <p>쿠폰타입</p>
-            <input type="text" name="coupontype" value={coupontype} onChange={onChange}/>
+            <p>쿠폰브랜드</p>
+            <input type="text" name="couponbrand" value={couponbrand} onChange={onChange}/>
             <p>쿠폰타이틀</p>
             <input type="text" name="coupontitle" value={coupontitle} onChange={onChange}/>
+            <p>쿠폰서브타이틀</p>
+            <input type="text" name="couponsubtitle" value={couponsubtitle} onChange={onChange}/>
+            <p>쿠폰이미지</p>
+            <input type="text" name="couponimg" value={couponimg} onChange={onChange}/>
+            <p>쿠폰로고</p>
+            <input type="text" name="couponlogo" value={couponlogo} onChange={onChange}/>
+            <p>쿠폰타입</p>
+            <input type="text" name="coupontype" value={coupontype} onChange={onChange}/>
             <p>쿠폰설명</p>
             <input type="text" name="coupondesc" value={coupondesc} onChange={onChange}/>
             <p>쿠폰URL</p>

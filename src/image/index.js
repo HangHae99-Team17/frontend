@@ -10,6 +10,7 @@ import fullBookmark from "./fullBookmark.png"
 import x_black from "./x_black.png";
 import checkgray from "./checkgray.png";
 import checkgray2 from "./checkgray2.png";
+import vector from "./vector.png";
 
 export {
     Frame_101,
@@ -24,4 +25,5 @@ export {
     companyLogo,
     colorBookmark,
     fullBookmark,
+    vector
 };
