@@ -29,13 +29,13 @@ const Folders = () => {
                 width="375px"
                 padding="10px 0"
                 > 
-                  <Couponbox onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
+                  <Couponbox>
                     
-                    <Img><img src={companyLogo}/></Img>
-                    <div>
+                    <Img onClick={()=>{history.push(`/api/detail/${item?.id}`)}}><img src={companyLogo}/></Img>
+                    <Textbox onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
                     <P1>{item.couponTitle}에서</P1>
                     <P2>{item.couponSubTitle} 할인 받기</P2>
-                    </div>
+                    </Textbox>
                   <BUTTON
                   onClick={()=>{
                     alert("해당 쿠폰이 삭제되었습니다.");dispatch(foldersCreators.delFoldersMiddleware(item.id)); history.go(0);
@@ -57,7 +57,6 @@ padding: 20px;
 
 const Couponbox = styled.div`
 display:flex;
-justify-content: space-between;
 width : 375px;
 height: 60px;
 `
@@ -65,6 +64,12 @@ const Img = styled.div`
 width:50px;
 padding-left:20px;
 `
+
+const Textbox = styled.div`
+width:200px;
+padding-left:20px;
+`
+
 
 const P1 = styled.p`
 margin-top: 0px;
@@ -74,10 +79,12 @@ const P2 = styled.p`
 margin-top: -5px;
 font-size:16px;
 font-weight: bold;
+padding-left:-20px;
 `
 
 const BUTTON = styled.button`
-padding-right:20px;
+position: absolute;
+right:20px;
 height: 50px;
 border: none;
 background-color:white;
