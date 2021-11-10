@@ -2,7 +2,6 @@ import React,{useEffect, useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import styled from 'styled-components';
-import { checkValue } from "../shared/regExp";
 
 const AdminSignup = () => {
     const dispatch = useDispatch();

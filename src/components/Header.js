@@ -65,7 +65,10 @@ const Header = (props) => {
                             if(is_login){
                             history.push('/api/main');setOpen(!open)}
                             else{alert("로그인이 필요한 서비스입니다!")}}}>나의 카테고리</li>
-                        <li onClick={()=>{history.push('/signup');setOpen(!open)}}>회원가입</li>
+                        <li onClick={()=>{
+                            window.location.replace('/signup');
+                            setOpen(!open)}}>회원가입
+                        </li>
                     </Ul>
                 </HeaderBox>):(
                 <SignupHeaderBox>
