@@ -11,8 +11,8 @@ const EDIT_SALE = "EDIT_SALE";
 //action creator
 const setSale = createAction(SET_SALE, (sale) => ({ sale }));
 const addSale = createAction(ADD_SALE, (sale) => ({ sale }));
-const delSale = createAction(DEL_SALE, (coupon_id) => ({coupon_id}))
-const editSale = createAction(EDIT_SALE, (coupon_id,coupon_content)=>({coupon_id,coupon_content}))
+const delSale = createAction(DEL_SALE, (coupon_id) => ({coupon_id}));
+const editSale = createAction(EDIT_SALE, (coupon_id,coupon_content)=>({coupon_id,coupon_content}));
 
 //initialState
 const initialState = {
@@ -34,9 +34,9 @@ export const setSaleFB = () => {
 export const addSaleFB = (sale) => {
   return async (dispatch, getState, { history }) => {
     try {
-      const res = await apis.addCoupon(sale)
+      const res = await apis.addCoupon(sale);
       console.log(res.data.data);
-      dispatch(addSale(sale))
+      dispatch(addSale(sale));
       history.replace("/");
     } catch(e) {
       console.log(e);

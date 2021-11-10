@@ -33,7 +33,7 @@ const SaleWrite = (props) => {
     const {couponimg, coupontype, coupontitle, coupondesc, couponurl , couponbrand, couponsubtitle, couponlogo} = sale_info;
 
     const dateToString = (date) => {
-        return date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
+        return date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
     };
 
     const addSale = () => {

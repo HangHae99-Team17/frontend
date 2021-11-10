@@ -23,19 +23,19 @@ const Main = ()=>{
             {list?.map((item)=>{
                 return(
                     <Wrap>
-                    <Box onClick={()=>{history.push(`api/detail/${item.id}`)}}>
-                    <ImgBox><img src={companyLogo}/></ImgBox>
-                    <div>
-                    <Title>{item.couponTitle}에서 </Title>
-                    {/* couponDesc이 부분은 subtitile로 바꿔서 받을예정_ api 바꾸고 변경하기 */}
-                    <Dsec><Strong>{item.couponSubTitle}</Strong> 할인 받기</Dsec>
-                    </div>
-                    </Box>
-                    <Bookmarker 
-                    onClick={()=>{ if(is_login===false){alert("로그인이 필요한 서비스 입니다!");
-                        history.push('/login')} 
+                        <Box onClick={()=>{history.push(`api/detail/${item.id}`)}}>
+                        <ImgBox><img src={companyLogo}/></ImgBox>
+                        <div>
+                            <Title>{item.couponTitle}에서 </Title>
+                            {/* couponDesc이 부분은 subtitile로 바꿔서 받을예정_ api 바꾸고 변경하기 */}
+                            <Dsec><Strong>{item.couponSubTitle}</Strong> 할인 받기</Dsec>
+                        </div>
+                        </Box>
+                        <Bookmarker onClick={()=>{ 
+                        if(is_login===false){alert("로그인이 필요한 서비스 입니다!");
+                            history.push('/login')} 
                         else {const couponId = {couponId : item.id};
-                        dispatch(foldersCreators.addPostMW(couponId));
+                            dispatch(foldersCreators.addPostMW(couponId));
                         alert("해당 쿠폰이 찜 되었습니다!")}}}>
                         <img src={colorBookmark}/>
                     </Bookmarker>

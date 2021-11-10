@@ -6,6 +6,7 @@ import { apis } from '../../common/axios';
 // action 생성
 const GET_LIST = 'GET_LIST';
 const GET_DCLIST = 'GET_DCLIST'
+const LOAD_FOLDERS = 'LOAD_FOLDERS';
 
 // 액션 생성 함수
 const getList = createAction(GET_LIST, (list) => ({ list }));
@@ -18,7 +19,7 @@ const initialState = {
 };
 
 // 리스트 가지고 오는 미들웨어_백에서 받아올땐 시간이 걸려
-const  getListMW = (params) => {
+const getListMW = (params) => {
   return  async (dispatch,getState,{history}) => {
     await apis 
       .getList(params)
@@ -44,8 +45,8 @@ const getDcListMW = ()=>{
     .catch((err)=>{
       console.error(err)
     });
-  }
-}
+  };
+};
 
 // 리듀서
 export default handleActions(
@@ -57,14 +58,14 @@ export default handleActions(
     [GET_DCLIST]:(state,action) => 
     produce(state,(draft=>{
       draft.rank = action.payload.rank;
-    }))
+    })),
   },
   initialState
 );
 
 const listCreators = {
   getListMW,
-  getDcListMW
+  getDcListMW,
 };
 
 export { listCreators };
