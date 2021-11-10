@@ -5,13 +5,14 @@ import { history } from '../redux/configureStore';
 import styled from "styled-components";
 import Grid from "../elements/Grid";
 import Button from "../elements/Button";
-import {companyLogo} from '../image'
+import {companyLogo, fullBookmark} from '../image'
 
 const Folders = () => {
     const dispatch = useDispatch();
     const folders = useSelector((state) => state.folders.list);
     console.log(folders?.data?.coupons);
     const list = folders?.data?.coupons;
+    const list_length = folders?.data?.coupons.length;
 
     useEffect(() => {
         dispatch(foldersCreators.getFoldersMiddleware());
@@ -19,6 +20,8 @@ const Folders = () => {
 
       return (
           <div>
+            
+            <Notice>{list_length}개가 보관되어있어요</Notice>
             {list?.map((item)=>{
               return(
                 <Grid 
@@ -26,14 +29,17 @@ const Folders = () => {
                 width="375px"
                 padding="10px 0"
                 > 
-                  <Couponbox>
-                    <img src={companyLogo}/>
+                  <Couponbox onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
+                    
+                    <Img><img src={companyLogo}/></Img>
                     <div>
-                    <p>{item.couponTitle}에서</p>
-                    <p>{item.couponSubTitle} 할인 받기</p>
+                    <P1>{item.couponTitle}에서</P1>
+                    <P2>{item.couponSubTitle} 할인 받기</P2>
                     </div>
-                  <button
-                  onClick={()=>{dispatch(foldersCreators.delFoldersMiddleware(item.id)); history.go(0)}}>삭제하기</button>
+                  <BUTTON
+                  onClick={()=>{
+                    alert("해당 쿠폰이 삭제되었습니다.");dispatch(foldersCreators.delFoldersMiddleware(item.id)); history.go(0);
+                  }}><img src={fullBookmark} /></BUTTON>
                   </Couponbox>
                 </Grid>
               )
@@ -43,10 +49,38 @@ const Folders = () => {
     );
 };
 
+const Notice = styled.div`
+font-weight: bold;
+font-size:20px;
+padding: 20px;
+`
+
 const Couponbox = styled.div`
 display:flex;
 justify-content: space-between;
 width : 375px;
+height: 60px;
+`
+const Img = styled.div`
+width:50px;
+padding-left:20px;
+`
+
+const P1 = styled.p`
+margin-top: 0px;
+font-size: 14px;
+`
+const P2 = styled.p`
+margin-top: -5px;
+font-size:16px;
+font-weight: bold;
+`
+
+const BUTTON = styled.button`
+padding-right:20px;
+height: 50px;
+border: none;
+background-color:white;
 `
 
 export default Folders;
