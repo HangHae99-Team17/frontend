@@ -34,10 +34,26 @@ export const setSaleFB = () => {
 export const addSaleFB = (sale) => {
   return async (dispatch, getState, { history }) => {
     try {
-      const res = await apis.addCoupon(sale);
+      
+      const _file = getState().image.file;
+      let formData = new FormData()
+
+      formData.append("couponImage", _file)
+      formData.append("couponBrand",sale.couponBrand)
+      formData.append("couponSubTitle",sale.couponSubTitle)
+      formData.append("couponLogo",sale.couponLogo)
+      formData.append("couponType",sale.couponType)
+      formData.append("couponTitle",sale.couponTitle)
+      formData.append("couponDesc",sale.couponDesc)
+      formData.append("couponUrl",sale.couponUrl)
+      formData.append("couponCreate",sale.couponCreate)
+      formData.append("couponDespire",sale.couponDespire)
+
+      const res = await apis.addCoupon(formData);
+
       console.log(res.data.data);
-      dispatch(addSale(sale));
-      history.replace("/");
+      dispatch(addSale(res.data.data));
+      history.replace("/salelist");
     } catch(e) {
       console.log(e);
     }

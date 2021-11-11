@@ -6,7 +6,6 @@ import { apis } from '../../common/axios';
 // action 생성
 const GET_LIST = 'GET_LIST';
 const GET_DCLIST = 'GET_DCLIST'
-const LOAD_FOLDERS = 'LOAD_FOLDERS';
 
 // 액션 생성 함수
 const getList = createAction(GET_LIST, (list) => ({ list }));

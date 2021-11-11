@@ -10,6 +10,7 @@ const Main = ()=>{
     const dispatch = useDispatch();
 
     React.useEffect(()=>{
+        
         dispatch(listCreators.getDcListMW())
     },[])
 

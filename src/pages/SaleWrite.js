@@ -1,22 +1,24 @@
 import React,{useEffect,useState} from 'react';
 import {useDispatch,useSelector} from "react-redux"; 
 import DatePicker from "react-datepicker";
+import Upload from "../shared/Upload";
 import "react-datepicker/dist/react-datepicker.css";
 import { actionCreators as saleActions } from "../redux/modules/sale";
 import { history } from "../redux/configureStore";
+import { actionCreators as imageActions } from "../redux/modules/image";
 
 const SaleWrite = (props) => {
 
     const dispatch = useDispatch();
     const sale_id = props.match.params.id;
     const editmode = sale_id ? true : false;
+    const preview = useSelector((state) => state.image.preview);
     const sale_list = useSelector((state) => state.sale.list);
     const _sale = editmode ? sale_list.find((p) => p.id.toString() === sale_id): null;
     const [sale_info, setSale_Info] = useState({
         couponbrand: _sale?_sale.couponBrand:"",
         couponsubtitle: _sale?_sale.couponSubTitle:"",
         couponlogo: _sale?_sale.couponLogo:"",
-        couponimg: _sale?_sale.couponImage:"",
         coupontype: _sale?_sale.couponType:"",
         coupontitle: _sale?_sale.couponTitle:"",
         coupondesc:_sale?_sale.couponDesc:"",
@@ -30,7 +32,7 @@ const SaleWrite = (props) => {
         setSale_Info({...sale_info, [e.target.name]: e.target.value});
     };
 
-    const {couponimg, coupontype, coupontitle, coupondesc, couponurl , couponbrand, couponsubtitle, couponlogo} = sale_info;
+    const {coupontype, coupontitle, coupondesc, couponurl , couponbrand, couponsubtitle, couponlogo} = sale_info;
 
     const dateToString = (date) => {
         return date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
@@ -41,7 +43,6 @@ const SaleWrite = (props) => {
             couponBrand: couponbrand,
             couponSubTitle: couponsubtitle,
             couponLogo: couponlogo,
-            couponImage: couponimg,
             couponType: coupontype,
             couponTitle: coupontitle,
             couponDesc: coupondesc,
@@ -57,7 +58,6 @@ const SaleWrite = (props) => {
             couponBrand: couponbrand,
             couponSubTitle: couponsubtitle,
             couponLogo: couponlogo,
-            couponImage: couponimg,
             couponType: coupontype,
             couponTitle: coupontitle,
             couponDesc: coupondesc,
@@ -75,6 +75,9 @@ const SaleWrite = (props) => {
             history.goBack();
             return;
         }
+        if (editmode) {
+            dispatch(imageActions.setPreview(_sale.couponImage));
+        }
     },[]);
 
     return (
@@ -87,7 +90,8 @@ const SaleWrite = (props) => {
             <p>쿠폰서브타이틀</p>
             <input type="text" name="couponsubtitle" value={couponsubtitle} onChange={onChange}/>
             <p>쿠폰이미지</p>
-            <input type="text" name="couponimg" value={couponimg} onChange={onChange}/>
+            <img src={preview ? preview : "http://via.placeholder.com/400x300"}/>
+            <Upload />
             <p>쿠폰로고</p>
             <input type="text" name="couponlogo" value={couponlogo} onChange={onChange}/>
             <p>쿠폰타입</p>
