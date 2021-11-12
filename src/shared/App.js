@@ -7,7 +7,7 @@ import { Grid } from "../elements";
 import LgMain from "../pages/LgMain";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
-import MyPage from "../pages/MyPage";
+import EditUser from "../pages/EditUser";
 import Detail from "../pages/Detail";
 import Folders from "../pages/Folders";
 import SaleList from "../pages/SaleList";
@@ -32,7 +32,7 @@ function App() {
         <Route path="/signup" exact component={SignUp} />
         <Route path="/adminsignup" exact component={AdminSignup} />
         <Route path="/login" exact component={Login} />
-        <Route path="/mypage" exact component={MyPage} />
+        <Route path="/edituser" exact component={EditUser} />
         <Route path="/folders" exact component={Folders} />
         <Route path="/api/detail/:id" exact component={Detail} />
         <Route path="/salelist" exact component={SaleList} />

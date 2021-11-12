@@ -39,7 +39,7 @@ const MainCoupon = (props) => {
                     </div>
                 </Box>
                 <Bookmarker>
-                    {!zzim?(
+                    {!zzim&&!props.couponSelect?(
                         <img src={colorBookmark} onClick={zzimConfirm}/>
                     ):(
                         <img src={fullBookmark} onClick={zzimCancel}/>
