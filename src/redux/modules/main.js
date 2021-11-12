@@ -8,7 +8,7 @@ const GET_LIST = 'GET_LIST';
 const GET_DCLIST = 'GET_DCLIST'
 
 // 액션 생성 함수
-const getList = createAction(GET_LIST, (list) => ({ list }));
+const getList = createAction(GET_LIST, (list) => ({list}));
 const getDcList = createAction(GET_DCLIST, (rank)=>({rank}))
 
 // 초기값 설정
@@ -23,10 +23,9 @@ const initialState = {
 
 // 리스트 가지고 오는 미들웨어_백에서 받아올땐 시간이 걸려
 // params는 type을 넘겨 줄 거
-const  getListMW = (params,page) => {
+const  getListMW = (params) => {
   return  async (dispatch) => {
-   const paging = {page, result : 6}
-   const response = await apis.getList(params,paging)
+   const response = await apis.getList(params)
       if(response){
         console.log(response.data);
         dispatch(getList(response.data));

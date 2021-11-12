@@ -19,15 +19,16 @@ const CategoryDetail = (props) => {
     const [page,setPage] = useState(0)
     // 리덕스에있는 데이터 불러오기(리듀서 정보_hasMore,pagingList)
     const DcInfoList = useSelector((state) => state.main.pagingList)
+      console.log(DcInfoList[0]?.data)
     const hasMore =  useSelector((state) => state.main.hasMore)
 
     React.useEffect(() => {
       // 내가 넘겨줄 값들 _ 현재 페이지, 몇개보여줄건지, 타입
-      const params = {page : 0, size : 6, couponType : type}
-      dispatch(listCreators.getListMW(params));
+      const params = {page : 0, size : 6}
+      dispatch(listCreators.getListMW(type,params));
       // 페이지 상태 변화
       setPage( page + 1 );
-      }, [dispatch]);
+      }, []);
 
       // 스크롤이 마지막에 닿았을때 다음 페이지로 이동시켜주는 함수
       const fetchPaging = () => {
@@ -54,14 +55,14 @@ return(
     loader={<h4>Loading ...</h4>}>  
       <DcBox>
         {
-        DcInfoList?.map((item) => {
+        DcInfoList[0]?.data?.map((item) => {
           return (
             <Wrap>
             <DcList key={item.id} onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
-                <Img>{item.couponImage}</Img>
+                <Img> <img src = {item.couponLogo}/> </Img>
               <DcInfo>
-              <Text>{item.couponTitle}에서</Text>
-              <Text2><Text3>{item.couponSubTitle}</Text3>할인 받기</Text2>
+              <Text>{item.couponBrand}에서</Text>
+              <Text2>{item.couponSubTitle} 할인 받기</Text2>
               </DcInfo> 
               </DcList>
 
@@ -116,12 +117,8 @@ height : 72px;
 const Text2 =styled.p `
 font-weight: bold;
 margin-top:-6px;
+color : #FF8F00;
 `
-const Text3 =styled.p `
-font-weight: bold;
-color:#DADADA;
-`
-
 const Img = styled.span`
 width : 40px;
 height : 40px;
