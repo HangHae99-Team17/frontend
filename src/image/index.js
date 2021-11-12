@@ -23,6 +23,21 @@ import knive_fork from "./knive-fork-print.png";
 import monitor2 from "./monitor2-print.png";
 import scissors from "./scissors-print.png";
 import t_shirt from "./t-shirt-print.png";
+import skt from "./skt.png";
+import kt from "./kt.png";
+import lg from "./lg.png";
+import shinhan from "./shinhan.png";
+import hyundai from "./hyundai.png";
+import samsung from "./samsung.png";
+import kb from "./kb.png";
+import lotte from "./lotte.png";
+import hana from "./hana.png";
+import woori from "./woori.png";
+import nh from "./nh.png";
+import bc from "./bc.png";
+import toss from "./toss.png";
+import kakao from "./kakao.png";
+import citi from "./citi.png";
 
 export {
     Frame_101,
@@ -50,4 +65,19 @@ export {
     monitor2,
     scissors,
     t_shirt,
+    skt,
+    kt,
+    lg,
+    shinhan,
+    hyundai,
+    samsung,
+    kb,
+    lotte,
+    woori,
+    nh,
+    bc,
+    toss,
+    kakao,
+    hana,
+    citi
 };
