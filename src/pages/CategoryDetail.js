@@ -12,20 +12,19 @@ const CategoryDetail = (props) => {
     const dispatch = useDispatch();
     // 넘어온 props 확인해서 내가 보내줘야 할 타입을 추출
     const type = props.match.params.type
-    console.log(type)
+    console.log(props)
     const is_login = useSelector((state)=>state.user.is_login)  
 
     // 무한스크롤 페이지_초기값0
-    const [page,setPage] = useState(0)
+    const [page,setPage] = useState(1)
     // 리덕스에있는 데이터 불러오기(리듀서 정보_hasMore,pagingList)
     const DcInfoList = useSelector((state) => state.main.pagingList)
-      console.log(DcInfoList[0]?.data)
+      console.log(DcInfoList)
     const hasMore =  useSelector((state) => state.main.hasMore)
 
     React.useEffect(() => {
       // 내가 넘겨줄 값들 _ 현재 페이지, 몇개보여줄건지, 타입
-      const params = {page : 0, size : 6}
-      dispatch(listCreators.getListMW(type,params));
+      dispatch(listCreators.getListMW(type));
       // 페이지 상태 변화
       setPage( page + 1 );
       }, []);
@@ -37,6 +36,8 @@ const CategoryDetail = (props) => {
             if(hasMore){
               dispatch(listCreators.getListMW(type,page));
             }
+            history.go(0);
+
         },1000)
     }
 

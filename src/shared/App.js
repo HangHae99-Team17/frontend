@@ -28,7 +28,7 @@ function App() {
       <Header></Header>
         <Route path="/api/main" exact component={InterestType} />
         <Route path="/api/main/:type" exact component={LgMain} />
-        <Route path="/api/categorydetail/:type" exact component={CategoryDetail} />
+        <Route path='/api/categorydetail/:type' exact component={CategoryDetail} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/adminsignup" exact component={AdminSignup} />
         <Route path="/login" exact component={Login} />

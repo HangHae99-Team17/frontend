@@ -23,9 +23,9 @@ const initialState = {
 
 // 리스트 가지고 오는 미들웨어_백에서 받아올땐 시간이 걸려
 // params는 type을 넘겨 줄 거
-const  getListMW = (params) => {
+const  getListMW = (type,params) => {
   return  async (dispatch) => {
-   const response = await apis.getList(params)
+   const response = await apis.getList(type,params)
       if(response){
         console.log(response.data);
         dispatch(getList(response.data));
