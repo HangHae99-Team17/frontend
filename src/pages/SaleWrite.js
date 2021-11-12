@@ -13,6 +13,7 @@ const SaleWrite = (props) => {
     const sale_id = props.match.params.id;
     const editmode = sale_id ? true : false;
     const preview = useSelector((state) => state.image.preview);
+    const file = useSelector((state) => state.image.preview);
     const sale_list = useSelector((state) => state.sale.list);
     const _sale = editmode ? sale_list.find((p) => p.id.toString() === sale_id): null;
     const [sale_info, setSale_Info] = useState({
@@ -55,6 +56,7 @@ const SaleWrite = (props) => {
 
     const editSale = () => {
         const sale_content = {
+            conponImage: _sale.couponImage,
             couponBrand: couponbrand,
             couponSubTitle: couponsubtitle,
             couponLogo: couponlogo,
@@ -66,7 +68,7 @@ const SaleWrite = (props) => {
             couponDespire: dateToString(endDate)
         }
         dispatch(saleActions.editSaleFB(sale_id,sale_content));
-        history.goBack();
+        history.replace('/salelist');
     }
     
     useEffect(()=>{
