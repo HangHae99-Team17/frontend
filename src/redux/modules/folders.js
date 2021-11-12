@@ -33,6 +33,30 @@ const getFoldersMiddleware = () => {
   };
 };
 
+// 찜하기 기능 post 미들웨어_ 이거는 백에 보내주는 일이라 async안씀
+export const addPostMW = (id,zzim)=>{
+  return (dispatch, { history })=>{
+    // id는 내가 보내줘야 하는 값(json형태로 넘겨야 하는 값)
+    if(zzim){
+      apis.delFolders(id)
+      .then(()=>{
+          console.log("찜취소")
+      })
+      .catch((err)=>{
+        console.error(err)
+      });
+    }else if(!zzim){
+      apis.postCoupon(id)
+      .then(()=>{
+          console.log("찜확인")
+      })
+      .catch((err)=>{
+        console.error(err)
+      });
+    }
+  };
+}
+
 
 export const delFoldersMiddleware= (coupon_id) => {
   return async(dispatch,getState,{history}) => {
@@ -45,20 +69,6 @@ export const delFoldersMiddleware= (coupon_id) => {
     }
   }
 };
-
-// 찜하기 기능 post 미들웨어_ 이거는 백에 보내주는 일이라 async안씀
-const addPostMW = (id)=>{
-  return (dispatch, { history })=>{
-    // id는 내가 보내줘야 하는 값(json형태로 넘겨야 하는 값)
-    apis.postCoupon(id)
-    .then(()=>{
-      console.log("성공")
-    })
-    .catch((err)=>{
-      console.error(err)
-    });
-  };
-}
 
 // reducer
 export default handleActions(

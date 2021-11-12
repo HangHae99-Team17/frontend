@@ -8,22 +8,23 @@ import { foldersCreators } from '../redux/modules/folders';
 const MainCoupon = (props) => {
 
     const dispatch = useDispatch();
-    const is_login = useSelector((state)=>state.user.is_login)
-    const [zzimimage,setZzimiamge] = useState(props.couponSelect===1?(fullBookmark):(colorBookmark));
+    const is_login = useSelector((state)=>state.user.is_login);
+    const [zzim,setZzim] = useState(props.couponSelect===1?true:false);
 
-    const zzim = () => {
+    const zzimConfirm = () => {
         if(is_login===false){
             alert("로그인이 필요한 서비스 입니다!");
             history.push('/login')
-        } else {
-            const couponId = {
-                couponId : props.id
-            };
-            dispatch(foldersCreators.addPostMW(couponId));
-            setZzimiamge(fullBookmark);
         }
-    }
+        dispatch(foldersCreators.addPostMW(props.id,zzim));
+        setZzim(true);
+    };
 
+    const zzimCancel = () => {
+        dispatch(foldersCreators.addPostMW(props.id,zzim));
+        setZzim(false);
+    };
+    
     return (
         <div>
             <Wrap>
@@ -37,15 +38,13 @@ const MainCoupon = (props) => {
                         <Dsec><Strong>{props.couponSubTitle}</Strong> 할인 받기</Dsec>
                     </div>
                 </Box>
-                {props.couponSelect === 1?(
-                    <Bookmarker onClick={zzim}>
-                        <img src={zzimimage}/>
-                    </Bookmarker>
-                ):(
-                    <Bookmarker onClick={zzim}>
-                        <img src={zzimimage}/>
-                    </Bookmarker>
-                )}
+                <Bookmarker>
+                    {!zzim?(
+                        <img src={colorBookmark} onClick={zzimConfirm}/>
+                    ):(
+                        <img src={fullBookmark} onClick={zzimCancel}/>
+                    )}
+                </Bookmarker>
             </Wrap>
         </div>
     );
