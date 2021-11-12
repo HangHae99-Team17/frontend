@@ -12,8 +12,8 @@ const LgMain = (props) => {
     const dispatch = useDispatch();
     const is_login = useSelector((state) => state.user.is_login);
     const type = props.match.params.type
-    const dc_list = useSelector(( state )=> state.main.list.data);
-    console.log(dc_list)
+    const dc_list = useSelector(( state )=> state.main.pagingList);
+    console.log(dc_list[0]?.data)
     
     React.useEffect(() => {
     dispatch(listCreators.getListMW(type));
@@ -27,13 +27,13 @@ return(is_login?(
       <TypeTitle>이런 할인 어때요?</TypeTitle>
       </Title>
         {
-        dc_list?.map((item) => {
+        dc_list[0]?.data?.map((item) => {
           return (
             <DcWrap key={item.id}>
               <DcList onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
               <Img>{} <img src={companyLogo}/> </Img>
               <DcInfo>
-              <Text>{item.couponTitle}에서</Text>
+              <Text>{item.couponBrand}에서</Text>
               <Subtitle><Strong>{item.couponSubTitle}</Strong> 할인 받기</Subtitle>
               </DcInfo>
               </DcList>

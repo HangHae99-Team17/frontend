@@ -63,7 +63,7 @@ padding-left:0px;
 const Li = styled.li`
 list-style :  none;
 background-color:white;
-border: 2px solid #F09643;
+border: 1.5px solid #F09643;
 margin:10px;
 height:100px;
 width:100px;

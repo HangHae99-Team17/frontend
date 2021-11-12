@@ -9,7 +9,7 @@ import User from "./modules/user";
 import Folders from "./modules/folders";
 import detail from "./modules/detail";
 import Sale from "./modules/sale";
-
+import Image from "./modules/image";
 
 
 export const history = createBrowserHistory();
@@ -21,6 +21,7 @@ const rootReducer = combineReducers({
     detail : detail,
     folders: Folders,
     sale:Sale,
+    image:Image,
 
     router: connectRouter(history),
 });
