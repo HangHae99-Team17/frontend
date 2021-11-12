@@ -18,7 +18,6 @@ const Header = (props) => {
     };
     
     useEffect(() => {
-
         if(history.location.pathname==="/signup"){
             setShow(!show);
         }
@@ -35,7 +34,7 @@ const Header = (props) => {
                     {open?(
                     <>
                         <IconBox>
-                            <img src={gooddawhite}/>
+                            <img src={gooddawhite} onClick={()=>{history.push('/')}}/>
                         </IconBox>
                         <StyledBurger open={open} onClick={()=> setOpen(!open)}>
                             {is_login?(<button onClick={logout}>LOGOUT</button>):

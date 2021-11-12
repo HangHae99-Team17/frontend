@@ -23,7 +23,7 @@ const initialState = {
 
 // 리스트 가지고 오는 미들웨어_백에서 받아올땐 시간이 걸려
 // params는 type을 넘겨 줄 거
-const  getListMW = (params) => {
+export const getListMW = (params) => {
   return  async (dispatch) => {
    const response = await apis.getList(params)
       if(response){
@@ -37,7 +37,7 @@ const  getListMW = (params) => {
 };
 
 // 로그인 전 메인페이지 랭킹 리스트 가져오는 미들웨어 
-const getDcListMW = ()=>{
+export const getDcListMW = ()=>{
   return async (dispatch)=>{
     await apis
     .getDcList()
