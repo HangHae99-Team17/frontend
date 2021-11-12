@@ -73,12 +73,15 @@ export const delSaleFB= (coupon_id) => {
 
 export const editSaleFB = (coupon_id,sale) => {
   return async(dispatch,getState,{history}) => {
+
+    console.log(sale.couponImage)
     try{
 
       const _file = getState().image.file;
       let formData = new FormData()
-
-      formData.append("couponImage", _file);
+      if(_file){
+        formData.append("couponImage", _file);
+      }
       formData.append("couponBrand",sale.couponBrand);
       formData.append("couponSubTitle",sale.couponSubTitle);
       formData.append("couponLogo",sale.couponLogo);
