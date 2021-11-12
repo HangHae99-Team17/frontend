@@ -32,5 +32,4 @@ margin : 10px 0 0 16px;
 font-size : 20px;
 font-weight : 700;
 `
-
 export default Main;

@@ -3,7 +3,7 @@ import { history } from '../redux/configureStore';
 import styled from 'styled-components';
 
 const Category = ()=>{
-    const all_category = ["타입1","타입2","타입3","타입4","타입5","타입6"]
+    const all_category = ["카페,디저트","음식점","패스트푸드","편의점,마트","뷰티,미용","패션","건강,스포츠","여행,숙박","문화","가전,디지털","가구","생활"]
     return(
         <Div>
              <Litext>할인 정보를 확인할<br/>카테고리를 선택해주세요.</Litext>
@@ -46,7 +46,7 @@ padding-left:0px;
 const Li = styled.li`
 list-style :  none;
 background-color:white;
-border: 2px solid #F09643;
+border: 1.5px solid #F09643;
 margin:10px;
 height:100px;
 width:100px;
@@ -54,7 +54,7 @@ border-radius:10px;
 font-weight : 600;
 text-align:center;
 color:#F09643;
-font-size:20px;
+font-size:16px;
 line-height:100px;
 `
 export default Category;

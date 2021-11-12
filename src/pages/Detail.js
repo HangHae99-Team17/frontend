@@ -30,13 +30,13 @@ const Detail = (props) => {
 
     return(
         <Wrap>
-            <Image><img src={addImg}></img></Image>
+            <Image><Image2 src={detail_list?.couponLogo}></Image2></Image>
             <Info>
             <div>
             <Title>{detail_list?.couponTitle}</Title>
             <Div>{detail_list?.couponType}</Div>
             </div>
-            <div><BrandLogo src={companyLogo}/></div>
+            <BrandLogo src={detail_list?.couponLogo}/>
             </Info>
             <P>{detail_list?.couponDespire}</P>
             <TakeCoupon>
@@ -59,6 +59,10 @@ const Detail = (props) => {
 const Wrap = styled.div`
 width : 100vw;
 height : 100vh;
+`
+const Image2 = styled.img`
+width : 375px;
+height : 200px;
 `
 const TakeCoupon = styled.div`
 width : 328px;
@@ -89,9 +93,12 @@ width : 50px;
 height : 50px;
 position : absolute;
 right : 16px;
+bottom : 0px;
+border : 1px solid #D4D4D4;
+border-radius : 4px;
 `
 const P =styled.p`
-margin-top : 15px;
+margin-top : 10px;
 position : absolute;
 right : 16px;
 `
@@ -127,6 +134,9 @@ margin-left : 16px;
 `
 const Info = styled.div`
 display : flex;
+width : 375px;
+height : 50px;
+position : relative;
 `
 const Condition= styled.p`
 font-size : 17px;
