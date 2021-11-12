@@ -14,6 +14,7 @@ const Main = ()=>{
     },[])
 
     const list = useSelector((state)=>state.main.rank.data);
+    console.log(list)
     const is_login = useSelector((state)=>state.user.is_login)
     console.log(list)
     return(
@@ -24,9 +25,9 @@ const Main = ()=>{
                 return(
                     <Wrap>
                     <Box onClick={()=>{history.push(`api/detail/${item.id}`)}}>
-                    <ImgBox><img src={companyLogo}/></ImgBox>
+                    <ImgBox><Img src={item.couponLogo}/></ImgBox>
                     <div>
-                    <Title>{item.couponTitle}에서 </Title>
+                    <Title>{item.couponBrand}에서 </Title>
                     {/* couponDesc이 부분은 subtitile로 바꿔서 받을예정_ api 바꾸고 변경하기 */}
                     <Dsec><Strong>{item.couponSubTitle}</Strong> 할인 받기</Dsec>
                     </div>
@@ -60,12 +61,16 @@ display : flex;
 margin : 10px auto;
 position : relative;
 `
-const ImgBox = styled.div`
+const ImgBox = styled.span`
 width : 50px;
 height : 50px;
 border : 1px solid #DADADA;
 border-radius : 4px;
 margin : 16px;
+`
+const Img = styled.img`
+width : 50px;
+height : 50px;
 `
 const Title = styled.p`
 font-size :14px;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { listCreators } from '../redux/modules/main';
 import { history } from '../redux/configureStore';
@@ -6,19 +6,39 @@ import styled from 'styled-components';
 import Grid from "../elements/Grid";
 import { colorBookmark, companyLogo } from '../image';
 import { foldersCreators } from '../redux/modules/folders';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const CategoryDetail = (props) => {
     const dispatch = useDispatch();
-    console.log("디테일",props)
+    // 넘어온 props 확인해서 내가 보내줘야 할 타입을 추출
     const type = props.match.params.type
-    React.useEffect(() => {
-        dispatch(listCreators.getListMW(type))
-        }, []);
+    console.log(type)
+    const is_login = useSelector((state)=>state.user.is_login)  
 
-    const is_login = useSelector((state)=>state.user.is_login)
-        
-    const DcInfoList = useSelector((state) => state.main.list.data)
-    console.log(DcInfoList)
+    // 무한스크롤 페이지_초기값0
+    const [page,setPage] = useState(0)
+    // 리덕스에있는 데이터 불러오기(리듀서 정보_hasMore,pagingList)
+    const DcInfoList = useSelector((state) => state.main.pagingList)
+    const hasMore =  useSelector((state) => state.main.hasMore)
+
+    React.useEffect(() => {
+      // 내가 넘겨줄 값들 _ 현재 페이지, 몇개보여줄건지, 타입
+      const params = {page : 0, size : 6, couponType : type}
+      dispatch(listCreators.getListMW(params));
+      // 페이지 상태 변화
+      setPage( page + 1 );
+      }, [dispatch]);
+
+      // 스크롤이 마지막에 닿았을때 다음 페이지로 이동시켜주는 함수
+      const fetchPaging = () => {
+        setPage( page + 1 )
+        setTimeout(() => {
+            if(hasMore){
+              dispatch(listCreators.getListMW(type,page));
+            }
+        },1000)
+    }
+
 
 return(
     <Grid width="375px" >
@@ -26,7 +46,13 @@ return(
         <P>{type} 할인</P>
         <P>다 모아두었어요</P>
         </div>
-    <DcBox>
+  {DcInfoList?
+    <InfiniteScroll
+    dataLength={DcInfoList.length}
+    next={fetchPaging}
+    hasMore={hasMore}
+    loader={<h4>Loading ...</h4>}>  
+      <DcBox>
         {
         DcInfoList?.map((item) => {
           return (
@@ -47,11 +73,13 @@ return(
                 else{alert("로그인이 필요한 서비스 입니다!")}}}/></Imgbox>
             </Wrap>
           );
-        })}
-        
-    </DcBox>
+        })} 
+      </DcBox>
+    </InfiniteScroll>
+    : <div>더이상의 할인 정보가 없습니다!</div>
+    }
     </Grid>
-)
+  ) 
 }
 
 
