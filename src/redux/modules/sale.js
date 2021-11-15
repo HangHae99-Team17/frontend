@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../common/axios";
+import { actionCreators as imageActions } from './image';
 
 //action type
 const SET_SALE = "SET_SALE";
@@ -53,6 +54,7 @@ export const addSaleFB = (sale) => {
 
       dispatch(addSale(res.data.data));
       history.replace("/salelist");
+      dispatch(imageActions.setPreview(null));
     } catch(e) {
       console.log(e);
     }
@@ -72,7 +74,7 @@ export const delSaleFB= (coupon_id) => {
 }
 
 export const editSaleFB = (coupon_id,sale) => {
-  return async(dispatch,getState,{history}) => {
+  return async(dispatch,getState,{ history }) => {
 
     console.log(sale.couponImage)
     try{
@@ -82,6 +84,7 @@ export const editSaleFB = (coupon_id,sale) => {
       if(_file){
         formData.append("couponImage", _file);
       }
+
       formData.append("couponBrand",sale.couponBrand);
       formData.append("couponSubTitle",sale.couponSubTitle);
       formData.append("couponLogo",sale.couponLogo);
@@ -94,6 +97,8 @@ export const editSaleFB = (coupon_id,sale) => {
 
       await apis.editCoupon(coupon_id,formData);
       dispatch(editSale(coupon_id,formData));
+      history.push('/salelist');
+      dispatch(imageActions.setPreview(null));
     }catch(e){
       console.log(e);
     }

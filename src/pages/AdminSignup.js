@@ -62,8 +62,6 @@ const AdminSignup = () => {
             <div>
                 <p>이메일</p>
                 <input type="text" name="email" value={email} onChange={onChange}/>
-                <p>유저이름</p>
-                <input type="text" name="username" value={username} onChange={onChange}/>
             </div>
             <div>
                 <p>비밀번호</p>

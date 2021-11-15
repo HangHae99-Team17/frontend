@@ -68,20 +68,18 @@ export const logoutFB = () => {
 
 //회원정보 수정
 export const edituserFB = (user_info) => {
-  return async(dispatch, {history}) => {
-    try{
-      const res = await apis.edituser(user_info);
-      if(res.data.data === "비밀번호가 맞지 않습니다."){
-        window.alert("비밀번호가 맞지 않습니다.");
-        history.replace('/mypage');
-      }
-      dispatch(setUser(res.data.data));
-      window.alert("개인정보가 수정되었습니다");
-      console.log(history)
-      history.push('/');
-    }catch(e){
-      console.log(e);
-    }
+  return async(dispatch, getState, { history }) => {
+      await apis.edituser(user_info).then((res)=>{
+        if(res.data.data === "비밀번호가 맞지 않습니다."){
+          window.alert("비밀번호가 맞지 않습니다.");
+          history.push('/edituser');
+        }
+        dispatch(setUser(res.data.data));
+        window.alert("개인정보가 수정되었습니다");
+        history.push('/');
+      }).catch((e)=>{
+        console.log(e);
+      })
   }
 }
 

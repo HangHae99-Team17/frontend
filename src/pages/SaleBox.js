@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { foldersCreators } from '../redux/modules/folders';
 import { history } from '../redux/configureStore';
 import styled from "styled-components";
 import Grid from "../elements/Grid";
-import Button from "../elements/Button";
 import {companyLogo, fullBookmark} from '../image'
 
-const Folders = () => {
+const SaleBox = () => {
     const dispatch = useDispatch();
     const folders = useSelector((state) => state.folders.list);
-    console.log(folders?.data?.coupons);
     const list = folders?.data?.coupons;
     const list_length = folders?.data?.coupons.length;
 
@@ -89,4 +87,4 @@ border: none;
 background-color:white;
 `
 
-export default Folders;
+export default SaleBox;
