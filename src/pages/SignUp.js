@@ -2,10 +2,10 @@ import React,{useEffect, useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import styled from 'styled-components';
-import {checkgray, checkgray2} from '../image'
 import CardType from '../components/CardType';
 import TeleType from '../components/TeleType';
 import InterType from '../components/InterType';
+import {checkgray, checkgray2, skt, kt, lg, shinhan, hyundai, samsung, kb, lotte, woori, nh, bc, toss, kakao, hana, citi, cup, hamburger, airplane, bicycle, cart, film_frame, gift, house, monitor2, knive_fork, scissors,t_shirt} from '../image'
 
 const SignUp = (props) => {
     const dispatch = useDispatch();

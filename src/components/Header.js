@@ -84,7 +84,7 @@ const SignupHeaderBox =  styled.div`
     top: 0;
     width: 100%;
     position: fixed;
-    height: 60px;
+    height: 0px;
     border-bottom: solid 1px grey;
     div{
         margin-top:20px;
@@ -99,7 +99,7 @@ const HeaderBox = styled.div`
     background-color:${props => props.color};
     color:${props => props.fontcolor};
     align-items:center;
-    height: 80px;
+    height: 65px;
     top: 0;
     width: 100%;
     position: fixed;
@@ -109,6 +109,7 @@ const HeaderBox = styled.div`
 
 const IconBox = styled.div`
     margin-left: 20px;
+    margin-top:13px;
 `;
 
 const StyledBurger = styled.div`
@@ -132,7 +133,7 @@ const Ul = styled.ul`
     background-color: black;
     position: fixed;
     transform: ${({open}) => open? 'translateX(0)':'translateX(100%)'};
-    top: 64px;
+    top: 44px;
     right: 0;
     height: 100vh;
     width: 350px;
