@@ -55,10 +55,10 @@ const Header = (props) => {
                     <Ul open={open}>
                         <li onClick={()=>{history.push('/category');setOpen(!open)}}>카테고리</li>
                         <li onClick={()=>{if(is_login){
-                            history.push('/folders');setOpen(!open)}
+                            history.push('/salebox');setOpen(!open)}
                             else{alert("로그인이 필요한 서비스입니다!")}}}>보관함</li>
                         <li onClick={()=>{if(is_login){
-                            history.push('/mypage');setOpen(!open)}
+                            history.push('/edituser');setOpen(!open)}
                             else{alert("로그인이 필요한 서비스입니다!")}}}>마이페이지</li>
                         <li onClick={()=>{
                             if(is_login){

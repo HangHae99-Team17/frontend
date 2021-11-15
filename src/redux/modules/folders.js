@@ -11,8 +11,6 @@ const loadFolders = createAction(LOAD_FOLDERS, (list) => ({ list }));
 
 const delFolders = createAction(DEL_FOLDERS, (coupon_id) => ({coupon_id}));
 
-
-
 // initialState
 const initialState = {
   list: [],

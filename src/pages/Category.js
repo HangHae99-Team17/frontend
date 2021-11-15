@@ -20,10 +20,8 @@ const Category = ()=>{
 ]
     return(
         <Div>
-             <Litext>할인 정보를 확인할<br/>카테고리를 선택해주세요.
-            </Litext>
+            <Litext>할인 정보를 확인할<br/>카테고리를 선택해주세요.</Litext>
             <Ul>
-               
             {all_category.map((item)=>{
                 return(
                     <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}`)}}><BOX> {item.img}<br/>{item.title}</BOX> </Li>
