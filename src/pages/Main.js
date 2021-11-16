@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { listCreators } from '../redux/modules/main';
 import styled from 'styled-components';
@@ -10,17 +10,16 @@ const Main = ()=>{
     const coupons = useSelector((state)=>state.main.rank.data);
 
     React.useEffect(()=>{
-        dispatch(listCreators.getDcListMW())
+        dispatch(listCreators.getDcListMW());
     },[]);
 
-    console.log(coupons)
     return(
         <div>
             <P>아는만큼</P>
             <P>아낄 수 있게</P>
             {coupons?.map((coupon)=>{
                 return(
-                    <MainCoupon key={coupon.id} {...coupon}/>
+                    <MainCoupon key={coupon.id} {...coupon} />
             );
             })}
         </div>

@@ -8,21 +8,18 @@ const DEL_FOLDERS = 'DEL_FOLDERS';
 
 // action creators
 const loadFolders = createAction(LOAD_FOLDERS, (list) => ({ list }));
-
-const delFolders = createAction(DEL_FOLDERS, (coupon_id) => ({coupon_id}));
+const delFolderss = createAction(DEL_FOLDERS, (coupon_id) => ({coupon_id}));
 
 // initialState
 const initialState = {
   list: [],
 };
 
-// middleware
+// 찜한목록 불러오기
 const getFoldersMiddleware = () => {
-  return (dispatch) => {
-    apis.getFolders()
-      .then((res) => {
-        const folders_list = res.data;
-        console.log(folders_list)
+  return async(dispatch) => {
+    await apis.getFolders().then((res) => {
+        const folders_list = res.data.data.coupons;
         dispatch(loadFolders(folders_list));
       })
       .catch((err) => {
@@ -31,14 +28,26 @@ const getFoldersMiddleware = () => {
   };
 };
 
+export const delFoldersMiddleware= (coupon_id) => {
+  return async(dispatch,getState,{history}) => {
+    await apis.delFolders(coupon_id).then((res)=>{
+      dispatch(delFolderss(coupon_id));
+      history.replace('/salebox');
+    }).catch((e)=>{
+      console.log(e)
+    })
+  }
+};
+
 // 찜하기 기능 post 미들웨어_ 이거는 백에 보내주는 일이라 async안씀
 export const addPostMW = (id,zzim)=>{
   return (dispatch, { history })=>{
     // id는 내가 보내줘야 하는 값(json형태로 넘겨야 하는 값)
+    
     if(zzim){
       apis.delFolders(id)
       .then(()=>{
-          console.log("찜취소")
+          
       })
       .catch((err)=>{
         console.error(err)
@@ -46,7 +55,7 @@ export const addPostMW = (id,zzim)=>{
     }else if(!zzim){
       apis.postCoupon(id)
       .then(()=>{
-          console.log("찜확인")
+          
       })
       .catch((err)=>{
         console.error(err)
@@ -54,19 +63,6 @@ export const addPostMW = (id,zzim)=>{
     }
   };
 }
-
-
-export const delFoldersMiddleware= (coupon_id) => {
-  return async(dispatch,getState,{history}) => {
-    try{
-      await apis.delFolders(coupon_id);
-      dispatch(delFolders(coupon_id));
-      history.replace('/folders');
-    }catch(e){
-      console.log(e);
-    }
-  }
-};
 
 // reducer
 export default handleActions(
@@ -78,7 +74,6 @@ export default handleActions(
     [DEL_FOLDERS]: (state, action) =>
       produce(state, (draft) => {
         let idx = draft.list.findIndex((p) => p.id === action.payload.coupon_id);
-        console.log(idx)
         if (idx !== -1) {
           draft.list.splice(idx, 1);
         }
@@ -89,10 +84,10 @@ export default handleActions(
   initialState
 );
 
-const foldersCreators = {
+const actionCreators = {
   getFoldersMiddleware,
   delFoldersMiddleware,
   addPostMW,
 };
 
-export { foldersCreators };
+export { actionCreators };

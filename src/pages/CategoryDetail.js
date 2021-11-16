@@ -5,7 +5,7 @@ import { history } from '../redux/configureStore';
 import styled from 'styled-components';
 import Grid from "../elements/Grid";
 import { colorBookmark, companyLogo } from '../image';
-import { foldersCreators } from '../redux/modules/folders';
+import {actionCreators  as foldersCreators } from '../redux/modules/salebox';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const CategoryDetail = (props) => {
@@ -111,7 +111,7 @@ font-size : 14px;
 `
 const Wrap = styled.div`
 position : relative;
-width : 100%
+width : 100%;
 height : 72px;
 `
 const Text2 =styled.p `

@@ -17,7 +17,7 @@ const InterType = (props) => {
         {inter_id:10,inter_type:"가구"},
         {inter_id:11,inter_type:"생활"},
     ]
-
+    
     if(props.mode === "signup"){
         return (
             <React.Fragment>
