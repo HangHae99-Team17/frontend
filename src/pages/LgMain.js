@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import { listCreators } from '../redux/modules/main';
-import { foldersCreators } from '../redux/modules/folders';
+import {actionCreators  as foldersCreators } from '../redux/modules/salebox';
 import styled from 'styled-components'
 import InterestType from '../components/InterestType'
 import { history } from "../redux/configureStore";

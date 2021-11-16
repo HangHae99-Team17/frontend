@@ -6,7 +6,7 @@ import { connectRouter } from "connected-react-router";
 // import Forder from "./modules/folder";
 import main from "./modules/main";
 import User from "./modules/user";
-import Folders from "./modules/folders";
+import SaleBox from "./modules/salebox";
 import detail from "./modules/detail";
 import Sale from "./modules/sale";
 import Image from "./modules/image";
@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
     main: main,
     user: User,
     detail : detail,
-    folders: Folders,
+    salebox: SaleBox,
     sale:Sale,
     image:Image,
 

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { history } from "../redux/configureStore";
 import { listCreators } from '../redux/modules/main';
 import { colorBookmark, companyLogo,fullBookmark } from '../image';
-import { foldersCreators } from '../redux/modules/folders';
+import {actionCreators as foldersCreators } from '../redux/modules/salebox';
 
 
 
