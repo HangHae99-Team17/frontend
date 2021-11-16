@@ -12,6 +12,8 @@ const SaleList = (props) => {
         dispatch(saleActions.setSaleFB());
     },[])
 
+    
+
     return (
         <React.Fragment>
             <h3>쿠폰목록</h3>

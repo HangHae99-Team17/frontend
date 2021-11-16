@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { history } from '../redux/configureStore';
 import styled from 'styled-components';
 
 const Category = ()=>{
     const all_category = ["카페,디저트","음식점","패스트푸드","편의점,마트","뷰티,미용","패션","건강,스포츠","여행,숙박","문화","가전,디지털","가구","생활"]
+
     return(
         <Div>
              <Litext>할인 정보를 확인할<br/>카테고리를 선택해주세요.</Litext>
@@ -11,7 +12,7 @@ const Category = ()=>{
                
             {all_category.map((item)=>{
                 return(
-                    <Li onClick={()=>{history.push(`/api/categorydetail/${item}?page=${1}&size=6&sortBy=couponDespire&isAsc=true`);history.go(0);}}> {item} </Li>
+                    <Li onClick={()=>{history.push(`/api/categorydetail/${item}?page=1&size=6&sortBy=couponDespire&isAsc=true`);history.go(0);}}> {item} </Li>
                 )
             })}
             </Ul>

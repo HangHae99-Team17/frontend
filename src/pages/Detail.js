@@ -30,7 +30,7 @@ const Detail = (props) => {
 
     return(
         <Wrap>
-            <Image><Image2 src={detail_list?.couponLogo}></Image2></Image>
+            <Image><Image2 src={detail_list?.couponImage}></Image2></Image>
             <Info>
             <div>
             <Title>{detail_list?.couponTitle}</Title>

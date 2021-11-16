@@ -15,29 +15,31 @@ const CategoryDetail = (props) => {
     console.log(props)
     const is_login = useSelector((state)=>state.user.is_login)  
 
-    // 무한스크롤 페이지_초기값0
+    // 무한스크롤 페이지_초기값1
     const [page,setPage] = useState(1)
     // 리덕스에있는 데이터 불러오기(리듀서 정보_hasMore,pagingList)
     const DcInfoList = useSelector((state) => state.main.pagingList)
       console.log(DcInfoList)
     const hasMore =  useSelector((state) => state.main.hasMore)
+    console.log(hasMore)
 
     React.useEffect(() => {
-      // 내가 넘겨줄 값들 _ 현재 페이지, 몇개보여줄건지, 타입
-      dispatch(listCreators.getListMW(type));
+      // 내가 넘겨줄 값들 _ 타입, 현재 페이지, 몇개보여줄건지
+      dispatch(listCreators.getListMW(type,page,7));
       // 페이지 상태 변화
-      setPage( page + 1 );
-      }, []);
+      setPage(page + 1);
+      console.log(page)
+      }, [dispatch]);
+
+
 
       // 스크롤이 마지막에 닿았을때 다음 페이지로 이동시켜주는 함수
       const fetchPaging = () => {
-        setPage( page + 1 )
+        setPage(page+1)
         setTimeout(() => {
             if(hasMore){
-              dispatch(listCreators.getListMW(type,page));
+              dispatch(listCreators.getListMW(type,page,2));
             }
-            history.go(0);
-
         },1000)
     }
 
@@ -56,7 +58,7 @@ return(
     loader={<h4>Loading ...</h4>}>  
       <DcBox>
         {
-        DcInfoList[0]?.data?.map((item) => {
+        DcInfoList?.map((item) => {
           return (
             <Wrap>
             <DcList key={item.id} onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
@@ -78,7 +80,7 @@ return(
         })} 
       </DcBox>
     </InfiniteScroll>
-    : <div>더이상의 할인 정보가 없습니다!</div>
+    : <div>할인 정보가 없습니다!</div>
     }
     </Grid>
   ) 
