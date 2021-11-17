@@ -76,7 +76,7 @@ export default handleActions(
       produce(state,(draft)=>{
         draft.rank = action.payload.rank;
       }),
-    [ADD_ZZIM]:(state,action) => 
+    [ADD_ZZIM]:(state,action) =>
       produce(state,(draft)=>{
         let idx = draft.rank.data.findIndex((p) => p.id === action.payload.coupon_id);
         if(action.payload.zzim){

@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../common/axios";
+import { listCreators } from './main';
 
 //action type
 const SET_USER = "SET_USER";
@@ -72,7 +73,7 @@ export const loginCheckFB = () => {
 
 //로그아웃
 export const logoutFB = () => {
-  return(dispatch,{ history }) => {
+  return(dispatch, getState, { history }) => {
     sessionStorage.removeItem("token");
     dispatch(setUser(null));
     alert("로그아웃 되었습니다.");

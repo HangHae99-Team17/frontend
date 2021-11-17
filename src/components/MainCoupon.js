@@ -40,7 +40,7 @@ const MainCoupon = (props) => {
                 console.log(num)
             }
         }
-    },[])
+    },[num])
 
     return (
         <div>
@@ -56,7 +56,11 @@ const MainCoupon = (props) => {
                     </div>
                 </Box>
                 <Bookmarker>
-                    <img src={!zzim?colorBookmark:fullBookmark} onClick={zzimz}/>
+                    {!is_login?(
+                        <img src={colorBookmark}/>
+                    ):(
+                        <img src={!zzim?colorBookmark:fullBookmark} onClick={zzimz}/>
+                    )}
                 </Bookmarker>
             </Wrap>
         </div>

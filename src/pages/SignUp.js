@@ -11,13 +11,18 @@ en_grey} from '../image'
 const SignUp = (props) => {
     const dispatch = useDispatch();
     const [emailmsg, setEmailMsg] = useState("");
-    const [passwordcheck, setPasswordcheck] = useState("");
-    const [emaildisplay,setEmailDisplay] = useState("block");
+
+    const [pwNumcheck, setPwNumCheck] = useState(false);
+    const [pwEncheck, setPwEnCheck] = useState(false);
+    const [pwlengcheck, setPwLengCheck] = useState(false);
+    const [passwordcheck, setPasswordcheck] = useState(false);
+
+    const [emaildisplay,setEmailDisplay] = useState("none");
     const [passworddisplay,setPasswordDisplay] = useState("none");
     const [termsdisplay,setTermsDisplay] = useState("none");
     const [telecomdisplay,setTelecomDisplay]= useState("none");
     const [carddisplay,setCardDisplay] = useState("none");
-    const [typedisplay,setTypeDisplay] = useState("none");
+    const [typedisplay,setTypeDisplay] = useState("block");
 
     const [telecom,setTelecom] = useState("");
     const [cardtype,setCardtype] = useState("");
@@ -78,37 +83,44 @@ const SignUp = (props) => {
     }
 
     const typeselect = (e) => {
-        console.log(e.target.value)
-        if(type1 === "" && type2 === "" && type3 === ""){
+        
+        console.log(e.target.value);
+        
+        console.log(type1)
+        console.log(type2)
+        console.log(type3)
+        if(!type1 && !type2 && !type3){
             setType1(e.target.value);
         }
 
-        if(type1 && type2 === "" && type3 === ""){
+        if(type1 && !type2 && !type3){
             setType2(e.target.value);
+            console.log("dd")
         }
 
-        if(type1 === "" && type2 && type3 === ""){
+        if(!type1 && type2 && !type3){
             setType1(e.target.value);
         }
 
-        if(type1 === "" && type2 === "" && type3){
+        if(!type1 && !type2 && type3){
             setType1(e.target.value);
         }  
 
-        if(type1 === "" && type2 && type3){
+        if(!type1 && type2 && type3){
             setType1(e.target.value);
         }
         
-        if(type1 && type2 === "" && type3){
+        if(type1 && !type2 && type3){
             setType2(e.target.value);
         }
         
-        if(type1 && type2 && type3 === ""){
+        if(type1 && type2 && !type3){
             setType3(e.target.value);
         }
     }
 
     const typecancle = (e) => {
+        console.log(e.target.value);
         if(e.target.value === type1){
             setType1("");
         }
@@ -188,22 +200,36 @@ const SignUp = (props) => {
     },[email,email_result]);
 
     useEffect(()=> {
-        const pwregEXP = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,10}$/;
         const enregEXP = /[a-z]/ig;
         const numregEXP = /[0-9]/g;
         //최소 8 자 최대 10자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자
         if(password){
-            if(!enregEXP.test(password)){
-                setPasswordcheck("enerror");
+            console.log(password.length)
+
+            if(password.length >= 8&&password.length < 20){
+                setPwLengCheck(true);
             }else{
-                if(password !== password1){
-                    setPasswordcheck("비밀번호가 일치하지 않습니다.")
-                }else{
-                    setPasswordcheck("비밀번호가 일치합니다.")
-                }
+                setPwLengCheck(false);
             }
-        }else{
-            setPasswordcheck("");
+
+            if(enregEXP.test(password)){
+                setPwEnCheck(true);
+            }else{
+                setPwEnCheck(false);
+            }
+
+            if(numregEXP.test(password)){
+                setPwNumCheck(true);
+            }else{
+                setPwNumCheck(false);
+            }
+
+            if(password === password1){
+                setPasswordcheck(true);
+            }else{
+                setPasswordcheck(false);
+            }
+            
         }
     },[password, password1]);
 
@@ -212,9 +238,11 @@ const SignUp = (props) => {
     return (
         <React.Fragment>
             <SignUpBox>
-                <EmailBox display={emaildisplay}>
+                {/* <EmailBox display={emaildisplay}>
                     <p>이메일을 입력해주세요.</p>
-                    <input type="text" name="email" value={email} onChange={onChange}/>
+                    <div>
+                        <input type="text" name="email" value={email} onChange={onChange}/>
+                    </div>
                     <div>
                         <span>{emailmsg}</span>
                     </div>
@@ -230,22 +258,22 @@ const SignUp = (props) => {
                         <input type="password" placeholder="비밀번호" name="password" value={password} onChange={onChange}/>
                     </div>
                     <div className="pwcheckimage">
-                        <img src={en_grey}/>
-                        <img src={num_grey}/>
-                        <img src={_8_20_grey}/>
+                        <img src={pwEncheck?en_ora:en_grey}/>
+                        <img src={pwNumcheck?num_ora:num_grey}/>
+                        <img src={pwlengcheck?_8_20_ora:_8_20_grey}/>
                     </div>
                     <div className="pwinput">
                         <input type="password" placeholder="비밀번호 확인" name="password1" value={password1} onChange={onChange}/>
                     </div>
                     <div className="pwcheckimage">
-                        <img src={passwordcheck==="비밀번호가 일치합니다."?password_ora:password_grey}/>
+                        <img src={passwordcheck?password_ora:password_grey}/>
                     </div>
                     <div className="nextbutton">
-                        <NextButton onClick={next}>다음</NextButton>
+                        <NextButton onClick={passwordcheck&&next} bgcolor={passwordcheck?"orange":"gray"}>다음</NextButton>
                     </div>
                 </PasswordBox>
                 <TermsBox display={termsdisplay}>
-                    <p>서비스 약관을 확인해주세요.</p>
+                    <h3>서비스 약관을 확인해주세요.</h3>
                     <div className="allcheck">
                         <div>
                             <img src={checkgray}/>
@@ -277,23 +305,24 @@ const SignUp = (props) => {
                     </div>
                 </TermsBox>
                 <TelecomBox display={telecomdisplay} bgcolor={telecom?"orange":"gray"}>
-                    <p>통신사를 선택해주세요.</p>
+                    <h4>어떤 통신사 혜택을 보여드릴까요?</h4>
                     <TeleType mode="signup" telecom={telecom} telecomtypeselect={telecomtypeselect}/>
                     <div className="nextbutton">
-                        <NextButton onClick={next}>다음</NextButton>
+                        <NextButton bgcolor={telecom?"orange":"gray"} onClick={next}>다음</NextButton>
                     </div>
                 </TelecomBox>
                 <CardtypeBox display={carddisplay} bgcolor={cardtype?"orange":"gray"}>
+                    <h4>어떤 카드사 혜택을 보여드릴까요?</h4>
                     <CardType mode="signup" cardtype={cardtype} cardtypetypeselect={cardtypetypeselect}/>
                     <div className="nextbutton">
-                        <NextButton onClick={next}>다음</NextButton>
+                        <NextButton bgcolor={cardtype?"orange":"gray"} onClick={next}>다음</NextButton>
                     </div>
-                </CardtypeBox>
+                </CardtypeBox> */}
                 <TypeBox display={typedisplay} bgcolor={type1?"orange":"gray"}>
-                    <p>관심사를 선택해주세요.(최대 3개)</p>
+                    <h4>관심있는 3가지 선택하면 끝나요</h4>
                     <InterType mode="signup" type1={type1} type2={type2} type3={type3} typeselect={typeselect} typecancle={typecancle}/>
                     <div className="nextbutton">
-                        <NextButton onClick={signup}>회원가입</NextButton>
+                        <NextButton bgcolor={type1?"orange":"gray"}onClick={signup}>완료</NextButton>
                     </div>
                 </TypeBox>
             </SignUpBox>
@@ -303,56 +332,11 @@ const SignUp = (props) => {
 
 const SignUpBox = styled.div`
     margin: 0 auto;
-    width:300px;
+    width: 375px;
 `;
-
-const EmailBox = styled.div`
-    display: ${props => props.display};
-    p{
-        font-weight: bold;
-    }
-    input{
-        width: 300px;
-        height: 37px;
-        border-radius: 5px;
-        border:1px solid #D5D5D5;
-    }
-    div{
-        margin-top: 30px;
-    }
-`;
-
-const PasswordBox = styled.div`
-    display: ${props => props.display};
-    p{
-        float:left;
-        margin-left:15px;
-        font-weight: bold;
-    }
-
-    .pwinput{
-        border-bottom:1px solid #D5D5D5;
-        input{
-            width: 328px;
-            height: 37px;
-            border:none;
-        }
-    }
-    .pwtitle{
-        h3{
-            float:left;
-        }
-    }
-    .pwcheckimage{
-        float: left;
-    }
-
-    .nextbutton{
-        margin-top: 50px;
-    }
-    `;
 
 const TermsBox = styled.div`
+    margin-left:30px;
     display: ${props => props.display};
     p{
         float:left;
@@ -390,22 +374,90 @@ const TermsBox = styled.div`
     }
 `;
 
+const EmailBox = styled.div`
+    margin-left:35px;
+    display: ${props => props.display};
+    p{
+        font-weight: bold;
+    }
+    input{
+        width: 300px;
+        height: 37px;
+        border-radius: 5px;
+        border:1px solid #D5D5D5;
+    }
+    div{
+        margin-top: 30px;
+    }
+`;
+
+const PasswordBox = styled.div`
+    margin-left:35px;
+    display: ${props => props.display};
+    p{
+        float:left;
+        margin-left:15px;
+        font-weight: bold;
+    }
+
+    .pwinput{
+        width: 300px;
+        border-bottom:1px solid #D5D5D5;
+        input{
+            width: 328px;
+            height: 37px;
+            border:none;
+        }
+    }
+    .pwtitle{
+        h3{
+            float:left;
+        }
+    }
+    .pwcheckimage{
+        float: left;
+    }
+
+    .nextbutton{
+        margin-top: 50px;
+    }
+    `;
+
 const TelecomBox = styled.div`
     display: ${props => props.display};
+    .nextbutton{
+        margin-left: 33px;
+    }
+    h4{
+        margin-left:20px;
+    }
 `;
 
 const CardtypeBox = styled.div`
     display: ${props => props.display};
+    .nextbutton{
+        margin-left: 33px;
+    }
+    h4{
+        margin-left:20px;
+    }
 `;
 
 const TypeBox = styled.div`
     display: ${props => props.display};
+    .nextbutton{
+        margin-left: 33px;
+    }
+    h4{
+        margin-left:20px;
+    }
 `;
 
 const NextButton = styled.button`
+    margin-left:-15px;
     border-radius: 5px;
     border:none;
-    width:300px;
+    width:340px;
     height:45px;
     color: white;
     background-color:${props => props.bgcolor};

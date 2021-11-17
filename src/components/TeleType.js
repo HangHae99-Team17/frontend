@@ -66,7 +66,6 @@ const SignUpButton = styled.button`
 
 const TeleTypeBox = styled.div`
     display:flex;
-    margin: 0 auto;
     width: 375px;
     flex-wrap: wrap;
     justify-content:space-evenly;
