@@ -17,11 +17,11 @@ const TeleType = (props) => {
                 {tels.map((tel) => {
                     if(props.telecom === tel.tel_name){
                         return(
-                            <SignUpButton bg="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_img}<br/><br/>{tel.tel_name}</SignUpButton>
+                            <SignUpButton bg="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_img}{tel.tel_name}</SignUpButton>
                         )
                     }else{
                         return(
-                            <SignUpButton bg="grey" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_img}<br/><br/>{tel.tel_name}</SignUpButton>
+                            <SignUpButton bg="grey" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_img}{tel.tel_name}</SignUpButton>
                         )
                     }
                 })}

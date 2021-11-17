@@ -26,11 +26,11 @@ const CardType = (props) => {
                     {cards.map((card) => {
                         if(props.cardtype === card.card_name){
                             return(
-                                <SignUpButton className="signupbutton" bg="orange" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_img}<br/>{card.card_name}</SignUpButton>
+                                <SignUpButton className="signupbutton" bg="orange" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_img}{card.card_name}</SignUpButton>
                             )
                         }else{
                             return(
-                                <SignUpButton className="signupbutton" bg="grey" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_img}<br/>{card.card_name}</SignUpButton>
+                                <SignUpButton className="signupbutton" bg="grey" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_img}{card.card_name}</SignUpButton>
                             )
                         }
                     })}
