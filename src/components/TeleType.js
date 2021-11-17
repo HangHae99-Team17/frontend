@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { skt, kt, lg } from '../image';
+
 
 const TeleType = (props) => {
 
     const tels = [
-        {tel_id:0,tel_name:"SKT"},
-        {tel_id:1,tel_name:"KT"},
-        {tel_id:2,tel_name:"LG"},
+        {tel_id:0,tel_name:"SKT",tel_img:<img src={skt}/>},
+        {tel_id:1,tel_name:"KT",tel_img:<img src={kt}/>},
+        {tel_id:2,tel_name:"LG",tel_img:<img src={lg}/>},
     ]
 
     if(props.mode==="signup"){
@@ -15,11 +17,11 @@ const TeleType = (props) => {
                 {tels.map((tel) => {
                     if(props.telecom === tel.tel_name){
                         return(
-                            <SignUpButton bg="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</SignUpButton>
+                            <SignUpButton bg="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_img}<br/><br/>{tel.tel_name}</SignUpButton>
                         )
                     }else{
                         return(
-                            <SignUpButton bg="grey" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</SignUpButton>
+                            <SignUpButton bg="grey" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_img}<br/><br/>{tel.tel_name}</SignUpButton>
                         )
                     }
                 })}
@@ -46,7 +48,9 @@ const TeleType = (props) => {
 };
 
 const UserEditButton = styled.button`
-
+height:50px;
+width:100px;
+border-radius:7px;
 `;
 
 const SignUpButton = styled.button`

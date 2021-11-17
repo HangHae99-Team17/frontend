@@ -191,7 +191,6 @@ const SignUp = (props) => {
         const pwregEXP = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,10}$/;
         const enregEXP = /[a-z]/ig;
         const numregEXP = /[0-9]/g;
-        
         //최소 8 자 최대 10자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자
         if(password){
             if(!enregEXP.test(password)){
@@ -351,7 +350,7 @@ const PasswordBox = styled.div`
     .nextbutton{
         margin-top: 50px;
     }
-`;
+    `;
 
 const TermsBox = styled.div`
     display: ${props => props.display};

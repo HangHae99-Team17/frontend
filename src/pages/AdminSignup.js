@@ -59,23 +59,59 @@ const AdminSignup = () => {
 
     return (
         <React.Fragment>
-            <div>
-                <p>이메일</p>
-                <input type="text" name="email" value={email} onChange={onChange}/>
-            </div>
-            <div>
-                <p>비밀번호</p>
-                <input type="password" name="password" value={password} onChange={onChange}/>
-                <p>비밀번호확인</p>
-                <input type="password" name="password1" value={password1} onChange={onChange}/>
-                <p>{passwordcheck}</p>
-            </div>
-            <p>관리자십니까?</p>
+            <AllBox>
+            <EmailBox>
+                <Notice>이메일 입력</Notice>
+                <Input type="text" name="email" value={email} placeholder="이메일" onChange={onChange}/>
+            </EmailBox>
+            <PasswordBox>
+                <Notice>비밀번호 입력</Notice>
+                <Input type="password" name="password" placeholder="비밀번호" value={password} onChange={onChange}/>
+                <Notice>비밀번호확인</Notice>
+                <Input type="password" name="password1" placeholder="비밀번호" value={password1} onChange={onChange}/>
+                <Notice>{passwordcheck}</Notice>
+            </PasswordBox>
+            <AdminBox>
+            <Notice>관리자십니까?</Notice>
             <button onClick={admincheck}>예</button>
-            {admin?(<input type="text" name="admintoken" value={admintoken} onChange={onChange}/>):("")}
+            {admin?(<Input type="text" name="admintoken" value={admintoken} onChange={onChange}/>):("")}
             <button onClick={signup}>가입하기</button>
+            </AdminBox>
+            </AllBox>
         </React.Fragment>
     );
 };
+
+
+const EmailBox = styled.div`
+margin: 0 auto;
+width:340px;
+`
+
+const Input = styled.input`
+border:none;
+width:330px;
+border-bottom: 1px solid gray;
+height:30px;
+`
+const PasswordBox = styled.div`
+margin:0 auto;
+width:340px;
+`
+
+
+const AllBox = styled.div`
+width:100%;
+`
+
+const Notice = styled.div`
+font-weight:bold;
+padding:30px 0 15px 0;
+`
+const AdminBox = styled.div`
+width:340px;
+margin:0 auto;
+`
+
 
 export default AdminSignup;

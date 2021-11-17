@@ -16,7 +16,7 @@ const EditUser = (props) => {
     const [type1,setType1] = useState("");
     const [type2,setType2] = useState("");
     const [type3,setType3] = useState("");
-
+    
     const PassChange = (e) =>{
         setPassword(e.target.value)
     }
@@ -66,6 +66,7 @@ const EditUser = (props) => {
             setType3(e.target.value);
         }
     }
+
 
     const typecancle = (e) => {
         if(e.target.value === type1){
@@ -141,8 +142,13 @@ const EditUser = (props) => {
     );
 };
 
+
+
 const EditUserBox = styled.div`
-    
-`;
+    width: 375px;
+    margin:0 auto;
+
+`
+
 
 export default EditUser;
