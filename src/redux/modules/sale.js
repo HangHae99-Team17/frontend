@@ -76,7 +76,6 @@ export const delSaleFB= (coupon_id) => {
 export const editSaleFB = (coupon_id,sale) => {
   return async(dispatch,getState,{ history }) => {
 
-    console.log(sale.couponImage)
     try{
 
       const _file = getState().image.file;
