@@ -252,7 +252,8 @@ const SignUp = (props) => {
 const NextButton = styled.button`
     border-radius: 5px;
     border:none;
-    width:328px;
+    margin:25px auto;
+    width:334px;
     height:45px;
     color: white;
     background-color:${props => props.bgcolor};
