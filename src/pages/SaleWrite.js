@@ -8,6 +8,7 @@ import { actionCreators as imageActions } from "../redux/modules/image";
 import { history } from "../redux/configureStore";
 import styled from 'styled-components';
 import InterType from '../components/InterType';
+import Button from "../elements/Button"
 
 const SaleWrite = (props) => {
 
@@ -16,7 +17,7 @@ const SaleWrite = (props) => {
     const editmode = sale_id ? true : false;
     const preview = useSelector((state) => state.image.preview);
     const sale_list = useSelector((state) => state.sale.list);
-    const _sale = editmode ? sale_list.find((p) => p.id.toString() === sale_id): null;
+    const _sale = editmode ? sale_list.find((Notice) => Notice.id.toString() === sale_id): null;
     const [sale_info, setSale_Info] = useState({
         couponbrand: _sale?_sale.couponBrand:"",
         couponsubtitle: _sale?_sale.couponSubTitle:"",
@@ -93,42 +94,43 @@ const SaleWrite = (props) => {
         <React.Fragment>
             <SaleWriteBox>
                 <CateGoryBox display={categorydisplay}>
-                    <p>카테고리를 선택해주세요.</p>
+                    <Notice>카테고리를 선택해주세요.</Notice>
                     <InterType mode="saleinfo" coupontype={coupontype} categoryselect={categoryselect}/>
-                    <button onClick={next}>완료</button>
+                    <Button bg="#FF8F00" color="white" _onClick={next}>완료</Button>
                 </CateGoryBox>
+
                 <SaleInfoBox display={saleinfodisplay}>
                 <div>
-                <p>대표 이미지를 등록해주세요.</p>
-                <img src={preview ? preview : "http://via.placeholder.com/400x300"}/>
+                <Notice>대표 이미지를 등록해주세요.</Notice>
+                <Img src={preview ? preview : "http://via.placeholder.com/400x300"}/>
                 <Upload />
             </div>
             <div>
-                <p>정보를 입력해주세요.</p>
-                <p>제목을 입력해주세요</p>
-                <input type="text" name="coupontitle" value={coupontitle} onChange={onChange}/>
-                <p>쿠폰서브타이틀</p>
-                <input type="text" name="couponsubtitle" value={couponsubtitle} onChange={onChange}/>
-                <p>브랜드이름</p>
-                <input type="text" name="couponbrand" value={couponbrand} onChange={onChange}/>
-                <p>로고URL</p>
-                <input type="text" name="couponlogo" value={couponlogo} onChange={onChange}/>
-                <p>쿠폰내용을 입력하세요.</p>
-                <input type="text" name="coupondesc" value={coupondesc} onChange={onChange}/>
+                <Notice>정보를 입력해주세요.</Notice>
+                <Notice>제목을 입력해주세요</Notice>
+                <Input type="text" name="coupontitle" value={coupontitle} onChange={onChange}/>
+                <Notice>쿠폰서브타이틀</Notice>
+                <Input type="text" name="couponsubtitle" value={couponsubtitle} onChange={onChange}/>
+                <Notice>브랜드이름</Notice>
+                <Input type="text" name="couponbrand" value={couponbrand} onChange={onChange}/>
+                <Notice>로고URL</Notice>
+                <Input type="text" name="couponlogo" value={couponlogo} onChange={onChange}/>
+                <Notice>쿠폰내용을 입력하세요.</Notice>
+                <Input type="text" name="coupondesc" value={coupondesc} onChange={onChange}/>
             </div>
             <div>
-                <p>링크를 입력해주세요.</p>
-                <input type="text" name="couponurl" value={couponurl} onChange={onChange}/>
+                <Notice>링크를 입력해주세요.</Notice>
+                <Input type="text" name="couponurl" value={couponurl} onChange={onChange}/>
             </div>
             <div>
-                <p>쿠폰 유효기간</p>
+                <Notice>쿠폰 유효기간</Notice>
                 시작
                 <DatePicker dateFormat="yyyy/MM/dd" name="startDate" selected={startDate} onChange={date => setStartDate(date)}/>
                 마감
                 <DatePicker dateFormat="yyyy/MM/dd" name="endDate" selected={endDate} onChange={date => setEndDate(date)}/>
             </div>
             <div>
-                {editmode?(<button onClick={inputSale}>할인정보수정</button>):(<button onClick={inputSale}>할인정보입력</button>)}
+                {editmode?(<Button bg="#FF8F00" color="white" margin="20px 0" _onClick={inputSale}>할인정보수정</Button>):(<Button bg="#FF8F00" color="white" margin="20px 0" _onClick={inputSale}>할인정보입력</Button>)}
             </div>
                 </SaleInfoBox>
             </SaleWriteBox>
@@ -137,16 +139,35 @@ const SaleWrite = (props) => {
 };
 
 const SaleWriteBox = styled.div`
-    
+    width:100%;
 `;
 
 const CateGoryBox = styled.div`
     display: ${props => props.display};
 `;
 
+const Notice = styled.p`
+font-weight:bold;
+margin:20px 0;
+`
+
 const SaleInfoBox = styled.div`
+width:300px;
+margin:0 auto;
     display: ${props => props.display};
 `;
 
+const Input = styled.input`
+width:60%;
+margin:0 0 20px 0;
+border:none;
+color:#FF8F00;
+border-bottom:1px solid #FF8F00;
+height:25px;
+`
+const Img = styled.img`
+width:300px;
+
+`
 
 export default SaleWrite;
