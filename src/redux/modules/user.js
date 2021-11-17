@@ -8,12 +8,25 @@ const CHECK_EMAIL = "CHECK_EMAIL";
 
 //action creator
 const setUser = createAction(SET_USER, (user) => ({ user }));
+const useremail = createAction(CHECK_EMAIL, (checkresult) => ({checkresult}));
 
 //initialState
 const initialState = {
   user: null,
   is_login: false,
+  email_check: null
 };
+
+//이메일 중복체크
+export const emailCheckFB = (userEmail) =>{
+  return async (dispatch, getState, { history }) => {
+    await apis.emailcheck(userEmail).then((res)=>{
+      dispatch(useremail(res.data.result))
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+}
 
 //회원가입
 export const signupFB = (user) => {
@@ -108,7 +121,7 @@ export default handleActions(
       }),
     [CHECK_EMAIL]: (state, action) => 
       produce(state, (draft) => {
-        draft.useremail = action.payload.check_info
+        draft.email_check = action.payload.checkresult
       })
   },
   initialState
@@ -121,7 +134,8 @@ const actionCreators = {
   loginCheckFB,
   logoutFB,
   edituserFB,
-  deluserFB
+  deluserFB,
+  emailCheckFB
 };
 
 export { actionCreators };

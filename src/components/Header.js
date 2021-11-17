@@ -9,7 +9,6 @@ const Header = (props) => {
     const dispatch = useDispatch();
     const is_login = useSelector((state) => state.user.is_login);
     const is_session = sessionStorage.getItem("token") ? true : false;
-    const [show,setShow] = useState(true);
     const [open, setOpen] = useState(false);
 
     const logout = () => {
@@ -18,10 +17,6 @@ const Header = (props) => {
     };
     
     useEffect(() => {
-        if(history.location.pathname==="/signup"){
-            setShow(!show);
-        }
-
         if(is_session){
             dispatch(userActions.loginCheckFB());
         }
@@ -29,7 +24,6 @@ const Header = (props) => {
 
         return (
             <React.Fragment>
-                {show?(
                 <HeaderBox color={open?"black":"white"} fontcolor={open?"white":"black"}>
                     {open?(
                     <>
@@ -69,29 +63,10 @@ const Header = (props) => {
                             setOpen(!open)}}>회원가입
                         </li>
                     </Ul>
-                </HeaderBox>):(
-                <SignupHeaderBox>
-                    <div>
-                        <img src={x_black} onClick={()=>{history.goBack();}}/>
-                    </div>
-                </SignupHeaderBox>)}
+                </HeaderBox>
             </React.Fragment>
         );
 };
-
-const SignupHeaderBox =  styled.div`
-    background-color: white;
-    top: 0;
-    width: 100%;
-    position: fixed;
-    height: 0px;
-    border-bottom: solid 1px grey;
-    div{
-        margin-top:20px;
-        margin-right:10px;
-        float: right;
-    }
-`;
 
 const HeaderBox = styled.div`
     display:flex;

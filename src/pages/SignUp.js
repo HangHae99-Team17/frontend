@@ -1,14 +1,16 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useState,useCallback} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import styled from 'styled-components';
 import CardType from '../components/CardType';
 import TeleType from '../components/TeleType';
 import InterType from '../components/InterType';
-import {checkgray, checkgray2, skt, kt, lg, shinhan, hyundai, samsung, kb, lotte, woori, nh, bc, toss, kakao, hana, citi, cup, hamburger, airplane, bicycle, cart, film_frame, gift, house, monitor2, knive_fork, scissors,t_shirt} from '../image'
+import {checkgray, checkgray2,password_ora,_8_20_ora,num_ora,en_ora,password_grey,_8_20_grey,num_grey,
+en_grey} from '../image'
 
 const SignUp = (props) => {
     const dispatch = useDispatch();
+    const [emailmsg, setEmailMsg] = useState("");
     const [passwordcheck, setPasswordcheck] = useState("");
     const [emaildisplay,setEmailDisplay] = useState("block");
     const [passworddisplay,setPasswordDisplay] = useState("none");
@@ -28,6 +30,7 @@ const SignUp = (props) => {
         password: "",
         password1: ""
     });
+    const email_result = useSelector((state)=>state.user.email_check);
 
     const onChange = (e) => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
@@ -157,11 +160,42 @@ const SignUp = (props) => {
     };
 
     useEffect(()=> {
+        
+        const emailregEXP = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+        
+        if(email){
+            if(!emailregEXP.test(email)){
+                setEmailMsg("이메일 형식이 맞지 않습니다.")
+                
+            }else{
+
+                const emailcheck = {
+                    userEmail: email
+                }
+                dispatch(userActions.emailCheckFB(emailcheck));
+                
+                if(email_result === "success"){
+                    setEmailMsg("사용 가능한 이메일입니다.")
+                }else{
+                    setEmailMsg("사용중인 이메일입니다.")
+                }
+            }
+        }else{
+            setEmailMsg("")
+        }
+        return () => {
+        }
+    },[email,email_result]);
+
+    useEffect(()=> {
         const pwregEXP = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,10}$/;
+        const enregEXP = /[a-z]/ig;
+        const numregEXP = /[0-9]/g;
+        
         //최소 8 자 최대 10자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자
         if(password){
-            if(!pwregEXP.test(password)){
-                setPasswordcheck("최소 8 자 최대 10자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자를 입력해주세요.")
+            if(!enregEXP.test(password)){
+                setPasswordcheck("enerror");
             }else{
                 if(password !== password1){
                     setPasswordcheck("비밀번호가 일치하지 않습니다.")
@@ -174,94 +208,156 @@ const SignUp = (props) => {
         }
     },[password, password1]);
 
+    
+
     return (
         <React.Fragment>
-            <EmailBox display={emaildisplay} bgcolor={email?"orange":"gray"}>
-                <p>이메일을 입력해주세요.</p>
-                <input type="text" name="email" value={email} onChange={onChange}/>
-                <div>
-                    <NextButton onClick={next} >다음</NextButton>
-                </div>
-            </EmailBox>
-            <PasswordBox display={passworddisplay} bgcolor={password1?"orange":"gray"}>
-                <p>비밀번호</p>
-                <input type="password" name="password" value={password} onChange={onChange}/>
-                <p>비밀번호확인</p>
-                <input type="password" name="password1" value={password1} onChange={onChange}/>
-                <p>{passwordcheck}</p>
-                <div>
-                    <NextButton onClick={next}>다음</NextButton>
-                </div>
-            </PasswordBox>
-            <TermsBox display={termsdisplay}>
-                <p>서비스 약관을 확인해주세요.</p>
-                <div className="allcheck">
+            <SignUpBox>
+                <EmailBox display={emaildisplay}>
+                    <p>이메일을 입력해주세요.</p>
+                    <input type="text" name="email" value={email} onChange={onChange}/>
                     <div>
-                        <img src={checkgray}/>
-                        <span>모두 동의</span>
+                        <span>{emailmsg}</span>
                     </div>
-                </div>
-                <div className="checklist">
-                    <ul>
-                        <li>
-                            <img src={checkgray2}/>
-                            <span>[필수] 만 14세 이상</span>
-                        </li>
-                        <li>
-                            <img src={checkgray2}/>
-                            <span>[필수] 이용약관 동의</span>
-                        </li>
-                        <li>
-                            <img src={checkgray2}/>
-                            <span>[필수] 개인정보 처리방침 동의</span>
-                        </li>
-                        <li>
-                            <img src={checkgray2}/>
-                            <span>[선택] 광고성 정보 수신 및 마케팅 활용 동의</span>
-                        </li>
-                    </ul>
-                </div>
-                <div className="nextbutton">
-                    <NextButton onClick={next}>다음</NextButton>
-                </div>
-            </TermsBox>
-            <TelecomBox display={telecomdisplay} bgcolor={telecom?"orange":"gray"}>
-                <p>통신사를 선택해주세요.</p>
-                <TeleType mode="signup" telecom={telecom} telecomtypeselect={telecomtypeselect}/>
-                <div className="nextbutton">
-                    <NextButton onClick={next} >다음</NextButton>
-                </div>
-            </TelecomBox>
-            <CardtypeBox display={carddisplay} bgcolor={cardtype?"orange":"gray"}>
-                <CardType mode="signup" cardtype={cardtype} cardtypetypeselect={cardtypetypeselect}/>
-                <div className="nextbutton">
-                    <NextButton onClick={next}>다음</NextButton>
-                </div>
-            </CardtypeBox>
-            <TypeBox display={typedisplay} bgcolor={type1?"orange":"gray"}>
-                <p>관심사를 선택해주세요.(최대 3개)</p>
-                <InterType mode="signup" type1={type1} type2={type2} type3={type3} typeselect={typeselect} typecancle={typecancle}/>
-                <div className="nextbutton">
-                    <NextButton onClick={signup}>회원가입</NextButton>
-                </div>
-            </TypeBox>
+                    <div>
+                        <NextButton onClick={emailmsg==="사용 가능한 이메일입니다."?next:""} bgcolor={emailmsg==="사용 가능한 이메일입니다."?"orange":"gray"}>다음</NextButton>
+                    </div>
+                </EmailBox>
+                <PasswordBox display={passworddisplay} bgcolor={password1?"orange":"gray"}>
+                    <div className="pwtitle">
+                        <h3>비밀번호를 입력해주세요</h3>
+                    </div>
+                    <div className="pwinput">
+                        <input type="password" placeholder="비밀번호" name="password" value={password} onChange={onChange}/>
+                    </div>
+                    <div className="pwcheckimage">
+                        <img src={en_grey}/>
+                        <img src={num_grey}/>
+                        <img src={_8_20_grey}/>
+                    </div>
+                    <div className="pwinput">
+                        <input type="password" placeholder="비밀번호 확인" name="password1" value={password1} onChange={onChange}/>
+                    </div>
+                    <div className="pwcheckimage">
+                        <img src={passwordcheck==="비밀번호가 일치합니다."?password_ora:password_grey}/>
+                    </div>
+                    <div className="nextbutton">
+                        <NextButton onClick={next}>다음</NextButton>
+                    </div>
+                </PasswordBox>
+                <TermsBox display={termsdisplay}>
+                    <p>서비스 약관을 확인해주세요.</p>
+                    <div className="allcheck">
+                        <div>
+                            <img src={checkgray}/>
+                            <span>모두 동의</span>
+                        </div>
+                    </div>
+                    <div className="checklist">
+                        <ul>
+                            <li>
+                                <img src={checkgray2}/>
+                                <span>[필수] 만 14세 이상</span>
+                            </li>
+                            <li>
+                                <img src={checkgray2}/>
+                                <span>[필수] 이용약관 동의</span>
+                            </li>
+                            <li>
+                                <img src={checkgray2}/>
+                                <span>[필수] 개인정보 처리방침 동의</span>
+                            </li>
+                            <li>
+                                <img src={checkgray2}/>
+                                <span>[선택] 광고성 정보 수신 및 마케팅 활용 동의</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="nextbutton">
+                        <NextButton onClick={next}>다음</NextButton>
+                    </div>
+                </TermsBox>
+                <TelecomBox display={telecomdisplay} bgcolor={telecom?"orange":"gray"}>
+                    <p>통신사를 선택해주세요.</p>
+                    <TeleType mode="signup" telecom={telecom} telecomtypeselect={telecomtypeselect}/>
+                    <div className="nextbutton">
+                        <NextButton onClick={next}>다음</NextButton>
+                    </div>
+                </TelecomBox>
+                <CardtypeBox display={carddisplay} bgcolor={cardtype?"orange":"gray"}>
+                    <CardType mode="signup" cardtype={cardtype} cardtypetypeselect={cardtypetypeselect}/>
+                    <div className="nextbutton">
+                        <NextButton onClick={next}>다음</NextButton>
+                    </div>
+                </CardtypeBox>
+                <TypeBox display={typedisplay} bgcolor={type1?"orange":"gray"}>
+                    <p>관심사를 선택해주세요.(최대 3개)</p>
+                    <InterType mode="signup" type1={type1} type2={type2} type3={type3} typeselect={typeselect} typecancle={typecancle}/>
+                    <div className="nextbutton">
+                        <NextButton onClick={signup}>회원가입</NextButton>
+                    </div>
+                </TypeBox>
+            </SignUpBox>
         </React.Fragment>
     );
 };
 
-const NextButton = styled.button`
-    border-radius: 5px;
-    border:none;
-    width:328px;
-    height:45px;
-    color: white;
-    background-color:${props => props.bgcolor};
+const SignUpBox = styled.div`
+    margin: 0 auto;
+    width:300px;
+`;
+
+const EmailBox = styled.div`
+    display: ${props => props.display};
+    p{
+        font-weight: bold;
+    }
+    input{
+        width: 300px;
+        height: 37px;
+        border-radius: 5px;
+        border:1px solid #D5D5D5;
+    }
+    div{
+        margin-top: 30px;
+    }
+`;
+
+const PasswordBox = styled.div`
+    display: ${props => props.display};
+    p{
+        float:left;
+        margin-left:15px;
+        font-weight: bold;
+    }
+
+    .pwinput{
+        border-bottom:1px solid #D5D5D5;
+        input{
+            width: 328px;
+            height: 37px;
+            border:none;
+        }
+    }
+    .pwtitle{
+        h3{
+            float:left;
+        }
+    }
+    .pwcheckimage{
+        float: left;
+    }
+
+    .nextbutton{
+        margin-top: 50px;
+    }
 `;
 
 const TermsBox = styled.div`
-    margin-left: 15px;
     display: ${props => props.display};
     p{
+        float:left;
+        margin-left:15px;
         font-weight: bold;
     }
     .allcheck{
@@ -295,37 +391,6 @@ const TermsBox = styled.div`
     }
 `;
 
-const EmailBox = styled.div`
-    margin-left: 15px;
-    display: ${props => props.display};
-
-    p{
-        font-weight: bold;
-    }
-
-    input{
-        width: 328px;
-        height: 37px;
-        border-radius: 5px;
-        border:1px solid #D5D5D5;
-    }
-`;
-
-const PasswordBox = styled.div`
-    margin-left: 15px;
-    display: ${props => props.display};
-    p{
-        font-weight: bold;
-    }
-
-    input{
-        width: 328px;
-        height: 37px;
-        border-radius: 5px;
-        border:1px solid #D5D5D5;
-    }
-`;
-
 const TelecomBox = styled.div`
     display: ${props => props.display};
 `;
@@ -336,6 +401,15 @@ const CardtypeBox = styled.div`
 
 const TypeBox = styled.div`
     display: ${props => props.display};
+`;
+
+const NextButton = styled.button`
+    border-radius: 5px;
+    border:none;
+    width:300px;
+    height:45px;
+    color: white;
+    background-color:${props => props.bgcolor};
 `;
 
 export default SignUp;
