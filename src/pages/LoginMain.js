@@ -8,7 +8,7 @@ import MainCoupon from '../components/MainCoupon';
 
 
 
-const LoginMain = (props) => {
+const LoginMain = () => {
   const dispatch = useDispatch();
   // 유저 관심사, 카드사, 통신사 뽑아 오기
     const userMenu = useSelector((state)=>state.user.user)
@@ -25,35 +25,50 @@ const LoginMain = (props) => {
         if(MenuArr.length > 0){
       const type = [MenuArr[0],MenuArr[1],MenuArr[2],MenuArr[3],MenuArr[4]]
       console.log(type[0],typeof(type))
-       dispatch(listCreators.getListMW(MenuArr[1],1,4));
-       dispatch(listCreators.getListMW(MenuArr[2],1,4));
+       dispatch(listCreators.getListMW(MenuArr[1],1,4,"couponCreate",true));
+       dispatch(listCreators.getListMW(MenuArr[2],1,4,"couponCreate",true));
+       dispatch(listCreators.getListMW(MenuArr[3],1,4,"couponCreate",true));
+       dispatch(listCreators.getListMW(MenuArr[4],1,4,"couponCreate",true));
+       dispatch(listCreators.getListMW(MenuArr[5],1,4,"couponCreate",true));
         }
     }
-    list()}
+    list();
+    }
     ,[userMenu])
     // 리덕스에서 할인정보 리스트 가지고 오기
     const dc_list = useSelector(( state )=> state.main.pagingList);
-    console.log(dc_list)
+    console.log(dc_list?.[0])
+    const type1 = [dc_list?.[0],dc_list?.[1],dc_list?.[2],dc_list?.[3]]
+    const type2 = [dc_list[4],dc_list[5],dc_list[6],dc_list[7]]
+    const type3 = [dc_list[8],dc_list[9],dc_list[10],dc_list[11]]
 
      
     return(
-        is_login?(
+      is_login?(
           <Div>
         <InfoWrap>
         {
-        dc_list?.map((coupon) => {
+        dc_list?.map((item) => {
           return (
             <DcList>
-              <MainCoupon key={coupon.id} {...coupon}/>
+              <MainCoupon key={item.id} {...item}/>
+              {dc_list?.length==4?        
+              <BtWrap>
+               <Button onClick={()=>{history.push(`/category`)}}>더보기</Button>
+              </BtWrap> : ""
+              }
             </DcList>
         );
-        })}
+        })
+        
+        }
         </InfoWrap>
         <BtWrap>
           <Button onClick={()=>{history.push(`/category`)}}>더보기</Button>
         </BtWrap>
 
         </Div>
+        
         ):(
 <Wrap> 
   <P>로그인 먼저 해주세요!</P>
@@ -66,14 +81,14 @@ const LoginMain = (props) => {
 
 const Div = styled.div`
 width : 375px;
+dispaly : block;
 `
 const InfoWrap = styled.ul`
 width : 375px;
-padding-left : 16px;
+padding : 0;
 `
 const Wrap = styled.div`
 width : 375px;
-margin : auto;
 `
 const P = styled.p`
 font-weight : bold;
@@ -101,7 +116,7 @@ background-color : #F09643;
 const BtWrap = styled.div`
 width : 328px;
 height : 48px;
-margin : auto;
+margin : 20px auto;
 `
 
 

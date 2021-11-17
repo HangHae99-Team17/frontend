@@ -4,19 +4,20 @@ import { listCreators } from '../redux/modules/main';
 import { history } from '../redux/configureStore';
 import styled from 'styled-components';
 import Grid from "../elements/Grid";
-import { colorBookmark, companyLogo } from '../image';
-import { foldersCreators } from '../redux/modules/folders';
+import { colorBookmark, couponCreate,couponDespire,couponRank } from '../image';
+import {actionCreators  as foldersCreators } from '../redux/modules/salebox';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const CategoryDetail = (props) => {
     const dispatch = useDispatch();
     // 넘어온 props 확인해서 내가 보내줘야 할 타입을 추출
     const type = props.match.params.type
-    console.log(props)
     const is_login = useSelector((state)=>state.user.is_login)  
 
     // 무한스크롤 페이지_초기값1
     const [page,setPage] = useState(1)
+    const [sortBy,setSortBy] =useState("couponCreate")
+    const [isAsc,setIsAsc] = useState(true)
     // 리덕스에있는 데이터 불러오기(리듀서 정보_hasMore,pagingList)
     const DcInfoList = useSelector((state) => state.main.pagingList)
       console.log(DcInfoList)
@@ -24,12 +25,16 @@ const CategoryDetail = (props) => {
     console.log(hasMore)
 
     React.useEffect(() => {
-      // 내가 넘겨줄 값들 _ 타입, 현재 페이지, 몇개보여줄건지
-      dispatch(listCreators.getListMW(type,page,7));
+      // 내가 넘겨줄 값들 _ 타입, 현재 페이지, 몇개보여줄건지, 정렬기준,isAsc
+      dispatch(listCreators.getListMW(type,page,7,sortBy,isAsc));
       // 페이지 상태 변화
       setPage(page + 1);
-      console.log(page)
-      }, [dispatch]);
+      console.log(page);
+      if(sortBy=="couponLike"){
+        dispatch(listCreators.getListMW(type,page,7,sortBy,isAsc));
+        console.log("안녕")
+      }
+      }, [sortBy]);
 
 
 
@@ -38,7 +43,7 @@ const CategoryDetail = (props) => {
         setPage(page+1)
         setTimeout(() => {
             if(hasMore){
-              dispatch(listCreators.getListMW(type,page,2));
+              dispatch(listCreators.getListMW(type,page,2,sortBy,isAsc));
             }
         },1000)
     }
@@ -50,6 +55,11 @@ return(
         <P>{type} 할인</P>
         <P>다 모아두었어요</P>
         </div>
+        <SortBy>
+          <SortImg src ={couponCreate}  onClick={()=>{setSortBy("couponCreate");}}/>
+          <SortImg src ={couponDespire} onClick={()=>{ setSortBy("couponDespire");}}/>
+          <SortImg src ={couponRank}  onClick={()=>{setSortBy("couponLike");setIsAsc(false);console.log(sortBy)}}/>
+        </SortBy>
   {DcInfoList?
     <InfiniteScroll
     dataLength={DcInfoList.length}
@@ -96,15 +106,25 @@ font-weight : bold;
 padding-left:20px;
 padding-top: 3px;
 `
+const SortBy = styled.div`
+width : 200px;
+display : flex;
+`
+const SortImg = styled.img`
+width : 50px;
+height : 14px;
+margin : 20px 0 0 16px;
+`
 const DcBox = styled.div`
 width : 375px;
-margin: 20px auto;
+margin: 0 auto 20px auto;
 `
 const DcList = styled.div`
 text-aling : center;
 padding : 5px;
 cursor : pointer;
 display : flex;
+margin-top :20px
 `
 const DcInfo = styled.div`
 margin : 0 8px;
@@ -114,7 +134,7 @@ font-size : 14px;
 `
 const Wrap = styled.div`
 position : relative;
-width : 100%
+width : 100%;
 height : 72px;
 `
 const Text2 =styled.p `

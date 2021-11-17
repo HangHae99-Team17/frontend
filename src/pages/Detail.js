@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { detailCreators } from "../redux/modules/detail";
 import styled from "styled-components";
-import { foldersCreators } from '../redux/modules/folders';
+import { actionCreators as foldersCreators } from '../redux/modules/salebox';
 import {history} from '../redux/configureStore'
 import { addImg,bookmarker,companyLogo } from '../image';
 

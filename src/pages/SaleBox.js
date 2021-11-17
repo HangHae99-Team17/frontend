@@ -1,50 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { foldersCreators } from '../redux/modules/folders';
+import { actionCreators as foldersCreators} from '../redux/modules/salebox';
+import { listCreators } from '../redux/modules/main';
 import { history } from '../redux/configureStore';
 import styled from "styled-components";
 import Grid from "../elements/Grid";
-import Button from "../elements/Button";
 import {companyLogo, fullBookmark} from '../image'
 
-const Folders = () => {
+const SaleBox = () => {
     const dispatch = useDispatch();
-    const folders = useSelector((state) => state.folders.list);
-    console.log(folders?.data?.coupons);
-    const list = folders?.data?.coupons;
-    const list_length = folders?.data?.coupons.length;
-
+    const folders = useSelector((state) => state.salebox.list);
+    const list_length = folders?.length;
+    
     useEffect(() => {
-        dispatch(foldersCreators.getFoldersMiddleware());
-      }, []);
+      dispatch(foldersCreators.getFoldersMiddleware());
+      
+    }, []);
 
-      return (
-          <div>
-            
-            <Notice>{list_length}개가 보관되어있어요</Notice>
-            {list?.map((item)=>{
+    return (
+      <React.Fragment>
+        <div>
+          <Notice>{list_length}개가 보관되어있어요</Notice>
+            {folders?.map((item)=>{
               return(
-                <Grid 
-                margin="0 auto"
-                width="375px"
-                padding="10px 0"
-                > 
+                <Grid margin="0 auto" width="375px" padding="10px 0"> 
                   <Couponbox>
-                    
+
                     <Img onClick={()=>{history.push(`/api/detail/${item?.id}`)}}><img src={companyLogo}/></Img>
                     <Textbox onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
-                    <P1>{item.couponTitle}에서</P1>
-                    <P2>{item.couponSubTitle} 할인 받기</P2>
+                      <P1>{item.couponBrand}에서</P1>
+                      <P2>{item.couponSubTitle} 할인 받기</P2>
                     </Textbox>
-                  <BUTTON
-                  onClick={()=>{
-                    alert("해당 쿠폰이 삭제되었습니다.");dispatch(foldersCreators.delFoldersMiddleware(item.id)); history.go(0);
+
+                  <BUTTON onClick={()=>{
+                    dispatch(foldersCreators.delFoldersMiddleware(item.id));
+                    dispatch(listCreators.addZzim(item.id,true));
                   }}><img src={fullBookmark} /></BUTTON>
                   </Couponbox>
                 </Grid>
               )
-            })}
-          </div>
+          })}
+        </div>
+      </React.Fragment>
     );
 };
 
@@ -89,4 +86,4 @@ border: none;
 background-color:white;
 `
 
-export default Folders;
+export default SaleBox;

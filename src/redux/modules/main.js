@@ -5,11 +5,13 @@ import { apis } from '../../common/axios';
 
 // action 생성
 const GET_LIST = 'GET_LIST';
-const GET_DCLIST = 'GET_DCLIST'
+const GET_DCLIST = 'GET_DCLIST';
+const ADD_ZZIM = 'ADD_ZZIM';
 
 // 액션 생성 함수
 const getList = createAction(GET_LIST, (list) => ({list}));
 const getDcList = createAction(GET_DCLIST, (rank)=>({rank}))
+const addZzim = createAction(ADD_ZZIM,(coupon_id,zzim)=>({coupon_id,zzim}))
 
 // 초기값 설정
 const initialState = {
@@ -22,9 +24,9 @@ const initialState = {
 };
 
 // 리스트 가지고 오는 미들웨어_백에서 받아올땐 시간이 걸리기 때문에 async사용
-const  getListMW = (type,page,size) => {
+const  getListMW = (type,page,size,sortBy,isAsc) => {
   return  async (dispatch) => {
-   const response = await apis.getList(type,page,size)
+   const response = await apis.getList(type,page,size,sortBy,isAsc)
       if(response){
         console.log(response.data.data);
         dispatch(getList(response.data.data));
@@ -41,7 +43,6 @@ export const getDcListMW = ()=>{
     await apis
     .getDcList()
     .then((res)=>{
-      console.log("랭킹",res.data)
       dispatch(getDcList(res.data));
     })
     .catch((err)=>{
@@ -49,6 +50,8 @@ export const getDcListMW = ()=>{
     });
   }
 }
+
+
 
 // 리듀서
 export default handleActions(
@@ -68,18 +71,27 @@ export default handleActions(
         // hasMore가 false라면 빈 배열을, true면 list의 데이터가 포함된 배열을 반환한다.
         draft.pagingList = draft.hasMore!==true?draft.pagingList : draft.pagingList.concat(action.payload.list)
       }),
-
     [GET_DCLIST]:(state,action) => 
-    produce(state,(draft=>{
-      draft.rank = action.payload.rank;
-    }))
+      produce(state,(draft)=>{
+        draft.rank = action.payload.rank;
+      }),
+    [ADD_ZZIM]:(state,action) => 
+      produce(state,(draft)=>{
+        let idx = draft.rank.data.findIndex((p) => p.id === action.payload.coupon_id);
+        if(action.payload.zzim){
+          draft.rank.data[idx].couponSelect = 0
+        }else{
+          draft.rank.data[idx].couponSelect = 1
+        }
+      })
   },
   initialState
 );
 
 const listCreators = {
   getListMW,
-  getDcListMW
+  getDcListMW,
+  addZzim
 };
 
 export { listCreators };
