@@ -158,16 +158,15 @@ margin:0 auto;
 `;
 
 const Input = styled.input`
-width:60%;
-margin:0 0 20px 0;
-border:none;
+width:95%;
 color:#FF8F00;
-border-bottom:1px solid #FF8F00;
+border:1px solid #FF8F00;
 height:25px;
 `
 const Img = styled.img`
 width:300px;
 
 `
+
 
 export default SaleWrite;

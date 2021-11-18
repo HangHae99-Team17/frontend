@@ -58,10 +58,10 @@ const Header = (props) => {
                             if(is_login){
                             history.push('/api/main');setOpen(!open)}
                             else{alert("로그인이 필요한 서비스입니다!")}}}>나의 카테고리</li>
-                        <li onClick={()=>{
+                        <LoginButton onClick={()=>{
                             window.location.replace('/signup');
                             setOpen(!open)}}>회원가입
-                        </li>
+                        </LoginButton>
                     </Ul>
                 </HeaderBox>
             </React.Fragment>
@@ -120,6 +120,17 @@ const Ul = styled.ul`
         font-size : 20px;
         font-weight : bold;
     }
+`;
+
+const LoginButton = styled.button`
+    margin-top:20px;
+    background-color:#FF8F00;
+    width:95%;
+    height:46px;
+    border-radius:5px;
+    border:none;
+    font-weight:bold;
+    font-size:16px;
 `;
 
 export default Header;

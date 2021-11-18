@@ -57,26 +57,26 @@ const Login = () => {
 const LoginBox = styled.div`
     text-align: center;
 
-`;
+`
 
 const IdInputBox = styled.div`
-    margin-bottom: 10px;
+    margin-bottom: 18px;
     margin-top: 30px;
     input{
         width: 328px;
         height: 37px;
         border:1px solid #D5D5D5;
     }
-`;
+`
 
 const PasswordInputBox = styled.div`
-    margin-bottom: 60px;
+    margin-bottom: 18px;
     input{
         width: 328px;
         height: 37px;
         border:1px solid #D5D5D5;
     }
-`;
+`
 
 const LoginButton = styled.button`
     width: 328px;
@@ -86,13 +86,23 @@ const LoginButton = styled.button`
     border: none;
     border-radius: 5px;
     font-size: 15px;
-`;
+    font-weight:bold;
+`
 
 const SignupBox = styled.div`
     button{
         font-size: 13px;
-        border:none;
+        border:2px solid black;
         background-color: white;
+        border-radius:5px;
+        margin-top:18px;
+        width:87%;
+        height:42px;
+        font-size: 15px;
+        font-weight:bold;
     }
-`;
+`
+
+
+
 export default Login;
