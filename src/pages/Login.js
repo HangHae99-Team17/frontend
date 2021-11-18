@@ -47,7 +47,7 @@ const Login = () => {
                 <LoginButton onClick={submitLogin}>로그인하기</LoginButton>
                 <SignupButton onClick={()=>{
                     window.location.replace('/signup');
-                }}>계정이 없어요. 1분만에 가입하기</SignupButton>
+                }}>계정이 없어요. 1분만에 가입하기!!</SignupButton>
             </LoginBox>
         </React.Fragment>
     );
