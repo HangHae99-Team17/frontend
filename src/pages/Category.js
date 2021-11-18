@@ -24,7 +24,7 @@ const Category = ()=>{
             <Ul>
             {all_category.map((item)=>{
                 return(
-                    <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}`)}}><BOX> {item.img}<br/>{item.title}</BOX> </Li>
+                    <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}`)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
                 )
             })}
             </Ul>
@@ -76,5 +76,8 @@ color:black;
 padding-top:22px;
 line-height:25px;
 `
+const BoxImg = styled.div`
+`
+
 
 export default Category;
