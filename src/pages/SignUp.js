@@ -17,12 +17,12 @@ const SignUp = (props) => {
     const [pwlengcheck, setPwLengCheck] = useState(false);
     const [passwordcheck, setPasswordcheck] = useState(false);
 
-    const [emaildisplay,setEmailDisplay] = useState("none");
+    const [emaildisplay,setEmailDisplay] = useState("block");
     const [passworddisplay,setPasswordDisplay] = useState("none");
     const [termsdisplay,setTermsDisplay] = useState("none");
     const [telecomdisplay,setTelecomDisplay]= useState("none");
     const [carddisplay,setCardDisplay] = useState("none");
-    const [typedisplay,setTypeDisplay] = useState("block");
+    const [typedisplay,setTypeDisplay] = useState("none");
 
     const [telecom,setTelecom] = useState("");
     const [cardtype,setCardtype] = useState("");
@@ -238,7 +238,7 @@ const SignUp = (props) => {
     return (
         <React.Fragment>
             <SignUpBox>
-                {/* <EmailBox display={emaildisplay}>
+                <EmailBox display={emaildisplay}>
                     <p>이메일을 입력해주세요.</p>
                     <div>
                         <input type="text" name="email" value={email} onChange={onChange}/>
@@ -317,7 +317,7 @@ const SignUp = (props) => {
                     <div className="nextbutton">
                         <NextButton bgcolor={cardtype?"orange":"gray"} onClick={next}>다음</NextButton>
                     </div>
-                </CardtypeBox> */}
+                </CardtypeBox>
                 <TypeBox display={typedisplay} bgcolor={type1?"orange":"gray"}>
                     <h4>관심있는 3가지 선택하면 끝나요</h4>
                     <InterType mode="signup" type1={type1} type2={type2} type3={type3} typeselect={typeselect} typecancle={typecancle}/>
