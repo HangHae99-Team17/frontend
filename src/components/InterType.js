@@ -64,11 +64,11 @@ const InterType = (props) => {
                 {interests.map((interest) => {
                     if(props.coupontype !== interest.inter_type){
                         return(
-                            <SignUpButton bg="grey" onClick={props.categoryselect} value={interest.inter_type}>{interest.inter_img}<br/>{interest.inter_type}</SignUpButton>
+                            <SignUpButton image={interest.inter_img}  bg="grey" onClick={props.categoryselect} value={interest.inter_type}>{interest.inter_type}</SignUpButton>
                         )
                     }else{
                         return(
-                            <SignUpButton bg="orange" onClick={props.categoryselect} value={interest.inter_type}>{interest.inter_img}<br/>{interest.inter_type}</SignUpButton>
+                            <SignUpButton bg="orange" onClick={props.categoryselect} image={interest.inter_img} value={interest.inter_type}>{interest.inter_type}</SignUpButton>
                         )
                     }
                 })}
@@ -98,7 +98,7 @@ const SignUpButton = styled.button`
     background-color: white;
     color: ${props => props.bg};
     border: solid 1px ${props => props.bg};
-    line-height: 130px;
+    line-height: 140px;
 `;
 
 const InterTypeBox = styled.div`
