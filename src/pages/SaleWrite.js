@@ -148,7 +148,7 @@ const CateGoryBox = styled.div`
 
 const Notice = styled.p`
 font-weight:bold;
-margin:20px 0;
+margin:15px 0 12px 0;
 `
 
 const SaleInfoBox = styled.div`
