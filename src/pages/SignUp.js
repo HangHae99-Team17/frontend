@@ -378,13 +378,14 @@ const TermsBox = styled.div`
 `;
 
 const EmailBox = styled.div`
-    margin-left:35px;
+    margin-left:30px;
     display: ${props => props.display};
     p{
         font-weight: bold;
     }
     input{
-        width: 300px;
+
+        width: 313px;
         height: 37px;
         border-radius: 5px;
         border:1px solid #D5D5D5;
@@ -460,10 +461,9 @@ const TypeBox = styled.div`
 `;
 
 const NextButton = styled.button`
-    margin-left:-15px;
     border-radius: 5px;
     border:none;
-    width:340px;
+    width:320px;
     height:45px;
     color: white;
     background-color:${props => props.bgcolor};

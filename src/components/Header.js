@@ -125,7 +125,7 @@ const Ul = styled.ul`
 const LoginButton = styled.button`
     margin-top:20px;
     background-color:#FF8F00;
-    width:95%;
+    width:93%;
     height:46px;
     border-radius:5px;
     border:none;
