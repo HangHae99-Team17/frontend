@@ -46,6 +46,8 @@ import password_grey from "./password_grey.png";
 import _8_20_grey from "./8_20_grey.png";
 import num_grey from "./num_grey.png";
 import en_grey from "./en_grey.png";
+import done_black from "./done_black.png";
+import done_orange from "./done_orange.png";
 
 export {
     Frame_101,
@@ -95,5 +97,7 @@ export {
     password_grey,
     _8_20_grey,
     num_grey,
-    en_grey
+    en_grey,
+    done_black,
+    done_orange
 };

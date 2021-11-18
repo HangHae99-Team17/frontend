@@ -5,11 +5,12 @@ import styled from 'styled-components';
 import CardType from '../components/CardType';
 import TeleType from '../components/TeleType';
 import InterType from '../components/InterType';
-import {checkgray, checkgray2,password_ora,_8_20_ora,num_ora,en_ora,password_grey,_8_20_grey,num_grey,
+import {done_black,done_orange,password_ora,_8_20_ora,num_ora,en_ora,password_grey,_8_20_grey,num_grey,
 en_grey} from '../image'
 
 const SignUp = (props) => {
     const dispatch = useDispatch();
+    const email_result = useSelector((state)=>state.user.email_check);
     const [emailmsg, setEmailMsg] = useState("");
 
     const [pwNumcheck, setPwNumCheck] = useState(false);
@@ -17,12 +18,14 @@ const SignUp = (props) => {
     const [pwlengcheck, setPwLengCheck] = useState(false);
     const [passwordcheck, setPasswordcheck] = useState(false);
 
-    const [emaildisplay,setEmailDisplay] = useState("none");
+    const [service,setService] = useState(false);
+
+    const [emaildisplay,setEmailDisplay] = useState("block");
     const [passworddisplay,setPasswordDisplay] = useState("none");
     const [termsdisplay,setTermsDisplay] = useState("none");
     const [telecomdisplay,setTelecomDisplay]= useState("none");
     const [carddisplay,setCardDisplay] = useState("none");
-    const [typedisplay,setTypeDisplay] = useState("block");
+    const [typedisplay,setTypeDisplay] = useState("none");
 
     const [telecom,setTelecom] = useState("");
     const [cardtype,setCardtype] = useState("");
@@ -35,34 +38,13 @@ const SignUp = (props) => {
         password: "",
         password1: ""
     });
-    const email_result = useSelector((state)=>state.user.email_check);
+    
+
+    const {email, username, password, password1 } = signup_info;
 
     const onChange = (e) => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
     }
-
-    const {email, username, password, password1 } = signup_info;
-
-    const signup = () => {
-
-        if(!type1&&!type2&&!type3){
-            window.alert("관심사 1개 이상 선택해주세요!");
-            return;
-        }
-        const user_info = {
-            userEmail: email,
-            password: password,
-            nickname:username,
-            telecom:telecom,
-            cardType:cardtype,
-            type1:type1,
-            type2:type2,
-            type3:type3,
-            admin:"",
-            adminToken:""
-        }
-        dispatch(userActions.signupFB(user_info))
-    };
 
     const telecomtypeselect = (e) =>{
         console.log(e.target.value)
@@ -171,6 +153,36 @@ const SignUp = (props) => {
         }
     };
 
+    const signup = () => {
+
+        if(!type1&&!type2&&!type3){
+            window.alert("관심사 1개 이상 선택해주세요!");
+            return;
+        }
+        const user_info = {
+            userEmail: email,
+            password: password,
+            nickname:username,
+            telecom:telecom,
+            cardType:cardtype,
+            type1:type1,
+            type2:type2,
+            type3:type3,
+            admin:"",
+            adminToken:""
+        }
+        dispatch(userActions.signupFB(user_info))
+    };
+
+    const servicecheck = () => {
+        if(!service){
+            setService(true);
+        }else{
+            setService(false);
+        }
+        
+    };
+
     useEffect(()=> {
         
         const emailregEXP = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -204,7 +216,6 @@ const SignUp = (props) => {
         const numregEXP = /[0-9]/g;
         //최소 8 자 최대 10자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자
         if(password){
-            console.log(password.length)
 
             if(password.length >= 8&&password.length < 20){
                 setPwLengCheck(true);
@@ -230,6 +241,10 @@ const SignUp = (props) => {
                 setPasswordcheck(false);
             }
             
+        }else{
+            setPwLengCheck(false);
+            setPwEnCheck(false);
+            setPwNumCheck(false);
         }
     },[password, password1]);
 
@@ -238,7 +253,7 @@ const SignUp = (props) => {
     return (
         <React.Fragment>
             <SignUpBox>
-                {/* <EmailBox display={emaildisplay}>
+                <EmailBox display={emaildisplay}>
                     <p>이메일을 입력해주세요.</p>
                     <div>
                         <input type="text" name="email" value={email} onChange={onChange}/>
@@ -269,39 +284,33 @@ const SignUp = (props) => {
                         <img src={passwordcheck?password_ora:password_grey}/>
                     </div>
                     <div className="nextbutton">
-                        <NextButton onClick={passwordcheck&&next} bgcolor={passwordcheck?"orange":"gray"}>다음</NextButton>
+                        {passwordcheck&&pwEncheck&&pwNumcheck&&pwlengcheck?(
+                            <NextButton onClick={next} bgcolor="orange">다음</NextButton>
+                        ):(
+                            <NextButton bgcolor="grey">다음</NextButton>
+                        )}
                     </div>
                 </PasswordBox>
                 <TermsBox display={termsdisplay}>
-                    <h3>서비스 약관을 확인해주세요.</h3>
-                    <div className="allcheck">
-                        <div>
-                            <img src={checkgray}/>
-                            <span>모두 동의</span>
-                        </div>
+                    <h3>서비스 이용약관에 동의해주세요.</h3>
+                    <div className="checkall">
+                        <img src={service?done_orange:done_black} onClick={servicecheck}/>
+                        <h4>모두 동의하기</h4>
                     </div>
                     <div className="checklist">
                         <ul>
-                            <li>
-                                <img src={checkgray2}/>
-                                <span>[필수] 만 14세 이상</span>
-                            </li>
-                            <li>
-                                <img src={checkgray2}/>
-                                <span>[필수] 이용약관 동의</span>
-                            </li>
-                            <li>
-                                <img src={checkgray2}/>
-                                <span>[필수] 개인정보 처리방침 동의</span>
-                            </li>
-                            <li>
-                                <img src={checkgray2}/>
-                                <span>[선택] 광고성 정보 수신 및 마케팅 활용 동의</span>
-                            </li>
+                            <li><img src={service?done_orange:done_black}/>(필수) 약관 동의</li>
+                            <li><img src={service?done_orange:done_black}/>(필수) 약관 동의</li>
+                            <li><img src={service?done_orange:done_black}/>(선택) 약관 동의</li>
+                            <li><img src={service?done_orange:done_black}/>(선택) 약관 동의</li>
                         </ul>
                     </div>
                     <div className="nextbutton">
-                        <NextButton onClick={next}>다음</NextButton>
+                        {service?(
+                        <NextButton onClick={next} bgcolor="orange">다음</NextButton>
+                        ):(
+                        <NextButton bgcolor="grey">다음</NextButton>
+                        )}
                     </div>
                 </TermsBox>
                 <TelecomBox display={telecomdisplay} bgcolor={telecom?"orange":"gray"}>
@@ -317,7 +326,7 @@ const SignUp = (props) => {
                     <div className="nextbutton">
                         <NextButton bgcolor={cardtype?"orange":"gray"} onClick={next}>다음</NextButton>
                     </div>
-                </CardtypeBox> */}
+                </CardtypeBox>
                 <TypeBox display={typedisplay} bgcolor={type1?"orange":"gray"}>
                     <h4>관심있는 3가지 선택하면 끝나요</h4>
                     <InterType mode="signup" type1={type1} type2={type2} type3={type3} typeselect={typeselect} typecancle={typecancle}/>
@@ -338,36 +347,30 @@ const SignUpBox = styled.div`
 const TermsBox = styled.div`
     margin-left:30px;
     display: ${props => props.display};
-    p{
-        float:left;
-        margin-left:15px;
-        font-weight: bold;
-    }
-    .allcheck{
-        border-bottom: solid 1px grey;
-        width: 328px;
-        div{
-            display:flex;
-            align-items: center;
-            margin-bottom:10px;
-            span{
-                font-size: 13px;
-                margin-left: 5px;
-                color:grey;
-            }
+    .checkall{
+        padding-left:15px;
+        border-radius: 5px;
+        border: 1px solid #D5D5D5;
+        width: 300px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        img{
+            margin-right:10px;
         }
     }
-    
     .checklist{
         ul{
-            margin-left:-20px;
+            margin-left:-25px;
             list-style:none;
             li{
+                display:flex;
+                align-items: center;
                 margin-bottom:10px;
-                span{
-                    margin-left:10px;
-                    color:grey;
-                    font-size: 13px;
+                font-size:13px;
+                color: grey;
+                img{
+                    margin-right:10px;
                 }
             }
         }
@@ -407,6 +410,9 @@ const PasswordBox = styled.div`
             width: 328px;
             height: 37px;
             border:none;
+        }
+        input:focus {
+            outline:none;
         }
     }
     .pwtitle{
