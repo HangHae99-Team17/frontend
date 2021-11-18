@@ -37,22 +37,23 @@ const Login = () => {
     return (
         <React.Fragment>
             <LoginBox>
+                <h3>계정이 있으신가요?</h3>
                 <IdInputBox>
-                    <input type="text" placeholder="아이디(이메일)" name="email" value={email} onChange={onChange}/>
+                    <input type="text" placeholder="이메일" name="email" value={email} onChange={onChange}/>
                 </IdInputBox>
                 <PasswordInputBox>
                     <input type="password" placeholder="비밀번호" name="password" value={password} onChange={onChange}/>
                 </PasswordInputBox>
                 <LoginButton onClick={submitLogin}>로그인하기</LoginButton>
-                <SignupBox>
-                    <button onClick={()=>{
-                        window.location.replace('/signup');
-                    }}>회원가입</button>
-                </SignupBox>
+                <SignupButton onClick={()=>{
+                    window.location.replace('/signup');
+                }}>계정이 없어요. 1분만에 가입하기</SignupButton>
             </LoginBox>
         </React.Fragment>
     );
 };
+
+
 
 const LoginBox = styled.div`
     text-align: center;
@@ -65,7 +66,11 @@ const IdInputBox = styled.div`
     input{
         width: 328px;
         height: 37px;
+        border-radius: 5px;
         border:1px solid #D5D5D5;
+    }
+    input:focus{
+        outline:2px solid orange;
     }
 `;
 
@@ -74,7 +79,11 @@ const PasswordInputBox = styled.div`
     input{
         width: 328px;
         height: 37px;
+        border-radius: 5px;
         border:1px solid #D5D5D5;
+    }
+    input:focus{
+        outline:2px solid orange;
     }
 `;
 
@@ -86,13 +95,17 @@ const LoginButton = styled.button`
     border: none;
     border-radius: 5px;
     font-size: 15px;
+    margin-bottom: 20px;
 `;
 
-const SignupBox = styled.div`
-    button{
-        font-size: 13px;
-        border:none;
-        background-color: white;
-    }
+const SignupButton = styled.button`
+    width: 328px;
+    height: 45px;
+    background-color: white;
+    color: orange;
+    border: 1px solid orange;
+    border-radius: 5px;
+    font-size: 15px;
 `;
+
 export default Login;
