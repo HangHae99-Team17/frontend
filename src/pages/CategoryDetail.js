@@ -20,21 +20,16 @@ const CategoryDetail = (props) => {
     const [isAsc,setIsAsc] = useState(true)
     // 리덕스에있는 데이터 불러오기(리듀서 정보_hasMore,pagingList)
     const DcInfoList = useSelector((state) => state.main.pagingList)
-      console.log(DcInfoList)
+      console.log(DcInfoList,sortBy,isAsc)
     const hasMore =  useSelector((state) => state.main.hasMore)
-    console.log(hasMore)
+    console.log(hasMore,isAsc)
 
     React.useEffect(() => {
       // 내가 넘겨줄 값들 _ 타입, 현재 페이지, 몇개보여줄건지, 정렬기준,isAsc
-      dispatch(listCreators.getListMW(type,page,7,sortBy,isAsc));
+      dispatch(listCreators.getListMW(type,page,6,sortBy,isAsc));
       // 페이지 상태 변화
       setPage(page + 1);
-      console.log(page);
-      if(sortBy=="couponLike"){
-        dispatch(listCreators.getListMW(type,page,7,sortBy,isAsc));
-        console.log("안녕")
-      }
-      }, [sortBy]);
+      }, [sortBy,]);
 
 
 
@@ -56,16 +51,24 @@ return(
         <P>다 모아두었어요</P>
         </div>
         <SortBy>
-          <SortImg src ={couponCreate}  onClick={()=>{setSortBy("couponCreate");}}/>
-          <SortImg src ={couponDespire} onClick={()=>{ setSortBy("couponDespire");}}/>
-          <SortImg src ={couponRank}  onClick={()=>{setSortBy("couponLike");setIsAsc(false);console.log(sortBy)}}/>
+          <SortImg src ={couponCreate} />
+          <SortImg src ={couponDespire} />
+          <SortImg src ={couponRank} 
+          onClick={()=>{
+            setSortBy("couponLike");
+            setIsAsc(false);
+            console.log(sortBy,isAsc);
+            // dispatch(listCreators.getListMW(type,page,2,sortBy,isAsc));
+            setPage(page + 1);
+            }}/>
         </SortBy>
   {DcInfoList?
     <InfiniteScroll
     dataLength={DcInfoList.length}
     next={fetchPaging}
     hasMore={hasMore}
-    loader={<h4>Loading ...</h4>}>  
+    loader={hasMore?<h4 style={{marginLeft : "16px"}}>다음 할인이 궁금하다면 스크롤을 내려주세요!</h4>:
+        <h4 style={{marginLeft : "16px"}}>아쉽게도 더이상의 할인이 없네요</h4>}>  
       <DcBox>
         {
         DcInfoList?.map((item) => {

@@ -20,7 +20,7 @@ const initialState = {
   // 무한스크롤 초기값 설정
   hasMore : true,
   loading : true,
-  pagingList : []
+  pagingList : [],
 };
 
 // 리스트 가지고 오는 미들웨어_백에서 받아올땐 시간이 걸리기 때문에 async사용

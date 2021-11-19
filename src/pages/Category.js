@@ -24,7 +24,7 @@ const Category = ()=>{
             <Ul>
             {all_category.map((item)=>{
                 return(
-                    <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}?page=1&size=6&sortBy=couponDespire&isAsc=true`);history.go(0);}}><BOX> {item.img}<br/>{item.title}</BOX> </Li>
+                    <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}`);history.go(0);}}><BOX> {item.img}<br/>{item.title}</BOX> </Li>
                 )
             })}
             </Ul>

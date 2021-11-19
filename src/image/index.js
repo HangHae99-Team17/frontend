@@ -41,6 +41,14 @@ import citi from "./citi.png";
 import couponDespire from './couponDespire.png';
 import couponRank from './couponRank.png';
 import couponCreate from './couponCreate.png'
+import password_ora from "./password_ora.png";
+import _8_20_ora from "./8_20_ora.png";
+import num_ora from "./num_ora.png";
+import en_ora from "./en_ora.png";
+import password_grey from "./password_grey.png";
+import _8_20_grey from "./8_20_grey.png";
+import num_grey from "./num_grey.png";
+import en_grey from "./en_grey.png";
 
 export {couponCreate,
     couponRank,
@@ -84,5 +92,13 @@ export {couponCreate,
     toss,
     kakao,
     hana,
-    citi
+    citi,
+    password_ora,
+    _8_20_ora,
+    num_ora,
+    en_ora,
+    password_grey,
+    _8_20_grey,
+    num_grey,
+    en_grey
 };

@@ -45,7 +45,7 @@ const MainCoupon = (props) => {
     return (
         <div>
             <Wrap>
-                <Box onClick={()=>{history.push(`api/detail/${props.id}`)}}>
+                <Box onClick={()=>{history.push(`/api/detail/${props.id}`)}}>
                     <ImgBox>
                         <img src={props.companyLogo}/>
                     </ImgBox>
