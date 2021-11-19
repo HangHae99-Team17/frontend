@@ -42,9 +42,8 @@ font-size:18px;
 margin: 0 auto;
 width:355px;
 font-weight:bold;
-padding-top:15px;
-padding-bottom:15px;
-padding-left:20px;
+padding-bottom:10px;
+padding-left:15px;
 line-height:30px;
 `
 

@@ -55,7 +55,7 @@ const InterType = (props) => {
                         )
                     }else{
                         return(
-                            <UserEditButton bg="orange" onClick={props.typecancle} value={interest.inter_type}>{interest.inter_type}</UserEditButton>
+                            <UserEditButton bg="orange" color="orange" onClick={props.typecancle} value={interest.inter_type}>{interest.inter_type}</UserEditButton>
                         )
                     }
                 })}

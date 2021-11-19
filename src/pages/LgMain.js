@@ -58,7 +58,7 @@ return(is_login?(
 }
 
 const Title = styled.div`
-margin-top : 20px;
+margin : 15px;
 `
 const TypeTitle = styled.p`
 margin : 5px 0 0 16px ;
@@ -69,10 +69,12 @@ const DcList = styled.div`
 border : 1px solid #fff ; 
 cursor : pointer;
 display : flex;
+
 `
 const DcWrap = styled.div`
 margin : 10px 16px ;
 position : relative;
+
 `
 const DcInfo = styled.div`
 margin : 0 15px;

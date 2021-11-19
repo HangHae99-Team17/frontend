@@ -82,7 +82,7 @@ width : 50px;
 height : 50px;
 border : 1px solid #DADADA;
 border-radius : 4px;
-margin : 16px;
+margin : 16px 20px;
 `
 const Title = styled.p`
 font-size :14px;
@@ -97,8 +97,8 @@ const Bookmarker = styled.div`
 width : 18px;
 height : 18px;
 position :absolute;
-top : 30px;
-right : 20px;
+top : 29px;
+right : 24px;
 `
 const Strong = styled.span`
 color : #F09643;

@@ -43,14 +43,16 @@ const InterestType = (props) => {
 
 const Bar = styled.li`
 display : inline-block;
-margin : 0 16px;
+margin : 0 auto;
 cursor : pointer;
-font-size : 16px;
+font-size : 15px;
 font-weight : 600 ;
+
 `
 const BarWrap = styled.ul`
-width : 375px;
-padding-left : 16px;
+width : 350px;
+display:flex;
+padding-left:15px;
 `
 const Line = styled.hr`
 width : 100%;

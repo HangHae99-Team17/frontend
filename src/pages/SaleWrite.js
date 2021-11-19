@@ -175,6 +175,9 @@ border:none;
 border-bottom:1px solid #E4E4E4;
 height:30px;
 margin:6px 0;
+:focus{
+    border:1px solid #FF8F00;
+}
 :valid{
         outline:none;
         border-bottom:1px solid #FF8F00;
@@ -182,12 +185,15 @@ margin:6px 0;
 `;
 
 const InputSmall = styled.input`
-width:43%;
+width:41%;
 color:#FF8F00;
 border:none;
 border-bottom:1px solid #E4E4E4;
 height:30px;
-margin:5px 18px 5px 0px;
+margin:5px 20px 5px 0px;
+:focus{
+    border:1px solid #FF8F00;
+}
 :valid{
     outline:none;
     border-bottom:1px solid #FF8F00;
@@ -203,6 +209,9 @@ height:30px;
 margin:10px 0;
 line-height:20px;
 height:140px;
+:focus{
+    border:1px solid #FF8F00;
+}
 :focus{
     outline:none;
     border-bottom:1px solid #FF8F00;
