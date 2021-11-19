@@ -16,10 +16,10 @@ const EditUser = (props) => {
     const [type1,setType1] = useState("");
     const [type2,setType2] = useState("");
     const [type3,setType3] = useState("");
-    
+
     const PassChange = (e) =>{
         setPassword(e.target.value)
-    }
+    };
 
     const cardtypetypeselect = (e) => {
         if(e.target.value === cardtype){
@@ -27,7 +27,7 @@ const EditUser = (props) => {
         }else{
             setCardtype(e.target.value);
         }
-    }
+    };
 
     const telecomtypeselect = (e) =>{
         if(e.target.value === telecom){
@@ -37,36 +37,42 @@ const EditUser = (props) => {
         }
     };
 
+    
     const typeselect = (e) => {
-        if(type1 === "" && type2 === "" && type3 === ""){
+        
+        console.log(e.target.value);
+        
+        console.log(type1)
+        console.log(type2)
+        console.log(type3)
+        if(!type1 && !type2 && !type3){
             setType1(e.target.value);
         }
 
-        if(type1 && type2 === "" && type3 === ""){
+        if(type1 && !type2 && !type3){
             setType2(e.target.value);
         }
 
-        if(type1 === "" && type2 && type3 === ""){
+        if(!type1 && type2 && !type3){
             setType1(e.target.value);
         }
 
-        if(type1 === "" && type2 === "" && type3){
+        if(!type1 && !type2 && type3){
             setType1(e.target.value);
         }  
 
-        if(type1 === "" && type2 && type3){
+        if(!type1 && type2 && type3){
             setType1(e.target.value);
         }
         
-        if(type1 && type2 === "" && type3){
+        if(type1 && !type2 && type3){
             setType2(e.target.value);
         }
         
-        if(type1 && type2 && type3 === ""){
+        if(type1 && type2 && !type3){
             setType3(e.target.value);
         }
-    }
-
+    };
 
     const typecancle = (e) => {
         if(e.target.value === type1){
@@ -78,7 +84,7 @@ const EditUser = (props) => {
         if(e.target.value === type3){
             setType3("");
         }
-    }
+    };
 
     useEffect(()=>{
         if(user_info){
@@ -114,29 +120,30 @@ const EditUser = (props) => {
     return (
         <React.Fragment>
             <EditUserBox>
-                <div>
-                    <p>내 정보 수정</p>
-                    <p>{userid}</p>
-                </div>
-                <div>
-                    <p>비밀번호</p>
-                    <input type="password" value={password} onChange={PassChange}/>
-                </div>
-                <div>
-                    <p>통신사 변경</p>
+                <GridBox>
+                    <Notice>내 정보 수정</Notice>
+                    <Notice>{userid}</Notice>
+                </GridBox>
+                <PasswordBox>
+                    
+                <Notice>비밀번호 변경</Notice>
+                    <PasswordInput type="password" required="required" placeholder="비밀번호 확인" value={password} onChange={PassChange}/>
+                </PasswordBox>
+                <GridBox>
+                    <Notice>통신사 변경</Notice>
                     <TeleType mode="useredit" telecom={telecom} telecomtypeselect={telecomtypeselect}/>
-                </div>
-                <div>
-                    <p>카드사 변경</p>
+                </GridBox>
+                <GridBox>
+                    <Notice>카드사 변경</Notice>
                     <CardType mode="useredit" cardtype={cardtype} cardtypetypeselect={cardtypetypeselect}/>
-                </div>
-                <div>
-                    <p>관심사 변경</p>
+                </GridBox>
+                <GridBox>
+                    <Notice>관심사 변경</Notice>
                     <InterType mode="useredit" type1={type1} type2={type2} type3={type3} typeselect={typeselect} typecancle={typecancle}/>
-                </div>
-                <div>
-                    <button onClick={editUser}>변경사항 저장하기</button>
-                </div>
+                </GridBox>
+                <GridBox>
+                    <Button onClick={editUser}>변경사항 저장하기</Button>
+                </GridBox>
             </EditUserBox>
         </React.Fragment>
     );
@@ -147,7 +154,48 @@ const EditUser = (props) => {
 const EditUserBox = styled.div`
     width: 375px;
     margin:0 auto;
+`
 
+const GridBox = styled.div`
+width:100%;
+margin: 0 auto;
+`
+
+const PasswordBox = styled.div`
+width:100%;
+margin: 10px auto;
+`
+
+const PasswordInput = styled.input`
+width:88%;
+color:#FF8F00;
+border:none;
+border-bottom:1px solid #E4E4E4;
+color:#E4E4E4;
+height:30px;
+margin-left:20px;
+font-size:16px;
+border-radius:5px;
+:valid{
+    border-bottom:1px solid orange;
+    color:orange;
+}
+`
+const Notice = styled.p`
+width:88%;
+margin: 15px auto;
+font-weight:bold;
+`
+const Button = styled.div`
+width:90%;
+height:40px;
+margin: 7px auto;
+font-weight:bold;
+background-color:#FF8F00;
+border-radius:5px;
+text-align:center;
+color:white;
+line-height:38px;
 `
 
 

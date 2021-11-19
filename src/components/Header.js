@@ -50,16 +50,22 @@ const Header = (props) => {
                         <li onClick={()=>{history.push('/category');setOpen(!open)}}>카테고리</li>
                         <li onClick={()=>{if(is_login){
                             history.push('/salebox');setOpen(!open)}
-                            else{alert("로그인이 필요한 서비스입니다!")}}}>보관함</li>
+                            else{alert("로그인이 필요한 서비스입니다!")
+                            history.push('/login')
+                            setOpen(!open)}}}>보관함</li>
                         <li onClick={()=>{if(is_login){
                             history.push('/edituser');setOpen(!open)}
-                            else{alert("로그인이 필요한 서비스입니다!")}}}>마이페이지</li>
+                            else{alert("로그인이 필요한 서비스입니다!")
+                            history.push('/login')
+                            setOpen(!open)}}}>마이페이지</li>
                         <li onClick={()=>{
                             if(is_login){
                             history.push('/api/main');setOpen(!open)}
-                            else{alert("로그인이 필요한 서비스입니다!")}}}>나의 카테고리</li>
+                            else{alert("로그인이 필요한 서비스입니다!")
+                            history.push('/login')
+                            setOpen(!open)}}}>나의 카테고리</li>
                         <LoginButton onClick={()=>{
-                            window.location.replace('/signup');
+                            history.push('/signup');
                             setOpen(!open)}}>회원가입
                         </LoginButton>
                     </Ul>

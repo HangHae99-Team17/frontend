@@ -33,11 +33,11 @@ const TeleType = (props) => {
                 {tels.map((tel) => {
                     if(props.telecom === tel.tel_name){
                         return(
-                            <UserEditButton bg="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</UserEditButton>
+                            <UserEditButton bg="orange" color="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</UserEditButton>
                         )
                     }else{
                         return(
-                            <UserEditButton bg="grey" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</UserEditButton>
+                            <UserEditButton bg="#E4E4E4" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</UserEditButton>
                         )
                     }
                 })}
@@ -48,9 +48,13 @@ const TeleType = (props) => {
 };
 
 const UserEditButton = styled.button`
-height:50px;
+height:48px;
 width:100px;
-border-radius:7px;
+border-radius:4px;
+background-color:white;
+color: ${props => props.color};
+border: solid 1px ${props => props.bg};
+margin-bottom:10px;
 `;
 
 const SignUpButton = styled.button`
