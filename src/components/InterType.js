@@ -19,6 +19,7 @@ const InterType = (props) => {
         {inter_id:11,inter_type:"생활",inter_img:gift},
     ]
     
+    
     if(props.mode === "signup"){
         return (
             <React.Fragment>
@@ -45,8 +46,12 @@ const InterType = (props) => {
                 <InterTypeBox>
                 {interests.map((interest) => {
                     if(props.type1 !== interest.inter_type && props.type2 !== interest.inter_type && props.type3 !== interest.inter_type){
+                        
+                        console.log("props.type1",props.type1)
+                        console.log("props.type2",props.type2)
+                        console.log("props.type3",props.type3)
                         return(
-                            <UserEditButton bg="grey" onClick={props.typeselect} value={interest.inter_type}>{interest.inter_type}</UserEditButton>
+                            <UserEditButton bg="#E4E4E4" onClick={props.typeselect} value={interest.inter_type}>{interest.inter_type}</UserEditButton>
                         )
                     }else{
                         return(
@@ -63,12 +68,14 @@ const InterType = (props) => {
                 <InterTypeBox>
                 {interests.map((interest) => {
                     if(props.coupontype !== interest.inter_type){
+                        
                         return(
-                            <SignUpButton image={interest.inter_img}  bg="grey" onClick={props.categoryselect} value={interest.inter_type}>{interest.inter_type}</SignUpButton>
+                            <SignUpButton image={interest.inter_img} bg="grey" onClick={props.categoryselect} value={interest.inter_type}>{interest.inter_type}</SignUpButton>
+                            
                         )
                     }else{
                         return(
-                            <SignUpButton bg="orange" onClick={props.categoryselect} image={interest.inter_img} value={interest.inter_type}>{interest.inter_type}</SignUpButton>
+                            <SignUpButton bg="orange" color="orange" onClick={props.categoryselect} image={interest.inter_img} value={interest.inter_type}>{interest.inter_type}</SignUpButton>
                         )
                     }
                 })}
@@ -78,12 +85,14 @@ const InterType = (props) => {
     }
 };
 
-
 const UserEditButton = styled.button`
+height:48px;
 width:100px;
-height:50px;
-border-radius:8px;
-margin-top:15px;
+border-radius:4px;
+background-color:white;
+margin-bottom:10px;
+color: ${props => props.color};
+border: solid 1px ${props => props.bg};
 `;
 
 const SignUpButton = styled.button`

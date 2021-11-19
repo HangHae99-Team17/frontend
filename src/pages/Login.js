@@ -39,10 +39,10 @@ const Login = () => {
             <LoginBox>
                 <h3>계정이 있으신가요?</h3>
                 <IdInputBox>
-                    <input type="text" placeholder="이메일" name="email" value={email} onChange={onChange}/>
+                    <input type="text" placeholder="이메일" required="required" name="email" value={email} onChange={onChange}/>
                 </IdInputBox>
                 <PasswordInputBox>
-                    <input type="password" placeholder="비밀번호" name="password" value={password} onChange={onChange}/>
+                    <input type="password" placeholder="비밀번호" required="required" name="password" value={password} onChange={onChange}/>
                 </PasswordInputBox>
                 <LoginButton onClick={submitLogin}>로그인하기</LoginButton>
                 <SignupButton onClick={()=>{
@@ -72,6 +72,10 @@ const IdInputBox = styled.div`
     input:focus{
         outline:2px solid orange;
     }
+    
+    input:valid{
+        outline:2px solid orange;
+    }
 `;
 
 const PasswordInputBox = styled.div`
@@ -83,6 +87,10 @@ const PasswordInputBox = styled.div`
         border:1px solid #D5D5D5;
     }
     input:focus{
+        outline:2px solid orange;
+    }
+    
+    input:valid{
         outline:2px solid orange;
     }
 `;

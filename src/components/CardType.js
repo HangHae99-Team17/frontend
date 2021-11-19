@@ -43,12 +43,12 @@ const CardType = (props) => {
                 <CardTypeBox>
                     {cards.map((card) => {
                         if(props.cardtype === card.card_name){
-                            return(
-                                <UserEditButton className="usereditbutton" bg="orange" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_name}</UserEditButton>
+                                                        return(
+                                <UserEditButton className="usereditbutton" bg="orange" color="orange" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_name}</UserEditButton>
                             )
                         }else{
                             return(
-                                <UserEditButton className="usereditbutton" bg="grey" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_name}</UserEditButton>
+                                <UserEditButton className="usereditbutton" bg="#E4E4E4" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_name}</UserEditButton>
                             )
                         }
                     })}
@@ -68,14 +68,17 @@ const CardTypeBox = styled.div`
 `;
 
 const UserEditButton = styled.button`
+height:48px;
 width:100px;
-height:50px;
-border-radius:8px;
-margin-top:15px;
+border-radius:4px;
+background-color:white;
+color: ${props => props.color};
+border: solid 1px ${props => props.bg};
+margin-bottom:10px;
 `;
 
 const SignUpButton = styled.button`
-    background-position: 33px 20px;
+    background-position: 50% 35%;
     background-repeat: no-repeat;
     background-image: url(${props => props.image});
     line-height: 140px;
