@@ -1,4 +1,3 @@
-import { Dispatch } from "react-redux";
 import { createAction, handleActions } from 'redux-actions';
 import {apis} from '../../common/axios';
 import { produce } from 'immer';

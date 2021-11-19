@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { history } from '../redux/configureStore';
 import styled from 'styled-components';
 import { cup, airplane, bicycle, cart, film_frame, gift, hamburger, house, knive_fork, monitor2, scissors, t_shirt } from '../image';
@@ -24,7 +24,7 @@ const Category = ()=>{
             <Ul>
             {all_category.map((item)=>{
                 return(
-                    <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}`)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
+                    <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}`);history.go(0)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
                 )
             })}
             </Ul>

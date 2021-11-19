@@ -60,10 +60,10 @@ const Header = (props) => {
                             setOpen(!open)}}}>마이페이지</li>
                         <li onClick={()=>{
                             if(is_login){
-                            history.push('/api/main');setOpen(!open)}
-                            else{alert("로그인이 필요한 서비스입니다!")
-                            history.push('/login')
-                            setOpen(!open)}}}>나의 카테고리</li>
+                            history.push('/api/main');setOpen(!open); 
+                            history.go(0)}
+                            else{alert("로그인이 필요한 서비스입니다!");
+                            history.push('/login');}}}>나의 카테고리</li>
                         <LoginButton onClick={()=>{
                             history.push('/signup');
                             setOpen(!open)}}>회원가입
