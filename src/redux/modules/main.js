@@ -62,20 +62,20 @@ export default handleActions(
         if(action.payload !== undefined) {
           // 데이터가 있다면 true를, 없다면 이라면 false를 반환(조건 삼항연산자)
           // 다음 페이지가 있는지 확인
-          draft.hasMore = action.payload?.main?.length!==0? true : false
+          draft.hasMore = action.payload?.main?.length==0? false : true
         }
         else{
           draft.hasMore = false
         }
         console.log(draft.pagingList)
         // hasMore가 false라면 빈 배열을, true면 list의 데이터가 포함된 배열을 반환한다.
-        draft.pagingList = draft.hasMore!==true?draft.pagingList : draft.pagingList.concat(action.payload.list)
+        draft.pagingList = draft.hasMore==false?draft.pagingList : draft.pagingList.concat(action.payload.list)
       }),
     [GET_DCLIST]:(state,action) => 
       produce(state,(draft)=>{
         draft.rank = action.payload.rank;
       }),
-    [ADD_ZZIM]:(state,action) => 
+    [ADD_ZZIM]:(state,action) =>
       produce(state,(draft)=>{
         let idx = draft.rank.data.findIndex((p) => p.id === action.payload.coupon_id);
         if(action.payload.zzim){

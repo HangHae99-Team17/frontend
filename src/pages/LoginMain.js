@@ -3,7 +3,6 @@ import {useSelector, useDispatch} from 'react-redux'
 import styled from 'styled-components'
 import { history } from "../redux/configureStore";
 import { listCreators } from '../redux/modules/main';
-import { actionCreators } from '../redux/modules/user';
 import MainCoupon from '../components/MainCoupon';
 
 
@@ -78,9 +77,10 @@ const LoginMain = () => {
 
         {
         type2?.map((item) => {
+          console.log(item)
           return (
             <DcList>
-              <MainCoupon {...item}/>
+              <MainCoupon key={item?.id} {...item}/>
             </DcList>
         );
         })

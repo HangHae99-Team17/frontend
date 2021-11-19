@@ -47,8 +47,8 @@ const SaleBox = () => {
 
 const Notice = styled.div`
 font-weight: bold;
-font-size:20px;
-padding: 20px;
+font-size:18px;
+padding: 10px 18px;
 `
 
 const Couponbox = styled.div`

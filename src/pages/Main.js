@@ -27,8 +27,9 @@ const Main = ()=>{
 }
 
 const P = styled.p`
-margin : 10px 0 0 16px;
-font-size : 20px;
+margin : 0 0 0 22px;
+font-size : 18x;
 font-weight : 700;
+line-height:28px;
 `
 export default Main;

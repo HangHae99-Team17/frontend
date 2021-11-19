@@ -20,22 +20,22 @@ const CategoryDetail = (props) => {
     const [isAsc,setIsAsc] = useState(true)
     // 리덕스에있는 데이터 불러오기(리듀서 정보_hasMore,pagingList)
     const DcInfoList = useSelector((state) => state.main.pagingList)
-      console.log(DcInfoList,sortBy,isAsc)
+      console.log(DcInfoList,page,sortBy)
     const hasMore =  useSelector((state) => state.main.hasMore)
-    console.log(hasMore,isAsc)
+    console.log(hasMore)
 
     React.useEffect(() => {
       // 내가 넘겨줄 값들 _ 타입, 현재 페이지, 몇개보여줄건지, 정렬기준,isAsc
+      console.log(sortBy,isAsc,type,page);        
       dispatch(listCreators.getListMW(type,page,6,sortBy,isAsc));
-      // 페이지 상태 변화
-      setPage(page + 1);
-      }, [sortBy,]);
+      }, [sortBy]);
 
 
 
       // 스크롤이 마지막에 닿았을때 다음 페이지로 이동시켜주는 함수
       const fetchPaging = () => {
-        setPage(page+1)
+        // 페이지 상태 변화
+        setPage(page + 1)
         setTimeout(() => {
             if(hasMore){
               dispatch(listCreators.getListMW(type,page,2,sortBy,isAsc));
@@ -51,15 +51,20 @@ return(
         <P>다 모아두었어요</P>
         </div>
         <SortBy>
-          <SortImg src ={couponCreate} />
-          <SortImg src ={couponDespire} />
+          <SortImg src ={couponCreate} 
+            onClick={()=>{
+              setSortBy("couponCreate");
+              setIsAsc(true);
+            }}/>
+          <SortImg src ={couponDespire} 
+            onClick={()=>{
+              setSortBy("couponDespire");
+              setIsAsc(true);
+            }}/>
           <SortImg src ={couponRank} 
-          onClick={()=>{
-            setSortBy("couponLike");
-            setIsAsc(false);
-            console.log(sortBy,isAsc);
-            // dispatch(listCreators.getListMW(type,page,2,sortBy,isAsc));
-            setPage(page + 1);
+            onClick={()=>{
+              setSortBy("couponLike");
+              setIsAsc(false);
             }}/>
         </SortBy>
   {DcInfoList?

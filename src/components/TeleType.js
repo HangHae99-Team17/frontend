@@ -6,9 +6,9 @@ import { skt, kt, lg } from '../image';
 const TeleType = (props) => {
 
     const tels = [
-        {tel_id:0,tel_name:"SKT",tel_img:<img src={skt}/>},
-        {tel_id:1,tel_name:"KT",tel_img:<img src={kt}/>},
-        {tel_id:2,tel_name:"LG",tel_img:<img src={lg}/>},
+        {tel_id:0,tel_name:"SKT",tel_img:skt},
+        {tel_id:1,tel_name:"KT",tel_img:kt},
+        {tel_id:2,tel_name:"LG",tel_img:lg},
     ]
 
     if(props.mode==="signup"){
@@ -17,11 +17,11 @@ const TeleType = (props) => {
                 {tels.map((tel) => {
                     if(props.telecom === tel.tel_name){
                         return(
-                            <SignUpButton bg="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_img}<br/><br/>{tel.tel_name}</SignUpButton>
+                            <SignUpButton image={tel.tel_img} bg="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</SignUpButton>
                         )
                     }else{
                         return(
-                            <SignUpButton bg="grey" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_img}<br/><br/>{tel.tel_name}</SignUpButton>
+                            <SignUpButton image={tel.tel_img} bg="grey" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</SignUpButton>
                         )
                     }
                 })}
@@ -33,11 +33,11 @@ const TeleType = (props) => {
                 {tels.map((tel) => {
                     if(props.telecom === tel.tel_name){
                         return(
-                            <UserEditButton bg="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</UserEditButton>
+                            <UserEditButton bg="orange" color="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</UserEditButton>
                         )
                     }else{
                         return(
-                            <UserEditButton bg="grey" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</UserEditButton>
+                            <UserEditButton bg="#E4E4E4" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</UserEditButton>
                         )
                     }
                 })}
@@ -48,12 +48,20 @@ const TeleType = (props) => {
 };
 
 const UserEditButton = styled.button`
-height:50px;
+height:48px;
 width:100px;
-border-radius:7px;
+border-radius:4px;
+background-color:white;
+color: ${props => props.color};
+border: solid 1px ${props => props.bg};
+margin-bottom:10px;
 `;
 
 const SignUpButton = styled.button`
+    background-position: 33px 20px;
+    background-repeat: no-repeat;
+    background-image: url(${props => props.image});
+    line-height: 140px;
     margin-bottom: 15px;
     border: none;
     width:99px;
@@ -66,7 +74,6 @@ const SignUpButton = styled.button`
 
 const TeleTypeBox = styled.div`
     display:flex;
-    margin: 0 auto;
     width: 375px;
     flex-wrap: wrap;
     justify-content:space-evenly;

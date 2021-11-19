@@ -5,18 +5,18 @@ import { shinhan, hyundai, samsung, kb, lotte, woori, nh, bc, toss, kakao, hana,
 const CardType = (props) => {
     
     const cards = [
-        {card_id:0,card_name:"신한카드",card_img:<img src={shinhan}/>},
-        {card_id:1,card_name:"현대카드",card_img:<img src={hyundai}/>},
-        {card_id:2,card_name:"삼성카드",card_img:<img src={samsung}/>},
-        {card_id:3,card_name:"국민카드",card_img:<img src={kb}/>},
-        {card_id:4,card_name:"롯데카드",card_img:<img src={lotte}/>},
-        {card_id:5,card_name:"하나카드",card_img:<img src={hana}/>},
-        {card_id:6,card_name:"우리카드",card_img:<img src={woori}/>},
-        {card_id:7,card_name:"농협카드",card_img:<img src={nh}/>},
-        {card_id:8,card_name:"씨티카드",card_img:<img src={citi}/>},
-        {card_id:9,card_name:"BC카드",card_img:<img src={bc}/>},
-        {card_id:10,card_name:"토스카드",card_img:<img src={toss}/>},
-        {card_id:11,card_name:"카카오카드",card_img:<img src={kakao}/>},
+        {card_id:0,card_name:"신한카드",card_img:shinhan},
+        {card_id:1,card_name:"현대카드",card_img:hyundai},
+        {card_id:2,card_name:"삼성카드",card_img:samsung},
+        {card_id:3,card_name:"국민카드",card_img:kb},
+        {card_id:4,card_name:"롯데카드",card_img:lotte},
+        {card_id:5,card_name:"하나카드",card_img:hana},
+        {card_id:6,card_name:"우리카드",card_img:woori},
+        {card_id:7,card_name:"농협카드",card_img:nh},
+        {card_id:8,card_name:"씨티카드",card_img:citi},
+        {card_id:9,card_name:"BC카드",card_img:bc},
+        {card_id:10,card_name:"토스카드",card_img:toss},
+        {card_id:11,card_name:"카카오카드",card_img:kakao},
     ]
 
     if(props.mode==="signup"){
@@ -26,11 +26,11 @@ const CardType = (props) => {
                     {cards.map((card) => {
                         if(props.cardtype === card.card_name){
                             return(
-                                <SignUpButton className="signupbutton" bg="orange" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_img}<br/>{card.card_name}</SignUpButton>
+                                <SignUpButton image={card.card_img} className="signupbutton" bg="orange" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_name}</SignUpButton>
                             )
                         }else{
                             return(
-                                <SignUpButton className="signupbutton" bg="grey" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_img}<br/>{card.card_name}</SignUpButton>
+                                <SignUpButton image={card.card_img} className="signupbutton" bg="grey" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_name}</SignUpButton>
                             )
                         }
                     })}
@@ -43,12 +43,12 @@ const CardType = (props) => {
                 <CardTypeBox>
                     {cards.map((card) => {
                         if(props.cardtype === card.card_name){
-                            return(
-                                <UserEditButton className="usereditbutton" bg="orange" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_name}</UserEditButton>
+                                                        return(
+                                <UserEditButton className="usereditbutton" bg="orange" color="orange" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_name}</UserEditButton>
                             )
                         }else{
                             return(
-                                <UserEditButton className="usereditbutton" bg="grey" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_name}</UserEditButton>
+                                <UserEditButton className="usereditbutton" bg="#E4E4E4" key={card.card_id} value={card.card_name} onClick={props.cardtypetypeselect}>{card.card_name}</UserEditButton>
                             )
                         }
                     })}
@@ -68,13 +68,20 @@ const CardTypeBox = styled.div`
 `;
 
 const UserEditButton = styled.button`
+height:48px;
 width:100px;
-height:50px;
-border-radius:8px;
-margin-top:15px;
+border-radius:4px;
+background-color:white;
+color: ${props => props.color};
+border: solid 1px ${props => props.bg};
+margin-bottom:10px;
 `;
 
 const SignUpButton = styled.button`
+    background-position: 50% 35%;
+    background-repeat: no-repeat;
+    background-image: url(${props => props.image});
+    line-height: 140px;
     margin-bottom: 15px;
     border: none;
     width:99px;
