@@ -176,6 +176,9 @@ height:30px;
 margin-left:20px;
 font-size:16px;
 border-radius:5px;
+:focus{
+    outline:1px solid #FF8F00;
+}
 :valid{
     border-bottom:1px solid orange;
     color:orange;
@@ -189,7 +192,7 @@ font-weight:bold;
 const Button = styled.div`
 width:90%;
 height:40px;
-margin: 7px auto;
+margin: 12px auto;
 font-weight:bold;
 background-color:#FF8F00;
 border-radius:5px;

@@ -84,7 +84,7 @@ const HeaderBox = styled.div`
     top: 0;
     width: 100%;
     position: fixed;
-    border-bottom: solid 1px grey;
+    border-bottom: solid 1px #9E9E9E;
     z-index : 1;
 `;
 
