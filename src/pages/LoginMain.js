@@ -27,7 +27,7 @@ const LoginMain = () => {
        dispatch(listCreators.getListMW(MenuArr[0],1,3,"couponCreate",true));
        dispatch(listCreators.getListMW(MenuArr[1],1,3,"couponCreate",true));
        dispatch(listCreators.getListMW(MenuArr[2],1,3,"couponCreate",true));
-      //  제대로 된 데이터 들어오면 주석처리 해제
+      //  제대로 된 데이터 들어오면 주석처리 해제할 예정
       //  dispatch(listCreators.getListMW(MenuArr[4],1,3,"couponCreate",true));
       //  dispatch(listCreators.getListMW(MenuArr[5],1,3,"couponCreate",true));
         }
@@ -46,7 +46,6 @@ const LoginMain = () => {
 
      
     return(
-      is_login?(
           <Div>
       {/* 유저 관심사 타입1 */}
         <InfoWrap>
@@ -155,14 +154,6 @@ const LoginMain = () => {
         </BtWrap>
   */}
         </Div>
-        
-        ):(
-<Wrap> 
-  <P>로그인 먼저 해주세요!</P>
-  <button onClick={()=>{history.push('/login')}}>로그인 하러 가기</button>
-  <P2>앗! 아직 회원이 아니신가요?</P2>
-  <button onClick={()=>{history.push('/signup')}}>회원가입하기 하러 가기</button>
-</Wrap>)
     )    
 }
 
@@ -173,19 +164,6 @@ dispaly : block;
 const InfoWrap = styled.ul`
 width : 375px;
 padding : 0;
-`
-const Wrap = styled.div`
-width : 375px;
-`
-const P = styled.p`
-font-weight : bold;
-font-size : 30px;
-color : rgb(59,59,59);
-margin-bottom :10px;
-`
-const P2 = styled.p`
-font-weight : bold;
-margin-bottom :10px;
 `
 const DcList = styled.div`
 margin-top : 20px;
