@@ -35,12 +35,30 @@ const TeleType = (props) => {
                         return(
                             <UserEditButton bg="orange" color="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</UserEditButton>
                         )
-                    }else{
+                    }else {
                         return(
                             <UserEditButton bg="#E4E4E4" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</UserEditButton>
                         )
                     }
                 })}
+                
+            </TeleTypeBox>
+        );
+    }else if(props.mode==="saleinfo"){
+        return (
+            <TeleTypeBox>
+                {tels.map((tel) => {
+                    if(props.telecom === tel.tel_name){
+                        return(
+                            <SignUpButton bg="orange"  image={tel.tel_img} color="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</SignUpButton>
+                        )
+                    }else {
+                        return(
+                            <SignUpButton  image={tel.tel_img} bg="#E4E4E4" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</SignUpButton>
+                        )
+                    }
+                })}
+                
             </TeleTypeBox>
         );
     }
