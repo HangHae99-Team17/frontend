@@ -52,8 +52,13 @@ export const loginFB = (user) => {
         if (token) {
           sessionStorage.setItem("token", `${token}`);
         }
-        dispatch(setUser(res.data.data));
-        history.push(`api/main`);
+        if(res.data.data.status === false){
+          dispatch(setUser(res.data.data));
+          history.push(`/useractive`);
+        }else{
+          dispatch(setUser(res.data.data));
+          history.push(`/`);
+        }
       }else{
         window.alert(res.data.data);
       }
@@ -76,7 +81,6 @@ export const logoutFB = () => {
   return(dispatch, getState, { history }) => {
     sessionStorage.removeItem("token");
     dispatch(setUser(null));
-    alert("로그아웃 되었습니다.");
   }
 }
 
@@ -111,7 +115,21 @@ export const deluserFB = (password) => {
   }
 }
 
-
+export const useractiveFB = (yn) => {
+  return async (dispatch, getState, { history }) => {
+    if(yn === "yes"){
+      await apis.useractive().then((res)=>{
+        history.push('/');
+      }).catch((e)=>{
+        console.log(e);
+      })
+    }else{  
+      sessionStorage.removeItem("token");
+      dispatch(setUser(null));
+      history.replace("/");
+    }
+  }
+}
 
 export default handleActions(
   {
@@ -136,7 +154,8 @@ const actionCreators = {
   logoutFB,
   edituserFB,
   deluserFB,
-  emailCheckFB
+  emailCheckFB,
+  useractiveFB
 };
 
 export { actionCreators };
