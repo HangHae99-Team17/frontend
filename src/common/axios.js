@@ -35,5 +35,6 @@ export const apis = {
    getCoupon:()=>instance.get('api/admin/main'),
    addCoupon:(coupon_content)=>instance.post('api/admin/coupon',coupon_content),
    delCoupon:(coupon_id)=>instance.delete(`/api/admin/coupon/${coupon_id}`),
-   editCoupon:(coupon_id,coupon_content)=>instance.put(`api/admin/coupon/update/${coupon_id}`,coupon_content)
+   editCoupon:(coupon_id,coupon_content)=>instance.put(`api/admin/coupon/update/${coupon_id}`,coupon_content),
+   useractive:()=>instance.put('api/user/reactivation')
  };
