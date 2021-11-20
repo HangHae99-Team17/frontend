@@ -16,7 +16,7 @@ const Main = ()=>{
     return(
         <div>
             <P>아는만큼</P>
-            <P>아낄 수 있게깃허브a</P>
+            <P>깃허브 액션 자동화 테스트</P>
             {coupons?.map((coupon)=>{
                 return(
                     <MainCoupon key={coupon.id} {...coupon} />
