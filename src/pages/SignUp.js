@@ -19,7 +19,7 @@ const SignUp = (props) => {
     const [passwordcheck, setPasswordcheck] = useState(false);
 
     const [service,setService] = useState(false);
-
+    
     const [emaildisplay,setEmailDisplay] = useState("block");
     const [passworddisplay,setPasswordDisplay] = useState("none");
     const [termsdisplay,setTermsDisplay] = useState("none");
@@ -44,7 +44,7 @@ const SignUp = (props) => {
 
     const onChange = (e) => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
-    }
+    };
 
     const telecomtypeselect = (e) =>{
         console.log(e.target.value)
@@ -62,7 +62,7 @@ const SignUp = (props) => {
         }else{
             setCardtype(e.target.value);
         }
-    }
+    };
 
     const typeselect = (e) => {
         
@@ -99,7 +99,7 @@ const SignUp = (props) => {
         if(type1 && type2 && !type3){
             setType3(e.target.value);
         }
-    }
+    };
 
     const typecancle = (e) => {
         console.log(e.target.value);
@@ -112,7 +112,7 @@ const SignUp = (props) => {
         if(e.target.value === type3){
             setType3("");
         }
-    }
+    };
 
     const next = () => {
         if(emaildisplay === "block"){

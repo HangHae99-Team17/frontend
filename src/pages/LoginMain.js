@@ -90,7 +90,7 @@ const LoginMain = () => {
           <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[3]?.couponType}`);history.go(0)}}>더보기</Button>
         </BtWrap>
 
-        {/* 배열로 잘라화면을 그려서 각 타입별로 10개 정도 데이터를 넣어야 잘 작동할거임 */}
+        {/* 배열로 잘라화면을 그려서 각 타입별로 3개 이상 있어야 함 */}
        {/* 유저 관심사 타입3 */}
         <InfoWrap>
         <Title>
