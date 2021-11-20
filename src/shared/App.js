@@ -18,6 +18,7 @@ import CategoryDetail from '../pages/CategoryDetail';
 import Main from '../pages/Main';
 import Category from '../pages/Category';
 import LoginMain from '../pages/LoginMain';
+import Useractive from "../pages/Useractive";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/errpage" exact component={Errpage} />
         <Route path="/api/detail/:id" exact component={Detail} />
         <Route path="/category" exact component={Category} />
+        <Route path="/useractive" exact component={Useractive} />
       </ConnectedRouter>
       </Grid>
     </React.Fragment>
