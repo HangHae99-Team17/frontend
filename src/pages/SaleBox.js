@@ -28,7 +28,7 @@ const SaleBox = () => {
 
                     <Img onClick={()=>{history.push(`/api/detail/${item?.id}`)}}><img src={companyLogo}/></Img>
                     <Textbox onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
-                      <P1>{item.couponTitle}에서</P1>
+                      <P1>{item.couponBrand}에서</P1>
                       <P2>{item.couponSubTitle} 할인 받기</P2>
                     </Textbox>
 
@@ -47,8 +47,8 @@ const SaleBox = () => {
 
 const Notice = styled.div`
 font-weight: bold;
-font-size:20px;
-padding: 20px;
+font-size:18px;
+padding: 10px 18px;
 `
 
 const Couponbox = styled.div`

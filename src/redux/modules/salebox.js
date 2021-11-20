@@ -43,7 +43,6 @@ export const delFoldersMiddleware= (coupon_id) => {
 export const addPostMW = (id,zzim)=>{
   return (dispatch, { history })=>{
     // id는 내가 보내줘야 하는 값(json형태로 넘겨야 하는 값)
-    
     if(zzim){
       apis.delFolders(id)
       .then(()=>{
@@ -78,7 +77,6 @@ export default handleActions(
           draft.list.splice(idx, 1);
         }
       }),
-      // 폴더의 get요청 리스트에 post할 걸 밀어넣는과정
     
   },
   initialState

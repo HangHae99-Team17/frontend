@@ -45,13 +45,12 @@ const MainCoupon = (props) => {
     return (
         <div>
             <Wrap>
-                <Box onClick={()=>{history.push(`api/detail/${props.id}`)}}>
+                <Box onClick={()=>{history.push(`/api/detail/${props.id}`)}}>
                     <ImgBox>
                         <img src={props.companyLogo}/>
                     </ImgBox>
                     <div>
-                        <Title>{props.couponTitle}에서 </Title>
-                        {/* couponDesc이 부분은 subtitile로 바꿔서 받을예정_ api 바꾸고 변경하기 */}
+                        <Title>{props.couponBrand}에서 </Title>
                         <Dsec><Strong>{props.couponSubTitle}</Strong> 할인 받기</Dsec>
                     </div>
                 </Box>
@@ -71,7 +70,7 @@ const Wrap = styled.div`
 position : relative;
 `
 const Box = styled.div`
-width : 375px;
+width : 360px;
 height : 80px;
 display : flex;
 margin : 10px auto;
@@ -82,7 +81,7 @@ width : 50px;
 height : 50px;
 border : 1px solid #DADADA;
 border-radius : 4px;
-margin : 16px;
+margin : 16px 20px;
 `
 const Title = styled.p`
 font-size :14px;
@@ -97,8 +96,8 @@ const Bookmarker = styled.div`
 width : 18px;
 height : 18px;
 position :absolute;
-top : 30px;
-right : 20px;
+top : 29px;
+right : 24px;
 `
 const Strong = styled.span`
 color : #F09643;

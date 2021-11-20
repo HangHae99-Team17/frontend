@@ -256,7 +256,7 @@ const SignUp = (props) => {
                 <EmailBox display={emaildisplay}>
                     <p>이메일을 입력해주세요.</p>
                     <div>
-                        <input type="text" name="email" value={email} onChange={onChange}/>
+                        <input type="text" name="email" required="required" value={email} onChange={onChange}/>
                     </div>
                     <div>
                         <span>{emailmsg}</span>
@@ -384,11 +384,21 @@ const EmailBox = styled.div`
         font-weight: bold;
     }
     input{
-
-        width: 313px;
-        height: 37px;
+        padding:10px;
+        width: 293px;
+        height: 18px;
+        font-size:15px;
         border-radius: 5px;
-        border:1px solid #D5D5D5;
+        border:none;
+        border-bottom:1px solid #D5D5D5;
+    }
+    input:focus{
+        outline:1px solid orange;
+    }
+    input:valid{
+        border:none;
+        border-bottom: 1px solid orange;
+        color:orange;
     }
     div{
         margin-top: 30px;
@@ -408,12 +418,21 @@ const PasswordBox = styled.div`
         width: 300px;
         border-bottom:1px solid #D5D5D5;
         input{
-            width: 328px;
-            height: 37px;
+            font-size:16px;
+            width: 280px;
+            height: 17px;
             border:none;
+            padding:10px;
+            margin-top:5px;
         }
         input:focus {
-            outline:none;
+            outline:1px solid orange;
+            border-radius:5px;
+            color:orange;
+        }
+        input:valid{
+            color:orange;
+            border-bottom:1px solid orange;
         }
     }
     .pwtitle{
@@ -426,7 +445,7 @@ const PasswordBox = styled.div`
     }
 
     .nextbutton{
-        margin-top: 50px;
+        margin-top: 42px;
     }
     `;
 

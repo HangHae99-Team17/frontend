@@ -20,17 +20,16 @@ const initialState = {
   // 무한스크롤 초기값 설정
   hasMore : true,
   loading : true,
-  pagingList : []
+  pagingList : [],
 };
 
-// 리스트 가지고 오는 미들웨어_백에서 받아올땐 시간이 걸려
-// params는 type을 넘겨 줄 거
-export const getListMW = (params) => {
+// 리스트 가지고 오는 미들웨어_백에서 받아올땐 시간이 걸리기 때문에 async사용
+const  getListMW = (type,page,size,sortBy,isAsc) => {
   return  async (dispatch) => {
-   const response = await apis.getList(params)
+   const response = await apis.getList(type,page,size,sortBy,isAsc)
       if(response){
-        console.log(response.data);
-        dispatch(getList(response.data));
+        console.log(response.data.data);
+        dispatch(getList(response.data.data));
       }
       else{
         console.error(response.error);
@@ -61,16 +60,16 @@ export default handleActions(
       produce(state, (draft) => {
         // 데이터가 undefined가 아니라면, hasMore의 Boolean값을 반환해준다.
         if(action.payload !== undefined) {
-          // 데이터의 길이가 0이 아니라면 true를, 0이라면 false를 반환
-          // 다음 페이지가 있는지 확인하고 데이터를 데리고 오겠다는 뜻
-          draft.hasMore = action.payload?.main?.length!==0? true : false
+          // 데이터가 있다면 true를, 없다면 이라면 false를 반환(조건 삼항연산자)
+          // 다음 페이지가 있는지 확인
+          draft.hasMore = action.payload?.main?.length==0? false : true
         }
         else{
           draft.hasMore = false
         }
         console.log(draft.pagingList)
-        // hasMore가 true가 아니면 빈 배열을, true면 list의 데이터가 포함된 배열을 반환한다.
-        draft.pagingList = draft.hasMore!==true?draft.pagingList : draft.pagingList.concat(action.payload.list)
+        // hasMore가 false라면 빈 배열을, true면 list의 데이터가 포함된 배열을 반환한다.
+        draft.pagingList = draft.hasMore==false?draft.pagingList : draft.pagingList.concat(action.payload.list)
       }),
     [GET_DCLIST]:(state,action) => 
       produce(state,(draft)=>{

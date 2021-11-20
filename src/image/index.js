@@ -38,6 +38,9 @@ import bc from "./bc.png";
 import toss from "./toss.png";
 import kakao from "./kakao.png";
 import citi from "./citi.png";
+import couponDespire from './couponDespire.png';
+import couponRank from './couponRank.png';
+import couponCreate from './couponCreate.png'
 import password_ora from "./password_ora.png";
 import _8_20_ora from "./8_20_ora.png";
 import num_ora from "./num_ora.png";
@@ -49,7 +52,9 @@ import en_grey from "./en_grey.png";
 import done_black from "./done_black.png";
 import done_orange from "./done_orange.png";
 
-export {
+export {couponCreate,
+    couponRank,
+    couponDespire,
     Frame_101,
     x,
     gooddawhite,

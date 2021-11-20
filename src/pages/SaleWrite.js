@@ -94,9 +94,9 @@ const SaleWrite = (props) => {
         <React.Fragment>
             <SaleWriteBox>
                 <CateGoryBox display={categorydisplay}>
-                    <Notice>카테고리를 선택해주세요.</Notice>
+                    <CategoryNotice>카테고리를 선택해주세요.</CategoryNotice>
                     <InterType mode="saleinfo" coupontype={coupontype} categoryselect={categoryselect}/>
-                    <Button bg="#FF8F00" color="white" _onClick={next}>완료</Button>
+                    <CategoryButton onClick={next}>선택 완료</CategoryButton>
                 </CateGoryBox>
 
                 <SaleInfoBox display={saleinfodisplay}>
@@ -107,20 +107,12 @@ const SaleWrite = (props) => {
             </div>
             <div>
                 <Notice>정보를 입력해주세요.</Notice>
-                <Notice>제목을 입력해주세요</Notice>
-                <Input type="text" name="coupontitle" value={coupontitle} onChange={onChange}/>
-                <Notice>쿠폰서브타이틀</Notice>
-                <Input type="text" name="couponsubtitle" value={couponsubtitle} onChange={onChange}/>
-                <Notice>브랜드이름</Notice>
-                <Input type="text" name="couponbrand" value={couponbrand} onChange={onChange}/>
-                <Notice>로고URL</Notice>
-                <Input type="text" name="couponlogo" value={couponlogo} onChange={onChange}/>
-                <Notice>쿠폰내용을 입력하세요.</Notice>
-                <Input type="text" name="coupondesc" value={coupondesc} onChange={onChange}/>
-            </div>
-            <div>
-                <Notice>링크를 입력해주세요.</Notice>
-                <Input type="text" name="couponurl" value={couponurl} onChange={onChange}/>
+                <Input type="text" required="required" name="coupontitle" placeholder="제목을 입력해 주세요" value={coupontitle} onChange={onChange}/>
+                <Input type="text" required="required" name="couponsubtitle" placeholder="쿠폰 서브타이틀을 입력해주세요" value={couponsubtitle} onChange={onChange}/>
+                <InputSmall type="text" required="required" name="couponbrand" placeholder="브랜드 이름" value={couponbrand} onChange={onChange}/>
+                <InputSmall type="text" required="required" name="couponlogo" placeholder="로고 URL" value={couponlogo} onChange={onChange}/>
+                <InputDesc type="text" required="required" name="coupondesc" value={coupondesc} placeholder="쿠폰내용을 입력하세요" onChange={onChange}/>
+                <Input type="text" required="required" name="couponurl" value={couponurl} placeholder="링크를 입력해주세요" onChange={onChange}/>
             </div>
             <div>
                 <Notice>쿠폰 유효기간</Notice>
@@ -146,27 +138,96 @@ const CateGoryBox = styled.div`
     display: ${props => props.display};
 `;
 
+
+const CategoryNotice = styled.p`
+font-weight:bold;
+margin:15px auto;
+width:90%;
+`
+const CategoryButton = styled.div`
+font-weight:bold;
+margin:10px auto;
+width:90%;
+height:38px;
+border-radius:5px;
+line-height:36px;
+text-align:center;
+background-color:#FF8F00;
+color:white;
+`
+
 const Notice = styled.p`
 font-weight:bold;
-margin:15px 0 12px 0;
+margin:15px auto;
+width:100%;
 `
 
 const SaleInfoBox = styled.div`
-width:300px;
+width:320px;
 margin:0 auto;
     display: ${props => props.display};
 `;
 
 const Input = styled.input`
-width:95%;
+width:98%;
 color:#FF8F00;
-border:1px solid #FF8F00;
-height:25px;
-`
-const Img = styled.img`
-width:300px;
+border:none;
+border-bottom:1px solid #E4E4E4;
+height:30px;
+margin:6px 0;
+:focus{
+    border:1px solid #FF8F00;
+}
+:valid{
+        outline:none;
+        border-bottom:1px solid #FF8F00;
+}
+`;
 
-`
+const InputSmall = styled.input`
+width:41%;
+color:#FF8F00;
+border:none;
+border-bottom:1px solid #E4E4E4;
+height:30px;
+margin:5px 20px 5px 0px;
+:focus{
+    border:1px solid #FF8F00;
+}
+:valid{
+    outline:none;
+    border-bottom:1px solid #FF8F00;
+}
+`;
+
+const InputDesc = styled.textarea`
+width:98%;
+color:#FF8F00;
+border:none;
+border-bottom:1px solid #E4E4E4;
+height:30px;
+margin:10px 0;
+line-height:20px;
+height:140px;
+:focus{
+    border:1px solid #FF8F00;
+}
+:focus{
+    outline:none;
+    border-bottom:1px solid #FF8F00;
+}
+:valid{
+    outline:none;
+    border-bottom:1px solid #FF8F00;
+}
+`;
+
+const Img = styled.img`
+width:100px;
+height:100px;
+margin-bottom:10px;
+border-radius:6px;
+`;
 
 
 export default SaleWrite;
