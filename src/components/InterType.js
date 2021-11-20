@@ -26,7 +26,6 @@ const InterType = (props) => {
                 {interests.map((interest) => {
                     if(props.type1 !== interest.inter_type && props.type2 !== interest.inter_type && props.type3 !== interest.inter_type){
                         return(
-
                             <SignUpButton image={interest.inter_img} bg="grey" key={interest.inter_id} onClick={props.typeselect} value={interest.inter_type}>{interest.inter_type}
                             </SignUpButton>
                         )

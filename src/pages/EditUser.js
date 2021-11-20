@@ -38,6 +38,7 @@ const EditUser = (props) => {
     };
 
     const typeselect = (e) => {
+
         if(type1 === "" && type2 === "" && type3 === ""){
             setType1(e.target.value);
         }
