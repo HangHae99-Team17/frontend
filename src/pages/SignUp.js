@@ -1,6 +1,7 @@
 import React,{useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from "../redux/configureStore";
 import styled from 'styled-components';
 import CardType from '../components/CardType';
 import TeleType from '../components/TeleType';
@@ -10,6 +11,7 @@ en_grey} from '../image'
 
 const SignUp = (props) => {
     const dispatch = useDispatch();
+    
     const email_result = useSelector((state)=>state.user.email_check);
     const [emailmsg, setEmailMsg] = useState("");
 
@@ -115,6 +117,7 @@ const SignUp = (props) => {
     };
 
     const next = () => {
+
         if(emaildisplay === "block"){
             setEmailDisplay("none");
             setPasswordDisplay("block");
@@ -153,6 +156,32 @@ const SignUp = (props) => {
         }
     };
 
+    useEffect(() => {
+        history.block((location, action) => {
+            if (action === 'POP'&&passworddisplay === 'block') {
+                setPasswordDisplay("none");
+                setEmailDisplay("block");
+                return false;
+            }else if(action === 'POP'&&termsdisplay === 'block'){
+                setTermsDisplay("none");
+                setPasswordDisplay("block");
+                return false;
+            }else if(action === 'POP'&&telecomdisplay === 'block'){
+                setTelecomDisplay("none");
+                setTermsDisplay("block");
+                return false;
+            }else if(action === 'POP'&&carddisplay === 'block'){
+                setCardDisplay("none");
+                setTelecomDisplay("block");
+                return false;
+            }else if(action === 'POP'&&typedisplay === 'block'){
+                setTypeDisplay("none");
+                setCardDisplay("block");
+                return false;
+            }
+        });
+    }, [next]);
+    
     const signup = () => {
 
         if(!type1&&!type2&&!type3){
@@ -247,8 +276,6 @@ const SignUp = (props) => {
             setPwNumCheck(false);
         }
     },[password, password1]);
-
-    
 
     return (
         <React.Fragment>
