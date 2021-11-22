@@ -36,7 +36,7 @@ width:100%;
 `
 
 const BoxIn = styled.div`
-width:290px;
+width:330px;
 margin:0 auto;
 `
 const Notice = styled.div`
