@@ -43,7 +43,7 @@ const MainCoupon = (props) => {
             <Wrap>
                 <Box onClick={()=>{history.push(`/api/detail/${props.id}`)}}>
                     <ImgBox>
-                        <img src={props.couponLogo}/>
+                        <IMG src={props.couponLogo}/>
                     </ImgBox>
                     <div>
                         <Title>{props.couponBrand}에서 </Title>
@@ -75,10 +75,15 @@ position : relative;
 const ImgBox = styled.div`
 width : 50px;
 height : 50px;
-border : 1px solid #DADADA;
 border-radius : 4px;
 margin : 16px 20px;
 `
+const IMG = styled.img`
+width : 50px;
+position:absolute;
+top:33%;
+`
+
 const Title = styled.p`
 font-size :14px;
 font-weight :400;

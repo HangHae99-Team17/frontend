@@ -38,7 +38,7 @@ const Detail = (props) => {
             <br/>{detail_list?.couponSubTitle} 할인 받기
             </Title>
             <Span>{detail_list?.couponCreate}~{detail_list?.couponDespire}</Span>
-            <Div>{detail_list?.couponType} 카테고리예요</Div>
+            <Div>{detail_list?.couponType} 카테고리</Div>
             </div>
             </Info>
             <LikeWrap>
@@ -57,18 +57,18 @@ const Detail = (props) => {
 }
 
 const Wrap = styled.div`
+margin-top:-55px;
 width : 100vw;
 height : 100vh;
 `
 const Image2 = styled.img`
 width : 375px;
-height : 200px;
 `
 const LikeWrap = styled.div`
 display : flex;
 width :  355px;
 height : 50px;
-margin : 100px 0 0 16px;
+margin : 120px 0 0 16px;
 `
 const TakeCoupon = styled.div`
 width : 264px;
@@ -82,9 +82,9 @@ border-radius : 4px;
 const A = styled.a`
 text-decoration : none;
 font-size : 16px;
-font-weight : 500;
-color : #000;
-margin-left : 70px;
+color : white;
+font-weight:bold;
+margin-left : 60px;
 `
 const PickCoupon = styled.div`
 width : 48px;
@@ -95,7 +95,7 @@ background-color : #fff;
 margin-left : 20px;
 `
 const P =styled.p`
-margin : 30px 16px;
+margin : 30px 23px;
 font-size :  18px;
 font-weight :  600;
 `
@@ -112,13 +112,15 @@ const Bookmarker = styled.img`
 margin : 16px;
 `
 const Div = styled.div`
-margin: 0 0 0 16px;
+margin: 0 0 0 26px;
 font-size : 14px;
+line-height:30px;
+width:330px;
 `
 const Span = styled.div`
-margin: 20px 16px;
+margin: 20px 26px;
 font-size : 17px;
-font-weight : 400;
+font-weight : bold;
 color : #FF8F00;
 `
 const Image = styled.div`
@@ -130,7 +132,7 @@ margin : 20px auto;
 const Title = styled.div`
 font-size : 23px;
 font-weight : bold;
-margin-left : 16px;
+margin-left : 26px;
 `
 const Info = styled.div`
 display : flex;

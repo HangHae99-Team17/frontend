@@ -63,6 +63,8 @@ top:26px;
 `;
 
 const Img = styled.img`
+position:absolute;
+top:20%;
   width: 40px;
 `;
 
@@ -72,7 +74,7 @@ width:400px;
 
 const Title = styled.p`
   font-weight: bold;
-  padding-left:25px;
+  padding-left:35px;
 `;
 const Strong = styled.span`
   color: #f09643;
