@@ -5,7 +5,7 @@ import { listCreators } from '../redux/modules/main';
 import { history } from '../redux/configureStore';
 import styled from "styled-components";
 import Grid from "../elements/Grid";
-import {companyLogo, fullBookmark} from '../image'
+import {fullBookmark} from '../image'
 
 const SaleBox = () => {
     const dispatch = useDispatch();
