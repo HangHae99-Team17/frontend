@@ -50,11 +50,11 @@ const InterType = (props) => {
                         console.log("props.type2",props.type2)
                         console.log("props.type3",props.type3)
                         return(
-                            <UserEditButton bg="#E4E4E4" onClick={props.typeselect} value={interest.inter_type}>{interest.inter_type}</UserEditButton>
+                            <UserEditButton bg="#E4E4E4" onClick={props.typeselect} key={interest.inter_id} value={interest.inter_type}>{interest.inter_type}</UserEditButton>
                         )
                     }else{
                         return(
-                            <UserEditButton bg="orange" color="orange" onClick={props.typecancle} value={interest.inter_type}>{interest.inter_type}</UserEditButton>
+                            <UserEditButton bg="orange" color="orange" onClick={props.typecancle} key={interest.inter_id} value={interest.inter_type}>{interest.inter_type}</UserEditButton>
                         )
                     }
                 })}
@@ -69,12 +69,12 @@ const InterType = (props) => {
                     if(props.coupontype !== interest.inter_type){
                         
                         return(
-                            <SignUpButton image={interest.inter_img} bg="grey" onClick={props.categoryselect} value={interest.inter_type}>{interest.inter_type}</SignUpButton>
+                            <SignUpButton image={interest.inter_img} bg="grey" key={interest.inter_id} onClick={props.categoryselect} value={interest.inter_type}>{interest.inter_type}</SignUpButton>
                             
                         )
                     }else{
                         return(
-                            <SignUpButton bg="orange" color="orange" onClick={props.categoryselect} image={interest.inter_img} value={interest.inter_type}>{interest.inter_type}</SignUpButton>
+                            <SignUpButton bg="orange" color="orange" key={interest.inter_id} onClick={props.categoryselect} image={interest.inter_img} value={interest.inter_type}>{interest.inter_type}</SignUpButton>
                         )
                     }
                 })}

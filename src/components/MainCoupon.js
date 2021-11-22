@@ -1,10 +1,10 @@
-import React,{useState,useLayoutEffect, useEffect} from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
-import { colorBookmark, companyLogo, fullBookmark } from '../image';
+import { colorBookmark, fullBookmark } from '../image';
 import { useSelector,useDispatch } from 'react-redux';
 import {actionCreators as foldersCreators } from '../redux/modules/salebox';
-import { listCreators } from '../redux/modules/main';
+
 
 const MainCoupon = (props) => {
 
@@ -21,11 +21,9 @@ const MainCoupon = (props) => {
 
         if(zzim === false){
             dispatch(foldersCreators.addPostMW(props.id,zzim));
-            dispatch(listCreators.addZzim(props.id,zzim))
             setZzim(true);
         }else if(zzim === true){
             dispatch(foldersCreators.addPostMW(props.id,zzim));
-            dispatch(listCreators.addZzim(props.id,zzim))
             setZzim(false);
         }   
     };
@@ -34,10 +32,8 @@ const MainCoupon = (props) => {
         if(props){
             if(num === 1){
                 setZzim(true);
-                console.log(num)
             }else if(num === 0){
                 setZzim(false);
-                console.log(num)
             }
         }
     },[num])

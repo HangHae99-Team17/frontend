@@ -1,7 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../common/axios";
-import { listCreators } from './main';
 
 //action type
 const SET_USER = "SET_USER";
@@ -21,11 +20,12 @@ const initialState = {
 //이메일 중복체크
 export const emailCheckFB = (userEmail) =>{
   return async (dispatch, getState, { history }) => {
-    await apis.emailcheck(userEmail).then((res)=>{
-      dispatch(useremail(res.data.result))
-    }).catch((err)=>{
-      console.log(err);
-    })
+    try{
+      const res = await apis.emailcheck(userEmail);
+      dispatch(useremail(res.data.result));
+    }catch(e){
+      console.log(e)
+    }
   }
 }
 
@@ -47,6 +47,7 @@ export const loginFB = (user) => {
   return async (dispatch, getState, {history}) => {
     try {
       const res = await apis.loginuser(user)
+
       if(res.data.data !== "유저네임을 찾을 수 없습니다." && res.data.data !== "비밀번호가 맞지 않습니다."){
         const token = res.data.data.token;
         if (token) {
@@ -71,8 +72,12 @@ export const loginFB = (user) => {
 // 로그인 여부 체크
 export const loginCheckFB = () => {
   return async (dispatch) => {
+    try{
       const res = await apis.logincheck();
       dispatch(setUser(res.data.data));
+    }catch(e){
+      console.log(e);
+    }
   };
 };
 
@@ -87,17 +92,19 @@ export const logoutFB = () => {
 //회원정보 수정
 export const edituserFB = (user_info) => {
   return async(dispatch, getState, { history }) => {
-      await apis.edituser(user_info).then((res)=>{
-        if(res.data.data === "비밀번호가 맞지 않습니다."){
-          window.alert("비밀번호가 맞지 않습니다.");
-          history.push('/edituser');
-        }else{
+    try{
+      const res =await apis.edituser(user_info);
+      if(res.data.data === "비밀번호가 맞지 않습니다."){
+        window.alert("비밀번호가 맞지 않습니다.");
+        history.push('/edituser');
+      }else{
         dispatch(setUser(res.data.data));
         window.alert("개인정보가 수정되었습니다");
         history.push('/');
-      }}).catch((e)=>{
-        console.log(e);
-      })
+      }
+    }catch(e){
+      console.log(e);
+    }
   }
 }
 
@@ -117,16 +124,18 @@ export const deluserFB = (password) => {
 
 export const useractiveFB = (yn) => {
   return async (dispatch, getState, { history }) => {
-    if(yn === "yes"){
-      await apis.useractive().then((res)=>{
+    try{
+      if(yn === "yes"){
+        const res = await apis.useractive();
+        console.log(res);
         history.push('/');
-      }).catch((e)=>{
-        console.log(e);
-      })
-    }else{  
-      sessionStorage.removeItem("token");
-      dispatch(setUser(null));
-      history.replace("/");
+      }else{
+        sessionStorage.removeItem("token");
+        dispatch(setUser(null));
+        history.push('/');
+      }
+    }catch(e){
+      console.log(e);
     }
   }
 }
