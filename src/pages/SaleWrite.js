@@ -8,6 +8,7 @@ import { actionCreators as imageActions } from "../redux/modules/image";
 import { history } from "../redux/configureStore";
 import styled from 'styled-components';
 import InterType from '../components/InterType';
+import TeleType from '../components/TeleType';
 import Button from "../elements/Button"
 
 const SaleWrite = (props) => {
@@ -73,6 +74,7 @@ const SaleWrite = (props) => {
         }
 
         if(!editmode){
+            console.log(sale_content)
             dispatch(saleActions.addSaleFB(sale_content));
         }else{
             dispatch(saleActions.editSaleFB(sale_id,sale_content));
@@ -177,6 +179,7 @@ height:30px;
 margin:6px 0;
 :focus{
     border:1px solid #FF8F00;
+    border-radius:3px;
 }
 :valid{
         outline:none;
@@ -193,6 +196,7 @@ height:30px;
 margin:5px 20px 5px 0px;
 :focus{
     border:1px solid #FF8F00;
+    border-radius:3px;
 }
 :valid{
     outline:none;
@@ -211,6 +215,7 @@ line-height:20px;
 height:140px;
 :focus{
     border:1px solid #FF8F00;
+    border-radius:3px;
 }
 :focus{
     outline:none;

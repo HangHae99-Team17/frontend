@@ -15,7 +15,6 @@ const LoginMain = () => {
     const MenuArr = [userMenu?.type1,userMenu?.type2,userMenu?.type3,userMenu?.telecom, userMenu?.cardType]
     console.log(MenuArr)
   // 로그인 여부를 확인하기 위함
-    const is_login = useSelector((state) => state.user.is_login);
 
   // 디스패치 시에 type을 보내줘야 정보를 가지고 올 수 있다.
     React.useEffect(()=>{

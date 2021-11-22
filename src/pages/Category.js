@@ -1,28 +1,62 @@
 import React from 'react';
 import { history } from '../redux/configureStore';
 import styled from 'styled-components';
-import { cup, airplane, bicycle, cart, film_frame, gift, hamburger, house, knive_fork, monitor2, scissors, t_shirt } from '../image';
+import { skt, kt, lg, shinhan, hyundai, samsung, kb, lotte, woori, nh, bc, toss, kakao, hana, citi, cup, airplane, bicycle, cart, film_frame, gift, hamburger, house, knive_fork, monitor2, scissors, t_shirt } from '../image';
 
 const Category = ()=>{
-    const all_category = [
-{id:0,title:"카페,디저트", img:<img src={cup}/>},
-{id:1,title:"음식점", img:<img src={knive_fork}/>},
-{id:2,title:"패스트푸드", img:<img src={hamburger}/>},
-{id:3,title:"편의점,마트", img:<img src={cart}/>},
-{id:4,title:"뷰티,미용", img:<img src={scissors}/>},
-{id:5,title:"패션", img:<img src={t_shirt}/>},
-{id:6,title:"건강,스포츠", img:<img src={bicycle}/>},
-{id:7,title:"여행,숙박", img:<img src={airplane}/>},
-{id:8,title:"문화", img:<img src={film_frame}/>},
-{id:9,title:"가전,디지털", img:<img src={monitor2}/>},
-{id:10,title:"가구,생활", img:<img src={house}/>},
-{id:11,title:"쇼핑,잡화", img:<img src={gift}/>},
+    const tel_category = [
+
+{title:"skt", img:<img src={skt}/>},
+{title:"kt", img:<img src={kt}/>},
+{title:"lg", img:<img src={lg}/>},
+    ]
+
+const card_category = [
+{title:"신한카드", img:<img src={shinhan}/>},
+{title:"현대카드", img:<img src={hyundai}/>},
+{title:"삼성카드", img:<img src={samsung}/>},
+{title:"국민카드", img:<img src={kb}/>},
+{title:"롯데카드", img:<img src={lotte}/>},
+{title:"하나카드", img:<img src={hana}/>},
+{title:"우리카드", img:<img src={woori}/>},
+{title:"농협카드", img:<img src={nh}/>},
+{title:"씨티카드", img:<img src={citi}/>},
+{title:"BC카드", img:<img src={bc}/>},
+{title:"토스카드", img:<img src={toss}/>},
+{title:"카카오카드", img:<img src={kakao}/>},
+]
+
+const inter_category = [
+{title:"카페,디저트", img:<img src={cup}/>},
+{title:"음식점", img:<img src={knive_fork}/>},
+{title:"패스트푸드", img:<img src={hamburger}/>},
+{title:"편의점,마트", img:<img src={cart}/>},
+{title:"뷰티,미용", img:<img src={scissors}/>},
+{title:"패션", img:<img src={t_shirt}/>},
+{title:"건강,스포츠", img:<img src={bicycle}/>},
+{title:"여행,숙박", img:<img src={airplane}/>},
+{title:"문화", img:<img src={film_frame}/>},
+{title:"가전,디지털", img:<img src={monitor2}/>},
+{title:"가구", img:<img src={house}/>},
+{title:"생활", img:<img src={gift}/>},
 ]
     return(
         <Div>
-            <Litext>할인 정보를 확인할<br/>카테고리를 선택해주세요.</Litext>
+            <Litext>통신사 쿠폰 정보</Litext>
             <Ul>
-            {all_category.map((item)=>{
+            {tel_category.map((item)=>{
+                return(
+                    <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}`);history.go(0)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
+                )
+            })}
+            <Litext>카드사 쿠폰 정보</Litext>
+            {card_category.map((item)=>{
+                return(
+                    <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}`);history.go(0)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
+                )
+            })}
+            <Litext>관심사 쿠폰 정보</Litext>
+            {inter_category.map((item)=>{
                 return(
                     <Li key={item.id} onClick={()=>{history.push(`/api/categorydetail/${item.title}`);history.go(0)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
                 )
@@ -41,8 +75,9 @@ font-size:18px;
 margin: 0 auto;
 width:355px;
 font-weight:bold;
-padding-bottom:10px;
+padding-top:15px;
 padding-left:15px;
+padding-bottom:5px;
 line-height:30px;
 `
 
@@ -75,6 +110,7 @@ padding-top:22px;
 line-height:25px;
 `
 const BoxImg = styled.div`
+height:38px;
 `
 
 

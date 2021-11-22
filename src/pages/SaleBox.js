@@ -10,6 +10,7 @@ import {companyLogo, fullBookmark} from '../image'
 const SaleBox = () => {
     const dispatch = useDispatch();
     const folders = useSelector((state) => state.salebox.list);
+    console.log(folders)
     const list_length = folders?.length;
     
     useEffect(() => {
@@ -26,7 +27,7 @@ const SaleBox = () => {
                 <Grid key={item.id} margin="0 auto" width="375px" padding="10px 0"> 
                   <Couponbox>
 
-                    <Img onClick={()=>{history.push(`/api/detail/${item?.id}`)}}><img src={companyLogo}/></Img>
+                    <Img onClick={()=>{history.push(`/api/detail/${item?.id}`)}}><img src={item.couponLogo}/></Img>
                     <Textbox onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
                       <P1>{item.couponBrand}에서</P1>
                       <P2>{item.couponSubTitle} 할인 받기</P2>

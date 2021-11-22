@@ -19,7 +19,7 @@ const SaleList = (props) => {
         <React.Fragment>
             <AllBox>
                 <BoxIn>
-            <Notice>쿠폰목록</Notice>
+            <Notice>쿠폰목록 총 {sale_list.length}개 등록 중</Notice>
             {sale_list.map((sale) => {
                 return(
                     <Coupon key={sale.id} {...sale}/>
@@ -36,7 +36,7 @@ width:100%;
 `
 
 const BoxIn = styled.div`
-width:290px;
+width:330px;
 margin:0 auto;
 `
 const Notice = styled.div`

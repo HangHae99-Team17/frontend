@@ -10,7 +10,6 @@ import fullBookmark from "./fullBookmark.png"
 import x_black from "./x_black.png";
 import checkgray from "./checkgray.png";
 import checkgray2 from "./checkgray2.png";
-import vector from "./vector.png";
 import airplane from "./airplane-print.png";
 import bicycle from "./bicycle-print.png";
 import cart from "./cart-print.png";
@@ -52,6 +51,8 @@ import en_grey from "./en_grey.png";
 import done_black from "./done_black.png";
 import done_orange from "./done_orange.png";
 import edit_3 from "./edit-3.png";
+import bookmark from "./bookmark.png";
+import edit from "./edit.png";
 
 export {couponCreate,
     couponRank,
@@ -68,7 +69,6 @@ export {couponCreate,
     companyLogo,
     colorBookmark,
     fullBookmark,
-    vector,
     airplane,
     bicycle,
     cart,
@@ -107,4 +107,6 @@ export {couponCreate,
     done_black,
     done_orange,
     edit_3,
+    bookmark,
+    edit
 };
