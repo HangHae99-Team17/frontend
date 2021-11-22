@@ -24,7 +24,8 @@ const SignUp = (props) => {
     const [telecomdisplay,setTelecomDisplay]= useState("none");
     const [carddisplay,setCardDisplay] = useState("none");
     const [typedisplay,setTypeDisplay] = useState("none");
-
+    const [progress,setProgress] = useState(60);
+    
     const [telecom,setTelecom] = useState("");
     const [cardtype,setCardtype] = useState("");
     const [type1,setType1] = useState("");
@@ -116,15 +117,19 @@ const SignUp = (props) => {
         if(emaildisplay === "block"){
             setEmailDisplay("none");
             setPasswordDisplay("block");
+            setProgress(progress+60);
         }else if(passworddisplay === "block"){
             setPasswordDisplay("none");
             setTelecomDisplay("block");
+            setProgress(progress+60);
         }else if(telecomdisplay ==="block"){
             setTelecomDisplay("none");
             setCardDisplay("block");
+            setProgress(progress+60);
         }else if(carddisplay==="block"){
             setCardDisplay("none");
             setTypeDisplay("block");
+            setProgress(progress+60);
         }
     };
 
@@ -133,18 +138,22 @@ const SignUp = (props) => {
             if (action === 'POP'&&passworddisplay === 'block') {
                 setPasswordDisplay("none");
                 setEmailDisplay("block");
+                setProgress(progress-60);
                 return false;
             }else if(action === 'POP'&&telecomdisplay === 'block'){
                 setTelecomDisplay("none");
                 setPasswordDisplay("block");
+                setProgress(progress-60);
                 return false;
             }else if(action === 'POP'&&carddisplay === 'block'){
                 setCardDisplay("none");
                 setTelecomDisplay("block");
+                setProgress(progress-60);
                 return false;
             }else if(action === 'POP'&&typedisplay === 'block'){
                 setTypeDisplay("none");
                 setCardDisplay("block");
+                setProgress(progress-60);
                 return false;
             }
         });
@@ -234,6 +243,7 @@ const SignUp = (props) => {
 
     return (
         <React.Fragment>
+            <Progress progress={progress}/>
             <SignUpBox>
                 <EmailBox display={emaildisplay}>
                     <p>이메일을 입력해주세요.</p>
@@ -295,13 +305,24 @@ const SignUp = (props) => {
                     <h4>관심있는 3가지 선택하면 끝나요</h4>
                     <InterType mode="signup" type1={type1} type2={type2} type3={type3} typeselect={typeselect} typecancle={typecancle}/>
                     <div className="nextbutton">
-                        <NextButton bgcolor={type1?"orange":"gray"}onClick={signup}>완료</NextButton>
+                        <NextButton bgcolor={type1&&type2&&type3?"orange":"gray"}onClick={signup}>완료</NextButton>
                     </div>
                 </TypeBox>
             </SignUpBox>
         </React.Fragment>
     );
 };
+
+const Progress = styled.div`
+    border-top: solid 1px orange;
+    position: relative;
+    margin-top: -35px;
+    z-index: 3;
+    width: ${props => `${props.progress}px`};
+    -webkit-transition: width 1s;
+    transition: width 1s;
+`;
+
 
 const SignUpBox = styled.div`
     margin: 0 auto;
@@ -327,7 +348,7 @@ const EmailBox = styled.div`
 `;
 
 const PasswordBox = styled.div`
-    margin-left:35px;
+    margin-left:30px;
     display: ${props => props.display};
     p{
         float:left;
@@ -364,7 +385,7 @@ const PasswordBox = styled.div`
 const TelecomBox = styled.div`
     display: ${props => props.display};
     .nextbutton{
-        margin-left: 33px;
+        margin-left: 30px;
     }
     h4{
         margin-left:20px;
@@ -374,7 +395,7 @@ const TelecomBox = styled.div`
 const CardtypeBox = styled.div`
     display: ${props => props.display};
     .nextbutton{
-        margin-left: 33px;
+        margin-left: 30px;
     }
     h4{
         margin-left:20px;
@@ -384,7 +405,7 @@ const CardtypeBox = styled.div`
 const TypeBox = styled.div`
     display: ${props => props.display};
     .nextbutton{
-        margin-left: 33px;
+        margin-left:30px;
     }
     h4{
         margin-left:20px;
