@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators as saleActions } from "../redux/modules/sale";
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
-import Button from "../elements/Button";
+import { edit } from "../image";
 
 const Coupon = (props) => {
   const dispatch = useDispatch();
@@ -22,66 +22,72 @@ const Coupon = (props) => {
 
   return (
     <React.Fragment>
-      <UL>
-        <LI>
-          <Title>쿠폰 아이디</Title>
-          <P>{props.id}</P>
-        </LI>
-        <LI>
-          <Title>쿠폰 타이틀</Title>
-          <P>{props.couponTitle}</P>
-        </LI>
-        <LI>
-          <Title>쿠폰 부제목</Title>
-          <P>{props.couponSubTitle}</P>
-        </LI>
+      <AllBox>
+        <ImgBox onClick={()=>{history.push(`/api/detail/${props.id}`)}}>
+          <Img src={props.couponLogo} />
+        </ImgBox>
+        <TextBox onClick={()=>{history.push(`/api/detail/${props.id}`)}}>
+          <Title>
+            <Strong>{props.couponBrand}</Strong> 에서
+          </Title>
 
-        <LI>
-          <Title>쿠폰 타입</Title>
-          <P>{props.couponType}</P>
-        </LI>
-        <LI>
-          <Title>쿠폰 브랜드</Title>
-          <P>{props.couponBrand}</P>
-        </LI>
-        <LI>
-          <P>{props.couponUrl}</P>
-        </LI>
-        <LI>
-          <Title>쿠폰 생성일</Title>
-          <P>{props.couponCreate}</P>
-        </LI>
-        <LI>
-          <Title>쿠폰 만료일</Title>
-          <P>{props.couponDespire}</P>
-        </LI>
-      </UL>
-      <Button bg="#FF8F00" color="white" _onClick={editsale}>
-        수정
-      </Button>
-      <Button bg="#FF8F00" margin="10px 0" color="white" _onClick={delsale}>
+          <Title>
+            <Strong>{props.couponSubTitle}</Strong> 할인 받기
+          </Title>
+        </TextBox>
+        <EditButton onClick={editsale}>
+          <img src={edit} />
+        </EditButton>
+        
+        </AllBox>
+        {/* <Button bg="#FF8F00" margin="10px 0" color="white" _onClick={delsale}>
         삭제
-      </Button>
+      </Button> */}
     </React.Fragment>
   );
 };
 
-const Title = styled.p`
-  font-weight: bold;
+
+const AllBox = styled.div`
+position:relative;
+width:100%;
+height:90px;
+  backgorund-color: blue;
+  display:flex;
 `;
-const P = styled.p`
-  font-weight: bold;
-  color: #ff8f00;
-`;
-const UL = styled.ul`
-  padding-left: 0;
+const ImgBox = styled.div`
+position:relative;
+top:26px;
+  width: 40px;
+  height: 40px;
 `;
 
-const LI = styled.li`
-  display: flex;
-  justify-content: space-between;
-  height: 42px;
-  line-height: 20px;
+const Img = styled.img`
+  width: 40px;
 `;
+
+const TextBox = styled.div`
+width:400px;
+`;
+
+const Title = styled.p`
+  font-weight: bold;
+  padding-left:25px;
+`;
+const Strong = styled.span`
+  color: #f09643;
+`;
+
+const EditButton = styled.button`
+position:relative;
+background-color:white;
+border:none;
+top:25px;
+right:-15px;
+width:40px;
+height:40px;
+`;
+
+
 
 export default Coupon;

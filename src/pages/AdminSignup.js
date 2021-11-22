@@ -62,15 +62,17 @@ const AdminSignup = () => {
             <AllBox>
             <EmailBox>
                 <Notice>이메일 입력</Notice>
-                <Input type="text" name="email" value={email} placeholder="이메일" onChange={onChange}/>
+                <Input required="required" type="text" name="email" value={email} placeholder="이메일" onChange={onChange}/>
             </EmailBox>
             <PasswordBox>
                 <Notice>비밀번호 입력</Notice>
-                <Input type="password" name="password" placeholder="비밀번호" value={password} onChange={onChange}/>
+                <Input required="required" type="password" name="password" placeholder="비밀번호" value={password} onChange={onChange}/>
                 <Notice>비밀번호확인</Notice>
-                <Input type="password" name="password1" placeholder="비밀번호" value={password1} onChange={onChange}/>
-                <Notice>{passwordcheck}</Notice>
+                <Input required="required" type="password" name="password1" placeholder="비밀번호" value={password1} onChange={onChange}/>
+                <Notice2>{passwordcheck}</Notice2>
             </PasswordBox>
+
+            
             <AdminBox>
             <Notice>관리자십니까?</Notice>
             <button onClick={admincheck}>예</button>
@@ -85,18 +87,28 @@ const AdminSignup = () => {
 
 const EmailBox = styled.div`
 margin: 0 auto;
-width:340px;
+width:320px;
 `
 
 const Input = styled.input`
 border:none;
-width:330px;
+width:310px;
+font-size:15px;
 border-bottom: 1px solid gray;
 height:30px;
+:focus{
+    outline:1px solid orange;
+    border-radius:5px;
+}
+:valid{
+    border-bottom: 1px solid orange;
+    border-radius:5px;
+    color:orange;
+}
 `
 const PasswordBox = styled.div`
 margin:0 auto;
-width:340px;
+width:320px;
 `
 
 
@@ -108,8 +120,15 @@ const Notice = styled.div`
 font-weight:bold;
 padding:30px 0 15px 0;
 `
+
+const Notice2 = styled.div`
+font-weight:bold;
+padding:30px 0 15px 0;
+color:orange;
+`
+
 const AdminBox = styled.div`
-width:340px;
+width:320px;
 margin:0 auto;
 `
 
