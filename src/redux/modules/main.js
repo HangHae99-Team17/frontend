@@ -24,30 +24,26 @@ const initialState = {
 };
 
 // 리스트 가지고 오는 미들웨어_백에서 받아올땐 시간이 걸리기 때문에 async사용
-const  getListMW = (type,page,size,sortBy,isAsc) => {
-  return  async (dispatch) => {
-   const response = await apis.getList(type,page,size,sortBy,isAsc)
-      if(response){
-        console.log(response.data.data);
-        dispatch(getList(response.data.data));
-      }
-      else{
-        console.error(response.error);
-      }
+const getListMW = (type,page,size,sortBy,isAsc) => {
+  return async (dispatch) => {
+    try{
+      const res = await apis.getList(type,page,size,sortBy,isAsc)
+      dispatch(getList(res.data.data));
+    }catch(e){
+      console.log(e);
+    }
   };
 };
 
 // 로그인 전 메인페이지 랭킹 리스트 가져오는 미들웨어 
 export const getDcListMW = ()=>{
   return async (dispatch)=>{
-    await apis
-    .getDcList()
-    .then((res)=>{
-      dispatch(getDcList(res.data));
-    })
-    .catch((err)=>{
-      console.error(err)
-    });
+    try{
+      const res = await apis.getDcList();
+      dispatch(getDcList(res.data.data));
+    }catch(e){
+      console.log(e);
+    }
   }
 }
 
@@ -62,14 +58,14 @@ export default handleActions(
         if(action.payload !== undefined) {
           // 데이터가 있다면 true를, 없다면 이라면 false를 반환(조건 삼항연산자)
           // 다음 페이지가 있는지 확인
-          draft.hasMore = action.payload?.main?.length==0? false : true
+          draft.hasMore = action.payload?.main?.length===0? false : true
         }
         else{
           draft.hasMore = false
         }
         console.log(draft.pagingList)
         // hasMore가 false라면 빈 배열을, true면 list의 데이터가 포함된 배열을 반환한다.
-        draft.pagingList = draft.hasMore==false?draft.pagingList : draft.pagingList.concat(action.payload.list)
+        draft.pagingList = draft.hasMore===false?draft.pagingList : draft.pagingList.concat(action.payload.list)
       }),
     [GET_DCLIST]:(state,action) => 
       produce(state,(draft)=>{
@@ -77,11 +73,12 @@ export default handleActions(
       }),
     [ADD_ZZIM]:(state,action) =>
       produce(state,(draft)=>{
-        let idx = draft.rank.data.findIndex((p) => p.id === action.payload.coupon_id);
+        console.log(draft.rank)
+        let idx = draft.rank.findIndex((p) => p.id === action.payload.coupon_id);
         if(action.payload.zzim){
-          draft.rank.data[idx].couponSelect = 0
+          draft.rank[idx].couponSelect = 0
         }else{
-          draft.rank.data[idx].couponSelect = 1
+          draft.rank[idx].couponSelect = 1
         }
       })
   },

@@ -24,7 +24,7 @@ const SaleBox = () => {
           <Notice>{list_length}개가 보관되어있어요</Notice>
             {folders?.map((item)=>{
               return(
-                <Grid margin="0 auto" width="375px" padding="10px 0"> 
+                <Grid key={item.id} margin="0 auto" width="375px" padding="10px 0"> 
                   <Couponbox>
 
                     <Img onClick={()=>{history.push(`/api/detail/${item?.id}`)}}><img src={item.couponLogo}/></Img>

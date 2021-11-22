@@ -1,7 +1,8 @@
 import React,{useState} from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import styled from 'styled-components';
+import { history } from '../redux/configureStore';
 
 
 const Login = () => {
@@ -46,7 +47,7 @@ const Login = () => {
                 </PasswordInputBox>
                 <LoginButton onClick={submitLogin}>로그인하기</LoginButton>
                 <SignupButton onClick={()=>{
-                    window.location.replace('/signup');
+                    history.replace('/signup');
                 }}>계정이 없어요. 1분만에 가입하기!!</SignupButton>
             </LoginBox>
         </React.Fragment>
