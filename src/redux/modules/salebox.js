@@ -18,13 +18,14 @@ const initialState = {
 
 // 찜한목록 불러오기
 const getFoldersMiddleware = () => {
-  return async (dispatch) => {
-    try{
-      const res = await apis.getFolders();
-      dispatch(loadFolders(res.data.data));
-    }catch(e){
-      console.log(e);
-    }
+  return async(dispatch) => {
+    await apis.getFolders().then((res) => {
+        const folders_list = res.data.coupons;
+        dispatch(loadFolders(folders_list));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 };
 
