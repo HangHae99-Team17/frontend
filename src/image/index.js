@@ -51,6 +51,7 @@ import num_grey from "./num_grey.png";
 import en_grey from "./en_grey.png";
 import done_black from "./done_black.png";
 import done_orange from "./done_orange.png";
+import bookmark from "./bookmark.png";
 
 export {couponCreate,
     couponRank,
@@ -104,5 +105,6 @@ export {couponCreate,
     num_grey,
     en_grey,
     done_black,
-    done_orange
+    done_orange,
+    bookmark
 };

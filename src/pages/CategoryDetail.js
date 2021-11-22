@@ -80,7 +80,7 @@ return(
           return (
             <Wrap>
             <DcList key={item.id} onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
-                <Img> <img src = {item.couponLogo}/> </Img>
+                <Img> <img src = {item.couponLogo} width="40px"/> </Img>
               <DcInfo>
               <Text>{item.couponBrand}에서</Text>
               <Text2>{item.couponSubTitle} 할인 받기</Text2>
