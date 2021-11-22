@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { apis } from '../../common/axios'
+import { listCreators } from './main';
 
 // action 생성
 const LOAD_FOLDERS = 'LOAD_FOLDERS';
@@ -17,48 +18,49 @@ const initialState = {
 
 // 찜한목록 불러오기
 const getFoldersMiddleware = () => {
-  return async(dispatch) => {
-    await apis.getFolders().then((res) => {
-        const folders_list = res.data.coupons;
-        dispatch(loadFolders(folders_list));
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+  return async (dispatch) => {
+    try{
+      const res = await apis.getFolders();
+      dispatch(loadFolders(res.data.data));
+    }catch(e){
+      console.log(e);
+    }
   };
 };
 
-export const delFoldersMiddleware= (coupon_id) => {
-  return async(dispatch,getState,{history}) => {
-    await apis.delFolders(coupon_id).then((res)=>{
+export const delFoldersMiddleware = (coupon_id) => {
+  return async (dispatch, { history }) => {
+    try{
+      const res = await apis.delFolders(coupon_id);
+      console.log(res)
       dispatch(delFolderss(coupon_id));
       history.replace('/salebox');
-    }).catch((e)=>{
-      console.log(e)
-    })
+    }catch(e){
+      console.log(e);
+    }
   }
 };
 
 // 찜하기 기능 post 미들웨어_ 이거는 백에 보내주는 일이라 async안씀
 export const addPostMW = (id,zzim)=>{
-  return (dispatch, { history })=>{
+  return async (dispatch, { history })=>{
     // id는 내가 보내줘야 하는 값(json형태로 넘겨야 하는 값)
     if(zzim){
-      apis.delFolders(id)
-      .then(()=>{
-          
-      })
-      .catch((err)=>{
-        console.error(err)
-      });
+      try{
+        const res = await apis.delFolders(id);
+        console.log(res);
+        dispatch(listCreators.addZzim(id,zzim));
+      }catch(e){
+        console.log(e);
+      }
     }else if(!zzim){
-      apis.postCoupon(id)
-      .then(()=>{
-          
-      })
-      .catch((err)=>{
-        console.error(err)
-      });
+      try{
+        const res = await apis.postCoupon(id);;
+        console.log(res);
+        dispatch(listCreators.addZzim(id,zzim));
+      }catch(e){
+        console.log(e);
+      }
     }
   };
 }
@@ -77,7 +79,6 @@ export default handleActions(
           draft.list.splice(idx, 1);
         }
       }),
-    
   },
   initialState
 );

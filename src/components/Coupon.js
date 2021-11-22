@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from 'react';
+import {useDispatch} from 'react-redux';
 import { actionCreators as saleActions } from "../redux/modules/sale";
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
