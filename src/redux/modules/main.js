@@ -73,12 +73,13 @@ export default handleActions(
       }),
     [ADD_ZZIM]:(state,action) =>
       produce(state,(draft)=>{
-        console.log(draft.rank)
-        let idx = draft.rank.findIndex((p) => p.id === action.payload.coupon_id);
+        let idx = draft.list.findIndex((p) => p.id === action.payload.coupon_id);
+        console.log(draft.list[idx].couponSelect)
+
         if(action.payload.zzim){
-          draft.rank[idx].couponSelect = 0
+          draft.list[idx].couponSelect = 0
         }else{
-          draft.rank[idx].couponSelect = 1
+          draft.list[idx].couponSelect = 1
         }
       })
   },

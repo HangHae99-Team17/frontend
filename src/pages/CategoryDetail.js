@@ -7,6 +7,7 @@ import Grid from "../elements/Grid";
 import { colorBookmark, couponCreate,couponDespire,couponRank } from '../image';
 import {actionCreators  as foldersCreators } from '../redux/modules/salebox';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import MainCoupon from '../components/MainCoupon';
 
 const CategoryDetail = (props) => {
     const dispatch = useDispatch();
@@ -81,20 +82,7 @@ return(
         DcInfoList?.map((item) => {
           return (
             <Wrap>
-            <DcList key={item.id} onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
-                <Img> <img src = {item.couponLogo} width="40px"/> </Img>
-              <DcInfo>
-              <Text>{item.couponBrand}에서</Text>
-              <Text2>{item.couponSubTitle} 할인 받기</Text2>
-              </DcInfo> 
-              </DcList>
-
-              <Imgbox><img src={colorBookmark} onClick={()=>{
-                if(is_login){
-                const couponId = {couponId : item.id};
-                dispatch(foldersCreators.addPostMW(couponId));
-                alert("해당 쿠폰을 찜했습니다!")}
-                else{alert("로그인이 필요한 서비스 입니다!")}}}/></Imgbox>
+              <MainCoupon {...item} key={item.id}/>
             </Wrap>
           );
         })} 

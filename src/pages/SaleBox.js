@@ -35,7 +35,7 @@ const SaleBox = () => {
 
                   <BUTTON onClick={()=>{
                     dispatch(foldersCreators.delFoldersMiddleware(item.id));
-                    dispatch(listCreators.addZzim(item.id,true));
+                    // dispatch(listCreators.addZzim(item.id,true));
                   }}><img src={fullBookmark} /></BUTTON>
                   </Couponbox>
                 </Grid>
