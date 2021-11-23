@@ -1,14 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useSelector,useDispatch } from 'react-redux';
 import { listCreators } from '../redux/modules/main';
-import styled from 'styled-components';
 import MainCoupon from '../components/MainCoupon';
 
 
 const Main = ()=>{
     const dispatch = useDispatch();
     const coupons = useSelector((state)=>state.main.rank);
-
+    
     React.useEffect(()=>{
         dispatch(listCreators.getDcListMW());
     },[]);
@@ -17,10 +17,10 @@ const Main = ()=>{
         <React.Fragment>
             <RankListBox>
                 <P>아는만큼</P>
-                <P>아낄 수 있도록!</P>
+                <P>깃허브 액션 자동화 테스트</P>
                 {coupons?.map((coupon)=>{
                     return(
-                        <MainCoupon key={coupon.id} {...coupon} />
+                        <MainCoupon key={coupon.id} mode="rank" {...coupon} />
                 );
                 })}
             </RankListBox>
