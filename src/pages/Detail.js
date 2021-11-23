@@ -68,7 +68,7 @@ const LikeWrap = styled.div`
 display : flex;
 width :  355px;
 height : 50px;
-margin : 100px 0 0 16px;
+margin : 160px 0 0 16px;
 `
 const TakeCoupon = styled.div`
 width : 264px;

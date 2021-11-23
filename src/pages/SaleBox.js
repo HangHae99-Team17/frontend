@@ -10,6 +10,7 @@ import {companyLogo, fullBookmark} from '../image'
 const SaleBox = () => {
     const dispatch = useDispatch();
     const folders = useSelector((state) => state.salebox.list);
+    console.log(folders)
     const list_length = folders?.length;
     
     useEffect(() => {
