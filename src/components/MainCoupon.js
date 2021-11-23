@@ -83,7 +83,6 @@ width : 50px;
 position:absolute;
 top:33%;
 `
-
 const Title = styled.p`
 font-size :14px;
 font-weight :400;

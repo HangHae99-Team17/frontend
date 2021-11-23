@@ -26,7 +26,7 @@ function App() {
       <Grid>
       <ConnectedRouter history={history}>
       <Header></Header>
-        <Route path="/api/main" exact component={LoginMain}/>
+        <Route path="/loginmain" exact component={LoginMain}/>
         <Route path='/api/categorydetail/:type' exact component={CategoryDetail} />
         <Route path="/" exact component={Main} />
         <Route path="/signup" exact component={SignUp} />

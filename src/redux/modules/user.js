@@ -53,12 +53,12 @@ export const loginFB = (user) => {
         if (token) {
           sessionStorage.setItem("token", `${token}`);
         }
-        if(res.data.data.status === false){
+        if(res.data.data.status === true){
           dispatch(setUser(res.data.data));
           history.push(`/useractive`);
         }else{
           dispatch(setUser(res.data.data));
-          history.push(`/`);
+          history.push(`/loginmain`);
         }
       }else{
         window.alert(res.data.data);

@@ -21,6 +21,7 @@ const getFoldersMiddleware = () => {
   return async(dispatch) => {
     await apis.getFolders().then((res) => {
         const folders_list = res.data.coupons;
+        console.log(folders_list)
         dispatch(loadFolders(folders_list));
       })
       .catch((err) => {

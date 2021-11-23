@@ -63,6 +63,7 @@ height : 100vh;
 `
 const Image2 = styled.img`
 width : 375px;
+height : 200px;
 `
 const LikeWrap = styled.div`
 display : flex;
