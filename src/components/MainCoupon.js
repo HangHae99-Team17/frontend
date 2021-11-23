@@ -3,40 +3,44 @@ import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 import { colorBookmark, fullBookmark } from '../image';
 import { useSelector,useDispatch } from 'react-redux';
-import {actionCreators as foldersCreators } from '../redux/modules/salebox';
-
+import { listCreators } from '../redux/modules/main';
 
 const MainCoupon = (props) => {
 
     const dispatch = useDispatch();
     const is_login = useSelector((state)=>state.user.is_login);
-    const num = props.couponSelect
-    const [zzim,setZzim] = useState();
+    const [zzim,setZzim] = useState(props.couponSelect===1?true:false);
     
     const zzimz = () => {
         if(is_login===false){
             alert("로그인이 필요한 서비스 입니다!");
             history.push('/login')
-        }
-
+        }       
+        
         if(zzim === false){
-            dispatch(foldersCreators.addPostMW(props.id,zzim));
+            if(props.mode === "rank"){
+                dispatch(listCreators.rankaddzzimFB(props.id,zzim));
+            }else if(props.mode === "search"){
+                dispatch(listCreators.searchaddzzimFB(props.id,zzim));
+            }
             setZzim(true);
         }else if(zzim === true){
-            dispatch(foldersCreators.addPostMW(props.id,zzim));
+            if(props.mode === "rank"){
+                dispatch(listCreators.rankdelzzimFB(props.id,zzim));
+            }else if(props.mode === "search"){
+                dispatch(listCreators.searchdelzzimFB(props.id,zzim));
+            }
             setZzim(false);
-        }   
+        }  
     };
 
-    useEffect(()=>{
-        if(props){
-            if(num === 1){
-                setZzim(true);
-            }else if(num === 0){
-                setZzim(false);
-            }
-        }
-    },[num])
+    // useEffect(()=>{
+    //     if(num === 1){
+    //         setZzim(true);
+    //     }else if(num === 0){
+    //         setZzim(false);
+    //     }
+    // },[num]);
 
     return (
         <div>
@@ -83,7 +87,6 @@ width : 50px;
 position:absolute;
 top:33%;
 `
-
 const Title = styled.p`
 font-size :14px;
 font-weight :400;

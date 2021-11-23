@@ -18,53 +18,42 @@ const initialState = {
 
 // 찜한목록 불러오기
 const getFoldersMiddleware = () => {
-  return async(dispatch) => {
-    await apis.getFolders().then((res) => {
-        const folders_list = res.data.coupons;
-        dispatch(loadFolders(folders_list));
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+  return async (dispatch) => {
+    try{
+      const res = await apis.getFolders();
+      dispatch(loadFolders(res.data.coupons));
+    }catch(e){
+      console.log(e);
+    }
   };
 };
 
 export const delFoldersMiddleware = (coupon_id) => {
-  return async (dispatch, { history }) => {
+  return async (dispatch, getState, { history }) => {
     try{
       const res = await apis.delFolders(coupon_id);
       console.log(res)
       dispatch(delFolderss(coupon_id));
-      history.replace('/salebox');
+
+      const rank_list = getState().main.rank;
+      const search_list = getState().main.searchList;
+
+      if(rank_list.length !== 0){
+        dispatch(listCreators.rankzzim(coupon_id,true));
+      }
+
+      if(search_list.length !== 0){
+        dispatch(listCreators.searchzzim(coupon_id,true));
+      }
+
+      
+
+      history.push('/salebox');
     }catch(e){
       console.log(e);
     }
   }
 };
-
-// 찜하기 기능 post 미들웨어_ 이거는 백에 보내주는 일이라 async안씀
-export const addPostMW = (id,zzim)=>{
-  return async (dispatch, { history })=>{
-    // id는 내가 보내줘야 하는 값(json형태로 넘겨야 하는 값)
-    if(zzim){
-      try{
-        const res = await apis.delFolders(id);
-        console.log(res);
-        dispatch(listCreators.addZzim(id,zzim));
-      }catch(e){
-        console.log(e);
-      }
-    }else if(!zzim){
-      try{
-        const res = await apis.postCoupon(id);;
-        console.log(res);
-        dispatch(listCreators.addZzim(id,zzim));
-      }catch(e){
-        console.log(e);
-      }
-    }
-  };
-}
 
 // reducer
 export default handleActions(
@@ -87,7 +76,6 @@ export default handleActions(
 const actionCreators = {
   getFoldersMiddleware,
   delFoldersMiddleware,
-  addPostMW,
 };
 
 export { actionCreators };
