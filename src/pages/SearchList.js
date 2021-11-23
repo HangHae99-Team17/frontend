@@ -12,7 +12,7 @@ const SearchList = () => {
         const val = localStorage.getItem("search");
         dispatch(listCreators.searchListFB(val));
     },[]);
-
+    
     return (
         <React.Fragment>
             {search.length !== 0?(
