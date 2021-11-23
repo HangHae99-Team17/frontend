@@ -9,10 +9,9 @@ const MainCoupon = (props) => {
 
     const dispatch = useDispatch();
     const is_login = useSelector((state)=>state.user.is_login);
-    const [zzim,setZzim] = useState(props.couponSelect === 1?true:false);
+    const [zzim,setZzim] = useState(props.couponSelect===1?true:false);
     
     const zzimz = () => {
-        console.log(props.mode)
         if(is_login===false){
             alert("로그인이 필요한 서비스 입니다!");
             history.push('/login')
@@ -34,6 +33,14 @@ const MainCoupon = (props) => {
             setZzim(false);
         }  
     };
+
+    // useEffect(()=>{
+    //     if(num === 1){
+    //         setZzim(true);
+    //     }else if(num === 0){
+    //         setZzim(false);
+    //     }
+    // },[num]);
 
     return (
         <div>

@@ -13,9 +13,10 @@ const SEARCH = 'SEARCH';
 // 액션 생성 함수
 const getList = createAction(GET_LIST, (list) => ({list}));
 const getDcList = createAction(GET_DCLIST, (rank)=>({rank}));
+const search = createAction(SEARCH, (search_list)=>({search_list}));
 const rankzzim = createAction(RANK_ZZIM,(coupon_id,zzimval)=>({coupon_id,zzimval}));
 const searchzzim = createAction(SEARCH_ZZIM,(coupon_id,zzimval)=>({coupon_id,zzimval}));
-const search = createAction(SEARCH, (search_list)=>({search_list}));
+
 
 // 초기값 설정
 const initialState = {
@@ -148,19 +149,40 @@ export default handleActions(
     [RANK_ZZIM]:(state,action) =>
       produce(state,(draft)=>{
         let idx = draft.rank.findIndex((p) => p.id === action.payload.coupon_id);
+        let idx2 = draft.searchList.findIndex((p) => p.id === action.payload.coupon_id);
+        console.log(idx);
+        console.log(idx2);
+
         if(action.payload.zzimval){
           draft.rank[idx].couponSelect = 0
+
+          if(idx2 !== -1){
+            draft.searchList[idx2].couponSelect = 0
+          }
         }else{
           draft.rank[idx].couponSelect = 1
+          if(idx2 !== -1){
+            draft.searchList[idx2].couponSelect = 1
+          }
         }
       }),
     [SEARCH_ZZIM]:(state,action) =>
       produce(state,(draft)=>{
         let idx = draft.searchList.findIndex((p) => p.id === action.payload.coupon_id);
+        let idx2 = draft.rank.findIndex((p) => p.id === action.payload.coupon_id);
+
+        console.log(idx)
+        console.log(idx2)
         if(action.payload.zzimval){
           draft.searchList[idx].couponSelect = 0
+          if(idx2 !== -1){
+            draft.rank[idx2].couponSelect = 0
+          }
         }else{
           draft.searchList[idx].couponSelect = 1
+          if(idx2 !== -1){
+            draft.rank[idx2].couponSelect = 1
+          }
         }
     }),
   },
