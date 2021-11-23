@@ -35,6 +35,7 @@ const SaleBox = () => {
 
                   <BUTTON onClick={()=>{
                     dispatch(foldersCreators.delFoldersMiddleware(item.id));
+                    // 확인용 주석
                     // dispatch(listCreators.addZzim(item.id,true));
                   }}><img src={fullBookmark} /></BUTTON>
                   </Couponbox>
