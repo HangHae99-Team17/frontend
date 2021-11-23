@@ -94,11 +94,21 @@ const HeaderBox = styled.div`
     position: fixed;
     border-bottom: solid 1px #9E9E9E;
     z-index : 1;
+    @media screen and (min-width:1028px){
+        border:none;
+        width:0px;
+    }
 `;
 
 const IconBox = styled.div`
     margin-left: 20px;
     margin-top:13px;
+    
+    @media screen and (min-width:1028px){
+        margin-left: 200px;
+        
+
+    }
 `;
 
 const StyledBurger = styled.div`
@@ -116,6 +126,13 @@ const StyledBurger = styled.div`
 
     img{
         margin-left:10px;
+    }
+    
+    @media screen and (min-width:1028px){
+        margin-right: 180px;
+        display:none;
+        
+
     }
 `;
 
@@ -138,6 +155,23 @@ const Ul = styled.ul`
         font-size : 20px;
         font-weight : bold;
     }
+    
+    @media screen and (min-width:1028px){
+        transform:none;
+        padding-top:0;
+        top:-15px;
+        right:200px;
+        height:60px;
+        width:900px;
+        flex-flow: row nowrap;
+        background-color:white;
+        li{
+            color:black;
+            width:1000px;
+        }
+        
+
+    }
 `;
 
 const LoginButton = styled.button`
@@ -149,6 +183,12 @@ const LoginButton = styled.button`
     border:none;
     font-weight:bold;
     font-size:16px;
+    @media screen and (min-width:1028px){
+        margin-top:10px;
+        color:white;
+        
+
+    }
 `;
 
 export default Header;

@@ -39,7 +39,7 @@ const Login = () => {
     return (
         <React.Fragment>
             <LoginBox>
-                <h3>계정이 있으신가요?</h3>
+                <h1>계정이 있으신가요?</h1>
                 <IdInputBox>
                     <input type="text" placeholder="이메일" required="required" name="email" value={email} onChange={onChange}/>
                 </IdInputBox>
@@ -60,12 +60,18 @@ const Login = () => {
 
 const LoginBox = styled.div`
     text-align: center;
+    width:400px;
+    margin:40px auto;
+@media screen and (min-width:1028px){
+    margin:90px auto;
+    transform:scale(1.3)
+}
 
 `
 
 const IdInputBox = styled.div`
-    margin-bottom: 18px;
-    margin-top: 30px;
+    margin-bottom: 40px;
+    margin-top: 60px;
     input{
         width: 328px;
         height: 37px;
@@ -82,7 +88,7 @@ const IdInputBox = styled.div`
 `;
 
 const PasswordInputBox = styled.div`
-    margin-bottom: 18px;
+    margin-bottom: 40px;
     input{
         width: 328px;
         height: 37px;
@@ -106,7 +112,7 @@ const LoginButton = styled.button`
     border: none;
     border-radius: 5px;
     font-size: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 `;
 
 const SignupButton = styled.button`
