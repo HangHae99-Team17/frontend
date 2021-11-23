@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch,useSelector} from 'react-redux';
 import { actionCreators as userActions } from "../redux/modules/user";
+import { listCreators } from "../redux/modules/main";
 import { history } from "../redux/configureStore";
 import styled from 'styled-components';
-import {Frame_101, x, gooddablack, gooddawhite, edit_3} from '../image'
+import {Frame_101, x, gooddablack, gooddawhite, edit_3, search_black, search_orange} from '../image'
+
+
 
 const Header = (props) => {
     const dispatch = useDispatch();
@@ -11,6 +14,24 @@ const Header = (props) => {
     const user_info = useSelector((state) => state.user.user);
     const is_session = sessionStorage.getItem("token") ? true : false;
     const [open, setOpen] = useState(false);
+    const [search,setSearch] = useState(false);
+    const [searchval,setSearchVal] = useState("");
+
+    const searchchange = (e) => {
+        setSearchVal(e.target.value);
+    };
+
+    const searchcoupon = () =>{
+        dispatch(listCreators.searchListFB(searchval));
+        localStorage.setItem("search",searchval);
+        setSearch(!search);
+        setSearchVal("");
+        history.push("/search");                        
+    }
+
+    const searchcancel = () =>{
+        setSearch(!search);
+    }
 
     const logout = () => {
         setOpen(!open)
@@ -33,11 +54,11 @@ const Header = (props) => {
                             <img src={gooddablack} alt="icon" onClick={()=>{history.push('/')}}/>
                         </IconBox>
                         <StyledBurger>
-                        {user_info?.role === "ADMIN"?(
-                                <img src={edit_3} alt="write" onClick={()=>{
-                                    history.push('/salewrite')
-                                }}/>
-                            ):""}
+                            {search?(<SearchBox type="text" placeholder="브랜드를 검색해보세요" value={searchval} onChange={searchchange}/>):""}
+                            {user_info?.role === "ADMIN"?(<img src={edit_3} alt="write" onClick={()=>{history.push('/salewrite')}}/>):""}
+                            {search?(<img src={search_orange} alt="search" onClick={searchcoupon}/>):(
+                                <img src={search_black} alt="search" onClick={searchcancel}/>
+                            )}
                             <img src={Frame_101} alt="burgerbutton" open={open} onClick={()=> setOpen(!open)}/>
                         </StyledBurger>
                     </>
@@ -81,6 +102,15 @@ const Header = (props) => {
             </React.Fragment>
         );
 };
+
+const SearchBox = styled.input`
+    border: none;
+    border-bottom: solid 1px #9E9E9E;
+    width: 140px;
+    focue{
+        border: none;
+    }
+`;
 
 const HeaderBox = styled.div`
     display:flex;

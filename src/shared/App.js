@@ -19,6 +19,7 @@ import Main from '../pages/Main';
 import Category from '../pages/Category';
 import LoginMain from '../pages/LoginMain';
 import Useractive from "../pages/Useractive";
+import SearchList from "../pages/SearchList";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path="/api/detail/:id" exact component={Detail} />
         <Route path="/category" exact component={Category} />
         <Route path="/useractive" exact component={Useractive} />
+        <Route path="/search" exact component={SearchList} /> 
       </ConnectedRouter>
       </Grid>
     </React.Fragment>
