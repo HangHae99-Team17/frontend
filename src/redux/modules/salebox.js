@@ -20,7 +20,6 @@ const initialState = {
 const getFoldersMiddleware = () => {
   return async (dispatch) => {
     try{
-      
       const res = await apis.getFolders();
       dispatch(loadFolders(res.data.coupons));
     }catch(e){
@@ -46,6 +45,8 @@ export const delFoldersMiddleware = (coupon_id) => {
       if(search_list.length !== 0){
         dispatch(listCreators.searchzzim(coupon_id,true));
       }
+
+      
 
       history.push('/salebox');
     }catch(e){
