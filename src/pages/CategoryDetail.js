@@ -28,6 +28,8 @@ const CategoryDetail = (props) => {
       // 내가 넘겨줄 값들 _ 타입, 현재 페이지, 몇개보여줄건지, 정렬기준,isAsc
       console.log(sortBy,isAsc,type,page);        
       dispatch(listCreators.getListMW(type,page,6,sortBy,isAsc));
+      setPage(prevstate =>prevstate + 6)
+
       }, [sortBy]);
 
 
@@ -35,10 +37,10 @@ const CategoryDetail = (props) => {
       // 스크롤이 마지막에 닿았을때 다음 페이지로 이동시켜주는 함수
       const fetchPaging = () => {
         // 페이지 상태 변화
-        setPage(page + 1)
+        setPage(prevstate =>prevstate + 1)
         setTimeout(() => {
             if(hasMore){
-              dispatch(listCreators.getListMW(type,page,2,sortBy,isAsc));
+              dispatch(listCreators.getListMW(type,page,1,sortBy,isAsc));
             }
         },1000)
     }
