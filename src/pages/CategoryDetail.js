@@ -47,7 +47,7 @@ const CategoryDetail = (props) => {
 
 
 return(
-    <Grid width="375px" >
+    <AllBox>
         <div>
         <P>{type} 할인</P>
         <P>다 모아두었어요</P>
@@ -102,11 +102,14 @@ return(
     </InfiniteScroll>
     : <div>할인 정보가 없습니다!</div>
     }
-    </Grid>
+    </AllBox>
   ) 
 }
 
-
+const AllBox = styled.div`
+width:375px;
+margin:0 auto;
+`
 const P = styled.p`
 margin: 0 auto;
 font-size : 20px;
@@ -126,6 +129,7 @@ height : 14px;
 margin : 20px 0 0 16px;
 `
 const DcBox = styled.div`
+position:relative;
 width : 375px;
 margin: 0 auto 20px auto;
 `
@@ -153,18 +157,18 @@ margin-top:-6px;
 color : #FF8F00;
 `
 const Img = styled.span`
+position:relative;
+top:16px;
 width : 40px;
 height : 40px;
-border : 1px solid grey;
-margin : 18px;
-border-radius:5px;
+margin : 10px;
 `
 const Imgbox = styled.div`
 width:20px;
 height:20px;
 position:absolute;
 right:25px;
-top : 38%;
+top : 36%;
 `
 
 

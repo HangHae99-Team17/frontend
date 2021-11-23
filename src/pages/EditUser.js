@@ -143,6 +143,9 @@ const EditUser = (props) => {
 const EditUserBox = styled.div`
     width: 375px;
     margin:0 auto;
+    @media screen and (min-width:1028px){
+      transform:scale(1.1);
+    }
 `
 
 const GridBox = styled.div`

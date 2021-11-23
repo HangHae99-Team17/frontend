@@ -45,7 +45,7 @@ const LoginMain = () => {
 
      
     return(
-          <Div>
+          <AllBox>
       {/* 유저 관심사 타입1 */}
         <InfoWrap>
           <Title>
@@ -55,9 +55,7 @@ const LoginMain = () => {
         {
         type1?.map((item) => {
           return (
-            <DcList>
               <MainCoupon {...item}/>
-            </DcList>
         );
         })
         
@@ -77,9 +75,7 @@ const LoginMain = () => {
         type2?.map((item) => {
           console.log(item)
           return (
-            <DcList>
               <MainCoupon key={item?.id} {...item}/>
-            </DcList>
         );
         })
         
@@ -100,9 +96,7 @@ const LoginMain = () => {
         {
         type3?.map((item) => {
           return (
-            <DcList>
               <MainCoupon {...item}/>
-            </DcList>
         );
         })
         
@@ -152,20 +146,21 @@ const LoginMain = () => {
           <Button onClick={()=>{history.push(`/api/categorydetail/${userMenu?.cardType}?page=1&size=7&sortBy=couponCreate&isAsc=true`);history.go(0)}}>더보기</Button>
         </BtWrap>
   */}
-        </Div>
+        </AllBox>
     )    
 }
 
-const Div = styled.div`
+const AllBox = styled.div`
 width : 375px;
 dispaly : block;
+margin: 0 auto;
 `
 const InfoWrap = styled.ul`
 width : 375px;
 padding : 0;
-`
-const DcList = styled.div`
-margin-top : 20px;
+display:flex;
+flex-flow: column nowrap;
+
 `
 const Button = styled.button`
 width : 328px;
