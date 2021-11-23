@@ -58,7 +58,7 @@ export default handleActions(
         if(action.payload !== undefined) {
           // 데이터가 있다면 true를, 없다면 이라면 false를 반환(조건 삼항연산자)
           // 다음 페이지가 있는지 확인
-          draft.hasMore = action.payload?.main?.length===0? false : true
+          draft.hasMore = action.payload?.list?.length > 0? true : false
         }
         else{
           draft.hasMore = false
