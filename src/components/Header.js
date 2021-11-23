@@ -3,15 +3,17 @@ import {useDispatch,useSelector} from 'react-redux';
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 import styled from 'styled-components';
-import {Frame_101, x, x_black, gooddablack, gooddawhite} from '../image'
+import {Frame_101, x, gooddablack, gooddawhite, edit_3} from '../image'
 
 const Header = (props) => {
     const dispatch = useDispatch();
     const is_login = useSelector((state) => state.user.is_login);
+    const user_info = useSelector((state) => state.user.user);
     const is_session = sessionStorage.getItem("token") ? true : false;
     const [open, setOpen] = useState(false);
 
     const logout = () => {
+        setOpen(!open)
         dispatch(userActions.logoutFB());
         history.push("/");
     };
@@ -25,49 +27,55 @@ const Header = (props) => {
         return (
             <React.Fragment>
                 <HeaderBox color={open?"black":"white"} fontcolor={open?"white":"black"}>
-                    {open?(
+                    {!open?(
                     <>
                         <IconBox>
-                            <img src={gooddawhite} onClick={()=>{history.push('/')}}/>
+                            <img src={gooddablack} alt="icon" onClick={()=>{history.push('/')}}/>
                         </IconBox>
-                        <StyledBurger open={open} onClick={()=> setOpen(!open)}>
-                            {is_login?(<button onClick={logout}>LOGOUT</button>):
-                            (<button onClick={()=>{history.push('/login');}}>LOGIN</button>)}
-                            <img src={x}/>
+                        <StyledBurger>
+                        {user_info?.role === "ADMIN"?(
+                                <img src={edit_3} alt="write" onClick={()=>{
+                                    history.push('/salewrite')
+                                }}/>
+                            ):""}
+                            <img src={Frame_101} alt="burgerbutton" open={open} onClick={()=> setOpen(!open)}/>
                         </StyledBurger>
                     </>
                     ):(
                     <>
                         <IconBox>
-                            <img src={gooddablack} onClick={()=>{history.push('/')}}/>
+                            <img src={gooddawhite} alt="icon" onClick={()=>{history.push('/')}}/>
                         </IconBox>
                         <StyledBurger open={open} onClick={()=> setOpen(!open)}>
-                            <img src={Frame_101}/>
+                            <img src={x} alt="x"/>
                         </StyledBurger>
                     </>
                     )}
                     <Ul open={open}>
-                        <li onClick={()=>{history.push('/category');setOpen(!open)}}>카테고리</li>
-                        <li onClick={()=>{if(is_login){
-                            history.push('/salebox');setOpen(!open)}
-                            else{alert("로그인이 필요한 서비스입니다!")
-                            history.push('/login')
-                            setOpen(!open)}}}>보관함</li>
-                        <li onClick={()=>{if(is_login){
-                            history.push('/edituser');setOpen(!open)}
-                            else{alert("로그인이 필요한 서비스입니다!")
-                            history.push('/login')
-                            setOpen(!open)}}}>마이페이지</li>
                         <li onClick={()=>{
-                            if(is_login){
-                            history.push('/loginmain');setOpen(!open); 
-                            history.go(0)}
-                            else{alert("로그인이 필요한 서비스입니다!");
-                            history.push('/login');}}}>나의 카테고리</li>
-                        <LoginButton onClick={()=>{
-                            history.push('/signup');
-                            setOpen(!open)}}>회원가입
-                        </LoginButton>
+                            history.push('/category');
+                            setOpen(!open)
+                        }}>카테고리</li>
+                        {is_login?(
+                            <>
+                            <li onClick={()=>{
+                                history.push('/salebox');
+                                setOpen(!open)}
+                            }>보관함</li>
+                            <li onClick={()=>{
+                                history.push('/edituser');
+                                setOpen(!open)}
+                            }>마이페이지</li>
+                            <li onClick={()=>{
+                                history.push('/loginmain');
+                                setOpen(!open); 
+                            }}>나의 카테고리</li>
+                            </>
+                        ):("")}
+                        {is_login?(
+                            <LoginButton onClick={logout}>Goodda 로그아웃</LoginButton>
+                                ):(
+                            <LoginButton onClick={()=>{history.push('/login');setOpen(!open)}}>Goodda 로그인하기</LoginButton>)}
                     </Ul>
                 </HeaderBox>
             </React.Fragment>
@@ -105,6 +113,10 @@ const StyledBurger = styled.div`
         background-color: black;
         font-size: 20px;
     }
+
+    img{
+        margin-left:10px;
+    }
 `;
 
 const Ul = styled.ul`
@@ -114,10 +126,10 @@ const Ul = styled.ul`
     background-color: black;
     position: fixed;
     transform: ${({open}) => open? 'translateX(0)':'translateX(100%)'};
-    top: 44px;
+    top: 50px;
     right: 0;
     height: 100vh;
-    width: 350px;
+    width: 360px;
     padding-top: 3.5rem;
     transition: transform 0.3s ease-in-out;
     li{

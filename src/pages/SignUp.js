@@ -1,32 +1,31 @@
 import React,{useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from "../redux/configureStore";
 import styled from 'styled-components';
 import CardType from '../components/CardType';
 import TeleType from '../components/TeleType';
 import InterType from '../components/InterType';
-import {done_black,done_orange,password_ora,_8_20_ora,num_ora,en_ora,password_grey,_8_20_grey,num_grey,
+import {password_ora,_8_20_ora,num_ora,en_ora,password_grey,_8_20_grey,num_grey,
 en_grey} from '../image'
 
 const SignUp = (props) => {
     const dispatch = useDispatch();
+    
     const email_result = useSelector((state)=>state.user.email_check);
     const [emailmsg, setEmailMsg] = useState("");
-
     const [pwNumcheck, setPwNumCheck] = useState(false);
     const [pwEncheck, setPwEnCheck] = useState(false);
     const [pwlengcheck, setPwLengCheck] = useState(false);
     const [passwordcheck, setPasswordcheck] = useState(false);
 
-    const [service,setService] = useState(false);
-    
     const [emaildisplay,setEmailDisplay] = useState("block");
     const [passworddisplay,setPasswordDisplay] = useState("none");
-    const [termsdisplay,setTermsDisplay] = useState("none");
     const [telecomdisplay,setTelecomDisplay]= useState("none");
     const [carddisplay,setCardDisplay] = useState("none");
     const [typedisplay,setTypeDisplay] = useState("none");
-
+    const [progress,setProgress] = useState(60);
+    
     const [telecom,setTelecom] = useState("");
     const [cardtype,setCardtype] = useState("");
     const [type1,setType1] = useState("");
@@ -118,47 +117,50 @@ const SignUp = (props) => {
         if(emaildisplay === "block"){
             setEmailDisplay("none");
             setPasswordDisplay("block");
+            setProgress(progress+60);
         }else if(passworddisplay === "block"){
-            if(!password){
-                window.alert("비밀번호를 입력해주세요!")
-                return
-            }
-            if(passwordcheck === "최소 8 자 최대 10자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자를 입력해주세요."){
-                window.alert("비밀번호 규격에 맞게 입력해주세요")
-                return
-            }
-            if(passwordcheck === "비밀번호가 일치하지 않습니다."){
-                window.alert("비밀번호를 확인해주세요!")
-                return
-            }
             setPasswordDisplay("none");
-            setTermsDisplay("block");
-        }else if(termsdisplay === "block"){
-            setTermsDisplay("none");
             setTelecomDisplay("block");
+            setProgress(progress+60);
         }else if(telecomdisplay ==="block"){
-            if(!telecom){
-                window.alert("통신사를 선택해주세요!")
-                return
-            }
             setTelecomDisplay("none");
             setCardDisplay("block");
+            setProgress(progress+60);
         }else if(carddisplay==="block"){
-            if(!cardtype){
-                window.alert("카드타입을 선택해주세요!")
-                return
-            }
             setCardDisplay("none");
             setTypeDisplay("block");
+            setProgress(progress+60);
         }
     };
 
+    useEffect(() => {
+        history.block((location, action) => {
+            if (action === 'POP'&&passworddisplay === 'block') {
+                setPasswordDisplay("none");
+                setEmailDisplay("block");
+                setProgress(progress-60);
+                return false;
+            }else if(action === 'POP'&&telecomdisplay === 'block'){
+                setTelecomDisplay("none");
+                setPasswordDisplay("block");
+                setProgress(progress-60);
+                return false;
+            }else if(action === 'POP'&&carddisplay === 'block'){
+                setCardDisplay("none");
+                setTelecomDisplay("block");
+                setProgress(progress-60);
+                return false;
+            }else if(action === 'POP'&&typedisplay === 'block'){
+                setTypeDisplay("none");
+                setCardDisplay("block");
+                setProgress(progress-60);
+                return false;
+            }
+        });
+    }, [next]);
+    
     const signup = () => {
 
-        if(!type1&&!type2&&!type3){
-            window.alert("관심사 1개 이상 선택해주세요!");
-            return;
-        }
         const user_info = {
             userEmail: email,
             password: password,
@@ -172,15 +174,6 @@ const SignUp = (props) => {
             adminToken:""
         }
         dispatch(userActions.signupFB(user_info))
-    };
-
-    const servicecheck = () => {
-        if(!service){
-            setService(true);
-        }else{
-            setService(false);
-        }
-        
     };
 
     useEffect(()=> {
@@ -248,10 +241,9 @@ const SignUp = (props) => {
         }
     },[password, password1]);
 
-    
-
     return (
         <React.Fragment>
+            <Progress progress={progress}/>
             <SignUpBox>
                 <EmailBox display={emaildisplay}>
                     <p>이메일을 입력해주세요.</p>
@@ -262,7 +254,11 @@ const SignUp = (props) => {
                         <span>{emailmsg}</span>
                     </div>
                     <div>
-                        <NextButton onClick={emailmsg==="사용 가능한 이메일입니다."?next:""} bgcolor={emailmsg==="사용 가능한 이메일입니다."?"orange":"gray"}>다음</NextButton>
+                        {emailmsg==="사용 가능한 이메일입니다."?(
+                            <NextButton onClick={next} bgcolor="orange">다음</NextButton>
+                        ):(
+                            <NextButton bgcolor="grey">다음</NextButton>
+                        )}
                     </div>
                 </EmailBox>
                 <PasswordBox display={passworddisplay} bgcolor={password1?"orange":"gray"}>
@@ -291,28 +287,6 @@ const SignUp = (props) => {
                         )}
                     </div>
                 </PasswordBox>
-                <TermsBox display={termsdisplay}>
-                    <h3>서비스 이용약관에 동의해주세요.</h3>
-                    <div className="checkall">
-                        <img src={service?done_orange:done_black} onClick={servicecheck}/>
-                        <h4>모두 동의하기</h4>
-                    </div>
-                    <div className="checklist">
-                        <ul>
-                            <li><img src={service?done_orange:done_black}/>(필수) 약관 동의</li>
-                            <li><img src={service?done_orange:done_black}/>(필수) 약관 동의</li>
-                            <li><img src={service?done_orange:done_black}/>(선택) 약관 동의</li>
-                            <li><img src={service?done_orange:done_black}/>(선택) 약관 동의</li>
-                        </ul>
-                    </div>
-                    <div className="nextbutton">
-                        {service?(
-                        <NextButton onClick={next} bgcolor="orange">다음</NextButton>
-                        ):(
-                        <NextButton bgcolor="grey">다음</NextButton>
-                        )}
-                    </div>
-                </TermsBox>
                 <TelecomBox display={telecomdisplay} bgcolor={telecom?"orange":"gray"}>
                     <h4>어떤 통신사 혜택을 보여드릴까요?</h4>
                     <TeleType mode="signup" telecom={telecom} telecomtypeselect={telecomtypeselect}/>
@@ -331,7 +305,7 @@ const SignUp = (props) => {
                     <h4>관심있는 3가지 선택하면 끝나요</h4>
                     <InterType mode="signup" type1={type1} type2={type2} type3={type3} typeselect={typeselect} typecancle={typecancle}/>
                     <div className="nextbutton">
-                        <NextButton bgcolor={type1?"orange":"gray"}onClick={signup}>완료</NextButton>
+                        <NextButton bgcolor={type1&&type2&&type3?"orange":"gray"}onClick={signup}>완료</NextButton>
                     </div>
                 </TypeBox>
             </SignUpBox>
@@ -339,42 +313,20 @@ const SignUp = (props) => {
     );
 };
 
+const Progress = styled.div`
+    border-top: solid 1px orange;
+    position: relative;
+    margin-top: -35px;
+    z-index: 3;
+    width: ${props => `${props.progress}px`};
+    -webkit-transition: width 1s;
+    transition: width 1s;
+`;
+
+
 const SignUpBox = styled.div`
     margin: 0 auto;
     width: 375px;
-`;
-
-const TermsBox = styled.div`
-    margin-left:30px;
-    display: ${props => props.display};
-    .checkall{
-        padding-left:15px;
-        border-radius: 5px;
-        border: 1px solid #D5D5D5;
-        width: 300px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        img{
-            margin-right:10px;
-        }
-    }
-    .checklist{
-        ul{
-            margin-left:-25px;
-            list-style:none;
-            li{
-                display:flex;
-                align-items: center;
-                margin-bottom:10px;
-                font-size:13px;
-                color: grey;
-                img{
-                    margin-right:10px;
-                }
-            }
-        }
-    }
 `;
 
 const EmailBox = styled.div`
@@ -396,7 +348,7 @@ const EmailBox = styled.div`
 `;
 
 const PasswordBox = styled.div`
-    margin-left:35px;
+    margin-left:30px;
     display: ${props => props.display};
     p{
         float:left;
@@ -433,7 +385,7 @@ const PasswordBox = styled.div`
 const TelecomBox = styled.div`
     display: ${props => props.display};
     .nextbutton{
-        margin-left: 33px;
+        margin-left: 30px;
     }
     h4{
         margin-left:20px;
@@ -443,7 +395,7 @@ const TelecomBox = styled.div`
 const CardtypeBox = styled.div`
     display: ${props => props.display};
     .nextbutton{
-        margin-left: 33px;
+        margin-left: 30px;
     }
     h4{
         margin-left:20px;
@@ -453,7 +405,7 @@ const CardtypeBox = styled.div`
 const TypeBox = styled.div`
     display: ${props => props.display};
     .nextbutton{
-        margin-left: 33px;
+        margin-left:30px;
     }
     h4{
         margin-left:20px;

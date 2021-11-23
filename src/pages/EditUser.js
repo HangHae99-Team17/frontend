@@ -37,14 +37,8 @@ const EditUser = (props) => {
         }
     };
 
-    
     const typeselect = (e) => {
         
-        console.log(e.target.value);
-        
-        console.log(type1)
-        console.log(type2)
-        console.log(type3)
         if(!type1 && !type2 && !type3){
             setType1(e.target.value);
         }
@@ -98,11 +92,6 @@ const EditUser = (props) => {
     },[user_info]);
 
     const editUser = () => {
-        console.log(telecom)
-        console.log(cardtype)
-        console.log(type1)
-        console.log(type2)
-        console.log(type3)
         const user_info = {
             nickname:"",
             password:password,

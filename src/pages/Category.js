@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { history } from '../redux/configureStore';
 import styled from 'styled-components';
 import { skt, kt, lg, shinhan, hyundai, samsung, kb, lotte, woori, nh, bc, toss, kakao, hana, citi, cup, airplane, bicycle, cart, film_frame, gift, hamburger, house, knive_fork, monitor2, scissors, t_shirt } from '../image';
@@ -58,11 +58,10 @@ const inter_category = [
             <Litext>관심사 쿠폰 정보</Litext>
             {inter_category.map((item)=>{
                 return(
-                    <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}`);history.go(0)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
+                    <Li key={item.id} onClick={()=>{history.push(`/api/categorydetail/${item.title}`);history.go(0)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
                 )
             })}
             </Ul>
-            
         </Div>
     )
 }

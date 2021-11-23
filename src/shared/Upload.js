@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { actionCreators as imageActions } from "../redux/modules/image";
 
 const Upload = (props) => {
@@ -21,10 +21,7 @@ const Upload = (props) => {
 
   return (
     <React.Fragment>
-      <input
-        type="file"
-        onChange={selectFile}
-        ref={fileInput}
+      <input type="file" onChange={selectFile} ref={fileInput}
       />
     </React.Fragment>
   );

@@ -1,11 +1,13 @@
 import React,{useState} from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import styled from 'styled-components';
-import { history } from "../redux/configureStore";
+import { history } from '../redux/configureStore';
+
 
 const Login = () => {
     const dispatch = useDispatch();
+    const [meg,setMeg] = useState("");
     const [login_info, setLogin_Info] = useState({
         email: "",
         password: "",
@@ -18,7 +20,7 @@ const Login = () => {
 
     const submitLogin = () => {
         if(email === "" || password === ""){  //공란 체크
-            alert("아이디 혹은 비밀번호를 입력하세요.");
+            setMeg("아이디 혹은 비밀번호를 입력하세요.");
             return;
         }
 
@@ -44,9 +46,10 @@ const Login = () => {
                 <PasswordInputBox>
                     <input type="password" placeholder="비밀번호" required="required" name="password" value={password} onChange={onChange}/>
                 </PasswordInputBox>
+                <p>{meg}</p>
                 <LoginButton onClick={submitLogin}>로그인하기</LoginButton>
                 <SignupButton onClick={()=>{
-                    window.location.replace('/signup');
+                    history.replace('/signup');
                 }}>계정이 없어요. 1분만에 가입하기!!</SignupButton>
             </LoginBox>
         </React.Fragment>
