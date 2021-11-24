@@ -53,6 +53,8 @@ import done_orange from "./done_orange.png";
 import edit_3 from "./edit-3.png";
 import bookmark from "./bookmark.png";
 import edit from "./edit.png";
+import search_black from "./search_black.png";
+import search_orange from "./search_orange.png";
 
 export {couponCreate,
     couponRank,
@@ -108,5 +110,7 @@ export {couponCreate,
     done_orange,
     edit_3,
     bookmark,
-    edit
+    edit,
+    search_black,
+    search_orange
 };

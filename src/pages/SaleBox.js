@@ -20,7 +20,7 @@ const SaleBox = () => {
 
     return (
       <React.Fragment>
-        <div>
+        <AllBox>
           <Notice>{list_length}개가 보관되어있어요</Notice>
             {folders?.map((item)=>{
               return(
@@ -35,17 +35,26 @@ const SaleBox = () => {
 
                   <BUTTON onClick={()=>{
                     dispatch(foldersCreators.delFoldersMiddleware(item.id));
-                    // 확인용 주석
-                    // dispatch(listCreators.addZzim(item.id,true));
                   }}><img src={fullBookmark} /></BUTTON>
                   </Couponbox>
                 </Grid>
               )
           })}
-        </div>
+        </AllBox>
       </React.Fragment>
     );
 };
+
+
+const AllBox = styled.div`
+position:relative;
+width:375px;
+margin:10px auto;
+@media screen and (min-width:1028px){
+  transform:scale(1.1);
+}
+
+`
 
 const Notice = styled.div`
 font-weight: bold;
@@ -55,6 +64,7 @@ padding: 10px 18px;
 
 const Couponbox = styled.div`
 display:flex;
+flex-flow:colums wrap;
 width : 375px;
 height: 60px;
 `
@@ -84,7 +94,7 @@ padding-left:-20px;
 
 const BUTTON = styled.button`
 position: absolute;
-right:20px;
+right:10px;
 height: 50px;
 border: none;
 background-color:white;

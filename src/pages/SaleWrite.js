@@ -133,7 +133,8 @@ const SaleWrite = (props) => {
 };
 
 const SaleWriteBox = styled.div`
-    width:100%;
+    width:375px;
+    margin:0 auto;
 `;
 
 const CateGoryBox = styled.div`

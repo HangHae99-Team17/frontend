@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch,useSelector} from 'react-redux';
 import { actionCreators as userActions } from "../redux/modules/user";
+import { listCreators } from "../redux/modules/main";
 import { history } from "../redux/configureStore";
 import styled from 'styled-components';
-import {Frame_101, x, gooddablack, gooddawhite, edit_3} from '../image'
+import {Frame_101, x, gooddablack, gooddawhite, edit_3, search_black, search_orange} from '../image'
+
+
 
 const Header = (props) => {
     const dispatch = useDispatch();
@@ -11,6 +14,24 @@ const Header = (props) => {
     const user_info = useSelector((state) => state.user.user);
     const is_session = sessionStorage.getItem("token") ? true : false;
     const [open, setOpen] = useState(false);
+    const [search,setSearch] = useState(false);
+    const [searchval,setSearchVal] = useState("");
+
+    const searchchange = (e) => {
+        setSearchVal(e.target.value);
+    };
+
+    const searchcoupon = () =>{
+        dispatch(listCreators.searchListFB(searchval));
+        localStorage.setItem("search",searchval);
+        setSearch(!search);
+        setSearchVal("");
+        history.push("/search");                        
+    }
+
+    const searchcancel = () =>{
+        setSearch(!search);
+    }
 
     const logout = () => {
         setOpen(!open)
@@ -33,11 +54,11 @@ const Header = (props) => {
                             <img src={gooddablack} alt="icon" onClick={()=>{history.push('/')}}/>
                         </IconBox>
                         <StyledBurger>
-                        {user_info?.role === "ADMIN"?(
-                                <img src={edit_3} alt="write" onClick={()=>{
-                                    history.push('/salewrite')
-                                }}/>
-                            ):""}
+                            {search?(<SearchBox type="text" placeholder="브랜드를 검색해보세요" value={searchval} onChange={searchchange}/>):""}
+                            {user_info?.role === "ADMIN"?(<img src={edit_3} alt="write" onClick={()=>{history.push('/salewrite')}}/>):""}
+                            {search?(<img src={search_orange} alt="search" onClick={searchcoupon}/>):(
+                                <img src={search_black} alt="search" onClick={searchcancel}/>
+                            )}
                             <img src={Frame_101} alt="burgerbutton" open={open} onClick={()=> setOpen(!open)}/>
                         </StyledBurger>
                     </>
@@ -82,6 +103,15 @@ const Header = (props) => {
         );
 };
 
+const SearchBox = styled.input`
+    border: none;
+    border-bottom: solid 1px #9E9E9E;
+    width: 140px;
+    focue{
+        border: none;
+    }
+`;
+
 const HeaderBox = styled.div`
     display:flex;
     justify-content: space-between;
@@ -94,11 +124,21 @@ const HeaderBox = styled.div`
     position: fixed;
     border-bottom: solid 1px #9E9E9E;
     z-index : 1;
+    @media screen and (min-width:1028px){
+        border:none;
+        width:0px;
+    }
 `;
 
 const IconBox = styled.div`
     margin-left: 20px;
     margin-top:13px;
+    
+    @media screen and (min-width:1028px){
+        margin-left: 200px;
+        
+
+    }
 `;
 
 const StyledBurger = styled.div`
@@ -116,6 +156,13 @@ const StyledBurger = styled.div`
 
     img{
         margin-left:10px;
+    }
+    
+    @media screen and (min-width:1028px){
+        margin-right: 180px;
+        display:none;
+        
+
     }
 `;
 
@@ -138,6 +185,23 @@ const Ul = styled.ul`
         font-size : 20px;
         font-weight : bold;
     }
+    
+    @media screen and (min-width:1028px){
+        transform:none;
+        padding-top:0;
+        top:-15px;
+        right:200px;
+        height:60px;
+        width:900px;
+        flex-flow: row nowrap;
+        background-color:white;
+        li{
+            color:black;
+            width:1000px;
+        }
+        
+
+    }
 `;
 
 const LoginButton = styled.button`
@@ -149,6 +213,12 @@ const LoginButton = styled.button`
     border:none;
     font-weight:bold;
     font-size:16px;
+    @media screen and (min-width:1028px){
+        margin-top:10px;
+        color:white;
+        
+
+    }
 `;
 
 export default Header;
