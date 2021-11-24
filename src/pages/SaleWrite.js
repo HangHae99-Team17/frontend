@@ -9,6 +9,7 @@ import { history } from "../redux/configureStore";
 import styled from 'styled-components';
 import InterType from '../components/InterType';
 import TeleType from '../components/TeleType';
+import CardType from '../components/CardType';
 import Button from "../elements/Button"
 
 const SaleWrite = (props) => {
@@ -97,6 +98,8 @@ const SaleWrite = (props) => {
             <SaleWriteBox>
                 <CateGoryBox display={categorydisplay}>
                     <CategoryNotice>카테고리를 선택해주세요.</CategoryNotice>
+                    <CardType mode="saleinfo" coupontype={coupontype} categoryselect={categoryselect}/>
+                    <TeleType mode="saleinfo" coupontype={coupontype} categoryselect={categoryselect}/>
                     <InterType mode="saleinfo" coupontype={coupontype} categoryselect={categoryselect}/>
                     <CategoryButton onClick={next}>선택 완료</CategoryButton>
                 </CateGoryBox>

@@ -15,7 +15,7 @@ const MainCoupon = (props) => {
         if(is_login===false){
             alert("로그인이 필요한 서비스 입니다!");
             history.push('/login')
-        }       
+        }      
         
         if(zzim === false){
             if(props.mode === "rank"){
@@ -33,7 +33,7 @@ const MainCoupon = (props) => {
             setZzim(false);
         }  
     };
-
+    
     // useEffect(()=>{
     //     if(num === 1){
     //         setZzim(true);

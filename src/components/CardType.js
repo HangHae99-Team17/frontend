@@ -55,6 +55,24 @@ const CardType = (props) => {
                 </CardTypeBox>
             </React.Fragment>
         )
+    }else if(props.mode==="saleinfo"){
+        return(
+            <React.Fragment>
+            <CardTypeBox>
+                    {cards.map((card) => {
+                        if(props.coupontype === card.card_name){
+                            return(
+                                <SignUpButton image={card.card_img} className="signupbutton" bg="orange" key={card.card_id} value={card.card_name} onClick={props.categoryselect}>{card.card_name}</SignUpButton>
+                            )
+                        }else{
+                            return(
+                                <SignUpButton image={card.card_img} className="signupbutton" bg="grey" key={card.card_id} value={card.card_name} onClick={props.categoryselect}>{card.card_name}</SignUpButton>
+                            )
+                        }
+                    })}
+            </CardTypeBox>
+        </React.Fragment>
+        )
     }
 };
 
