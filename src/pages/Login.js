@@ -7,7 +7,7 @@ import { history } from '../redux/configureStore';
 
 const Login = () => {
     const dispatch = useDispatch();
-    const usererror = useSelector(state => state.user.user);
+    const usererror = useSelector(state => state.user.loginError);
     const [meg,setMeg] = useState("");
     const [login_info, setLogin_Info] = useState({
         email: "",
@@ -41,8 +41,12 @@ const Login = () => {
         if(usererror === "유저네임을 찾을 수 없습니다."){
             setMeg("유저네임을 찾을 수 없습니다.");
             return;
+        }else if(usererror === "비밀번호가 맞지 않습니다."){
+            setMeg("비밀번호가 맞지 않습니다.");
+            return;
         }
-    },[submitLogin])
+
+    },[submitLogin]);
 
     return (
         <React.Fragment>
@@ -70,6 +74,11 @@ const LoginBox = styled.div`
     text-align: center;
     width:400px;
     margin:40px auto;
+    p{
+        margin-top: -30px;
+        color: red;
+        font-size:12px;
+    }
 @media screen and (min-width:1028px){
     margin:90px auto;
     transform:scale(1.3)
