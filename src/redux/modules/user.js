@@ -44,7 +44,7 @@ export const signupFB = (user) => {
 
 //로그인
 export const loginFB = (user) => {
-  return async (dispatch, getState, {history}) => {
+  return async (dispatch, {history}) => {
     try {
       const res = await apis.loginuser(user)
 
@@ -53,7 +53,8 @@ export const loginFB = (user) => {
         if (token) {
           sessionStorage.setItem("token", `${token}`);
         }
-        if(res.data.data.status === true){
+        
+        if(res.data.data.status !== true){
           dispatch(setUser(res.data.data));
           history.push(`/useractive`);
         }else{
