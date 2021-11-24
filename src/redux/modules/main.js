@@ -170,9 +170,6 @@ export default handleActions(
       produce(state,(draft)=>{
         let idx = draft.searchList.findIndex((p) => p.id === action.payload.coupon_id);
         let idx2 = draft.rank.findIndex((p) => p.id === action.payload.coupon_id);
-
-        console.log(idx)
-        console.log(idx2)
         if(action.payload.zzimval){
           draft.searchList[idx].couponSelect = 0
           if(idx2 !== -1){
