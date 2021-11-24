@@ -44,25 +44,23 @@ export const signupFB = (user) => {
 
 //로그인
 export const loginFB = (user) => {
-  return async (dispatch, {history}) => {
+  return async (dispatch, getState, { history }) => {
     try {
-      const res = await apis.loginuser(user)
-
+      const res = await apis.loginuser(user);
       if(res.data.data !== "유저네임을 찾을 수 없습니다." && res.data.data !== "비밀번호가 맞지 않습니다."){
         const token = res.data.data.token;
         if (token) {
           sessionStorage.setItem("token", `${token}`);
         }
-        
-        if(res.data.data.status !== true){
+        if(res.data.data.status === true){
           dispatch(setUser(res.data.data));
-          history.push(`/useractive`);
+          history.push('/loginmain');
         }else{
           dispatch(setUser(res.data.data));
-          history.push(`/loginmain`);
+          history.push('/useractive');
         }
       }else{
-        window.alert(res.data.data);
+        dispatch(setUser(res.data.data));
       }
     } catch (e) {
       console.log(e);
