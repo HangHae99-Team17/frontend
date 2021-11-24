@@ -5,14 +5,17 @@ import { apis } from "../../common/axios";
 //action type
 const SET_USER = "SET_USER";
 const CHECK_EMAIL = "CHECK_EMAIL";
+const LOGIN_ERROR = "LOGIN_ERROR";
 
 //action creator
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const useremail = createAction(CHECK_EMAIL, (checkresult) => ({checkresult}));
+const loginerror = createAction(LOGIN_ERROR, (error) => ({error}));
 
 //initialState
 const initialState = {
   user: null,
+  loginError:null,
   is_login: false,
   email_check: null
 };
@@ -60,7 +63,7 @@ export const loginFB = (user) => {
           history.push('/useractive');
         }
       }else{
-        dispatch(setUser(res.data.data));
+        dispatch(loginerror(res.data.data));
       }
     } catch (e) {
       console.log(e);
@@ -149,6 +152,10 @@ export default handleActions(
     [CHECK_EMAIL]: (state, action) => 
       produce(state, (draft) => {
         draft.email_check = action.payload.checkresult
+      }),
+    [LOGIN_ERROR]: (state, action) => 
+      produce(state, (draft) => {
+        draft.loginError = action.payload.error
       })
   },
   initialState
