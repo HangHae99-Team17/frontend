@@ -70,7 +70,7 @@ return(
         dcList?.map((item) => {
           return (
             <Wrap>
-              <MainCoupon {...item} key={item.id}/>
+              <MainCoupon {...item} key={item.id} mode="rank"/>
             </Wrap>
           );
         })} 

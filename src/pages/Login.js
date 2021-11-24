@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import { useDispatch } from "react-redux";
+import React,{useState, useEffect} from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
@@ -7,6 +7,7 @@ import { history } from '../redux/configureStore';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const usererror = useSelector(state => state.user.user);
     const [meg,setMeg] = useState("");
     const [login_info, setLogin_Info] = useState({
         email: "",
@@ -35,6 +36,13 @@ const Login = () => {
             password: ""
         });
     }
+
+    useEffect(()=>{
+        if(usererror === "유저네임을 찾을 수 없습니다."){
+            setMeg("유저네임을 찾을 수 없습니다.");
+            return;
+        }
+    },[submitLogin])
 
     return (
         <React.Fragment>

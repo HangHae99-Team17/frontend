@@ -48,13 +48,13 @@ const TeleType = (props) => {
         return (
             <TeleTypeBox>
                 {tels.map((tel) => {
-                    if(props.telecom === tel.tel_name){
+                    if(props.coupontype === tel.tel_name){
                         return(
-                            <SignUpButton bg="orange"  image={tel.tel_img} color="orange" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</SignUpButton>
+                            <SignUpButton bg="orange"  image={tel.tel_img} color="orange" key={tel.tel_id} onClick={props.categoryselect} value={tel.tel_name}>{tel.tel_name}</SignUpButton>
                         )
                     }else {
                         return(
-                            <SignUpButton  image={tel.tel_img} bg="#E4E4E4" key={tel.tel_id} value={tel.tel_name} onClick={props.telecomtypeselect}>{tel.tel_name}</SignUpButton>
+                            <SignUpButton  image={tel.tel_img} bg="#E4E4E4" key={tel.tel_id} onClick={props.categoryselect} value={tel.tel_name}>{tel.tel_name}</SignUpButton>
                         )
                     }
                 })}

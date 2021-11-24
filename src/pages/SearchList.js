@@ -10,6 +10,7 @@ const SearchList = () => {
 
     React.useEffect(()=>{
         const val = localStorage.getItem("search");
+        
         dispatch(listCreators.searchListFB(val));
     },[]);
     

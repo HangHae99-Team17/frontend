@@ -148,19 +148,19 @@ export default handleActions(
       }),
     [RANK_ZZIM]:(state,action) =>
       produce(state,(draft)=>{
-        let idx = draft.rank.findIndex((p) => p.id === action.payload.coupon_id);
+        let idx = draft.list.findIndex((p) => p.id === action.payload.coupon_id);
         let idx2 = draft.searchList.findIndex((p) => p.id === action.payload.coupon_id);
         console.log(idx);
         console.log(idx2);
 
         if(action.payload.zzimval){
-          draft.rank[idx].couponSelect = 0
+          draft.list[idx].couponSelect = 0
 
           if(idx2 !== -1){
             draft.searchList[idx2].couponSelect = 0
           }
         }else{
-          draft.rank[idx].couponSelect = 1
+          draft.list[idx].couponSelect = 1
           if(idx2 !== -1){
             draft.searchList[idx2].couponSelect = 1
           }
@@ -170,9 +170,6 @@ export default handleActions(
       produce(state,(draft)=>{
         let idx = draft.searchList.findIndex((p) => p.id === action.payload.coupon_id);
         let idx2 = draft.rank.findIndex((p) => p.id === action.payload.coupon_id);
-
-        console.log(idx)
-        console.log(idx2)
         if(action.payload.zzimval){
           draft.searchList[idx].couponSelect = 0
           if(idx2 !== -1){

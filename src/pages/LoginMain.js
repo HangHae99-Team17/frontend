@@ -48,6 +48,9 @@ const LoginMain = () => {
           <AllBox>
       {/* 유저 관심사 타입1 */}
         <InfoWrap>
+          <p>
+나를 위한 카드사,통신사,관심할인을 확인해보세요.
+          </p>
           <Title>
           {dc_list?.[0]?.couponType}할인
           <Br> 다 모아두었어요</Br>
@@ -55,7 +58,7 @@ const LoginMain = () => {
         {
         type1?.map((item) => {
           return (
-              <MainCoupon {...item}/>
+              <MainCoupon {...item} key={item?.id} mode="rank"/>
         );
         })
         
@@ -75,7 +78,7 @@ const LoginMain = () => {
         type2?.map((item) => {
           console.log(item)
           return (
-              <MainCoupon key={item?.id} {...item}/>
+              <MainCoupon  {...item} key={item?.id} mode="rank"/>
         );
         })
         
@@ -96,7 +99,7 @@ const LoginMain = () => {
         {
         type3?.map((item) => {
           return (
-              <MainCoupon {...item}/>
+              <MainCoupon {...item} key={item?.id} mode="rank"/>
         );
         })
         

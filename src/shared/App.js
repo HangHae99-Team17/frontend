@@ -40,7 +40,7 @@ function App() {
         <Route path="/salewrite/:id" exact component={SaleWrite} />
         <Route path="/salebox" exact component={SaleBox} />
         <Route path="/errpage" exact component={Errpage} />
-        <Route path="/api/detail/:id" exact component={Detail} />
+        <Route path="/api/detail/:id" exact component={Detail} mode="rank"/>
         <Route path="/category" exact component={Category} />
         <Route path="/useractive" exact component={Useractive} />
         <Route path="/search" exact component={SearchList} /> 
