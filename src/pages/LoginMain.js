@@ -23,12 +23,12 @@ const LoginMain = () => {
         if(MenuArr.length > 0){
       const type = [MenuArr[0],MenuArr[1],MenuArr[2],MenuArr[3],MenuArr[4]]
       console.log("안녕",type)
-       dispatch(listCreators.getListMW(MenuArr[0],1,3,"couponCreate",true));
-       dispatch(listCreators.getListMW(MenuArr[1],1,3,"couponCreate",true));
-       dispatch(listCreators.getListMW(MenuArr[2],1,3,"couponCreate",true));
+       dispatch(listCreators.getListMW(MenuArr[0],1,3,"couponLike",false));
+       dispatch(listCreators.getListMW(MenuArr[1],1,3,"couponLike",false));
+       dispatch(listCreators.getListMW(MenuArr[2],1,3,"couponLike",false));
       //  제대로 된 데이터 들어오면 주석처리 해제할 예정
-      //  dispatch(listCreators.getListMW(MenuArr[4],1,3,"couponCreate",true));
-      //  dispatch(listCreators.getListMW(MenuArr[5],1,3,"couponCreate",true));
+      //  dispatch(listCreators.getListMW(MenuArr[4],1,3,"couponLike",false));
+      //  dispatch(listCreators.getListMW(MenuArr[5],1,3,"couponLike",false));
         }
     }
     ,[userMenu])
@@ -48,12 +48,9 @@ const LoginMain = () => {
           <AllBox>
       {/* 유저 관심사 타입1 */}
         <InfoWrap>
-          <p>
-나를 위한 카드사,통신사,관심할인을 확인해보세요.
-          </p>
           <Title>
-          {dc_list?.[0]?.couponType}할인
-          <Br> 다 모아두었어요</Br>
+          <Br>당신을 위한</Br>
+          <Span>{dc_list?.[0]?.couponType}</Span> 추천
           </Title>
         {
         type1?.map((item) => {
@@ -70,8 +67,8 @@ const LoginMain = () => {
       {/* 유저 관심사 타입2 */}
         <InfoWrap>
         <Title>
-          {dc_list?.[3]?.couponType}할인
-          <Br> 다 모아두었어요</Br>
+        <Br>당신을 위한</Br>
+        <Span>{dc_list?.[3]?.couponType}</Span> 추천
         </Title>
 
         {
@@ -92,8 +89,8 @@ const LoginMain = () => {
        {/* 유저 관심사 타입3 */}
         <InfoWrap>
         <Title>
-          {dc_list?.[6]?.couponType}할인
-          <Br> 다 모아두었어요</Br>
+        <Br>당신을 위한</Br>
+          <Span>{dc_list?.[6]?.couponType}</Span> 추천
         </Title>
 
         {
@@ -110,8 +107,8 @@ const LoginMain = () => {
         </BtWrap>
       {/* 유저 통신사 */}
       {/* <Title>
-          {userMenu?.telecom}할인
-          <Br> 다 모아두었어요</Br>
+          <Br>당신을 위한</Br>
+          <Span>{userMenu?.telecom}</Span> 추천
       </Title>
 
       <InfoWrap>
@@ -131,8 +128,8 @@ const LoginMain = () => {
       {/* 유저 카드사 */}
       {/* <InfoWrap>
       <Title>
-          {userMenu?.cardType}할인
-          <Br> 다 모아두었어요</Br>
+          <Br>당신을 위한</Br>
+          <Span>{userMenu?.cardType}</Span> 추천
       </Title>
 
         {
@@ -191,6 +188,9 @@ const Br = styled.div`
 margin-top : 8px;
 font-size : 20px;
 font-weight : 600;
-`
 
+`
+const Span = styled.span`
+color : #F09643
+`
 export default LoginMain;

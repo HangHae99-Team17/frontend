@@ -11,12 +11,7 @@ const MainCoupon = (props) => {
     const is_login = useSelector((state)=>state.user.is_login);
     const [zzim,setZzim] = useState(props.couponSelect===1?true:false);
     
-    const zzimz = () => {
-        if(is_login===false){
-            alert("로그인이 필요한 서비스 입니다!");
-            history.push('/login')
-        }      
-        
+    const zzimz = () => {        
         if(zzim === false){
             if(props.mode === "rank"){
                 dispatch(listCreators.rankaddzzimFB(props.id,zzim));
@@ -56,7 +51,7 @@ const MainCoupon = (props) => {
                 </Box>
                 <Bookmarker>
                     {!is_login?(
-                        <img src={colorBookmark}/>
+                        <img src={colorBookmark} onClick={()=>{alert("로그인이 필요한 서비스 입니다!"); history.push('/login')}}/>
                     ):(
                         <img src={!zzim?colorBookmark:fullBookmark} onClick={zzimz}/>
                     )}
