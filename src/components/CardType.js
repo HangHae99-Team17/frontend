@@ -66,7 +66,7 @@ const CardType = (props) => {
                             )
                         }else{
                             return(
-                                <SignUpButton image={card.card_img} className="signupbutton" bg="grey" key={card.card_id} value={card.card_name} onClick={props.categoryselect}>{card.card_name}</SignUpButton>
+                                <SignUpButton image={card.card_img} className="signupbutton" bg="gray" key={card.card_id} value={card.card_name} onClick={props.categoryselect}>{card.card_name}</SignUpButton>
                             )
                         }
                     })}
