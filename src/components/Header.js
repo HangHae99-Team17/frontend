@@ -162,8 +162,6 @@ const HeaderBox = styled.div`
     @media screen and (min-width:1028px){
         border:none;
         width:0px;
-        background-color:${props => props.color};
-        color:${props => props.fontcolor};
     }
 `;
 
