@@ -52,13 +52,14 @@ const Header = (props) => {
                     <>
                         <IconBox>
                             <img src={gooddablack} alt="icon" onClick={()=>{history.push('/')}}/>
+                            
+                            {search?(<SearchBox type="text" placeholder="브랜드를 검색해보세요" required="required" value={searchval} onChange={searchchange}/>):""}
+                            {user_info?.role === "ADMIN"?(<WriteImg src={edit_3} alt="write" onClick={()=>{history.push('/salewrite')}}/>):""}
+                            {search?(<SearchImg src={search_orange} alt="search" onClick={searchcoupon}/>):(
+                                <SearchImg src={search_black} alt="search" onClick={searchcancel}/>
+                            )}
                         </IconBox>
                         <StyledBurger>
-                            {search?(<SearchBox type="text" placeholder="브랜드를 검색해보세요" value={searchval} onChange={searchchange}/>):""}
-                            {user_info?.role === "ADMIN"?(<img src={edit_3} alt="write" onClick={()=>{history.push('/salewrite')}}/>):""}
-                            {search?(<img src={search_orange} alt="search" onClick={searchcoupon}/>):(
-                                <img src={search_black} alt="search" onClick={searchcancel}/>
-                            )}
                             <img src={Frame_101} alt="burgerbutton" open={open} onClick={()=> setOpen(!open)}/>
                         </StyledBurger>
                     </>
@@ -105,13 +106,47 @@ const Header = (props) => {
 };
 
 const SearchBox = styled.input`
+position:absolute;
+right:115px;
+height:22px;
+top:20px;
     border: none;
     border-bottom: solid 1px #9E9E9E;
     width: 140px;
-    focue{
-        border: none;
+    font-weight:bold;
+    :focus{
+        outline: 2px solid orange;
+        border-radius:2px;
+        border:none;
+    }
+    :valid{
+        border-bottom: solid 1px orange;
+        color:orange;
+    }
+    @media screen and (min-width:1028px){
+        left:470px;
+            transform:scale(1.4);
+            width:160px;
     }
 `;
+
+const SearchImg = styled.img`
+position:absolute;
+right:85px; 
+@media screen and (min-width:1028px){
+    left:700px;
+    transform:scale(1.4);
+}
+`
+const WriteImg = styled.img`
+position:absolute;
+right:55px; 
+@media screen and (min-width:1028px){
+    left:760px;
+    transform:scale(1.4);
+}
+`
+
 
 const HeaderBox = styled.div`
     display:flex;
@@ -128,6 +163,8 @@ const HeaderBox = styled.div`
     @media screen and (min-width:1028px){
         border:none;
         width:0px;
+        background-color:${props => props.color};
+        color:${props => props.fontcolor};
     }
 `;
 
@@ -189,10 +226,10 @@ const Ul = styled.ul`
     
     @media screen and (min-width:1028px){
         transform:none;
-        padding-top:0;
-        top:-15px;
+        padding-top:5px;
+        top:-19px;
         right:200px;
-        height:60px;
+        height:65px;
         width:900px;
         flex-flow: row nowrap;
         background-color:white;
