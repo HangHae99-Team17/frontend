@@ -89,6 +89,7 @@ const Header = (props) => {
                             <li onClick={()=>{
                                 history.push('/loginmain');
                                 setOpen(!open); 
+                                history.go(0);
                             }}>나의 카테고리</li>
                             </>
                         ):("")}

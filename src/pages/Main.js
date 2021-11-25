@@ -23,8 +23,9 @@ const Main = ()=>{
     return(
         <React.Fragment>
             <RankListBox>
-                <P>아는만큼</P>
-                <P>깃허브 액션 자동화 테스트</P>
+                <P>지금 가장</P>
+                <P><Span>핫</Span> 한 할인은?</P>
+                <Text>랭킹 Top10을 확인해 보세요</Text>
                 {rank?.map((coupon)=>{
                     return(
                         <MainCoupon key={coupon.id} mode="rank" {...coupon} />
@@ -43,8 +44,17 @@ const RankListBox = styled.div`
 
 const P = styled.p`
 margin : 0 0 0 22px;
-font-size : 18x;
+font-size : 20px;
 font-weight : 700;
 line-height:28px;
+`
+
+const Span = styled.span`
+color : #F09643;
+`
+const Text = styled.p`
+margin-left : 20px;
+font-size : 14px;
+font-weight: 700
 `
 export default Main;

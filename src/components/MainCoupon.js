@@ -39,7 +39,7 @@ const MainCoupon = (props) => {
                 </Box>
                 <Bookmarker>
                     {!is_login?(
-                        <img src={colorBookmark}/>
+                        <img src={colorBookmark} onClick={()=>{alert("로그인이 필요한 서비스 입니다!"); history.push('/login')}}/>
                     ):(
                         <img src={!zzim?colorBookmark:fullBookmark} onClick={zzimz}/>
                     )}

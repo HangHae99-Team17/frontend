@@ -1,12 +1,13 @@
-import React from "react";
+import React,{useState, useEffect} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { detailCreators } from "../redux/modules/detail";
 import styled from "styled-components";
-import { actionCreators as foldersCreators } from "../redux/modules/salebox";
+import { listCreators } from "../redux/modules/main";
 import { history } from "../redux/configureStore";
-import { bookmark } from "../image";
+import { bookmark,fullBookmark } from "../image";
 
 const Detail = (props) => {
+  console.log(props)
   const Id = props.match.params.id;
 
   const dispatch = useDispatch();
@@ -16,17 +17,31 @@ const Detail = (props) => {
 
   const detail_list = useSelector((state) => state.detail.info.data);
   const is_login = useSelector((state) => state.user.is_login);
+  const [zzim,setZzim] = useState(props.couponSelect===1?true:false);
 
-  function PostCoupon() {
-    if (is_login) {
-      const couponId = {
-        couponId: Id,
-      };
-      dispatch(foldersCreators.addPostMW(couponId));
-    } else {
-      alert("로그인이 필요한 서비스 입니다!");
-    }
-  }
+
+  const zzimz = () => {
+    if(is_login===false){
+        alert("로그인이 필요한 서비스 입니다!");
+        history.push('/login')
+    }      
+    
+    if(zzim === false){
+        if(props.mode === "rank"){
+            dispatch(listCreators.rankaddzzimFB(props.id,zzim));
+        }else if(props.mode === "search"){
+            dispatch(listCreators.searchaddzzimFB(props.id,zzim));
+        }
+        setZzim(true);
+    }else if(zzim === true){
+        if(props.mode === "rank"){
+            dispatch(listCreators.rankdelzzimFB(props.id,zzim));
+        }else if(props.mode === "search"){
+            dispatch(listCreators.searchdelzzimFB(props.id,zzim));
+        }
+        setZzim(false);
+    }  
+};
 
   return (
     <Wrap>
@@ -51,8 +66,11 @@ const Detail = (props) => {
           <TakeCoupon>
             <A href={detail_list?.couponUrl}> 할인 사용처 바로가기 </A>
           </TakeCoupon>
-          <PickCoupon onClick={PostCoupon}>
-            <Bookmarker src={bookmark} />
+          <PickCoupon onClick={zzimz}>
+            {is_login?(
+            <Bookmarker src={bookmark} />):
+            (<Bookmarker src={!zzim?bookmark:fullBookmark} onClick={zzimz}/>)
+            }
             <Like>{detail_list?.couponLike}</Like>
           </PickCoupon>
         </LikeWrap>
@@ -120,6 +138,7 @@ const PickCoupon = styled.div`
   border-radius: 4px;
   background-color: #fff;
   margin-left: 20px;
+  position : relative;
 `;
 const P = styled.p`
   margin: 30px 23px;
@@ -129,14 +148,14 @@ const P = styled.p`
 const Like = styled.div`
   display: inline-block;
   height: 10px;
-  position: absolute;
-  top: 13px;
-  right: 25px;
-  color: #fff;
+  color: #f09643;
   font-weight: 600;
+  position: absolute;
+  bottom : 10px;
+  left : 19px;
 `;
 const Bookmarker = styled.img`
-  margin: 16px;
+margin :8px 0 0 16px;
 `;
 const Div = styled.div`
   margin: 0 0 0 26px;
