@@ -1,16 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector,useDispatch } from 'react-redux';
-import { listCreators } from '../redux/modules/main';
 import MainCoupon from '../components/MainCoupon';
-
+import { apis } from "../common/axios";
 
 const Main = ()=>{
-    const dispatch = useDispatch();
-    const coupons = useSelector((state)=>state.main.rank);
-    
+    const [rank,setRank] = React.useState([]);
+
+    const getRank = async() => {
+        try{
+            const rank_result = await apis.getDcList();
+            console.log(rank_result.data)
+            setRank(rank_result.data.data);
+        }catch(e){
+            console.log('에러');
+        }
+    }
+
     React.useEffect(()=>{
-        dispatch(listCreators.getDcListMW());
+        getRank();
     },[]);
 
     return(
@@ -19,7 +26,7 @@ const Main = ()=>{
                 <P>지금 가장</P>
                 <P><Span>핫</Span> 한 할인은?</P>
                 <Text>랭킹 Top10을 확인해 보세요</Text>
-                {coupons?.map((coupon)=>{
+                {rank?.map((coupon)=>{
                     return(
                         <MainCoupon key={coupon.id} mode="rank" {...coupon} />
                 );
