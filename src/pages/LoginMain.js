@@ -52,6 +52,7 @@ const LoginMain = () => {
           <Br>당신을 위한</Br>
           <Span>{dc_list?.[0]?.couponType}</Span> 추천
           </Title>
+          <CardBox>
         {
         type1?.map((item) => {
           return (
@@ -60,6 +61,7 @@ const LoginMain = () => {
         })
         
         }
+        </CardBox>
         </InfoWrap>
         <BtWrap>
           <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[0]?.couponType}`);history.go(0)}}>더보기</Button>
@@ -70,7 +72,7 @@ const LoginMain = () => {
         <Br>당신을 위한</Br>
         <Span>{dc_list?.[3]?.couponType}</Span> 추천
         </Title>
-
+<CardBox>
         {
         type2?.map((item) => {
           console.log(item)
@@ -80,6 +82,7 @@ const LoginMain = () => {
         })
         
         }
+        </CardBox>
         </InfoWrap>
         <BtWrap>
           <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[3]?.couponType}`);history.go(0)}}>더보기</Button>
@@ -92,7 +95,7 @@ const LoginMain = () => {
         <Br>당신을 위한</Br>
           <Span>{dc_list?.[6]?.couponType}</Span> 추천
         </Title>
-
+<CardBox>
         {
         type3?.map((item) => {
           return (
@@ -101,6 +104,7 @@ const LoginMain = () => {
         })
         
         }
+        </CardBox>
         </InfoWrap>
         <BtWrap>
           <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[6]?.couponType}`);history.go(0)}}>더보기</Button>
@@ -154,6 +158,10 @@ const AllBox = styled.div`
 width : 375px;
 dispaly : block;
 margin: 0 auto;
+@media screen and (min-width:1028px){
+width:1100px;
+
+}
 `
 const InfoWrap = styled.ul`
 width : 375px;
@@ -163,19 +171,23 @@ flex-flow: column nowrap;
 
 `
 const Button = styled.button`
-width : 328px;
+width : 300px;
 height : 48px;
-font-size : 14px;
+font-size : 16px;
 font-weight : 800;
+margin-left:14px;
 color : white;
 border : none;
-border-radius : 4px;
+border-radius : 8px;
 background-color : #F09643;
+@media screen and (min-width:1028px){
+margin-left:10px;
+}
 `
 const BtWrap = styled.div`
 width : 328px;
 height : 48px;
-margin : 20px auto 60px auto;
+margin : 20px auto 30px auto;
 `
 const Title = styled.div`
 width :200px;
@@ -184,6 +196,16 @@ margin : 0 0 0 20px;
 font-size : 20px;
 font-weight : 600;
 `
+const CardBox = styled.div`
+diplay:none;
+@media screen and (min-width:1028px){
+width:1100px;
+margin:0 auto;
+display:flex;
+}
+`
+
+
 const Br = styled.div`
 margin-top : 8px;
 font-size : 20px;
