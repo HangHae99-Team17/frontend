@@ -107,8 +107,8 @@ const LoginMain = () => {
         </BtWrap>
       {/* 유저 통신사 */}
       {/* <Title>
-          {userMenu?.telecom}할인
-          <Br> 다 모아두었어요</Br>
+          <Br>당신을 위한</Br>
+          <Span>{userMenu?.telecom}</Span> 추천
       </Title>
 
       <InfoWrap>
@@ -128,8 +128,8 @@ const LoginMain = () => {
       {/* 유저 카드사 */}
       {/* <InfoWrap>
       <Title>
-          {userMenu?.cardType}할인
-          <Br> 다 모아두었어요</Br>
+          <Br>당신을 위한</Br>
+          <Span>{userMenu?.cardType}</Span> 추천
       </Title>
 
         {
