@@ -123,7 +123,7 @@ top:20px;
         color:orange;
     }
     @media screen and (min-width:1028px){
-        left:470px;
+        left:430px;
             transform:scale(1.4);
             width:160px;
     }
@@ -133,7 +133,7 @@ const SearchImg = styled.img`
 position:absolute;
 right:85px; 
 @media screen and (min-width:1028px){
-    left:700px;
+    left:640px;
     transform:scale(1.4);
 }
 `
@@ -141,7 +141,7 @@ const WriteImg = styled.img`
 position:absolute;
 right:55px; 
 @media screen and (min-width:1028px){
-    left:760px;
+    left:700px;
     transform:scale(1.4);
 }
 `
