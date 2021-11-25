@@ -1,46 +1,29 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 import { colorBookmark, fullBookmark } from '../image';
-import { useSelector,useDispatch } from 'react-redux';
-import { listCreators } from '../redux/modules/main';
+import { useSelector } from 'react-redux';
+import { apis } from '../common/axios';
 
 const MainCoupon = (props) => {
 
-    const dispatch = useDispatch();
     const is_login = useSelector((state)=>state.user.is_login);
     const [zzim,setZzim] = useState(props.couponSelect===1?true:false);
     
-    const zzimz = () => {
+    const zzimz = async() => {
         if(is_login===false){
             alert("로그인이 필요한 서비스 입니다!");
             history.push('/login')
         }      
         
         if(zzim === false){
-            if(props.mode === "rank"){
-                dispatch(listCreators.rankaddzzimFB(props.id,zzim));
-            }else if(props.mode === "search"){
-                dispatch(listCreators.searchaddzzimFB(props.id,zzim));
-            }
+            await apis.postCoupon(props.id);
             setZzim(true);
         }else if(zzim === true){
-            if(props.mode === "rank"){
-                dispatch(listCreators.rankdelzzimFB(props.id,zzim));
-            }else if(props.mode === "search"){
-                dispatch(listCreators.searchdelzzimFB(props.id,zzim));
-            }
+            await apis.delFolders(props.id);
             setZzim(false);
         }  
     };
-    
-    // useEffect(()=>{
-    //     if(num === 1){
-    //         setZzim(true);
-    //     }else if(num === 0){
-    //         setZzim(false);
-    //     }
-    // },[num]);
 
     return (
         <div>

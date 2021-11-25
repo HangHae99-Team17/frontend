@@ -22,7 +22,6 @@ const Header = (props) => {
     };
 
     const searchcoupon = () =>{
-        dispatch(listCreators.searchListFB(searchval));
         localStorage.setItem("search",searchval);
         setSearch(!search);
         setSearchVal("");
