@@ -42,23 +42,24 @@ const inter_category = [
 ]
     return(
         <Div>
-            <Litext>통신사 쿠폰 정보</Litext>
+            <Litext>관심사 할인</Litext>
             <Ul>
-            {tel_category.map((item)=>{
+            {inter_category.map((item)=>{
                 return(
-                    <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}`);history.go(0)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
+                    <Li key={item.id} onClick={()=>{history.push(`/api/categorydetail/${item.title}`);history.go(0)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
                 )
             })}
-            <Litext>카드사 쿠폰 정보</Litext>
+
+            <Litext>카드사 혜택</Litext>
             {card_category.map((item)=>{
                 return(
                     <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}`);history.go(0)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
                 )
             })}
-            <Litext>관심사 쿠폰 정보</Litext>
-            {inter_category.map((item)=>{
+            <Litext>통신사 혜택</Litext>
+            {tel_category.map((item)=>{
                 return(
-                    <Li key={item.id} onClick={()=>{history.push(`/api/categorydetail/${item.title}`);history.go(0)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
+                    <Li onClick={()=>{history.push(`/api/categorydetail/${item.title}`);history.go(0)}}><BOX> <BoxImg>{item.img}</BoxImg>{item.title}</BOX> </Li>
                 )
             })}
             </Ul>
