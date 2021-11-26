@@ -9,10 +9,10 @@ const Main = ()=>{
     const getRank = async() => {
         try{
             const rank_result = await apis.getDcList();
-            console.log(rank_result.data)
+            console.log(rank_result)
             setRank(rank_result.data.data);
         }catch(e){
-            console.log('에러');
+            console.log(e);
         }
     }
 
@@ -28,7 +28,7 @@ const Main = ()=>{
                 <Text>랭킹 Top10을 확인해 보세요</Text>
                 {rank?.map((coupon)=>{
                     return(
-                        <MainCoupon key={coupon.id} mode="rank" {...coupon} />
+                        <MainCoupon key={coupon.id} {...coupon} />
                 );
                 })}
             </RankListBox>

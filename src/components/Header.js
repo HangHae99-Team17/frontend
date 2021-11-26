@@ -47,11 +47,11 @@ const Header = (props) => {
         return (
             <React.Fragment>
                 <HeaderBox color={open?"black":"white"} fontcolor={open?"white":"black"}>
+                    <IconBox>
+                        <img src={open?gooddawhite:gooddablack} alt="icon" onClick={()=>{history.push('/')}}/>
+                    </IconBox>
                     {!open?(
                     <>
-                        <IconBox>
-                            <img src={gooddablack} alt="icon" onClick={()=>{history.push('/')}}/>
-                        </IconBox>
                         <StyledBurger>
                             {search?(<SearchBox type="text" placeholder="브랜드를 검색해보세요" value={searchval} onChange={searchchange}/>):""}
                             {user_info?.role === "ADMIN"?(<img src={edit_3} alt="write" onClick={()=>{history.push('/salewrite')}}/>):""}
@@ -63,9 +63,6 @@ const Header = (props) => {
                     </>
                     ):(
                     <>
-                        <IconBox>
-                            <img src={gooddawhite} alt="icon" onClick={()=>{history.push('/')}}/>
-                        </IconBox>
                         <StyledBurger open={open} onClick={()=> setOpen(!open)}>
                             <img src={x} alt="x"/>
                         </StyledBurger>
@@ -136,8 +133,6 @@ const IconBox = styled.div`
     
     @media screen and (min-width:1028px){
         margin-left: 200px;
-        
-
     }
 `;
 

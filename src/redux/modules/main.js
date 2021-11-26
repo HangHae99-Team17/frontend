@@ -9,8 +9,6 @@ const GET_LIST = 'GET_LIST';
 // 액션 생성 함수
 const getList = createAction(GET_LIST, (list) => ({list}));
 
-
-
 // 초기값 설정
 const initialState = {
   list: [],

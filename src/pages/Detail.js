@@ -1,47 +1,55 @@
 import React,{useState, useEffect} from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { detailCreators } from "../redux/modules/detail";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { listCreators } from "../redux/modules/main";
 import { history } from "../redux/configureStore";
-import { bookmark,fullBookmark } from "../image";
+import { colorBookmark,fullBookmark } from "../image";
+import { apis } from '../common/axios';
 
 const Detail = (props) => {
-  console.log(props)
+  
   const Id = props.match.params.id;
-
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(detailCreators.getDetailMW(Id));
-  }, []);
-
-  const detail_list = useSelector((state) => state.detail.info.data);
+  const [detail_list,setDetail] = useState("");
+  const [zzim,setZzim] = useState();
+  const [num,setNum] = useState()
   const is_login = useSelector((state) => state.user.is_login);
-  const [zzim,setZzim] = useState(props.couponSelect===1?true:false);
 
+  const getSearch = async(Id) => {
+    try{
+        const detail_result = await apis.getDetail(Id);
+        console.log(detail_result.data.data);
+        if(detail_result.data.data.couponSelect===1){
+          setZzim(true);
+        }else{
+          setZzim(false);
+        }
+        
+        setDetail(detail_result.data.data);
+        setNum(detail_result.data.data.couponLike);
+    }catch(e){
+      console.log('에러');
+    }
+  }
 
-  const zzimz = () => {
+  const zzimz = async() => {
     if(is_login===false){
         alert("로그인이 필요한 서비스 입니다!");
         history.push('/login')
     }      
-    
+
     if(zzim === false){
-        if(props.mode === "rank"){
-            dispatch(listCreators.rankaddzzimFB(props.id,zzim));
-        }else if(props.mode === "search"){
-            dispatch(listCreators.searchaddzzimFB(props.id,zzim));
-        }
+        await apis.postCoupon(detail_list.id);
         setZzim(true);
+        setNum(num+1);
     }else if(zzim === true){
-        if(props.mode === "rank"){
-            dispatch(listCreators.rankdelzzimFB(props.id,zzim));
-        }else if(props.mode === "search"){
-            dispatch(listCreators.searchdelzzimFB(props.id,zzim));
-        }
+        await apis.delFolders(detail_list.id);
         setZzim(false);
+        setNum(num-1);
     }  
-};
+  };
+
+  useEffect(()=>{
+    getSearch(Id);
+  },[]);
 
   return (
     <Wrap>
@@ -63,15 +71,14 @@ const Detail = (props) => {
           </div>
         </Info>
         <LikeWrap>
-          <TakeCoupon>
-            <A href={detail_list?.couponUrl}> 할인 사용처 바로가기 </A>
-          </TakeCoupon>
+            <A href={detail_list?.couponUrl}><TakeCoupon>할인 사용처 바로가기</TakeCoupon></A>
           <PickCoupon onClick={zzimz}>
             {is_login?(
-            <Bookmarker src={bookmark} />):
-            (<Bookmarker src={!zzim?bookmark:fullBookmark} onClick={zzimz}/>)
-            }
-            <Like>{detail_list?.couponLike}</Like>
+                <Bookmarker src={!zzim?colorBookmark:fullBookmark} />
+              ):(
+                <Bookmarker src={colorBookmark}/>
+              )}
+            <Like>{num}</Like>
           </PickCoupon>
         </LikeWrap>
         <P>상세설명</P>
@@ -85,6 +92,7 @@ const Wrap = styled.div`
   position: relative;
   margin: 0px auto;
   width: 375px;
+  
   @media screen and (min-width: 1028px) {
     width: 740px;
     margin: 80px 0 0 1000px;
@@ -95,7 +103,7 @@ const Wrap = styled.div`
 const Image = styled.div`
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 200px;
   text-align: center;
   margin: 00px auto;
   overflow:hidden;
@@ -114,7 +122,8 @@ const LikeWrap = styled.div`
   margin: 120px 0 0 16px;
 `;
 const TakeCoupon = styled.div`
-  width: 264px;
+  padding-left:50px;
+  width: 200px;
   height: 48px;
   line-height: 48px;
   border: 1px solid #f09643;
@@ -128,7 +137,6 @@ const A = styled.a`
   font-size: 16px;
   color: white;
   font-weight: bold;
-  margin-left: 60px;
 `;
 const PickCoupon = styled.div`
   width: 48px;
@@ -155,7 +163,7 @@ const Like = styled.div`
   left : 19px;
 `;
 const Bookmarker = styled.img`
-margin :8px 0 0 16px;
+margin :8px 0 0 12px;
 `;
 const Div = styled.div`
   margin: 0 0 0 26px;
@@ -170,7 +178,7 @@ const Span = styled.div`
   color: #ff8f00;
 `;
 const Title = styled.div`
-  font-size: 23px;
+  font-size: 20px;
   font-weight: bold;
   margin-left: 26px;
   line-height: 38px;

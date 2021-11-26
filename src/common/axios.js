@@ -18,9 +18,9 @@ export const apis = {
    edituser: (user_info) => instance.put('/api/user/change',user_info),
    deluser: (password) => instance.post('/api/user/delete',password),
    emailcheck: (userEmail) => instance.post('/api/user/redunancy',userEmail),
-   getFolders:() => instance.get('api/folders'),
-   delFolders:(param) => instance.delete(`api/folders/${param}`),
-   postCoupon: (couponId)=>instance.post('/api/folders',couponId),
+   getFolders:() => instance.get('api/folders/read'),
+   delFolders:(param) => instance.delete(`api/folders/delete/${param}`),
+   postCoupon: (couponId)=>instance.post('api/folders/create',couponId),
    // 쿠폰 상세페이지 데이터 불러오기(Get)
    getDetail:(param)=>instance.get(`api/detail/${param}`),
    // 메인 페이지 할인 정보 리스트 가지고 오기(Get)

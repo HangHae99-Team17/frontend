@@ -152,7 +152,7 @@ const LoginMain = () => {
 
 const AllBox = styled.div`
 width : 375px;
-dispaly : block;
+display : block;
 margin: 0 auto;
 `
 const InfoWrap = styled.ul`

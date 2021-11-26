@@ -39,7 +39,7 @@ const MainCoupon = (props) => {
                 </Box>
                 <Bookmarker>
                     {!is_login?(
-                        <img src={colorBookmark} onClick={()=>{alert("로그인이 필요한 서비스 입니다!"); history.push('/login')}}/>
+                        <img src={colorBookmark}/>
                     ):(
                         <img src={!zzim?colorBookmark:fullBookmark} onClick={zzimz}/>
                     )}
@@ -50,13 +50,12 @@ const MainCoupon = (props) => {
 };
 
 const Wrap = styled.div`
-position : relative;
+display: flex;
 `
 const Box = styled.div`
-width : 360px;
+width : 300px;
 height : 80px;
 display : flex;
-margin : 10px auto;
 position : relative;
 `
 const ImgBox = styled.div`
@@ -80,11 +79,13 @@ font-size : 16px;
 font-weight : 400;
 `
 const Bookmarker = styled.div`
-width : 18px;
-height : 18px;
-position :absolute;
-top : 29px;
-right : 24px;
+width : 46px;
+height : 78px;
+text-align: center;
+img{
+    margin-top:30px;
+}
+
 `
 const Strong = styled.span`
 color : #F09643;
