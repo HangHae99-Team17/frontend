@@ -45,10 +45,6 @@ const InterType = (props) => {
                 <InterTypeBox>
                 {interests.map((interest) => {
                     if(props.type1 !== interest.inter_type && props.type2 !== interest.inter_type && props.type3 !== interest.inter_type){
-                        
-                        console.log("props.type1",props.type1)
-                        console.log("props.type2",props.type2)
-                        console.log("props.type3",props.type3)
                         return(
                             <UserEditButton bg="#E4E4E4" onClick={props.typeselect} key={interest.inter_id} value={interest.inter_type}>{interest.inter_type}</UserEditButton>
                         )

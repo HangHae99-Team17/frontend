@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { listCreators } from "../redux/modules/main";
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
 import {
@@ -379,12 +378,12 @@ const WriteImg = styled.img`
 `;
 
 const IconBox = styled.div`
-  margin-left: 20px;
-  margin-top: 13px;
-
-  @media screen and (min-width: 1028px) {
-    margin-left: 200px;
-  }
+    margin-left: 20px;
+    margin-top:13px;
+    
+    @media screen and (min-width:1028px){
+        margin-left: 200px;
+    }
 `;
 
 const StyledBurger = styled.div`
