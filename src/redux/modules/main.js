@@ -5,11 +5,12 @@ import { apis } from '../../common/axios';
 
 // action 생성
 const GET_LIST = 'GET_LIST';
+// 언마운트시 리스트 비워줄 액션
+const CLEAR_LIST = 'list/CLEAR_LIST';
 
 // 액션 생성 함수
 const getList = createAction(GET_LIST, (list) => ({list}));
-
-
+const clearList = createAction(CLEAR_LIST)
 
 // 초기값 설정
 const initialState = {
@@ -23,15 +24,15 @@ const initialState = {
 // 리스트 가지고 오는 미들웨어_백에서 받아올땐 시간이 걸리기 때문에 async사용
 const getListMW = (type,page,size,sortBy,isAsc) => {
   return async (dispatch) => {
-    try{
       const res = await apis.getList(type,page,size,sortBy,isAsc)
+      if(res){
       dispatch(getList(res.data.data));
-    }catch(e){
-      console.log(e);
+    }
+    else{
+      console.log(res.error);
     }
   };
 };
-
 // 리듀서
 export default handleActions(
   {
@@ -50,12 +51,14 @@ export default handleActions(
         // hasMore가 false라면 빈 배열을, true면 list의 데이터가 포함된 배열을 반환한다.
         draft.pagingList = draft.hasMore===false?draft.pagingList : draft.pagingList.concat(action.payload.list)
       }),
+    [CLEAR_LIST]:()=>initialState,
   },
   initialState
 );
 
 const listCreators = {
   getListMW,
+  clearList
 };
 
 export { listCreators };
