@@ -80,7 +80,7 @@ const Login = () => {
 
 const LoginBox = styled.div`
     text-align: center;
-    width:400px;
+    width:375px;
     margin:40px auto;
     p{
         margin-top: -30px;

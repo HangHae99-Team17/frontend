@@ -48,7 +48,6 @@ position:relative;
 width:375px;
 margin:10px auto;
 @media screen and (min-width:1028px){
-  transform:scale(1.1);
 }
 
 `

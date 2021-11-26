@@ -55,6 +55,7 @@ import bookmark from "./bookmark.png";
 import edit from "./edit.png";
 import search_black from "./search_black.png";
 import search_orange from "./search_orange.png";
+import MainBackground from "./MainBackground.png";
 
 export {couponCreate,
     couponRank,
@@ -112,5 +113,6 @@ export {couponCreate,
     bookmark,
     edit,
     search_black,
-    search_orange
+    search_orange,
+    MainBackground
 };

@@ -6,7 +6,6 @@ import { colorBookmark,fullBookmark } from "../image";
 import { apis } from '../common/axios';
 
 const Detail = (props) => {
-  
   const Id = props.match.params.id;
   const [detail_list,setDetail] = useState("");
   const [zzim,setZzim] = useState();
@@ -114,12 +113,13 @@ const Image = styled.div`
 `;
 const Image2 = styled.img`
   width: 375px;
+  height : 270px;
 `;
 const LikeWrap = styled.div`
   display: flex;
   width: 355px;
   height: 50px;
-  margin: 120px 0 0 16px;
+  margin: 160px 0 0 16px;
 `;
 const TakeCoupon = styled.div`
   padding-left:50px;
@@ -133,10 +133,13 @@ const TakeCoupon = styled.div`
   border-radius: 4px;
 `;
 const A = styled.a`
+  width : 264px;
+  height :48px;
   text-decoration: none;
   font-size: 16px;
   color: white;
   font-weight: bold;
+  padding-left: 60px;
 `;
 const PickCoupon = styled.div`
   width: 48px;
