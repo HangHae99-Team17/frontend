@@ -54,7 +54,7 @@ const TeleType = (props) => {
                         )
                     }else {
                         return(
-                            <SignUpButton  image={tel.tel_img} bg="#E4E4E4" key={tel.tel_id} onClick={props.categoryselect} value={tel.tel_name}>{tel.tel_name}</SignUpButton>
+                            <SignUpButton  image={tel.tel_img} bg="gray" key={tel.tel_id} onClick={props.categoryselect} value={tel.tel_name}>{tel.tel_name}</SignUpButton>
                         )
                     }
                 })}

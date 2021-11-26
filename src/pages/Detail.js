@@ -125,11 +125,13 @@ const TakeCoupon = styled.div`
   border-radius: 4px;
 `;
 const A = styled.a`
+  width : 264px;
+  height :48px;
   text-decoration: none;
   font-size: 16px;
   color: white;
   font-weight: bold;
-  margin-left: 60px;
+  padding-left: 60px;
 `;
 const PickCoupon = styled.div`
   width: 48px;

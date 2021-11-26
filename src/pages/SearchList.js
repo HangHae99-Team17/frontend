@@ -1,18 +1,32 @@
-import React from 'react';
+import React,{useState, useCallback} from 'react';
 import {useSelector,useDispatch} from 'react-redux';
 import styled from 'styled-components';
 import MainCoupon from '../components/MainCoupon';
-import { listCreators } from "../redux/modules/main";
+import { apis } from "../common/axios";
 
 const SearchList = () => {
-    const dispatch = useDispatch();
-    const search = useSelector((state)=>state.main.searchList);
+    
+    const [search,setSearch] = useState([]);
+
+    const getSearch = useCallback(async(val) => {
+        try{
+            const search_result = await apis.searchCoupon(val);
+            console.log(search_result.data)
+            if(search_result.data.result === "failed"){
+                setSearch([]);
+            }else if(search_result.data.result === "success"){
+                setSearch(search_result.data.data);
+            }
+        }catch(e){
+            console.log('에러');
+        }
+    },[search])
 
     React.useEffect(()=>{
         const val = localStorage.getItem("search");
+        getSearch(val);
         
-        dispatch(listCreators.searchListFB(val));
-    },[]);
+    },[getSearch]);
     
     return (
         <React.Fragment>
