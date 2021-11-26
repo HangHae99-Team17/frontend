@@ -9,6 +9,8 @@ const GET_DCLIST = 'GET_DCLIST';
 const RANK_ZZIM = 'RANK_ZZIM';
 const SEARCH_ZZIM = 'SEARCHZZIM';
 const SEARCH = 'SEARCH';
+// 언마운트시 리스트 비워줄 액션
+const CLEAR_LIST = 'list/CLEAR_LIST';
 
 // 액션 생성 함수
 const getList = createAction(GET_LIST, (list) => ({list}));
@@ -16,7 +18,7 @@ const getDcList = createAction(GET_DCLIST, (rank)=>({rank}));
 const search = createAction(SEARCH, (search_list)=>({search_list}));
 const rankzzim = createAction(RANK_ZZIM,(coupon_id,zzimval)=>({coupon_id,zzimval}));
 const searchzzim = createAction(SEARCH_ZZIM,(coupon_id,zzimval)=>({coupon_id,zzimval}));
-
+const clearList = createAction(CLEAR_LIST)
 
 // 초기값 설정
 const initialState = {
@@ -51,11 +53,12 @@ const searchListFB = (searchval) => {
 // 리스트 가지고 오는 미들웨어_백에서 받아올땐 시간이 걸리기 때문에 async사용
 const getListMW = (type,page,size,sortBy,isAsc) => {
   return async (dispatch) => {
-    try{
       const res = await apis.getList(type,page,size,sortBy,isAsc)
+      if(res){
       dispatch(getList(res.data.data));
-    }catch(e){
-      console.log(e);
+    }
+    else{
+      console.log(res.error);
     }
   };
 };
@@ -63,14 +66,16 @@ const getListMW = (type,page,size,sortBy,isAsc) => {
 // 로그인 전 메인페이지 랭킹 리스트 가져오는 미들웨어 
 export const getDcListMW = ()=>{
   return async (dispatch)=>{
-    try{
-      const res = await apis.getDcList();
-      dispatch(getDcList(res.data.data));
-    }catch(e){
-      console.log(e);
-    }
+    await apis.getDcList()
+    .then((res)=>{
+      dispatch(getDcList(res.data));
+    })
+    .catch((err)=>{
+      console.error(err)
+    });
   }
 }
+
 
 export const rankaddzzimFB = (id,zzimval) => {
   return async (dispatch) => {
@@ -138,6 +143,7 @@ export default handleActions(
         // hasMore가 false라면 빈 배열을, true면 list의 데이터가 포함된 배열을 반환한다.
         draft.pagingList = draft.hasMore===false?draft.pagingList : draft.pagingList.concat(action.payload.list)
       }),
+    [CLEAR_LIST]:()=>initialState,
     [GET_DCLIST]:(state,action) => 
       produce(state,(draft)=>{
         draft.rank = action.payload.rank;
@@ -195,7 +201,8 @@ const listCreators = {
   searchaddzzimFB,
   searchdelzzimFB,
   rankzzim,
-  searchzzim
+  searchzzim,
+  clearList
 };
 
 export { listCreators };

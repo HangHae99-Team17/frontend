@@ -29,6 +29,12 @@ const LoginMain = () => {
       //  제대로 된 데이터 들어오면 주석처리 해제할 예정
       //  dispatch(listCreators.getListMW(MenuArr[4],1,3,"couponLike",false));
       //  dispatch(listCreators.getListMW(MenuArr[5],1,3,"couponLike",false));
+
+      // 언마운트시 데이터 비우기
+      return()=>{
+        dispatch(listCreators.clearList())
+      }
+
         }
     }
     ,[userMenu])

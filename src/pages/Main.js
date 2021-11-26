@@ -8,7 +8,7 @@ import MainCoupon from '../components/MainCoupon';
 const Main = ()=>{
     const dispatch = useDispatch();
     const coupons = useSelector((state)=>state.main.rank);
-    
+
     React.useEffect(()=>{
         dispatch(listCreators.getDcListMW());
     },[]);

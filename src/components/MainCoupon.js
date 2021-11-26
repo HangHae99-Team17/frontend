@@ -29,18 +29,11 @@ const MainCoupon = (props) => {
         }  
     };
     
-    // useEffect(()=>{
-    //     if(num === 1){
-    //         setZzim(true);
-    //     }else if(num === 0){
-    //         setZzim(false);
-    //     }
-    // },[num]);
-
     return (
         <div>
             <Wrap>
-                <Box onClick={()=>{history.push(`/api/detail/${props.id}`)}}>
+                <Box onClick={()=>{
+                    history.push(`/api/detail/${props.id}`,props.mode)}}>
                     <ImgBox>
                         <IMG src={props.couponLogo}/>
                     </ImgBox>

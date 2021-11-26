@@ -7,7 +7,7 @@ import { history } from "../redux/configureStore";
 import { bookmark,fullBookmark } from "../image";
 
 const Detail = (props) => {
-  console.log(props)
+  console.log(props.mode)
   const Id = props.match.params.id;
 
   const dispatch = useDispatch();
@@ -106,12 +106,13 @@ const Image = styled.div`
 `;
 const Image2 = styled.img`
   width: 375px;
+  height : 270px;
 `;
 const LikeWrap = styled.div`
   display: flex;
   width: 355px;
   height: 50px;
-  margin: 120px 0 0 16px;
+  margin: 160px 0 0 16px;
 `;
 const TakeCoupon = styled.div`
   width: 264px;
