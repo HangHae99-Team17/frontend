@@ -139,7 +139,7 @@ const A = styled.a`
   font-size: 16px;
   color: white;
   font-weight: bold;
-  padding-left: 60px;
+  
 `;
 const PickCoupon = styled.div`
   width: 48px;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { listCreators } from "../redux/modules/main";
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
 import {
