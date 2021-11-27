@@ -16,9 +16,11 @@ const MainCoupon = (props) => {
     }
 
     if (zzim === false) {
+      console.log("찜")
       await apis.postCoupon(props.id);
       setZzim(true);
     } else if (zzim === true) {
+      console.log("찜취소")
       await apis.delFolders(props.id);
       setZzim(false);
     }
@@ -46,7 +48,7 @@ const MainCoupon = (props) => {
           </div>
         </Box>
         <CouponButton>할인 받기</CouponButton>
-        <Bookmarker onClick={zzimz}>
+        <Bookmarker>
           {!is_login ? (
             <img
               src={colorBookmark}
@@ -65,10 +67,12 @@ const MainCoupon = (props) => {
 };
 
 const Allbox = styled.div`
+  
 `;
 
 const Wrap = styled.div`
   position: relative;
+  cursor: pointer;
 @media screen and (min-width:1028px){
 height:325px;
 width:360px;
