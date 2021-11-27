@@ -114,6 +114,7 @@ const UserEditButton = styled.button`
   height: 48px;
   width: 100px;
   border-radius: 4px;
+  font-size:15px;
   background-color: white;
   color: ${(props) => props.color};
   border: solid 1px ${(props) => props.bg};
@@ -163,11 +164,11 @@ const TeleTypeBox = styled.div`
   display: flex;
   width: 375px;
   flex-wrap: wrap;
+  font-size: 15px;
   justify-content: space-evenly;
   padding-left: 0px;
   @media screen and (min-width: 1024px) {
     margin-left: 10px;
-    font-size: 14px;
     font-weight: bold;
     line-height: 145px;
   }

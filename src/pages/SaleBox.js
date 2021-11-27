@@ -63,6 +63,7 @@ display:flex;
 flex-flow:colums wrap;
 width : 375px;
 height: 60px;
+margin-top:5px;
 `
 const Img = styled.div`
 position:relative;
@@ -73,7 +74,7 @@ padding-left:20px;
 
 const Textbox = styled.div`
 width:200px;
-padding-left:20px;
+padding-left:10px;
 `
 
 
@@ -83,9 +84,10 @@ font-size: 14px;
 `
 const P2 = styled.p`
 margin-top: -5px;
-font-size:16px;
+font-size:15px;
 font-weight: bold;
 padding-left:-20px;
+width:250px;
 `
 
 const BUTTON = styled.button`
