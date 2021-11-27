@@ -18,7 +18,7 @@ const SignUp = (props) => {
     const [pwEncheck, setPwEnCheck] = useState(false);
     const [pwlengcheck, setPwLengCheck] = useState(false);
     const [passwordcheck, setPasswordcheck] = useState(false);
-
+    
     const [emaildisplay,setEmailDisplay] = useState("block");
     const [passworddisplay,setPasswordDisplay] = useState("none");
     const [telecomdisplay,setTelecomDisplay]= useState("none");
@@ -419,6 +419,7 @@ const NextButton = styled.button`
     height:45px;
     color: white;
     background-color:${props => props.bgcolor};
+    cursor:pointer;
 `;
 
 export default SignUp;

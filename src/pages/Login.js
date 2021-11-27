@@ -138,6 +138,7 @@ const LoginButton = styled.button`
     border-radius: 5px;
     font-size: 15px;
     margin-bottom: 30px;
+    cursor:pointer;
 `;
 
 const SignupButton = styled.button`
@@ -148,6 +149,7 @@ const SignupButton = styled.button`
     border: 1px solid orange;
     border-radius: 5px;
     font-size: 15px;
+    cursor:pointer;
 `;
 
 export default Login;
