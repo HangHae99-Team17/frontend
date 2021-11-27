@@ -7,6 +7,7 @@ import Grid from "../elements/Grid";
 import { couponCreate,couponDespire,couponRank } from '../image';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MainCoupon from '../components/MainCoupon';
+
 const CategoryDetail = (props) => {
     const dispatch = useDispatch();
     // 넘어온 props 확인해서 내가 보내줘야 할 타입을 추출
@@ -21,8 +22,8 @@ const CategoryDetail = (props) => {
 
     React.useEffect(() => {
       // 내가 넘겨줄 값들 _ 타입, 현재 페이지, 몇개보여줄건지, 정렬기준,isAsc
-      dispatch(listCreators.getListMW(type,page,6,"couponCreate",true));
-      setPage(prevstate =>prevstate + 6)
+      dispatch(listCreators.getListMW(type,page,7,"couponCreate",true));
+      setPage(prevstate =>prevstate + 7)
       // 언마운트될 때 리덕스에서 포스트 데이터 없애기
       return()=>{
         dispatch(listCreators.clearList())
@@ -37,7 +38,7 @@ const CategoryDetail = (props) => {
         setPage(prevstate =>prevstate + 1)
         setTimeout(() => {
             if(hasMore){
-              dispatch(listCreators.getListMW(type,page,1,"couponCreate",true));
+              dispatch(listCreators.getListMW(type,page,3,"couponCreate",true));
             }
         },1000)
     }
@@ -62,8 +63,7 @@ return(
     dataLength={DcInfoList.length}
     next={fetchPaging}
     hasMore={hasMore}
-    loader={hasMore?<h4 style={{marginLeft : "16px"}}>다음 할인이 궁금하다면 스크롤을 내려주세요!</h4>:
-        <h4 style={{marginLeft : "16px"}}>아쉽게도 더이상의 할인이 없네요</h4>}>  
+    loader={<h4 style={{marginLeft : "20px"}}>다음 할인이 궁금하다면 스크롤을 내려주세요!</h4>}>  
       <DcBox>
         {
         DcInfoList?.map((item) => {
