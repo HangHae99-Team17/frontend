@@ -125,7 +125,6 @@ const LikeWrap = styled.div`
   width: 355px;
   height: 50px;
   margin: 160px 0 0 16px;
-  background-color:red;
 `;
 const A = styled.a`
   width: 260px;
@@ -200,7 +199,6 @@ const Desc = styled.div`
 position:absolute;
 top:100px;
 left:-10px;
-background-color:red;
 }
 `;
 const DescBox = styled.div`
@@ -208,7 +206,6 @@ const DescBox = styled.div`
   width:200px;
 top:280px;
 left:-580px;
-background-color:red;
 }
 `;
 
