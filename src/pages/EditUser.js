@@ -162,6 +162,7 @@ const EditUserBox = styled.div`
     width: 1200px;
     height: 600px;
     margin-top: 20px;
+font-size:16px;
   }
 `;
 
