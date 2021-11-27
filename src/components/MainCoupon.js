@@ -46,7 +46,7 @@ const MainCoupon = (props) => {
           </div>
         </Box>
         <CouponButton>할인 받기</CouponButton>
-        <Bookmarker>
+        <Bookmarker onClick={zzimz}>
           {!is_login ? (
             <img
               src={colorBookmark}
@@ -75,7 +75,7 @@ width:360px;
 border:1px solid #E0E0E0;
 border-radius:15px;
 margin-top:15px;
-box-shadow: 5px 5px 10px #E0E0E0;
+box-shadow: 2px 2px 6px #E0E0E0;
 }
 transform:scale(0.9);
 `;
@@ -90,7 +90,7 @@ const Box = styled.div`
   }
 `;
 const ImgBox = styled.div`
-  width: 50px;
+  width: 60px;
   height: 50px;
   border-radius: 4px;
   margin: 16px 20px;
@@ -148,14 +148,17 @@ font-size:16px;
 `;
 
 const Bookmarker = styled.div`
-  width: 18px;
-  height: 18px;
+  width: 35px;
+  padding-left:10px;
+  padding-top:10px;
+  height: 35px;
   position: absolute;
-  top: 23px;
-  right: 20px;
+  top: 13px;
+  right: 2px;
   @media screen and (min-width:1028px){
-    top:190px;
-    right:25px;
+    top:180px;
+    right:10px;
+    
   }
 `;
 const Strong = styled.span`
