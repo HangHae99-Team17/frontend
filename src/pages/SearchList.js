@@ -1,5 +1,4 @@
 import React,{useState, useCallback} from 'react';
-import {useSelector,useDispatch} from 'react-redux';
 import styled from 'styled-components';
 import MainCoupon from '../components/MainCoupon';
 import { apis } from "../common/axios";
@@ -25,8 +24,8 @@ const SearchList = () => {
     React.useEffect(()=>{
         const val = localStorage.getItem("search");
         getSearch(val);
-        
-    },[getSearch]);
+        console.log("search")
+    },[]);
     
     return (
         <React.Fragment>
@@ -34,7 +33,7 @@ const SearchList = () => {
                 <SearchBox>
                     {search.map((coupon)=>{
                         return(
-                            <MainCoupon key={coupon.id} mode="search" {...coupon} />
+                            <MainCoupon key={coupon.id} {...coupon} />
                     );
                 })}
                 </SearchBox>

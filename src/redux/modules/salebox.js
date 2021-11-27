@@ -1,7 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { apis } from '../../common/axios'
-import { listCreators } from './main';
 
 // action 생성
 const LOAD_FOLDERS = 'LOAD_FOLDERS';
@@ -34,20 +33,6 @@ export const delFoldersMiddleware = (coupon_id) => {
       const res = await apis.delFolders(coupon_id);
       console.log(res)
       dispatch(delFolderss(coupon_id));
-
-      const rank_list = getState().main.rank;
-      const search_list = getState().main.searchList;
-
-      if(rank_list.length !== 0){
-        dispatch(listCreators.rankzzim(coupon_id,true));
-      }
-
-      if(search_list.length !== 0){
-        dispatch(listCreators.searchzzim(coupon_id,true));
-      }
-
-      
-
       history.push('/salebox');
     }catch(e){
       console.log(e);

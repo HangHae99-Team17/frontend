@@ -162,7 +162,7 @@ const LoginMain = () => {
 
 const AllBox = styled.div`
 width : 375px;
-dispaly : block;
+display : block;
 margin: 0 auto;
 @media screen and (min-width:1028px){
 width:1100px;

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as foldersCreators} from '../redux/modules/salebox';
-import { listCreators } from '../redux/modules/main';
 import { history } from '../redux/configureStore';
 import styled from "styled-components";
 import Grid from "../elements/Grid";
@@ -10,12 +9,10 @@ import {fullBookmark} from '../image'
 const SaleBox = () => {
     const dispatch = useDispatch();
     const folders = useSelector((state) => state.salebox.list);
-    console.log(folders)
     const list_length = folders?.length;
     
     useEffect(() => {
       dispatch(foldersCreators.getFoldersMiddleware());
-      
     }, []);
 
     return (

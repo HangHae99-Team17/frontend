@@ -1,47 +1,54 @@
 import React,{useState, useEffect} from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { detailCreators } from "../redux/modules/detail";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { listCreators } from "../redux/modules/main";
 import { history } from "../redux/configureStore";
-import { bookmark,fullBookmark } from "../image";
+import { colorBookmark,fullBookmark } from "../image";
+import { apis } from '../common/axios';
 
 const Detail = (props) => {
-  console.log(props.mode)
   const Id = props.match.params.id;
-
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(detailCreators.getDetailMW(Id));
-  }, []);
-
-  const detail_list = useSelector((state) => state.detail.info.data);
+  const [detail_list,setDetail] = useState("");
+  const [zzim,setZzim] = useState();
+  const [num,setNum] = useState()
   const is_login = useSelector((state) => state.user.is_login);
-  const [zzim,setZzim] = useState(props.couponSelect===1?true:false);
 
+  const getSearch = async(Id) => {
+    try{
+        const detail_result = await apis.getDetail(Id);
+        console.log(detail_result.data.data);
+        if(detail_result.data.data.couponSelect===1){
+          setZzim(true);
+        }else{
+          setZzim(false);
+        }
+        
+        setDetail(detail_result.data.data);
+        setNum(detail_result.data.data.couponLike);
+    }catch(e){
+      console.log('에러');
+    }
+  }
 
-  const zzimz = () => {
+  const zzimz = async() => {
     if(is_login===false){
         alert("로그인이 필요한 서비스 입니다!");
         history.push('/login')
     }      
-    
+
     if(zzim === false){
-        if(props.mode === "rank"){
-            dispatch(listCreators.rankaddzzimFB(props.id,zzim));
-        }else if(props.mode === "search"){
-            dispatch(listCreators.searchaddzzimFB(props.id,zzim));
-        }
+        await apis.postCoupon(detail_list.id);
         setZzim(true);
+        setNum(num+1);
     }else if(zzim === true){
-        if(props.mode === "rank"){
-            dispatch(listCreators.rankdelzzimFB(props.id,zzim));
-        }else if(props.mode === "search"){
-            dispatch(listCreators.searchdelzzimFB(props.id,zzim));
-        }
+        await apis.delFolders(detail_list.id);
         setZzim(false);
+        setNum(num-1);
     }  
-};
+  };
+
+  useEffect(()=>{
+    getSearch(Id);
+  },[]);
 
   return (
     <Wrap>
@@ -63,19 +70,20 @@ const Detail = (props) => {
           </div>
         </Info>
         <LikeWrap>
-          <TakeCoupon>
-            <A href={detail_list?.couponUrl}> 할인 사용처 바로가기 </A>
-          </TakeCoupon>
+            <A href={detail_list?.couponUrl}>할인 사용처 바로가기</A>
           <PickCoupon onClick={zzimz}>
             {is_login?(
-            <Bookmarker src={bookmark} />):
-            (<Bookmarker src={!zzim?bookmark:fullBookmark} onClick={zzimz}/>)
-            }
-            <Like>{detail_list?.couponLike}</Like>
+                <Bookmarker src={!zzim?colorBookmark:fullBookmark} />
+              ):(
+                <Bookmarker src={colorBookmark}/>
+              )}
+            <Like>{num}</Like>
           </PickCoupon>
         </LikeWrap>
+        <DescBox>
         <P>상세설명</P>
         <Desc>{detail_list?.couponDesc}</Desc>
+        </DescBox>
       </TextBox>
     </Wrap>
   );
@@ -85,23 +93,27 @@ const Wrap = styled.div`
   position: relative;
   margin: 0px auto;
   width: 375px;
+  
   @media screen and (min-width: 1028px) {
     width: 740px;
     margin: 80px 0 0 1000px;
-    transform: scale(1.4);
-    top:100px;
+    left:50px;
+    top:10px;
+    transform: scale(1.2);
   }
 `;
 const Image = styled.div`
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 200px;
   text-align: center;
   margin: 00px auto;
   overflow:hidden;
   @media screen and (min-width: 1028px) {
     position: absolute;
-    right: 600px;
+    right: 680px;
+    top:30px;
+    transform: scale(1.4);
   }
 `;
 const Image2 = styled.img`
@@ -114,29 +126,23 @@ const LikeWrap = styled.div`
   height: 50px;
   margin: 160px 0 0 16px;
 `;
-const TakeCoupon = styled.div`
-  width: 264px;
-  height: 48px;
-  line-height: 48px;
-  border: 1px solid #f09643;
-  background-color: #f09643;
-  margin-top: 10px;
-  display: flex;
-  border-radius: 4px;
-`;
 const A = styled.a`
-  width : 264px;
-  height :48px;
+  width: 260px;
+  height: 48px;
   text-decoration: none;
   font-size: 16px;
   color: white;
+  text-align:center;
   font-weight: bold;
-  padding-left: 60px;
+  line-height: 48px;
+  border: 1px solid #f09643;
+  background-color: #f09643;
+  border-radius: 4px;
+  
 `;
 const PickCoupon = styled.div`
   width: 48px;
   height: 48px;
-  margin-top: 10px;
   border: 1px solid #d6d6d7;
   border-radius: 4px;
   background-color: #fff;
@@ -158,7 +164,7 @@ const Like = styled.div`
   left : 19px;
 `;
 const Bookmarker = styled.img`
-margin :8px 0 0 16px;
+margin :8px 0 0 12px;
 `;
 const Div = styled.div`
   margin: 0 0 0 26px;
@@ -173,7 +179,7 @@ const Span = styled.div`
   color: #ff8f00;
 `;
 const Title = styled.div`
-  font-size: 23px;
+  font-size: 20px;
   font-weight: bold;
   margin-left: 26px;
   line-height: 38px;
@@ -191,10 +197,18 @@ const Desc = styled.div`
   width: 330px;
   @media screen and (min-width:1028px){
 position:absolute;
-right:10px;
-top:120px;
+top:100px;
+left:-10px;
 }
 `;
+const DescBox = styled.div`
+@media screen and (min-width:1028px){position:absolute;
+  width:200px;
+top:280px;
+left:-580px;
+}
+`;
+
 const TextBox = styled.div`
   display: flex;
   position: relative;

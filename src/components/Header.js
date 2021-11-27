@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { listCreators } from "../redux/modules/main";
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
 import {
@@ -153,7 +152,7 @@ const Header = (props) => {
                   setOpen(!open);
                 }}
               >
-                마이페이지
+                내 정보 수정
               </li>
               <li
                 onClick={() => {
@@ -184,67 +183,66 @@ const Header = (props) => {
       </HeaderBox>
 
       <PcHeaderBox>
-        {!open ? (
-          <>
-            <IconBox>
-              <img
-                src={gooddablack}
-                alt="icon"
-                onClick={() => {
-                  history.push("/");
-                }}
-              />
+        <>
+          <IconBox>
+            <img
+              src={gooddablack}
+              alt="icon"
+              onClick={() => {
+                history.push("/");
+              }}
+            />
 
-              {search ? (
-                <SearchBox
-                  type="text"
-                  placeholder="브랜드를 검색해보세요"
-                  required="required"
-                  value={searchval}
-                  onChange={searchchange}
-                />
-              ) : (
-                ""
-              )}
-              {user_info?.role === "ADMIN" ? (
-                <WriteImg
-                  src={edit_3}
-                  alt="write"
-                  onClick={() => {
-                    history.push("/salewrite");
-                  }}
-                />
-              ) : (
-                ""
-              )}
-              {search ? (
-                <SearchImg
-                  src={search_orange}
-                  alt="search"
-                  onClick={searchcoupon}
-                />
-              ) : (
-                <SearchImg
-                  src={search_black}
-                  alt="search"
-                  onClick={searchcancel}
-                />
-              )}
-            </IconBox>
-          </>
-        ) : (
-          <>
-            <IconBox>
-              <img
-                src={gooddawhite}
-                alt="icon"
+            {search ? (
+              <SearchBox
+                type="text"
+                placeholder="브랜드를 검색해보세요"
+                required="required"
+                value={searchval}
+                onChange={searchchange}
+              />
+            ) : (
+              ""
+            )}
+            {user_info?.role === "ADMIN" ? (
+              <WriteImg
+                src={edit_3}
+                alt="write"
                 onClick={() => {
-                  history.push("/");
+                  history.push("/salewrite");
                 }}
               />
-            </IconBox>
-          </>
-        )}
+            ) : (
+              ""
+            )}
+            {search ? (
+              <SearchImg
+                src={search_orange}
+                alt="search"
+                onClick={searchcoupon}
+              />
+            ) : (
+              <SearchImg
+                src={search_black}
+                alt="search"
+                onClick={searchcancel}
+              />
+            )}
+          </IconBox>
+        </>
+
+        <>
+          <IconBox>
+            <img
+              src={gooddawhite}
+              alt="icon"
+              onClick={() => {
+                history.push("/");
+              }}
+            />
+          </IconBox>
+        </>
+
         <Ul open={open}>
           <li
             onClick={() => {
@@ -267,7 +265,7 @@ const Header = (props) => {
                   history.push("/edituser");
                 }}
               >
-                마이페이지
+                내 정보 수정
               </li>
               <li
                 onClick={() => {
@@ -332,7 +330,8 @@ const PcHeaderBox = styled.div`
   @media screen and (min-width: 1028px) {
     display: flex;
     justify-content: space-between;
-    background-color:white;
+    background-color: white;
+    padding-left: 40px;
   }
 `;
 
@@ -355,8 +354,8 @@ const SearchBox = styled.input`
     color: orange;
   }
   @media screen and (min-width: 1028px) {
-    left: 430px;
-    transform: scale(1.4);
+    left: 585px;
+    transform: scale(1.3);
     width: 160px;
   }
 `;
@@ -365,16 +364,16 @@ const SearchImg = styled.img`
   position: absolute;
   right: 85px;
   @media screen and (min-width: 1028px) {
-    left: 640px;
-    transform: scale(1.4);
+    left: 805px;
+    transform: scale(1.3);
   }
 `;
 const WriteImg = styled.img`
   position: absolute;
   right: 55px;
   @media screen and (min-width: 1028px) {
-    left: 700px;
-    transform: scale(1.4);
+    left: 860px;
+    transform: scale(1.3);
   }
 `;
 
@@ -436,12 +435,13 @@ const Ul = styled.ul`
     top: -19px;
     right: 200px;
     height: 60px;
-    width: 900px;
+    width: 750px;
     flex-flow: row nowrap;
-    background-color:white;
+    background-color: white;
     li {
       color: black;
-      width: 1000px;
+      width: 220px;
+      font-size: 18px;
     }
   }
 `;
@@ -456,8 +456,9 @@ const LoginButton = styled.button`
   font-weight: bold;
   font-size: 16px;
   @media screen and (min-width: 1028px) {
-    margin-top: 10px;
+    margin-top: 7px;
     color: white;
+    width: 250px;
   }
 `;
 
