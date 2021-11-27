@@ -46,7 +46,7 @@ const MainCoupon = (props) => {
           </div>
         </Box>
         <CouponButton>할인 받기</CouponButton>
-        <Bookmarker onClick={zzimz}>
+        <Bookmarker>
           {!is_login ? (
             <img
               src={colorBookmark}
@@ -65,10 +65,12 @@ const MainCoupon = (props) => {
 };
 
 const Allbox = styled.div`
+  
 `;
 
 const Wrap = styled.div`
   position: relative;
+  cursor: pointer;
 @media screen and (min-width:1028px){
 height:325px;
 width:360px;
@@ -80,6 +82,7 @@ box-shadow: 2px 2px 6px #E0E0E0;
 transform:scale(0.9);
 `;
 const Box = styled.div`
+  
   width: 360px;
   height: 80px;
   display: flex;

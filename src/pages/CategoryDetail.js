@@ -63,7 +63,7 @@ return(
     dataLength={DcInfoList.length}
     next={fetchPaging}
     hasMore={hasMore}
-    loader={<h4 style={{marginLeft : "16px"}}>다음 할인이 궁금하다면 스크롤을 내려주세요!</h4>}>  
+    loader={<h4 style={{marginLeft : "20px"}}>다음 할인이 궁금하다면 스크롤을 내려주세요!</h4>}>  
       <DcBox>
         {
         DcInfoList?.map((item) => {
@@ -95,13 +95,12 @@ padding-left:20px;
 padding-top: 3px;
 `
 const SortBy = styled.div`
-width : 200px;
-display : flex;
+margin-left:20px;
+width : 300px;
 `
 const SortImg = styled.img`
-width : 50px;
-height : 14px;
-margin : 20px 0 0 16px;
+  margin-right:10px;
+  cursor:pointer;
 `
 const DcBox = styled.div`
 position:relative;

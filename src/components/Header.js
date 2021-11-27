@@ -43,11 +43,23 @@ const Header = (props) => {
     history.push("/");
   };
 
+  const onKeyPress = (e) =>{
+    if(e.key === 'Enter'){
+      searchcoupon();
+    }
+  };
+
   useEffect(() => {
     if (is_session) {
       dispatch(userActions.loginCheckFB());
     }
   }, []);
+
+  useEffect(() => {
+    if (!searchval) {
+      setSearch(false)
+    }
+  }, [searchval]);
 
   return (
     <React.Fragment>
@@ -65,8 +77,9 @@ const Header = (props) => {
                   history.push("/");
                 }}
               />
-
-              {search ? (
+            </IconBox>
+            <StyledBurger>
+            {search ? (
                 <SearchBox
                   type="text"
                   placeholder="브랜드를 검색해보세요"
@@ -76,6 +89,19 @@ const Header = (props) => {
                 />
               ) : (
                 ""
+              )}
+              {search ? (
+                <img
+                  src={search_orange}
+                  alt="search"
+                  onClick={searchcoupon}
+                />
+              ) : (
+                <img
+                  src={search_black}
+                  alt="search"
+                  onClick={searchcancel}
+                />
               )}
               {user_info?.role === "ADMIN" ? (
                 <WriteImg
@@ -88,21 +114,6 @@ const Header = (props) => {
               ) : (
                 ""
               )}
-              {search ? (
-                <SearchImg
-                  src={search_orange}
-                  alt="search"
-                  onClick={searchcoupon}
-                />
-              ) : (
-                <SearchImg
-                  src={search_black}
-                  alt="search"
-                  onClick={searchcancel}
-                />
-              )}
-            </IconBox>
-            <StyledBurger>
               <img
                 src={Frame_101}
                 alt="burgerbutton"
@@ -181,9 +192,7 @@ const Header = (props) => {
           )}
         </Ul>
       </HeaderBox>
-
       <PcHeaderBox>
-        <>
           <IconBox>
             <img
               src={gooddablack}
@@ -192,110 +201,82 @@ const Header = (props) => {
                 history.push("/");
               }}
             />
-
-            {search ? (
+          </IconBox>
+          <MenuBox>
+            {search?(
               <SearchBox
-                type="text"
-                placeholder="브랜드를 검색해보세요"
-                required="required"
-                value={searchval}
-                onChange={searchchange}
-              />
-            ) : (
-              ""
-            )}
-            {user_info?.role === "ADMIN" ? (
-              <WriteImg
-                src={edit_3}
-                alt="write"
-                onClick={() => {
-                  history.push("/salewrite");
-                }}
-              />
-            ) : (
-              ""
-            )}
-            {search ? (
-              <SearchImg
-                src={search_orange}
-                alt="search"
-                onClick={searchcoupon}
-              />
-            ) : (
-              <SearchImg
-                src={search_black}
-                alt="search"
-                onClick={searchcancel}
-              />
-            )}
-          </IconBox>
-        </>
-
-        <>
-          <IconBox>
-            <img
-              src={gooddawhite}
-              alt="icon"
-              onClick={() => {
-                history.push("/");
-              }}
+              type="text"
+              placeholder="브랜드를 검색해보세요"
+              required="required"
+              value={searchval}
+              onChange={searchchange} onKeyPress={onKeyPress}
             />
-          </IconBox>
-        </>
-
-        <Ul open={open}>
-          <li
-            onClick={() => {
-              history.push("/category");
-            }}
-          >
-            카테고리
-          </li>
-          {is_login ? (
-            <>
-              <li
-                onClick={() => {
-                  history.push("/salebox");
-                }}
-              >
-                보관함
-              </li>
-              <li
-                onClick={() => {
-                  history.push("/edituser");
-                }}
-              >
-                내 정보 수정
-              </li>
-              <li
-                onClick={() => {
-                  history.push("/loginmain");
-
-                  history.go(0);
-                }}
-              >
-                나의 카테고리
-              </li>
-            </>
-          ) : (
-            ""
-          )}
-          {is_login ? (
-            <LoginButton onClick={logout}>Goodda 로그아웃</LoginButton>
-          ) : (
-            <LoginButton
-              onClick={() => {
+            ):(<div>
+              {is_login?(
+              <>
+                <button className="menubutton" onClick={() => {history.push("/salebox");}}>보관함</button>
+                <button className="menubutton" onClick={() => {history.push("/edituser");}}>내 정보 수정</button>
+                <button className="menubutton" onClick={() => {history.push("/loginmain");}}>나의 카테고리</button>
+              </>
+              ):(
+                ""
+              )}
+              <button className="menubutton" onClick={() => {history.push("/category");}}>카테고리</button>
+              {is_login?(
+              <LoginButton onClick={logout}>로그아웃</LoginButton>
+            ):(
+              <LoginButton onClick={() => {
                 history.push("/login");
-              }}
-            >
-              Goodda 로그인하기
-            </LoginButton>
-          )}
-        </Ul>
+              }}>로그인하기</LoginButton>
+            )}
+            </div>)}
+            <div className="searchIcon">  
+              <img src={search?search_orange:search_black} alt="search" onClick={search?searchcoupon:searchcancel}/>
+            </div>
+          </MenuBox>
       </PcHeaderBox>
     </React.Fragment>
   );
 };
+
+const PcHeaderBox = styled.div`
+  display: none;
+  background-color: ${(props) => props.color};
+  color: ${(props) => props.fontcolor};
+  align-items: center;
+  height: 65px;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  border-bottom: solid 1px #9e9e9e;
+  z-index: 5;
+  @media screen and (min-width: 1028px) {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+  }
+`;
+
+const MenuBox = styled.div`
+  margin-right:30px;
+  display: flex;
+  align-items: center;
+  div{
+    .menubutton{
+      border:none;
+      margin-right:15px;
+      font-weight: bold;
+      font-size:15px;
+      background-color: white;
+      cursor:pointer;
+    }
+  }
+  .searchIcon{
+    margin-left:40px;
+    margin-top:7px;
+    cursor:pointer;
+  }
+`;
 
 const HeaderBox = styled.div`
   display: flex;
@@ -316,30 +297,7 @@ const HeaderBox = styled.div`
   }
 `;
 
-const PcHeaderBox = styled.div`
-  display: none;
-  background-color: ${(props) => props.color};
-  color: ${(props) => props.fontcolor};
-  align-items: center;
-  height: 65px;
-  top: 0;
-  width: 100%;
-  position: fixed;
-  border-bottom: solid 1px #9e9e9e;
-  z-index: 5;
-  @media screen and (min-width: 1028px) {
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    padding-left: 40px;
-  }
-`;
-
 const SearchBox = styled.input`
-  position: absolute;
-  right: 115px;
-  height: 22px;
-  top: 20px;
   border: none;
   border-bottom: solid 1px #9e9e9e;
   width: 140px;
@@ -354,22 +312,12 @@ const SearchBox = styled.input`
     color: orange;
   }
   @media screen and (min-width: 1028px) {
-    left: 585px;
-    transform: scale(1.3);
-    width: 160px;
+    margin-right:40px;
+    width: 250px;
   }
 `;
 
-const SearchImg = styled.img`
-  position: absolute;
-  right: 85px;
-  @media screen and (min-width: 1028px) {
-    left: 805px;
-    transform: scale(1.3);
-  }
-`;
 const WriteImg = styled.img`
-  position: absolute;
   right: 55px;
   @media screen and (min-width: 1028px) {
     left: 860px;
@@ -380,9 +328,9 @@ const WriteImg = styled.img`
 const IconBox = styled.div`
   margin-left: 20px;
   margin-top: 13px;
-
+  cursor:pointer;
   @media screen and (min-width: 1028px) {
-    margin-left: 200px;
+    margin-left: 80px;
   }
 `;
 
@@ -455,10 +403,11 @@ const LoginButton = styled.button`
   border: none;
   font-weight: bold;
   font-size: 16px;
+  cursor:pointer;
   @media screen and (min-width: 1028px) {
-    margin-top: 7px;
-    color: white;
-    width: 250px;
+    margin-bottom:20px;
+    color: black;
+    width: 120px;
   }
 `;
 

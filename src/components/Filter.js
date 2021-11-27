@@ -3,7 +3,6 @@ import { useSelector,useDispatch } from 'react-redux';
 import { listCreators } from '../redux/modules/main';
 import { history } from '../redux/configureStore';
 import styled from 'styled-components';
-import Grid from "../elements/Grid";
 import { couponCreate,couponDespire,couponRank } from '../image';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MainCoupon from './MainCoupon';
@@ -55,7 +54,7 @@ const Filter = (props)=>{
         <P>다 모아두었어요</P>
         </div>
         <SortBy>
-        <SortImg src ={couponCreate} 
+          <SortImg src ={couponCreate} 
             onClick={()=>{history.push(`/ranking/${type}/${"couponCreate"}/${true}`);history.go(0) }}/>
           <SortImg src ={couponDespire} 
             onClick={()=>{history.push(`/ranking/${type}/${"couponDespire"}/${true}`);history.go(0)}}/>
@@ -100,13 +99,12 @@ padding-left:20px;
 padding-top: 3px;
 `
 const SortBy = styled.div`
-width : 200px;
-display : flex;
+margin-left:20px;
+width : 300px;
 `
 const SortImg = styled.img`
-width : 50px;
-height : 14px;
-margin : 20px 0 0 16px;
+  margin-right:10px;
+  cursor:pointer;
 `
 const DcBox = styled.div`
 position:relative;
