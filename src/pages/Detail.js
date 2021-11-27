@@ -70,7 +70,7 @@ const Detail = (props) => {
           </div>
         </Info>
         <LikeWrap>
-            <A href={detail_list?.couponUrl}><TakeCoupon>할인 사용처 바로가기</TakeCoupon></A>
+            <A href={detail_list?.couponUrl}>할인 사용처 바로가기</A>
           <PickCoupon onClick={zzimz}>
             {is_login?(
                 <Bookmarker src={!zzim?colorBookmark:fullBookmark} />
@@ -80,8 +80,10 @@ const Detail = (props) => {
             <Like>{num}</Like>
           </PickCoupon>
         </LikeWrap>
+        <DescBox>
         <P>상세설명</P>
         <Desc>{detail_list?.couponDesc}</Desc>
+        </DescBox>
       </TextBox>
     </Wrap>
   );
@@ -95,8 +97,9 @@ const Wrap = styled.div`
   @media screen and (min-width: 1028px) {
     width: 740px;
     margin: 80px 0 0 1000px;
-    transform: scale(1.4);
-    top:100px;
+    left:50px;
+    top:10px;
+    transform: scale(1.2);
   }
 `;
 const Image = styled.div`
@@ -108,7 +111,9 @@ const Image = styled.div`
   overflow:hidden;
   @media screen and (min-width: 1028px) {
     position: absolute;
-    right: 600px;
+    right: 680px;
+    top:30px;
+    transform: scale(1.4);
   }
 `;
 const Image2 = styled.img`
@@ -121,30 +126,23 @@ const LikeWrap = styled.div`
   height: 50px;
   margin: 160px 0 0 16px;
 `;
-const TakeCoupon = styled.div`
-  padding-left:50px;
-  width: 200px;
-  height: 48px;
-  line-height: 48px;
-  border: 1px solid #f09643;
-  background-color: #f09643;
-  margin-top: 10px;
-  display: flex;
-  border-radius: 4px;
-`;
 const A = styled.a`
-  width : 264px;
-  height :48px;
+  width: 260px;
+  height: 48px;
   text-decoration: none;
   font-size: 16px;
   color: white;
+  text-align:center;
   font-weight: bold;
+  line-height: 48px;
+  border: 1px solid #f09643;
+  background-color: #f09643;
+  border-radius: 4px;
   
 `;
 const PickCoupon = styled.div`
   width: 48px;
   height: 48px;
-  margin-top: 10px;
   border: 1px solid #d6d6d7;
   border-radius: 4px;
   background-color: #fff;
@@ -199,10 +197,18 @@ const Desc = styled.div`
   width: 330px;
   @media screen and (min-width:1028px){
 position:absolute;
-right:10px;
-top:120px;
+top:100px;
+left:-10px;
 }
 `;
+const DescBox = styled.div`
+@media screen and (min-width:1028px){position:absolute;
+  width:200px;
+top:280px;
+left:-580px;
+}
+`;
+
 const TextBox = styled.div`
   display: flex;
   position: relative;

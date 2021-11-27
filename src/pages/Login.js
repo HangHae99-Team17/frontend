@@ -95,7 +95,7 @@ const LoginBox = styled.div`
 `
 
 const IdInputBox = styled.div`
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     margin-top: 60px;
     input{
         width: 328px;
@@ -113,7 +113,7 @@ const IdInputBox = styled.div`
 `;
 
 const PasswordInputBox = styled.div`
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     input{
         width: 328px;
         height: 37px;
@@ -137,7 +137,7 @@ const LoginButton = styled.button`
     border: none;
     border-radius: 5px;
     font-size: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 `;
 
 const SignupButton = styled.button`
