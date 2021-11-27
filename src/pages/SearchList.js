@@ -6,8 +6,9 @@ import { apis } from "../common/axios";
 const SearchList = () => {
     
     const [search,setSearch] = useState([]);
+    const val = localStorage.getItem("search");
 
-    const getSearch = useCallback(async(val) => {
+    const getSearch = async() => {
         try{
             const search_result = await apis.searchCoupon(val);
             console.log(search_result.data)
@@ -19,14 +20,13 @@ const SearchList = () => {
         }catch(e){
             console.log('에러');
         }
-    },[search])
+    }
 
     React.useEffect(()=>{
-        const val = localStorage.getItem("search");
         getSearch(val);
-        console.log("search")
-    },[]);
-    
+        console.log("asdasd")
+    },[val]);
+
     return (
         <React.Fragment>
             {search.length !== 0?(

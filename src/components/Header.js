@@ -28,6 +28,11 @@ const Header = (props) => {
 
   const searchcoupon = () => {
     localStorage.setItem("search", searchval);
+    
+    if(!searchval){
+      setSearch(!search);
+      return;
+    }
     setSearch(!search);
     setSearchVal("");
     history.push("/search");
@@ -44,6 +49,7 @@ const Header = (props) => {
   };
 
   const onKeyPress = (e) =>{
+    console.log("asdasf")
     if(e.key === 'Enter'){
       searchcoupon();
     }
@@ -54,12 +60,6 @@ const Header = (props) => {
       dispatch(userActions.loginCheckFB());
     }
   }, []);
-
-  useEffect(() => {
-    if (!searchval) {
-      setSearch(false)
-    }
-  }, [searchval]);
 
   return (
     <React.Fragment>
