@@ -157,6 +157,7 @@ const UserEditButton = styled.button`
   height: 48px;
   width: 100px;
   border-radius: 4px;
+  font-size:15px;
   background-color: white;
   color: ${(props) => props.color};
   border: solid 1px ${(props) => props.bg};
@@ -175,6 +176,7 @@ const SaleinfoBox = styled.div`
   margin: 0 auto;
   width: 375px;
   flex-wrap: wrap;
+  font-size:15px;
   justify-content: space-evenly;
   padding-left: 0px;
   @media screen and (min-width: 1024px) {
@@ -194,6 +196,7 @@ const SignUpButton = styled.button`
   margin-bottom: 15px;
   border: none;
   width: 99px;
+  font-size: 15px;
   height: 99px;
   border-radius: 5px;
   background-color: white;
@@ -201,7 +204,6 @@ const SignUpButton = styled.button`
   border: solid 1px ${(props) => props.bg};
   @media screen and (min-width: 1024px) {
     margin-left: 10px;
-    font-size: 14px;
     font-weight: bold;
     line-height: 145px;
   }

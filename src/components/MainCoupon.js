@@ -83,7 +83,7 @@ const Box = styled.div`
   width: 360px;
   height: 80px;
   display: flex;
-  margin: 10px auto;
+  margin: 11px auto;
   position: relative;
   @media screen and (min-width:1028px){
   top:156px;
@@ -93,7 +93,7 @@ const ImgBox = styled.div`
   width: 60px;
   height: 50px;
   border-radius: 4px;
-  margin: 16px 20px;
+  margin: 16px 14px;
 `;
 const IMG = styled.img`
   width: 50px;
@@ -125,6 +125,7 @@ const Title = styled.p`
   color: #757575;
 `;
 const Dsec = styled.p`
+margin-top:0;
   font-size: 16px;
   font-weight: 400;
 `;

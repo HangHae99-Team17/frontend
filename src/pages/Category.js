@@ -108,6 +108,7 @@ const Category = () => {
           );
         })}
       </Ul>
+      <TelBox>
         <Litext>통신사 혜택</Litext>
         {tel_category.map((item) => {
           return (
@@ -125,6 +126,7 @@ const Category = () => {
             </Li>
           );
         })}
+        </TelBox>
     </Div>
   );
 };
@@ -166,7 +168,17 @@ const Ul = styled.ul`
     width: 1000px;
   }
 `;
-
+const TelBox = styled.ul`
+  display: flex;
+  margin: 0 auto;
+  width: 375px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-left: 0px;
+  @media screen and (min-width: 1024px) {
+    margin-left:0px;
+  }
+`;
 const Li = styled.li`
   list-style: none;
   background-color: white;
@@ -178,7 +190,7 @@ const Li = styled.li`
   font-weight: 600;
   text-align: center;
   color: #f09643;
-  font-size: 14px;
+  font-size: 15px;
 `;
 const BOX = styled.div`
   color: black;

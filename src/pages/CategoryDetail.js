@@ -38,7 +38,7 @@ const CategoryDetail = (props) => {
         setPage(prevstate =>prevstate + 1)
         setTimeout(() => {
             if(hasMore){
-              dispatch(listCreators.getListMW(type,page,1,"couponCreate",true));
+              dispatch(listCreators.getListMW(type,page,3,"couponCreate",true));
             }
         },1000)
     }
@@ -63,8 +63,7 @@ return(
     dataLength={DcInfoList.length}
     next={fetchPaging}
     hasMore={hasMore}
-    loader={hasMore?<h4 style={{marginLeft : "16px"}}>다음 할인이 궁금하다면 스크롤을 내려주세요!</h4>:
-        <h4 style={{marginLeft : "16px"}}>아쉽게도 더이상의 할인이 없네요</h4>}>  
+    loader={<h4 style={{marginLeft : "16px"}}>다음 할인이 궁금하다면 스크롤을 내려주세요!</h4>}>  
       <DcBox>
         {
         DcInfoList?.map((item) => {
