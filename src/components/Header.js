@@ -43,11 +43,23 @@ const Header = (props) => {
     history.push("/");
   };
 
+  const onKeyPress = (e) =>{
+    if(e.key === 'Enter'){
+      searchcoupon();
+    }
+  };
+
   useEffect(() => {
     if (is_session) {
       dispatch(userActions.loginCheckFB());
     }
   }, []);
+
+  useEffect(() => {
+    if (!searchval) {
+      setSearch(false)
+    }
+  }, [searchval]);
 
   return (
     <React.Fragment>
@@ -79,13 +91,13 @@ const Header = (props) => {
                 ""
               )}
               {search ? (
-                <SearchImg
+                <img
                   src={search_orange}
                   alt="search"
                   onClick={searchcoupon}
                 />
               ) : (
-                <SearchImg
+                <img
                   src={search_black}
                   alt="search"
                   onClick={searchcancel}
@@ -180,7 +192,6 @@ const Header = (props) => {
           )}
         </Ul>
       </HeaderBox>
-
       <PcHeaderBox>
           <IconBox>
             <img
@@ -192,39 +203,38 @@ const Header = (props) => {
             />
           </IconBox>
           <MenuBox>
-            <SearchBox
+            {search?(
+              <SearchBox
               type="text"
               placeholder="브랜드를 검색해보세요"
               required="required"
               value={searchval}
-              onChange={searchchange}
+              onChange={searchchange} onKeyPress={onKeyPress}
             />
-            <div className="searchIcon">  
-              <SearchImg src={search?search_orange:search_black} alt="search" onClick={search?searchcoupon:searchcancel}/>
-            </div>
-            <div>
+            ):(<div>
               {is_login?(
               <>
-                <button onClick={() => {history.push("/salebox");}}>보관함</button>
-                <button onClick={() => {history.push("/edituser");}}>내 정보 수정</button>
-                <button onClick={() => {history.push("/loginmain");}}>나의 카테고리</button>
+                <button className="menubutton" onClick={() => {history.push("/salebox");}}>보관함</button>
+                <button className="menubutton" onClick={() => {history.push("/edituser");}}>내 정보 수정</button>
+                <button className="menubutton" onClick={() => {history.push("/loginmain");}}>나의 카테고리</button>
               </>
               ):(
                 ""
               )}
-              <button onClick={() => {history.push("/category");}}>카테고리</button>
-            </div>
-            {is_login?(
+              <button className="menubutton" onClick={() => {history.push("/category");}}>카테고리</button>
+              {is_login?(
               <LoginButton onClick={logout}>로그아웃</LoginButton>
             ):(
               <LoginButton onClick={() => {
                 history.push("/login");
               }}>로그인하기</LoginButton>
             )}
-            
+            </div>)}
+            <div className="searchIcon">  
+              <img src={search?search_orange:search_black} alt="search" onClick={search?searchcoupon:searchcancel}/>
+            </div>
           </MenuBox>
       </PcHeaderBox>
-
     </React.Fragment>
   );
 };
@@ -252,7 +262,7 @@ const MenuBox = styled.div`
   display: flex;
   align-items: center;
   div{
-    button{
+    .menubutton{
       border:none;
       margin-right:15px;
       font-weight: bold;
@@ -261,9 +271,10 @@ const MenuBox = styled.div`
       cursor:pointer;
     }
   }
-
   .searchIcon{
-
+    margin-left:40px;
+    margin-top:7px;
+    cursor:pointer;
   }
 `;
 
@@ -302,16 +313,10 @@ const SearchBox = styled.input`
   }
   @media screen and (min-width: 1028px) {
     margin-right:40px;
-    transform: scale(1.3);
-    width: 150px;
+    width: 250px;
   }
 `;
 
-const SearchImg = styled.img`
-  @media screen and (min-width: 1028px) {
-    transform: scale(1.3);
-  }
-`;
 const WriteImg = styled.img`
   right: 55px;
   @media screen and (min-width: 1028px) {
@@ -325,7 +330,7 @@ const IconBox = styled.div`
   margin-top: 13px;
   cursor:pointer;
   @media screen and (min-width: 1028px) {
-    margin-left: 20px;
+    margin-left: 80px;
   }
 `;
 
