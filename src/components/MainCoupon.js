@@ -80,6 +80,7 @@ box-shadow: 5px 5px 10px #E0E0E0;
 transform:scale(0.9);
 `;
 const Box = styled.div`
+  
   width: 360px;
   height: 80px;
   display: flex;
