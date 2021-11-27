@@ -152,6 +152,7 @@ const UserEditButton = styled.button`
   border-radius: 4px;
   background-color: white;
   margin-bottom: 10px;
+  font-size:15px;
   color: ${(props) => props.color};
   border: solid 1px ${(props) => props.bg};
   @media screen and (min-width: 1024px) {
@@ -168,6 +169,7 @@ const InterTypeBox = styled.div`
   margin: 0 auto;
   width: 375px;
   flex-wrap: wrap;
+font-size:16px;
   justify-content: space-evenly;
 `;
 
@@ -195,6 +197,7 @@ const SignUpButton = styled.button`
   border: none;
   width: 99px;
   height: 99px;
+  font-size: 15px;
   border-radius: 5px;
   background-color: white;
   color: ${(props) => props.bg};
@@ -203,7 +206,6 @@ const SignUpButton = styled.button`
 
   @media screen and (min-width: 1024px) {
     margin-left: 10px;
-    font-size: 14px;
     font-weight: bold;
     line-height: 145px;
   }
