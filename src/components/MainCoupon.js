@@ -16,11 +16,9 @@ const MainCoupon = (props) => {
     }
 
     if (zzim === false) {
-      console.log("찜")
       await apis.postCoupon(props.id);
       setZzim(true);
     } else if (zzim === true) {
-      console.log("찜취소")
       await apis.delFolders(props.id);
       setZzim(false);
     }

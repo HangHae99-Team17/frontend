@@ -95,13 +95,12 @@ padding-left:20px;
 padding-top: 3px;
 `
 const SortBy = styled.div`
-width : 200px;
-display : flex;
+margin-left:20px;
+width : 300px;
 `
 const SortImg = styled.img`
-width : 50px;
-height : 14px;
-margin : 20px 0 0 16px;
+  margin-right:10px;
+  cursor:pointer;
 `
 const DcBox = styled.div`
 position:relative;
