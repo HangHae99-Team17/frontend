@@ -53,9 +53,9 @@ return(
         </div>
         <SortBy>
         <SortImg
-            onClick={()=>{history.push(`/ranking/${type}/${"couponLike"}/${false}`);history.go(0)}}>✓ 최신순</SortImg>
+            onClick={()=>{history.push(`/ranking/${type}/${"couponCreate"}/${false}`);history.go(0)}}>✓ 최신순</SortImg>
           <SortImg
-            onClick={()=>{history.push(`/ranking/${type}/${"couponLike"}/${false}`);history.go(0)}}>✓ 마감임박</SortImg>
+            onClick={()=>{history.push(`/ranking/${type}/${"couponDespire"}/${false}`);history.go(0)}}>✓ 마감임박</SortImg>
           <SortImg
             onClick={()=>{history.push(`/ranking/${type}/${"couponLike"}/${false}`);history.go(0)}}>✓ 인기순</SortImg>
         </SortBy>
