@@ -118,6 +118,7 @@ const UserEditButton = styled.button`
   background-color: white;
   color: ${(props) => props.color};
   border: solid 1px ${(props) => props.bg};
+  cursor:pointer;
   margin-bottom: 10px;
   @media screen and (min-width: 1024px) {
       height:100px;
@@ -141,6 +142,7 @@ const SignUpButton = styled.button`
   background-color: white;
   color: ${(props) => props.bg};
   border: solid 1px ${(props) => props.bg};
+  cursor:pointer;
 `;
 
 const SaleinfoBox = styled.div`
@@ -150,6 +152,7 @@ const SaleinfoBox = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding-left: 0px;
+  cursor:pointer;
   @media screen and (min-width: 1024px) {
     display: flex;
     margin: 0 auto;
@@ -167,6 +170,7 @@ const TeleTypeBox = styled.div`
   font-size: 15px;
   justify-content: space-evenly;
   padding-left: 0px;
+  cursor:pointer;
   @media screen and (min-width: 1024px) {
     margin-left: 10px;
     font-weight: bold;

@@ -213,6 +213,7 @@ border-radius:5px;
 text-align:center;
 color:white;
 line-height:38px;
+cursor:pointer;
 @media screen and (min-width:1028px){
   width:85%;
 `;

@@ -179,23 +179,23 @@ flex-flow: column nowrap;
 
 `
 const Button = styled.button`
-width : 300px;
-height : 48px;
+width : 335px;
+height : 43px;
 font-size : 16px;
 font-weight : 800;
-margin-left:14px;
+margin:0 auto;
 color : white;
 border : none;
 border-radius : 8px;
 background-color : #F09643;
+cursor:pointer;
 @media screen and (min-width:1028px){
-margin-left:10px;
 }
 `
 const BtWrap = styled.div`
-width : 328px;
+width : 335px;
 height : 48px;
-margin : 20px auto 30px auto;
+margin : 20px auto 20px auto;
 `
 const Title = styled.div`
 width :200px;
@@ -203,6 +203,7 @@ height : auto;
 margin : 0 0 0 20px;
 font-size : 20px;
 font-weight : 600;
+line-height:33px;
 `
 const CardBox = styled.div`
 diplay:none;
