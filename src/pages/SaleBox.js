@@ -26,7 +26,7 @@ const SaleBox = () => {
 
                     <Img onClick={()=>{history.push(`/api/detail/${item?.id}`)}}><img width="40px" src={item.couponLogo}/></Img>
                     <Textbox onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
-                      <P1>{item.couponBrand}에서</P1>
+                      <P1>{item.couponBrand} 에서</P1>
                       <P2>{item.couponSubTitle} 할인 받기</P2>
                     </Textbox>
 
@@ -80,14 +80,14 @@ padding-left:10px;
 
 const P1 = styled.p`
 margin-top: 0px;
-font-size: 14px;
+font-size: 16px;
 `
 const P2 = styled.p`
 margin-top: -5px;
 font-size:15px;
 font-weight: bold;
 padding-left:-20px;
-width:250px;
+width:260px;
 `
 
 const BUTTON = styled.button`
