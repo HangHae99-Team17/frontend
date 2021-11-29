@@ -4,25 +4,59 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { colorBookmark,fullBookmark } from "../image";
 import { apis } from '../common/axios';
-import KakaoShare from "../shared/KakaoShare";
+import { kakaoshareicon } from '../image';
 
 const Detail = (props) => {
   const Id = props.match.params.id;
   const [detail_list,setDetail] = useState("");
   const [zzim,setZzim] = useState();
-  const [num,setNum] = useState()
+  const [num,setNum] = useState();
   const is_login = useSelector((state) => state.user.is_login);
+
+  const createKakaoButton = () => {
+    // kakao sdk script이 정상적으로 불러와졌으면 window.Kakao로 접근이 가능합니다
+    
+    if (window.Kakao) {
+      const kakao = window.Kakao
+      // 중복 initialization 방지
+      if (!kakao.isInitialized()) {
+        // 두번째 step 에서 가져온 javascript key 를 이용하여 initialize
+        kakao.init("7c733b77fba12e7cd6730104e0b83101")
+      }
+      kakao.Link.createDefaultButton({
+        // Render 부분 id=kakao-link-btn 을 찾아 그부분에 렌더링을 합니다
+        container: '#kakao-link-btn',
+        objectType: 'feed',
+        content: {
+          title: detail_list.couponTitle,
+          description: '#GOODDA',
+          imageUrl: detail_list.couponImage, // i.e. process.env.FETCH_URL + '/logo.png'
+          link: {
+            mobileWebUrl: window.location.href,
+            webUrl: window.location.href,
+          },
+        },
+        buttons: [
+          {
+            title: '웹으로 보기',
+            link: {
+              mobileWebUrl: window.location.href,
+              webUrl: window.location.href,
+            },
+          },
+        ],
+      })
+    }
+  }
 
   const getSearch = async(Id) => {
     try{
         const detail_result = await apis.getDetail(Id);
-        console.log(detail_result.data.data);
         if(detail_result.data.data.couponSelect===1){
           setZzim(true);
         }else{
           setZzim(false);
         }
-        
         setDetail(detail_result.data.data);
         setNum(detail_result.data.data.couponLike);
     }catch(e){
@@ -49,7 +83,7 @@ const Detail = (props) => {
 
   useEffect(()=>{
     getSearch(Id);
-
+    console.log("detail")
   },[]);
 
   return (
@@ -82,17 +116,38 @@ const Detail = (props) => {
             <Like>{num}</Like>
           </PickCoupon>
         </LikeWrap>
-          <div>
-            <KakaoShare image={detail_list.couponImage} title={detail_list.couponTitle}/>
-          </div>
+        <ShareButtonBox>
+          <button id="kakao-link-btn">
+            <img onClick={createKakaoButton} src={kakaoshareicon} alt="kakao"/>
+          </button>
+        </ShareButtonBox>
         <DescBox>
-        <P>상세설명</P>
-        <Desc>{detail_list?.couponDesc}</Desc>
+          <P>상세설명</P>
+          <Desc>{detail_list?.couponDesc}</Desc>
         </DescBox>
       </TextBox>
     </Wrap>
   );
 };
+
+const ShareButtonBox = styled.div`
+  margin: auto;
+  margin-top:20px;
+  button{
+        border: none;
+        background-color: white;
+        cursor: pointer;
+        img{
+            width:  50px;
+            height: 50px;
+        }
+    }
+  @media screen and (min-width: 1028px) {
+    position:absolute;
+    top:250px;
+    left:10px;
+  }
+`;
 
 const Wrap = styled.div`
   position: relative;
