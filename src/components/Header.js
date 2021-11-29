@@ -76,7 +76,8 @@ const Header = (props) => {
                 width="70px;"
                 alt="icon"
                 onClick={() => {
-                  history.push("/");
+                  if(is_login){history.push("/loginmain");}
+                 else{ history.push("/");}
                 }}
               />
             </IconBox>
@@ -231,7 +232,7 @@ const Header = (props) => {
             ):(
               <LoginButton onClick={() => {
                 history.push("/login");
-              }}>로그인하기</LoginButton>
+              }}>asdafdasfdsafdsafasfsa</LoginButton>
             )}
             </div>)}
             <div className="searchIcon">  

@@ -221,6 +221,12 @@ const Bookmarker = styled.div`
     
   }
 `;
+
+const CouponLike = styled.div`
+margin-left : 8px;
+font-weight : 800;
+color : #f09643;
+`
 const Strong = styled.span`
   color: #f09643;
 `;

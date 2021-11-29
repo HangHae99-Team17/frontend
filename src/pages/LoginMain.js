@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { history } from "../redux/configureStore";
 import { listCreators } from '../redux/modules/main';
 import MainCoupon from '../components/MainCoupon';
+import Main from './Main';
 
 
 
@@ -156,6 +157,7 @@ const LoginMain = () => {
           <Button onClick={()=>{history.push(`/api/categorydetail/${userMenu?.cardType}?page=1&size=7&sortBy=couponCreate&isAsc=true`);history.go(0)}}>더보기</Button>
         </BtWrap>
   */}
+        <Main/>
         </AllBox>
     )    
 }
