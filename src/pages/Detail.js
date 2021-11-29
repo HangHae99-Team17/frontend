@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { colorBookmark,fullBookmark } from "../image";
 import { apis } from '../common/axios';
+import KakaoShare from "../shared/KakaoShare";
 
 const Detail = (props) => {
   const Id = props.match.params.id;
@@ -48,6 +49,7 @@ const Detail = (props) => {
 
   useEffect(()=>{
     getSearch(Id);
+
   },[]);
 
   return (
@@ -80,6 +82,9 @@ const Detail = (props) => {
             <Like>{num}</Like>
           </PickCoupon>
         </LikeWrap>
+          <div>
+            <KakaoShare image={detail_list.couponImage} title={detail_list.couponTitle}/>
+          </div>
         <DescBox>
         <P>상세설명</P>
         <Desc>{detail_list?.couponDesc}</Desc>
