@@ -100,7 +100,7 @@ const Detail = (props) => {
               {detail_list?.couponSubTitle} 할인 받기
             </Title>
             <Span>
-              {detail_list?.couponCreate}~{detail_list?.couponDespire}
+              {detail_list?.couponCreate} ~ {detail_list?.couponDespire}
             </Span>
             <Div>{detail_list?.couponType} 카테고리</Div>
           </div>
@@ -144,8 +144,8 @@ const ShareButtonBox = styled.div`
     }
   @media screen and (min-width: 1028px) {
     position:absolute;
-    top:250px;
-    left:10px;
+    top:190px;
+    left:370px;
   }
 `;
 
@@ -157,9 +157,9 @@ const Wrap = styled.div`
   @media screen and (min-width: 1028px) {
     width: 740px;
     margin: 80px 0 0 1000px;
-    left:50px;
-    top:10px;
-    transform: scale(1.2);
+    left:270px;
+    top:40px;
+    transform: scale(1.3);
   }
 `;
 const Image = styled.div`
@@ -216,7 +216,7 @@ const P = styled.p`
 `;
 const Like = styled.div`
   display: inline-block;
-  height: 10px;
+  height: 14px;
   color: #f09643;
   font-weight: 600;
   position: absolute;
@@ -224,7 +224,8 @@ const Like = styled.div`
   left : 19px;
 `;
 const Bookmarker = styled.img`
-margin :8px 0 0 12px;
+margin :4px 0 0 12px;
+cursor:pointer;
 `;
 const Div = styled.div`
   margin: 0 0 0 26px;
@@ -264,8 +265,8 @@ left:-10px;
 const DescBox = styled.div`
 @media screen and (min-width:1028px){position:absolute;
   width:200px;
-top:355px;
-left:-560px;
+top:330px;
+left:-570px;
 border-top:1px solid rgba(0, 0, 0, 0.12);
 width:1020px;
 }

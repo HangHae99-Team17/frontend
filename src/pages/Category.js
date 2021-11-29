@@ -182,15 +182,15 @@ const TelBox = styled.ul`
 const Li = styled.li`
   list-style: none;
   background-color: white;
-  border: 1.5px solid #f09643;
+  border: 1.5px solid #E4E4E4;
   margin: 10px;
   height: 100px;
   width: 100px;
   border-radius: 10px;
-  font-weight: 600;
   text-align: center;
   color: #f09643;
   font-size: 15px;
+  cursor:pointer;
 `;
 const BOX = styled.div`
   color: black;

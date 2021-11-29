@@ -66,7 +66,7 @@ const Filter = (props)=>{
             dataLength={DcInfoList.length}
             next={fetchPaging}
             hasMore={hasMore}
-            loader={hasMore?<h4 style={{marginLeft : "16px"}}>다음 할인이 궁금하다면 스크롤을 내려주세요!</h4>:
+            loader={hasMore?<h4 style={{marginLeft : "36px", marginTop : "px" }}>다음 할인이 궁금하다면 스크롤을 내려주세요!</h4>:
                 <h4 style={{marginLeft : "16px"}}>아쉽게도 더이상의 할인이 없네요</h4>}>  
               <DcBox>
                 {
