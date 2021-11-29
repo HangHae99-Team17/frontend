@@ -48,6 +48,7 @@ const MainCoupon = (props) => {
         <CouponButton>할인 받기</CouponButton>
         <Bookmarker>
           {!is_login ? (
+            <div>
             <img
               src={colorBookmark}
               onClick={() => {
@@ -55,8 +56,13 @@ const MainCoupon = (props) => {
                 history.push("/login");
               }}
             />
+            <CouponLike>{props.couponLike}</CouponLike>
+            </div>
           ) : (
+            <div>
             <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
+            <CouponLike>{props.couponLike}</CouponLike>
+            </div>
           )}
         </Bookmarker>
       </Wrap>
@@ -165,6 +171,12 @@ const Bookmarker = styled.div`
     
   }
 `;
+
+const CouponLike = styled.div`
+margin-left : 7px;
+font-weight : 800;
+color : #f09643;
+`
 const Strong = styled.span`
   color: #f09643;
 `;
