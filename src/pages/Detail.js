@@ -10,20 +10,22 @@ const Detail = (props) => {
   const Id = props.match.params.id;
   const [detail_list,setDetail] = useState("");
   const [zzim,setZzim] = useState();
-  const [num,setNum] = useState()
+  const [num,setNum] = useState();
+  const [image,setImage] = useState();
+  const [title,setTitle] = useState();
   const is_login = useSelector((state) => state.user.is_login);
 
   const getSearch = async(Id) => {
     try{
         const detail_result = await apis.getDetail(Id);
-        console.log(detail_result.data.data);
         if(detail_result.data.data.couponSelect===1){
           setZzim(true);
         }else{
           setZzim(false);
         }
-        
         setDetail(detail_result.data.data);
+        setImage(detail_result.data.data.couponImage);
+        setTitle(detail_result.data.data.couponTitle);
         setNum(detail_result.data.data.couponLike);
     }catch(e){
       console.log('에러');
@@ -82,17 +84,27 @@ const Detail = (props) => {
             <Like>{num}</Like>
           </PickCoupon>
         </LikeWrap>
-          <div>
-            <KakaoShare image={detail_list.couponImage} title={detail_list.couponTitle}/>
-          </div>
+          <ShareButtonBox>
+            <KakaoShare image={image} title={title}/>
+          </ShareButtonBox>
         <DescBox>
-        <P>상세설명</P>
-        <Desc>{detail_list?.couponDesc}</Desc>
+          <P>상세설명</P>
+          <Desc>{detail_list?.couponDesc}</Desc>
         </DescBox>
       </TextBox>
     </Wrap>
   );
 };
+
+const ShareButtonBox = styled.div`
+  margin: auto;
+  margin-top:20px;
+  @media screen and (min-width: 1028px) {
+    position:absolute;
+    top:250px;
+    left:10px;
+  }
+`;
 
 const Wrap = styled.div`
   position: relative;

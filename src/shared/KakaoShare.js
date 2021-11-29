@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
+import { kakaoshareicon } from '../image';
+import styled from "styled-components";
 
-const KakaoShare = () => {
-    
+const KakaoShare = (props) => {
+
       const createKakaoButton = () => {
         // kakao sdk script이 정상적으로 불러와졌으면 window.Kakao로 접근이 가능합니다
+        console.log(props)
         if (window.Kakao) {
           const kakao = window.Kakao
           // 중복 initialization 방지
@@ -16,9 +19,9 @@ const KakaoShare = () => {
             container: '#kakao-link-btn',
             objectType: 'feed',
             content: {
-              title: '타이틀',
-              description: '#리액트 #카카오 #공유버튼',
-              imageUrl: 'IMAGE_URL', // i.e. process.env.FETCH_URL + '/logo.png'
+              title: props.title,
+              description: '#GOODDA',
+              imageUrl: props.image, // i.e. process.env.FETCH_URL + '/logo.png'
               link: {
                 mobileWebUrl: window.location.href,
                 webUrl: window.location.href,
@@ -42,13 +45,26 @@ const KakaoShare = () => {
       }, [])
 
       return (
-        <div className="kakao-share-button">
+        <KakaoShareBox>
           {/* Kakao share button */}
           <button id="kakao-link-btn">
-            카카오 공유하기
+            <img src={kakaoshareicon} alt="kakao"/>
           </button>
-        </div>
+        </KakaoShareBox>
       )
 };
+
+const KakaoShareBox = styled.div`
+    button{
+        border: none;
+        background-color: white;
+        cursor: pointer;
+        img{
+            width:  50px;
+            height: 50px;
+        }
+    }
+
+`;
 
 export default KakaoShare;
