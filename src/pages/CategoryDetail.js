@@ -103,7 +103,7 @@ display : flex;
 const SortImg = styled.div`
   margin-right: 8px;
   cursor:pointer;
-  width : 60px;
+  width : 67px;
   height : 16px;
   font-size : 14px;
   color : rgb(189,189,189);

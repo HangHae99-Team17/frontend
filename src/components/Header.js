@@ -374,7 +374,7 @@ const Ul = styled.ul`
   width: 100%;
   transition: transform 0.3s ease-in-out;
   li {
-    padding: 26px 20px;
+    padding: 24px 20px;
     color: #fff;
     font-size: 20px;
     font-weight: bold;
