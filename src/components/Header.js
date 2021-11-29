@@ -232,7 +232,7 @@ const Header = (props) => {
             ):(
               <LoginButton onClick={() => {
                 history.push("/login");
-              }}>로그인하기</LoginButton>
+              }}>로그인하기aa</LoginButton>
             )}
             </div>)}
             <div className="searchIcon">  
