@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 
-const KakaoShare = (props) => {
+const KakaoShare = () => {
     
       const createKakaoButton = () => {
         // kakao sdk script이 정상적으로 불러와졌으면 window.Kakao로 접근이 가능합니다
-        console.log(window.location.href)
         if (window.Kakao) {
           const kakao = window.Kakao
-          console.log(props)
           // 중복 initialization 방지
           if (!kakao.isInitialized()) {
             // 두번째 step 에서 가져온 javascript key 를 이용하여 initialize
@@ -18,9 +16,9 @@ const KakaoShare = (props) => {
             container: '#kakao-link-btn',
             objectType: 'feed',
             content: {
-              title: props.title,
+              title: '타이틀',
               description: '#리액트 #카카오 #공유버튼',
-              imageUrl: `${props.image}`, // i.e. process.env.FETCH_URL + '/logo.png'
+              imageUrl: 'IMAGE_URL', // i.e. process.env.FETCH_URL + '/logo.png'
               link: {
                 mobileWebUrl: window.location.href,
                 webUrl: window.location.href,
