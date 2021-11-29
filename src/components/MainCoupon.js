@@ -173,7 +173,7 @@ const Bookmarker = styled.div`
 `;
 
 const CouponLike = styled.div`
-margin-left : 7px;
+margin-left : 8px;
 font-weight : 800;
 color : #f09643;
 `
