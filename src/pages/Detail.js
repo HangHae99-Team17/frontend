@@ -178,7 +178,6 @@ const Image = styled.div`
 `;
 const Image2 = styled.img`
   width: 375px;
-  height : 270px;
 `;
 const LikeWrap = styled.div`
   display: flex;
@@ -213,6 +212,7 @@ const P = styled.p`
   margin: 30px 23px;
   font-size: 18px;
   font-weight: 600;
+  
 `;
 const Like = styled.div`
   display: inline-block;
@@ -264,9 +264,12 @@ left:-10px;
 const DescBox = styled.div`
 @media screen and (min-width:1028px){position:absolute;
   width:200px;
-top:280px;
-left:-580px;
+top:315px;
+left:-560px;
+border-top:1px solid rgba(0, 0, 0, 0.12);
+width:1020px;
 }
+  
 `;
 
 const TextBox = styled.div`
