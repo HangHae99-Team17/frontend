@@ -264,7 +264,7 @@ left:-10px;
 const DescBox = styled.div`
 @media screen and (min-width:1028px){position:absolute;
   width:200px;
-top:315px;
+top:355px;
 left:-560px;
 border-top:1px solid rgba(0, 0, 0, 0.12);
 width:1020px;

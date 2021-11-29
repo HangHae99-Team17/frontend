@@ -11,7 +11,8 @@ import MainCoupon from '../components/MainCoupon';
 const CategoryDetail = (props) => {
     const dispatch = useDispatch();
     // 넘어온 props 확인해서 내가 보내줘야 할 타입을 추출
-    const type = props.match.params.type
+    const type = props.match.params.type;
+    const [mini, setMini]=useState();
 
     // 무한스크롤 페이지_초기값1
     const [page,setPage] = useState(1)
@@ -51,12 +52,12 @@ return(
         <P>다 모아두었어요</P>
         </div>
         <SortBy>
-          <SortImg src ={couponCreate} 
-            onClick={()=>{history.push(`/ranking/${type}/${"couponCreate"}/${true}`);history.go(0) }}/>
-          <SortImg src ={couponDespire} 
-            onClick={()=>{history.push(`/ranking/${type}/${"couponDespire"}/${true}`);history.go(0)}}/>
-          <SortImg src ={couponRank} 
-            onClick={()=>{history.push(`/ranking/${type}/${"couponLike"}/${false}`);history.go(0)}}/>
+        <SortImg
+            onClick={()=>{history.push(`/ranking/${type}/${"couponCreate"}/${false}`);history.go(0)}}>✓ 최신순</SortImg>
+          <SortImg
+            onClick={()=>{history.push(`/ranking/${type}/${"couponDespire"}/${false}`);history.go(0)}}>✓ 마감임박</SortImg>
+          <SortImg
+            onClick={()=>{history.push(`/ranking/${type}/${"couponLike"}/${false}`);history.go(0)}}>✓ 인기순</SortImg>
         </SortBy>
   {DcInfoList?
     <InfiniteScroll
@@ -69,7 +70,7 @@ return(
         DcInfoList?.map((item) => {
           return (
             <Wrap>
-              <MainCoupon {...item} key={item.id}/>
+              <MainCoupon {...item} key={item.id} mode="rank" mini="mini"/>
             </Wrap>
           );
         })} 
@@ -97,10 +98,17 @@ padding-top: 3px;
 const SortBy = styled.div`
 margin-left:20px;
 width : 300px;
+display : flex;
 `
-const SortImg = styled.img`
-  margin-right:10px;
+const SortImg = styled.div`
+  margin-right: 8px;
   cursor:pointer;
+  width : 60px;
+  height : 16px;
+  font-size : 14px;
+  color : rgb(189,189,189);
+  font-weight : 600;
+
 `
 const DcBox = styled.div`
 position:relative;
