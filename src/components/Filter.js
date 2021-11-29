@@ -73,7 +73,7 @@ const Filter = (props)=>{
                 DcInfoList?.map((item) => {
                   return (
                     <Wrap>
-                      <MainCoupon {...item} key={item.id}/>
+                      <MainCoupon {...item} key={item.id} mode="rank" mini="mini"/>
                     </Wrap>
                   );
                 })} 
