@@ -23,7 +23,7 @@ export const apis = {
    postCoupon: (couponId)=>instance.post('api/folders/create',couponId),
    // 쿠폰 상세페이지 데이터 불러오기(Get)
    getDetail:(param)=>instance.get(`api/detail/${param}`),
-   // 메인 페이지 할인 정보 리스트 가지고 오기(Get)
+   // 메인 페이지 할인 정보 리스트 가지고d오기(Get)
    // 여기서 사용되는 param은 type이 됩니다.(request)
    getList: (param,page,size,sortBy,isAsc) => instance.get(`/api/main/${param}?page=${page}&size=${size}&sortBy=${sortBy}&isAsc=${isAsc}`),
    // 찜하기 기능(Post)
