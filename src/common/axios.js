@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://www.withoh.shop/",
+  baseURL: "http://www.withoh.shop/",
 });
 
 instance.interceptors.request.use((config) => {
