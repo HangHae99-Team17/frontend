@@ -23,69 +23,72 @@ const MainCoupon = (props) => {
       setZzim(false);
     }
   };
-if(props.mode === "rank"){
+if(props.mode === "rank" && props.mini === "mini"){  
   return (
-    <Allbox>
-      <Wrap>
-        <Box
-          onClick={() => {
-            history.push(`/api/detail/${props.id}`);
-          }}
-        >
-          <ImgBox2>
-            <IMG2 src={props.couponImage} />
-          </ImgBox2>
-          <ImgBox>
-            <IMG src={props.couponLogo} />
-          </ImgBox>
-          <div>
-            <Title><Strong>{props.couponBrand}</Strong> 에서 </Title>
-            <Dsec>
-              <Strong>{props.couponSubTitle}</Strong> 할인 받기
-            </Dsec>
-          </div>
-        </Box>
-        <CouponButton>할인 받기</CouponButton>
-        <Bookmarker>
-          {!is_login ? (
-            <img
-              src={colorBookmark}
-              onClick={() => {
-                alert("로그인이 필요한 서비스 입니다!");
-                history.push("/login");
-              }}
-            />
-          ) : (
-            <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
-          )}
-        </Bookmarker>
-      </Wrap>
-    </Allbox>
-  );
-          }else if(props.mode === "rank2"){
+  <Allbox2>
+    <Wrap2>
+      <Box2
+        onClick={() => {
+          history.push(`/api/detail/${props.id}`);
+        }}
+      >
+        <ImgBox3>
+          <IMG2 src={props.couponImage} />
+        </ImgBox3>
+        <ImgBox>
+          <IMG src={props.couponLogo} />
+        </ImgBox>
+        <div>
+          <Title>{props.couponBrand}에서 </Title>
+          <Dsec>
+            <Strong>{props.couponSubTitle}</Strong> 할인 받기
+          </Dsec>
+        </div>
+      </Box2>
+      <CouponButton2>할인 받기</CouponButton2>
+      <Bookmarker2>
+        {!is_login ? (
+          <img
+            src={colorBookmark}
+            onClick={() => {
+              alert("로그인이 필요한 서비스 입니다!");
+              history.push("/login");
+            }}
+          />
+        ) : (
+          <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
+        )}
+      </Bookmarker2>
+    </Wrap2>
+  </Allbox2>
+);
+
+
+  
+          }else if(props.mode === "rank"){
             return (
-              <Allbox2>
-                <Wrap2>
-                  <Box2
+              <Allbox>
+                <Wrap>
+                  <Box
                     onClick={() => {
                       history.push(`/api/detail/${props.id}`);
                     }}
                   >
-                    <ImgBox3>
+                    <ImgBox2>
                       <IMG2 src={props.couponImage} />
-                    </ImgBox3>
+                    </ImgBox2>
                     <ImgBox>
                       <IMG src={props.couponLogo} />
                     </ImgBox>
                     <div>
-                      <Title>{props.couponBrand}에서 </Title>
+                      <Title><Strong>{props.couponBrand}</Strong> 에서 </Title>
                       <Dsec>
                         <Strong>{props.couponSubTitle}</Strong> 할인 받기
                       </Dsec>
                     </div>
-                  </Box2>
-                  <CouponButton2>할인 받기</CouponButton2>
-                  <Bookmarker2>
+                  </Box>
+                  <CouponButton>할인 받기</CouponButton>
+                  <Bookmarker>
                     {!is_login ? (
                       <img
                         src={colorBookmark}
@@ -97,12 +100,14 @@ if(props.mode === "rank"){
                     ) : (
                       <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
                     )}
-                  </Bookmarker2>
-                </Wrap2>
-              </Allbox2>
+                  </Bookmarker>
+                </Wrap>
+              </Allbox>
             );
 
 
+
+          
           }
 
 
