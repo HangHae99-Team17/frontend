@@ -151,6 +151,7 @@ const CardTypeBox = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding-left: 0px;
+  cursor:pointer;
 `;
 
 const UserEditButton = styled.button`
@@ -162,6 +163,7 @@ const UserEditButton = styled.button`
   color: ${(props) => props.color};
   border: solid 1px ${(props) => props.bg};
   margin-bottom: 10px;
+  cursor:pointer;
   @media screen and (min-width: 1024px) {
       height:100px;
       background-image: url(${(props) => props.image});
@@ -177,6 +179,7 @@ const SaleinfoBox = styled.div`
   width: 375px;
   flex-wrap: wrap;
   font-size:15px;
+  cursor:pointer;
   justify-content: space-evenly;
   padding-left: 0px;
   @media screen and (min-width: 1024px) {
@@ -197,6 +200,7 @@ const SignUpButton = styled.button`
   border: none;
   width: 99px;
   font-size: 15px;
+  cursor:pointer;
   height: 99px;
   border-radius: 5px;
   background-color: white;

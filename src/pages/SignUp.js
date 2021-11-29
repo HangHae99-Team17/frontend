@@ -330,14 +330,14 @@ const SignUpBox = styled.div`
 `;
 
 const EmailBox = styled.div`
-    margin-left:30px;
+    margin-left:20px;
     display: ${props => props.display};
     p{
         font-weight: bold;
     }
     input{
 
-        width: 313px;
+        width: 325px;
         height: 37px;
         border-radius: 5px;
         border:1px solid #D5D5D5;
@@ -348,7 +348,7 @@ const EmailBox = styled.div`
 `;
 
 const PasswordBox = styled.div`
-    margin-left:30px;
+    margin-left:20px;
     display: ${props => props.display};
     p{
         float:left;
@@ -357,10 +357,10 @@ const PasswordBox = styled.div`
     }
 
     .pwinput{
-        width: 300px;
+        width: 333px;
         border-bottom:1px solid #D5D5D5;
         input{
-            width: 328px;
+            width: 330px;
             height: 37px;
             border:none;
         }
@@ -385,7 +385,7 @@ const PasswordBox = styled.div`
 const TelecomBox = styled.div`
     display: ${props => props.display};
     .nextbutton{
-        margin-left: 30px;
+        margin-left: 20px;
     }
     h4{
         margin-left:20px;
@@ -395,7 +395,7 @@ const TelecomBox = styled.div`
 const CardtypeBox = styled.div`
     display: ${props => props.display};
     .nextbutton{
-        margin-left: 30px;
+        margin-left: 20px;
     }
     h4{
         margin-left:20px;
@@ -405,7 +405,7 @@ const CardtypeBox = styled.div`
 const TypeBox = styled.div`
     display: ${props => props.display};
     .nextbutton{
-        margin-left:30px;
+        margin-left:20px;
     }
     h4{
         margin-left:20px;
@@ -415,7 +415,7 @@ const TypeBox = styled.div`
 const NextButton = styled.button`
     border-radius: 5px;
     border:none;
-    width:320px;
+    width:333px;
     height:45px;
     color: white;
     background-color:${props => props.bgcolor};

@@ -73,6 +73,7 @@ const Header = (props) => {
             <IconBox>
               <img
                 src={gooddablack}
+                width="70px;"
                 alt="icon"
                 onClick={() => {
                   if(is_login){history.push("/loginmain");}
@@ -130,6 +131,7 @@ const Header = (props) => {
               <img
                 src={gooddawhite}
                 alt="icon"
+                width="70px;"
                 onClick={() => {
                   history.push("/");
                 }}
@@ -199,6 +201,7 @@ const Header = (props) => {
             <img
               src={gooddablack}
               alt="icon"
+                width="90px"
               onClick={() => {
                 history.push("/");
               }}
@@ -250,7 +253,7 @@ const PcHeaderBox = styled.div`
   top: 0;
   width: 100%;
   position: fixed;
-  border-bottom: solid 1px #9e9e9e;
+  border-bottom: solid 1px #E0E0E0;
   z-index: 5;
   @media screen and (min-width: 1028px) {
     display: flex;
@@ -286,11 +289,11 @@ const HeaderBox = styled.div`
   background-color: ${(props) => props.color};
   color: ${(props) => props.fontcolor};
   align-items: center;
-  height: 65px;
+  height: 66px;
   top: 0;
   width: 100%;
   position: fixed;
-  border-bottom: solid 1px #9e9e9e;
+  border-bottom: solid 1px #E0E0E0;
   z-index: 5;
   @media screen and (min-width: 1028px) {
     border: none;
@@ -301,9 +304,8 @@ const HeaderBox = styled.div`
 
 const SearchBox = styled.input`
   border: none;
-  border-bottom: solid 1px #9e9e9e;
+  border-bottom: solid 1px #E0E0E0;
   width: 140px;
-  font-weight: bold;
   :focus {
     outline: 2px solid orange;
     border-radius: 2px;
@@ -322,8 +324,8 @@ const SearchBox = styled.input`
 const WriteImg = styled.img`
   right: 55px;
   @media screen and (min-width: 1028px) {
-    left: 860px;
     transform: scale(1.3);
+    z-index:10;
   }
 `;
 
@@ -369,11 +371,10 @@ const Ul = styled.ul`
   top: 50px;
   right: 0;
   height: 100vh;
-  width: 360px;
-  padding-top: 3.5rem;
+  width: 100%;
   transition: transform 0.3s ease-in-out;
   li {
-    padding: 18px 10px;
+    padding: 24px 20px;
     color: #fff;
     font-size: 20px;
     font-weight: bold;
@@ -399,12 +400,13 @@ const Ul = styled.ul`
 const LoginButton = styled.button`
   margin-top: 20px;
   background-color: #ff8f00;
-  width: 93%;
+  width: 90%;
   height: 46px;
   border-radius: 5px;
   border: none;
   font-weight: bold;
   font-size: 16px;
+  margin-left:17px;
   cursor:pointer;
   @media screen and (min-width: 1028px) {
     margin-bottom:20px;

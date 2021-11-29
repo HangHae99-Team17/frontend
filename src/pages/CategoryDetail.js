@@ -64,7 +64,7 @@ return(
     dataLength={DcInfoList.length}
     next={fetchPaging}
     hasMore={hasMore}
-    loader={<h4 style={{marginLeft : "20px"}}>다음 할인이 궁금하다면 스크롤을 내려주세요!</h4>}>  
+    loader={<h4 style={{marginLeft : "30px", marginTop : "30px"}}>다음 할인이 궁금하다면 스크롤을 내려주세요!</h4>}>  
       <DcBox>
         {
         DcInfoList?.map((item) => {
@@ -103,7 +103,7 @@ display : flex;
 const SortImg = styled.div`
   margin-right: 8px;
   cursor:pointer;
-  width : 60px;
+  width : 67px;
   height : 16px;
   font-size : 14px;
   color : rgb(189,189,189);
