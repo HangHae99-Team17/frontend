@@ -69,7 +69,7 @@ return(
         DcInfoList?.map((item) => {
           return (
             <Wrap>
-              <MainCoupon {...item} key={item.id} mode="rank2"/>
+              <MainCoupon {...item} key={item.id}/>
             </Wrap>
           );
         })} 
