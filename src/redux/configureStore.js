@@ -18,7 +18,6 @@ const rootReducer = combineReducers({
     // folder: Forder,
     main: main,
     user: User,
-    detail : detail,
     salebox: SaleBox,
     sale:Sale,
     image:Image,

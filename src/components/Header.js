@@ -75,7 +75,8 @@ const Header = (props) => {
                 src={gooddablack}
                 alt="icon"
                 onClick={() => {
-                  history.push("/");
+                  if(is_login){history.push("/loginmain");}
+                 else{ history.push("/");}
                 }}
               />
             </IconBox>

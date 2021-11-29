@@ -25,44 +25,49 @@ const MainCoupon = (props) => {
   };
 if(props.mode === "rank" && props.mini === "mini"){  
   return (
-  <Allbox2>
-    <Wrap2>
-      <Box2
-        onClick={() => {
-          history.push(`/api/detail/${props.id}`);
-        }}
-      >
-        <ImgBox3>
-          <IMG2 src={props.couponImage} />
-        </ImgBox3>
-        <ImgBox>
-          <IMG src={props.couponLogo} />
-        </ImgBox>
-        <div>
-          <Title>{props.couponBrand}에서 </Title>
-          <Dsec>
-            <Strong>{props.couponSubTitle}</Strong> 할인 받기
-          </Dsec>
-        </div>
-      </Box2>
-      <CouponButton2>할인 받기</CouponButton2>
-      <Bookmarker2>
-        {!is_login ? (
-          <img
-            src={colorBookmark}
-            onClick={() => {
-              alert("로그인이 필요한 서비스 입니다!");
-              history.push("/login");
-            }}
-          />
-        ) : (
-          <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
-        )}
-      </Bookmarker2>
-    </Wrap2>
-  </Allbox2>
-);
-
+    <Allbox>
+      <Wrap>
+        <Box
+          onClick={() => {
+            history.push(`/api/detail/${props.id}`);
+          }}
+        >
+          <ImgBox2>
+            <IMG2 src={props.couponImage} />
+          </ImgBox2>
+          <ImgBox>
+            <IMG src={props.couponLogo} />
+          </ImgBox>
+          <div>
+            <Title>{props.couponBrand}에서 </Title>
+            <Dsec>
+              <Strong>{props.couponSubTitle}</Strong> 할인 받기
+            </Dsec>
+          </div>
+        </Box>
+        <CouponButton>할인 받기</CouponButton>
+        <Bookmarker>
+          {!is_login ? (
+            <div>
+            <img
+              src={colorBookmark}
+              onClick={() => {
+                alert("로그인이 필요한 서비스 입니다!");
+                history.push("/login");
+              }}
+            />
+            <CouponLike>{props.couponLike}</CouponLike>
+            </div>
+          ) : (
+            <div>
+            <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
+            <CouponLike>{props.couponLike}</CouponLike>
+            </div>
+          )}
+        </Bookmarker>
+      </Wrap>
+    </Allbox>
+  );
 
   
           }else if(props.mode === "rank"){
@@ -215,6 +220,12 @@ const Bookmarker = styled.div`
     
   }
 `;
+
+const CouponLike = styled.div`
+margin-left : 8px;
+font-weight : 800;
+color : #f09643;
+`
 const Strong = styled.span`
   color: #f09643;
 `;
