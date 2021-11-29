@@ -56,6 +56,7 @@ import edit from "./edit.png";
 import search_black from "./search_black.png";
 import search_orange from "./search_orange.png";
 import MainBackground from "./MainBackground.png";
+import kakaoshareicon from "./kakaoshareicon.png";
 
 export {couponCreate,
     couponRank,
@@ -114,5 +115,6 @@ export {couponCreate,
     edit,
     search_black,
     search_orange,
-    MainBackground
+    MainBackground,
+    kakaoshareicon
 };

@@ -236,18 +236,9 @@ const Header = (props) => {
             </div>
           </MenuBox>
       </PcHeaderBox>
-      <SearchHistoryBox>
-        검색
-      </SearchHistoryBox>
     </React.Fragment>
   );
 };
-
-const SearchHistoryBox = styled.div`
-  margin-top:-34px;
-  background-color:red;
-  height:50px;
-`;
 
 const PcHeaderBox = styled.div`
   display: none;
