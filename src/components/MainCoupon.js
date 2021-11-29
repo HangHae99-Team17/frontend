@@ -23,7 +23,7 @@ const MainCoupon = (props) => {
       setZzim(false);
     }
   };
-
+if(props.mode === "rank" && props.mini === "mini"){  
   return (
     <Allbox>
       <Wrap>
@@ -68,21 +68,70 @@ const MainCoupon = (props) => {
       </Wrap>
     </Allbox>
   );
+
+  
+          }else if(props.mode === "rank"){
+            return (
+              <Allbox>
+                <Wrap>
+                  <Box
+                    onClick={() => {
+                      history.push(`/api/detail/${props.id}`);
+                    }}
+                  >
+                    <ImgBox2>
+                      <IMG2 src={props.couponImage} />
+                    </ImgBox2>
+                    <ImgBox>
+                      <IMG src={props.couponLogo} />
+                    </ImgBox>
+                    <div>
+                      <Title><Strong>{props.couponBrand}</Strong> 에서 </Title>
+                      <Dsec>
+                        <Strong>{props.couponSubTitle}</Strong> 할인 받기
+                      </Dsec>
+                    </div>
+                  </Box>
+                  <CouponButton>할인 받기</CouponButton>
+                  <Bookmarker>
+                    {!is_login ? (
+                      <img
+                        src={colorBookmark}
+                        onClick={() => {
+                          alert("로그인이 필요한 서비스 입니다!");
+                          history.push("/login");
+                        }}
+                      />
+                    ) : (
+                      <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
+                    )}
+                  </Bookmarker>
+                </Wrap>
+              </Allbox>
+            );
+
+
+
+          
+          }
+
+
 };
 
 const Allbox = styled.div`
-  
 `;
+
 
 const Wrap = styled.div`
   position: relative;
   cursor: pointer;
 @media screen and (min-width:1028px){
-height:325px;
+height:335px;
 width:360px;
 border:1px solid #E0E0E0;
 border-radius:15px;
 margin-top:15px;
+overflow:hidden;
 box-shadow: 2px 2px 6px #E0E0E0;
 }
 transform:scale(0.9);
@@ -95,14 +144,14 @@ const Box = styled.div`
   margin: 11px auto;
   position: relative;
   @media screen and (min-width:1028px){
-  top:156px;
+  top:155px;
   }
 `;
 const ImgBox = styled.div`
   width: 60px;
   height: 50px;
   border-radius: 4px;
-  margin: 16px 14px;
+  margin: 16px 10px;
 `;
 const IMG = styled.img`
   width: 50px;
@@ -129,13 +178,13 @@ const ImgBox2 = styled.div`
 `;
 
 const Title = styled.p`
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 400;
   color: #757575;
 `;
 const Dsec = styled.p`
-margin-top:0;
-  font-size: 16px;
+margin-top:-8px;
+  font-size: 17px;
   font-weight: 400;
 `;
 
@@ -147,7 +196,7 @@ background-color:#F09643;
 border:none;
 border-radius:5px;
 position:absolute;
-top:253px;
+top:263px;
 left:85px;
 color:white;
 font-weight:bold;
@@ -181,4 +230,57 @@ const Strong = styled.span`
   color: #f09643;
 `;
 
+const Allbox2 = styled.div`
+  .wrap2{
+    position: relative;
+    cursor: pointer;
+  }
+`;
+
+const Wrap2 = styled.div`
+  position: relative;
+  cursor: pointer;
+  `
+  const Box2 = styled.div`
+  
+  width: 360px;
+  height: 80px;
+  display: flex;
+  margin: 11px auto;
+  position: relative;
+  `
+  const ImgBox3 = styled.div`
+  width: 360px;
+  height: 240px;
+  position: absolute;
+  top: -245px;
+  left: 0%;
+  display: none;
+  overflow: hidden;
+  border-bottom:1px solid #E0E0E0;
+`;
+const CouponButton2 = styled.button`
+display:none;
+width:200px;
+height:48px;
+background-color:#F09643;
+border:none;
+border-radius:5px;
+position:absolute;
+top:253px;
+left:85px;
+color:white;
+font-weight:bold;
+font-size:16px;
+`;
+
+const Bookmarker2 = styled.div`
+  width: 35px;
+  padding-left:10px;
+  padding-top:10px;
+  height: 35px;
+  position: absolute;
+  top: 13px;
+  right: 2px;
+`;
 export default MainCoupon;

@@ -11,7 +11,8 @@ import MainCoupon from '../components/MainCoupon';
 const CategoryDetail = (props) => {
     const dispatch = useDispatch();
     // 넘어온 props 확인해서 내가 보내줘야 할 타입을 추출
-    const type = props.match.params.type
+    const type = props.match.params.type;
+    const [mini, setMini]=useState();
 
     // 무한스크롤 페이지_초기값1
     const [page,setPage] = useState(1)
@@ -69,7 +70,7 @@ return(
         DcInfoList?.map((item) => {
           return (
             <Wrap>
-              <MainCoupon {...item} key={item.id} mode="rank"/>
+              <MainCoupon {...item} key={item.id} mode="rank" mini="mini"/>
             </Wrap>
           );
         })} 

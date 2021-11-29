@@ -241,7 +241,6 @@ const Header = (props) => {
   );
 };
 
-
 const PcHeaderBox = styled.div`
   display: none;
   background-color: ${(props) => props.color};
