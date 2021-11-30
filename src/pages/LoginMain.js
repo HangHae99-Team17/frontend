@@ -192,6 +192,9 @@ border : none;
 border-radius : 8px;
 background-color : #F09643;
 cursor:pointer;
+@media screen and (min-width:1028px){
+  width : 325px;
+}
 `
 const BtWrap = styled.div`
 width : 335px;
