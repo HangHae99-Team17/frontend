@@ -91,6 +91,7 @@ const EditUser = (props) => {
   }, [user_info]);
 
   const editUser = () => {
+
     const user_info = {
       nickname: "",
       password: password,
@@ -112,7 +113,6 @@ const EditUser = (props) => {
           <Notice>내 정보 수정</Notice>
           <Notice>{userid}</Notice>
           <PasswordBox>
-            <Notice>비밀번호 변경</Notice>
             <PasswordInput
               type="password"
               required="required"
