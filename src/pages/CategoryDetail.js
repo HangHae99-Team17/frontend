@@ -3,8 +3,6 @@ import { useSelector,useDispatch } from 'react-redux';
 import { listCreators } from '../redux/modules/main';
 import { history } from '../redux/configureStore';
 import styled from 'styled-components';
-import Grid from "../elements/Grid";
-import { couponCreate,couponDespire,couponRank } from '../image';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MainCoupon from '../components/MainCoupon';
 
