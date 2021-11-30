@@ -24,7 +24,6 @@ const SearchList = () => {
 
     React.useEffect(()=>{
         getSearch(val);
-        console.log("asdasd")
     },[val]);
 
     return (

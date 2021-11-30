@@ -62,10 +62,7 @@ if(props.mode === "rank" && props.mini === "mini"){
     </Wrap2>
   </Allbox2>
 );
-
-
-  
-          }else if(props.mode === "rank"){
+          }else{
             return (
               <Allbox>
                 <Wrap>
