@@ -158,8 +158,8 @@ const Wrap = styled.div`
     width: 740px;
     margin: 80px 0 0 1000px;
     left:270px;
-    top:40px;
-    transform: scale(1.3);
+    top:28px;
+    transform: scale(1.2);
   }
 `;
 const Image = styled.div`
@@ -186,7 +186,7 @@ const LikeWrap = styled.div`
   margin: 160px 0 0 16px;
 `;
 const A = styled.a`
-  width: 260px;
+  width: 250px;
   height: 48px;
   text-decoration: none;
   font-size: 16px;
@@ -200,7 +200,7 @@ const A = styled.a`
   
 `;
 const PickCoupon = styled.div`
-  width: 48px;
+  width: 50px;
   height: 48px;
   border: 1px solid #d6d6d7;
   border-radius: 4px;
@@ -229,8 +229,8 @@ cursor:pointer;
 `;
 const Div = styled.div`
   margin: 0 0 0 26px;
-  font-size: 14px;
-  line-height: 30px;
+  font-size: 15px;
+  line-height: 33px;
   width: 330px;
 `;
 const Span = styled.div`
@@ -253,13 +253,15 @@ const Info = styled.div`
 `;
 const Desc = styled.div`
   margin: 0 0 0 26px;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 30px;
   width: 330px;
+  margin-bottom:30px;
   @media screen and (min-width:1028px){
 position:absolute;
 top:100px;
 left:-10px;
+width: 370px;
 }
 `;
 const DescBox = styled.div`

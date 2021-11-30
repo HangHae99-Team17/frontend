@@ -44,7 +44,7 @@ const MainBox = styled.div`
 `;
 const MainImg = styled.img`
   width: 100%;
-  top: -110px;
+  top: -35px;
   position: relative;
   display: none;
   @media screen and (min-width: 1028px) {
