@@ -167,7 +167,7 @@ width : 375px;
 display : block;
 margin: 0 auto;
 @media screen and (min-width:1028px){
-width:1100px;
+width:100%;
 
 }
 `
@@ -176,26 +176,33 @@ width : 375px;
 padding : 0;
 display:flex;
 flex-flow: column nowrap;
+@media screen and (min-width:1028px){
+  width:100%;
+  
 
 `
 const Button = styled.button`
-width : 300px;
-height : 48px;
+width : 335px;
+height : 43px;
 font-size : 16px;
 font-weight : 800;
-margin-left:14px;
+margin:0 auto;
 color : white;
 border : none;
 border-radius : 8px;
 background-color : #F09643;
+cursor:pointer;
 @media screen and (min-width:1028px){
-margin-left:10px;
+  width : 325px;
 }
 `
 const BtWrap = styled.div`
-width : 328px;
+width : 335px;
 height : 48px;
-margin : 20px auto 30px auto;
+margin : 10px auto 20px auto;
+@media screen and (min-width:1028px){
+  margin-bottom:40px;
+}
 `
 const Title = styled.div`
 width :200px;
@@ -203,6 +210,12 @@ height : auto;
 margin : 0 0 0 20px;
 font-size : 20px;
 font-weight : 600;
+line-height:33px;
+@media screen and (min-width:1028px){
+  margin-left:25%;
+  width:1070px;
+  margin:0 auto;
+}
 `
 const CardBox = styled.div`
 diplay:none;

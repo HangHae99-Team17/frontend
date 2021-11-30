@@ -28,11 +28,7 @@ const Main = () => {
         <MainImg src={MainBackground} />
       </MainBox>
       <RankListBox>
-        <P>지금 가장</P>
-        <P>
-          <Span>핫</Span> 한 할인은?
-        </P>
-        <Text>랭킹 Top10을 확인해 보세요</Text>
+        <P>이런 할인 어때요 ?</P>
         <CardBox>
           {rank?.map((coupon) => {
             return <MainCoupon key={coupon.id} mode="rank" {...coupon} />;
@@ -48,7 +44,7 @@ const MainBox = styled.div`
 `;
 const MainImg = styled.img`
   width: 100%;
-  top: -110px;
+  top: -35px;
   position: relative;
   display: none;
   @media screen and (min-width: 1028px) {
@@ -57,8 +53,8 @@ const MainImg = styled.img`
 `;
 
 const RankListBox = styled.div`
-  width: 360px;
-  margin: auto;
+  width: 375px;
+  margin:0 auto;
   @media screen and (min-width: 1028px) {
     width: 1460px;
   }
@@ -71,14 +67,6 @@ const P = styled.p`
   line-height: 28px;
 `;
 
-const Span = styled.span`
-  color: #f09643;
-`;
-const Text = styled.p`
-  margin-left: 20px;
-  font-size: 14px;
-  font-weight: 700;
-`;
 const CardBox = styled.div`
   display: flex;
   flex-flow: row wrap;

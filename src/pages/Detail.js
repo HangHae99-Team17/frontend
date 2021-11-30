@@ -100,7 +100,7 @@ const Detail = (props) => {
               {detail_list?.couponSubTitle} 할인 받기
             </Title>
             <Span>
-              {detail_list?.couponCreate}~{detail_list?.couponDespire}
+              {detail_list?.couponCreate} ~ {detail_list?.couponDespire}
             </Span>
             <Div>{detail_list?.couponType} 카테고리</Div>
           </div>
@@ -144,8 +144,8 @@ const ShareButtonBox = styled.div`
     }
   @media screen and (min-width: 1028px) {
     position:absolute;
-    top:250px;
-    left:10px;
+    top:190px;
+    left:370px;
   }
 `;
 
@@ -157,8 +157,8 @@ const Wrap = styled.div`
   @media screen and (min-width: 1028px) {
     width: 740px;
     margin: 80px 0 0 1000px;
-    left:50px;
-    top:10px;
+    left:270px;
+    top:28px;
     transform: scale(1.2);
   }
 `;
@@ -186,7 +186,7 @@ const LikeWrap = styled.div`
   margin: 160px 0 0 16px;
 `;
 const A = styled.a`
-  width: 260px;
+  width: 250px;
   height: 48px;
   text-decoration: none;
   font-size: 16px;
@@ -200,7 +200,7 @@ const A = styled.a`
   
 `;
 const PickCoupon = styled.div`
-  width: 48px;
+  width: 50px;
   height: 48px;
   border: 1px solid #d6d6d7;
   border-radius: 4px;
@@ -216,7 +216,7 @@ const P = styled.p`
 `;
 const Like = styled.div`
   display: inline-block;
-  height: 10px;
+  height: 14px;
   color: #f09643;
   font-weight: 600;
   position: absolute;
@@ -224,12 +224,13 @@ const Like = styled.div`
   left : 19px;
 `;
 const Bookmarker = styled.img`
-margin :8px 0 0 12px;
+margin :4px 0 0 12px;
+cursor:pointer;
 `;
 const Div = styled.div`
   margin: 0 0 0 26px;
-  font-size: 14px;
-  line-height: 30px;
+  font-size: 15px;
+  line-height: 33px;
   width: 330px;
 `;
 const Span = styled.div`
@@ -252,20 +253,22 @@ const Info = styled.div`
 `;
 const Desc = styled.div`
   margin: 0 0 0 26px;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 30px;
   width: 330px;
+  margin-bottom:30px;
   @media screen and (min-width:1028px){
 position:absolute;
 top:100px;
 left:-10px;
+width: 370px;
 }
 `;
 const DescBox = styled.div`
 @media screen and (min-width:1028px){position:absolute;
   width:200px;
-top:355px;
-left:-560px;
+top:330px;
+left:-570px;
 border-top:1px solid rgba(0, 0, 0, 0.12);
 width:1020px;
 }

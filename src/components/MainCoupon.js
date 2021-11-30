@@ -27,52 +27,44 @@ const MainCoupon = (props) => {
   };
 if(props.mode === "rank" && props.mini === "mini"){  
   return (
-    <Allbox>
-      <Wrap>
-        <Box
-          onClick={() => {
-            history.push(`/api/detail/${props.id}`);
-          }}
-        >
-          <ImgBox2>
-            <IMG2 src={props.couponImage} />
-          </ImgBox2>
-          <ImgBox>
-            <IMG src={props.couponLogo} />
-          </ImgBox>
-          <div>
-            <Title>{props.couponBrand}에서 </Title>
-            <Dsec>
-              <Strong>{props.couponSubTitle}</Strong> 할인 받기
-            </Dsec>
-          </div>
-        </Box>
-        <CouponButton>할인 받기</CouponButton>
-        <Bookmarker>
-          {!is_login ? (
-            <div>
-            <img
-              src={colorBookmark}
-              onClick={() => {
-                alert("로그인이 필요한 서비스 입니다!");
-                history.push("/login");
-              }}
-            />
-            <CouponLike>{props.couponLike}</CouponLike>
-            </div>
-          ) : (
-            <div>
-            <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
-            <CouponLike>{props.couponLike}</CouponLike>
-            </div>
-          )}
-        </Bookmarker>
-      </Wrap>
-    </Allbox>
-  );
-
-  
-          }else if(props.mode === "rank"){
+  <Allbox2>
+    <Wrap2>
+      <Box2
+        onClick={() => {
+          history.push(`/api/detail/${props.id}`);
+        }}
+      >
+        <ImgBox3>
+          <IMG2 src={props.couponImage} />
+        </ImgBox3>
+        <ImgBox>
+          <IMG src={props.couponLogo} />
+        </ImgBox>
+        <div>
+          <Title>{props.couponBrand}에서 </Title>
+          <Dsec>
+            <Strong>{props.couponSubTitle} 할인 받기</Strong>
+          </Dsec>
+        </div>
+      </Box2>
+      <CouponButton2>할인 받기</CouponButton2>
+      <Bookmarker2>
+        {!is_login ? (
+          <img
+            src={colorBookmark}
+            onClick={() => {
+              alert("로그인이 필요한 서비스 입니다!");
+              history.push("/login");
+            }}
+          />
+        ) : (
+          <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
+        )}
+      </Bookmarker2>
+    </Wrap2>
+  </Allbox2>
+);
+          }else{
             return (
               <Allbox>
                 <Wrap>
@@ -88,9 +80,9 @@ if(props.mode === "rank" && props.mini === "mini"){
                       <IMG src={props.couponLogo} />
                     </ImgBox>
                     <div>
-                      <Title><Strong>{props.couponBrand}</Strong> 에서 </Title>
+                      <Title>{props.couponBrand}에서 </Title>
                       <Dsec>
-                        <Strong>{props.couponSubTitle}</Strong> 할인 받기
+                        <Strong>{props.couponSubTitle} 할인 받기</Strong>
                       </Dsec>
                     </div>
                   </Box>
@@ -140,7 +132,7 @@ transform:scale(0.9);
 `;
 const Box = styled.div`
   
-  width: 360px;
+  width: 380px;
   height: 80px;
   display: flex;
   margin: 11px auto;
@@ -150,15 +142,19 @@ const Box = styled.div`
   }
 `;
 const ImgBox = styled.div`
-  width: 60px;
+  width: 50px;
   height: 50px;
-  border-radius: 4px;
-  margin: 16px 10px;
+  border-radius: 6px;
+  margin: 21px 24px 0 0;
+  border:1px solid #E0E0E0; 
+  @media screen and (min-width:1028px){
+    margin-left:17px;
+    }
 `;
 const IMG = styled.img`
-  width: 50px;
-  position: absolute;
-  top: 33%;
+width:50px;
+display : block ;
+margin: auto;
 `;
 const IMG2 = styled.img`
   width: 360px;
@@ -205,6 +201,7 @@ font-weight:bold;
 font-size:16px;
 @media screen and (min-width:1028px){
   display:block;
+  cursor:pointer;
 }
 `;
 
@@ -214,11 +211,12 @@ const Bookmarker = styled.div`
   padding-top:10px;
   height: 35px;
   position: absolute;
-  top: 13px;
-  right: 2px;
+  top: 15px;
+  right: -11px;
   @media screen and (min-width:1028px){
-    top:180px;
+    top:183px;
     right:10px;
+    cursor:pointer;
     
   }
 `;
@@ -282,7 +280,7 @@ const Bookmarker2 = styled.div`
   padding-top:10px;
   height: 35px;
   position: absolute;
-  top: 13px;
-  right: 2px;
+  top: 20px;
+  right: 4px;
 `;
 export default MainCoupon;

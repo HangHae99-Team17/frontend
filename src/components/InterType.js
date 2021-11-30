@@ -155,6 +155,7 @@ const UserEditButton = styled.button`
   font-size:15px;
   color: ${(props) => props.color};
   border: solid 1px ${(props) => props.bg};
+  cursor:pointer;
   @media screen and (min-width: 1024px) {
       height:100px;
       background-image: url(${(props) => props.image});
@@ -170,6 +171,7 @@ const InterTypeBox = styled.div`
   width: 375px;
   flex-wrap: wrap;
 font-size:16px;
+cursor:pointer;
   justify-content: space-evenly;
 `;
 
@@ -180,6 +182,7 @@ const SaleinfoBox = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding-left: 0px;
+  cursor:pointer;
   @media screen and (min-width: 1024px) {
     display: flex;
     margin: 0 auto;
@@ -200,6 +203,7 @@ const SignUpButton = styled.button`
   font-size: 15px;
   border-radius: 5px;
   background-color: white;
+  cursor:pointer;
   color: ${(props) => props.bg};
   border: solid 1px ${(props) => props.bg};
   line-height: 140px;

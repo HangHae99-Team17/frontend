@@ -46,7 +46,7 @@ const SaleBox = () => {
 const AllBox = styled.div`
 position:relative;
 width:375px;
-margin:10px auto;
+margin:0px auto;
 @media screen and (min-width:1028px){
 }
 
@@ -64,6 +64,7 @@ flex-flow:colums wrap;
 width : 375px;
 height: 60px;
 margin-top:5px;
+cursor:pointer;
 `
 const Img = styled.div`
 position:relative;
@@ -84,10 +85,10 @@ font-size: 16px;
 `
 const P2 = styled.p`
 margin-top: -5px;
-font-size:15px;
-font-weight: bold;
+font-size:16px;
 padding-left:-20px;
 width:260px;
+color: #f09643;
 `
 
 const BUTTON = styled.button`
@@ -96,6 +97,7 @@ right:10px;
 height: 50px;
 border: none;
 background-color:white;
+cursor:pointer;
 `
 
 export default SaleBox;
