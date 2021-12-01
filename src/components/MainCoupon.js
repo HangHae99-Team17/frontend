@@ -4,23 +4,25 @@ import { history } from "../redux/configureStore";
 import { colorBookmark, fullBookmark } from "../image";
 import { useSelector } from "react-redux";
 import { apis } from "../common/axios";
+import ReactGA from 'react-ga';
+
 
 const MainCoupon = (props) => {
   const is_login = useSelector((state) => state.user.is_login);
   const [zzim, setZzim] = useState(props.couponSelect === 1 ? true : false);
 
   const zzimz = async () => {
-    if (is_login === false) {
-      alert("로그인이 필요한 서비스 입니다!");
-      history.push("/login");
-    }
-
     if (zzim === false) {
       await apis.postCoupon(props.id);
       setZzim(true);
     } else if (zzim === true) {
       await apis.delFolders(props.id);
       setZzim(false);
+      ReactGA.event({
+        category: "Button",
+        action: "zzim coupon",
+        label: "bookmark",
+      });
     }
   };
 if(props.mode === "rank" && props.mini === "mini"){  
@@ -87,6 +89,7 @@ if(props.mode === "rank" && props.mini === "mini"){
                   <CouponButton>할인 받기</CouponButton>
                   <Bookmarker>
                     {!is_login ? (
+                      <div>
                       <img
                         src={colorBookmark}
                         onClick={() => {
@@ -94,8 +97,13 @@ if(props.mode === "rank" && props.mini === "mini"){
                           history.push("/login");
                         }}
                       />
+                      <CouponLike> {props.couponLike} </CouponLike>
+                      </div>
                     ) : (
+                      <div>
                       <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
+                      <CouponLike>{props.couponLike}</CouponLike>
+                      </div>
                     )}
                   </Bookmarker>
                 </Wrap>
