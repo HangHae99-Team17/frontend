@@ -24,8 +24,8 @@ const Filter = (props)=>{
 
     React.useEffect(() => {
       // 내가 넘겨줄 값들 _ 타입, 현재 페이지, 몇개보여줄건지, 정렬기준,isAsc
-      dispatch(listCreators.getListMW(type,page,6,sortBy,isAsc));
-      setPage(prevstate =>prevstate + 6)
+      dispatch(listCreators.getListMW(type,page,7,sortBy,isAsc));
+      setPage(prevstate =>prevstate + 7)
 
       // 언마운트시 데이터 비우기
       return()=>{
