@@ -22,7 +22,27 @@ import Useractive from "../pages/Useractive";
 import SearchList from "../pages/SearchList";
 import Filter from '../components/Filter';
 
+import ReactGA from 'react-ga';
+
+ReactGA.event({
+  category: 'User',
+  action: 'Created an Account'
+});
+ReactGA.exception({
+  description: 'An error ocurred',
+  fatal: true
+});
+
 function App() {
+// 사용자가 어떤 페이지에 들어갔는지 추적
+  React.useEffect(()=>{
+    ReactGA.initialize("user id");
+    history.listen((location) => {
+      ReactGA.set({ page: location.pathname }); // Update the user's current page
+      ReactGA.pageview(location.pathname); // Record a pageview for the given page
+    });
+  },[])
+
   return (
     <React.Fragment>
       <Grid>

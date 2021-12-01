@@ -22,7 +22,7 @@ const CategoryDetail = (props) => {
     React.useEffect(() => {
       // 내가 넘겨줄 값들 _ 타입, 현재 페이지, 몇개보여줄건지, 정렬기준,isAsc
       dispatch(listCreators.getListMW(type,page,7,"couponCreate",true));
-      setPage(prevstate =>prevstate + 7)
+      setPage(prevstate =>prevstate + 1)
       // 언마운트될 때 리덕스에서 포스트 데이터 없애기
       return()=>{
         dispatch(listCreators.clearList())
@@ -34,11 +34,12 @@ const CategoryDetail = (props) => {
       // 스크롤이 마지막에 닿았을때 다음 페이지로 이동시켜주는 함수
       const fetchPaging = () => {
         // 페이지 상태 변화
-        setPage(prevstate =>prevstate + 1)
         setTimeout(() => {
             if(hasMore){
-              dispatch(listCreators.getListMW(type,page,3,"couponCreate",true));
+              dispatch(listCreators.getListMW(type,page,7,"couponCreate",true));
+              setPage(prevstate =>prevstate + 1)
             }
+
         },1000)
     }
 

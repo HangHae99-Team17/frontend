@@ -24,8 +24,8 @@ const Filter = (props)=>{
 
     React.useEffect(() => {
       // 내가 넘겨줄 값들 _ 타입, 현재 페이지, 몇개보여줄건지, 정렬기준,isAsc
-      dispatch(listCreators.getListMW(type,page,6,sortBy,isAsc));
-      setPage(prevstate =>prevstate + 6)
+      dispatch(listCreators.getListMW(type,page,7,sortBy,isAsc));
+      setPage(prevstate =>prevstate + 1)
 
       // 언마운트시 데이터 비우기
       return()=>{
@@ -39,10 +39,10 @@ const Filter = (props)=>{
       // 스크롤이 마지막에 닿았을때 다음 페이지로 이동시켜주는 함수
       const fetchPaging = () => {
         // 페이지 상태 변화
-        setPage(prevstate =>prevstate + 1)
         setTimeout(() => {
             if(hasMore){
-              dispatch(listCreators.getListMW(type,page,1,"couponLike",false));
+              dispatch(listCreators.getListMW(type,page,7,"couponLike",false));
+              setPage(prevstate =>prevstate + 1)
             }
         },1000)
     }
