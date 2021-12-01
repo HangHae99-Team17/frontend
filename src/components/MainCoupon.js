@@ -89,6 +89,7 @@ if(props.mode === "rank" && props.mini === "mini"){
                   <CouponButton>할인 받기</CouponButton>
                   <Bookmarker>
                     {!is_login ? (
+                      <div>
                       <img
                         src={colorBookmark}
                         onClick={() => {
@@ -96,8 +97,13 @@ if(props.mode === "rank" && props.mini === "mini"){
                           history.push("/login");
                         }}
                       />
+                      <CouponLike> {props.couponLike} </CouponLike>
+                      </div>
                     ) : (
+                      <div>
                       <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
+                      <CouponLike>{props.couponLike}</CouponLike>
+                      </div>
                     )}
                   </Bookmarker>
                 </Wrap>
