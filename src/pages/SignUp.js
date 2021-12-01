@@ -134,7 +134,7 @@ const SignUp = (props) => {
     };
 
     useEffect(() => {
-        history.block((location, action) => {
+        history.block((action) => {
             if (action === 'POP'&&passworddisplay === 'block') {
                 setPasswordDisplay("none");
                 setEmailDisplay("block");
