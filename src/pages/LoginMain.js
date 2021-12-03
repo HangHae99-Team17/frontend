@@ -27,7 +27,7 @@ const LoginMain = () => {
        dispatch(listCreators.getListMW(MenuArr[2],1,3,"couponLike",false));
       //  제대로 된 데이터 들어오면 주석처리 해제할 예정
        dispatch(listCreators.getListMW(MenuArr[3],1,3,"couponLike",false));
-      //  dispatch(listCreators.getListMW(MenuArr[5],1,3,"couponLike",false));
+       dispatch(listCreators.getListMW(MenuArr[4],1,3,"couponLike",false));
 
       // 언마운트시 데이터 비우기
       return()=>{
@@ -44,7 +44,13 @@ const LoginMain = () => {
     const type2 = [dc_list?.[3],dc_list?.[4],dc_list?.[5]]
     const type3 = [dc_list?.[6],dc_list?.[7],dc_list?.[8]]
     const telecom = [dc_list?.[9],dc_list?.[10],dc_list?.[11]]
+
+    const cards = [dc_list?.[12],dc_list?.[13],dc_list?.[14]]
+
+    console.log(type2)
+
     // const cards = [dc_list?.[16],dc_list?.[17],dc_list?.[18],dc_list?.[19]]
+
      
     return(
           <AllBox>
@@ -129,29 +135,28 @@ const LoginMain = () => {
         </CardBox>
         </InfoWrap>
         <BtWrap>
-          <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[6]?.couponType}`);history.go(0)}}>더보기</Button>
+          <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[9]?.couponType}`);history.go(0)}}>더보기</Button>
         </BtWrap>
       {/* 유저 카드사 */}
-      {/* <InfoWrap>
-      <Title>
-          <Br>당신을 위한</Br>
-          <Span>{userMenu?.cardType}</Span> 추천
-      </Title>
-
+      <InfoWrap>
+        <Title>
+        <Br>당신을 위한</Br>
+          <Span>{dc_list?.[12]?.couponType}</Span> 추천
+        </Title>
+        <CardBox>
         {
         cards?.map((item) => {
           return (
-            <DcList>
-              <MainCoupon {...item}/>
-            </DcList>
+              <MainCoupon {...item} key={item?.id} mode="rank"/>
         );
         })
+        
         }
+        </CardBox>
         </InfoWrap>
         <BtWrap>
-          <Button onClick={()=>{history.push(`/api/categorydetail/${userMenu?.cardType}?page=1&size=7&sortBy=couponCreate&isAsc=true`);history.go(0)}}>더보기</Button>
+          <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[12]?.couponType}`);history.go(0)}}>더보기</Button>
         </BtWrap>
-  */}
         <Main/>
         </AllBox>
     )    
