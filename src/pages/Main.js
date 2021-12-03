@@ -11,7 +11,6 @@ const Main = () => {
   const getRank = async () => {
     try {
       const rank_result = await apis.getDcList();
-      console.log(rank_result.data);
       setRank(rank_result.data.data);
     } catch (e) {
       console.log("에러");

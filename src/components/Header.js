@@ -13,7 +13,7 @@ import {
   search_orange,
 } from "../image";
 
-const Header = (props) => {
+const Header = () => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
   const user_info = useSelector((state) => state.user.user);
@@ -49,7 +49,6 @@ const Header = (props) => {
   };
 
   const onKeyPress = (e) =>{
-    console.log("asdasf")
     if(e.key === 'Enter'){
       searchcoupon();
     }
@@ -173,7 +172,6 @@ const Header = (props) => {
                 onClick={() => {
                   history.push("/loginmain");
                   setOpen(!open);
-                  history.go(0);
                 }}
               >
                 나의 카테고리
@@ -342,7 +340,7 @@ const StyledBurger = styled.div`
   display: flex;
   margin-left: 20px;
   padding-right: 20px;
-
+  
   button {
     border: none;
     cursor: pointer;
@@ -353,6 +351,7 @@ const StyledBurger = styled.div`
 
   img {
     margin-left: 10px;
+    cursor:pointer;
   }
 
   @media screen and (min-width: 1028px) {
@@ -378,6 +377,7 @@ const Ul = styled.ul`
     color: #fff;
     font-size: 20px;
     font-weight: bold;
+    cursor:pointer;
   }
 
   @media screen and (min-width: 1028px) {
@@ -393,6 +393,7 @@ const Ul = styled.ul`
       color: black;
       width: 220px;
       font-size: 18px;
+      cursor:pointer;
     }
   }
 `;

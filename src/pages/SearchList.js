@@ -1,4 +1,4 @@
-import React,{useState, useCallback} from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
 import MainCoupon from '../components/MainCoupon';
 import { apis } from "../common/axios";
