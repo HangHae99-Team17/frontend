@@ -47,7 +47,7 @@ export default handleActions(
         else{
           draft.hasMore = false
         }
-        console.log(draft.pagingList)
+        
         // hasMore가 false라면 빈 배열을, true면 list의 데이터가 포함된 배열을 반환한다.
         draft.pagingList = draft.hasMore===false?draft.pagingList : draft.pagingList.concat(action.payload.list)
       }),

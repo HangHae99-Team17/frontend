@@ -9,7 +9,6 @@ const AdminSignup = () => {
     const [passwordcheck, setPasswordcheck] = useState("");
     const [signup_info, setSignUp_Info] = useState({
         email: "",
-        username: "",
         password: "",
         password1: "",
         admintoken:""
@@ -19,19 +18,13 @@ const AdminSignup = () => {
         setSignUp_Info({...signup_info, [e.target.name]: e.target.value});
     }
 
-    const {email, username, password, password1, admintoken} = signup_info;
+    const {email, password, password1, admintoken} = signup_info;
 
     const signup = () => {
 
         const user_info = {
             userEmail: email,
             password: password,
-            nickname:username,
-            telecom:"",
-            cardType:"",
-            type1:"",
-            type2:"",
-            type3:"",
             admin:admin,
             adminToken:admintoken
         }

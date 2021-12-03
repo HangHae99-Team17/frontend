@@ -10,14 +10,13 @@ const CategoryDetail = (props) => {
     const dispatch = useDispatch();
     // 넘어온 props 확인해서 내가 보내줘야 할 타입을 추출
     const type = props.match.params.type;
-    const [mini, setMini]=useState();
 
     // 무한스크롤 페이지_초기값1
     const [page,setPage] = useState(1)
     // 리덕스에있는 데이터 불러오기(리듀서 정보_hasMore,pagingList)
     const DcInfoList = useSelector((state) => state.main.pagingList)
     const hasMore =  useSelector((state) => state.main.hasMore)
-    console.log(hasMore)
+    
 
     React.useEffect(() => {
       // 내가 넘겨줄 값들 _ 타입, 현재 페이지, 몇개보여줄건지, 정렬기준,isAsc

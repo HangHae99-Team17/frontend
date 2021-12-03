@@ -39,17 +39,13 @@ const Login = () => {
     }
 
     useEffect(()=>{
-        console.log("어어 작동하짐사!")
         if(usererror === "유저네임을 찾을 수 없습니다."){
             setMeg("유저네임을 찾을 수 없습니다.");
-            console.log("ㅈ우기1")
             return;
         }else if(usererror === "비밀번호가 맞지 않습니다."){
             setMeg("비밀번호가 맞지 않습니다.");
-            console.log("ㅈ우기2")
             return;
         }else{
-            console.log("ㅈ우기3")
             setMeg("");
         }
         
