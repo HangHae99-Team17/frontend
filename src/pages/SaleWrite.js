@@ -63,7 +63,7 @@ const SaleWrite = (props) => {
   };
 
   const categoryselect = (e) => {
-    console.log(e.target.value);
+    
     if (e.target.value === coupontype) {
       setCouPonType("");
     } else {
@@ -255,8 +255,8 @@ const CategoryNotice = styled.p`
 font-weight:bold;
 margin:15px auto;
 width:90%;
-}
 `;
+
 const CategoryButton = styled.div`
   font-weight: bold;
   margin: 10px auto;
