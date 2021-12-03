@@ -340,7 +340,7 @@ const StyledBurger = styled.div`
   display: flex;
   margin-left: 20px;
   padding-right: 20px;
-
+  
   button {
     border: none;
     cursor: pointer;
@@ -351,6 +351,7 @@ const StyledBurger = styled.div`
 
   img {
     margin-left: 10px;
+    cursor:pointer;
   }
 
   @media screen and (min-width: 1028px) {
@@ -376,6 +377,7 @@ const Ul = styled.ul`
     color: #fff;
     font-size: 20px;
     font-weight: bold;
+    cursor:pointer;
   }
 
   @media screen and (min-width: 1028px) {
@@ -391,6 +393,7 @@ const Ul = styled.ul`
       color: black;
       width: 220px;
       font-size: 18px;
+      cursor:pointer;
     }
   }
 `;
