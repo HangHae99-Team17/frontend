@@ -4,7 +4,6 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 
-
 const Login = () => {
     const dispatch = useDispatch();
     const usererror = useSelector(state => state.user.loginError);
@@ -17,7 +16,7 @@ const Login = () => {
 
     const onChange = (e) => {
         setLogin_Info({...login_info, [e.target.name]: e.target.value});
-    }
+    };
 
     const submitLogin = () => {
         if(email === "" || password === ""){  //공란 체크
@@ -36,7 +35,7 @@ const Login = () => {
             password: ""
         });
         
-    }
+    };
 
     useEffect(()=>{
         if(usererror === "유저네임을 찾을 수 없습니다."){
@@ -48,9 +47,13 @@ const Login = () => {
         }else{
             setMeg("");
         }
-        
+    },[submitLogin]);
 
-    },[meg]);
+    useEffect(()=>{
+
+        setMeg("");
+
+    },[]);
 
     return (
         <React.Fragment>
