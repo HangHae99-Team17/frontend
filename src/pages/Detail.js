@@ -83,7 +83,6 @@ const Detail = (props) => {
 
   useEffect(()=>{
     getSearch(Id);
-    console.log("detail")
   },[]);
 
   return (

@@ -30,8 +30,7 @@ const getFoldersMiddleware = () => {
 export const delFoldersMiddleware = (coupon_id) => {
   return async (dispatch, getState, { history }) => {
     try{
-      const res = await apis.delFolders(coupon_id);
-      console.log(res)
+      await apis.delFolders(coupon_id);
       dispatch(delFolderss(coupon_id));
       history.push('/salebox');
     }catch(e){

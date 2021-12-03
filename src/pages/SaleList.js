@@ -4,7 +4,7 @@ import { actionCreators as saleActions } from "../redux/modules/sale";
 import Coupon from '../components/Coupon';
 import styled from 'styled-components';
 
-const SaleList = (props) => {
+const SaleList = () => {
 
     const dispatch = useDispatch();
     const sale_list = useSelector((state) => state.sale.list);
