@@ -18,20 +18,16 @@ export const apis = {
    edituser: (user_info) => instance.put('/api/user/change',user_info),
    deluser: (password) => instance.post('/api/user/delete',password),
    emailcheck: (userEmail) => instance.post('/api/user/redunancy',userEmail),
-   getFolders:() => instance.get('api/folders/read'),
    delFolders:(param) => instance.delete(`api/folders/delete/${param}`),
    postCoupon: (couponId)=>instance.post('api/folders/create',couponId),
-   // 쿠폰 상세페이지 데이터 불러오기(Get)
+   // 쿠폰 상세페이지 데이터 불러오기
    getDetail:(param)=>instance.get(`api/detail/${param}`),
-   // 메인 페이지 할인 정보 리스트 가지고d오기(Get)
-   // 여기서 사용되는 param은 type이 됩니다.(request)
-   getList: (param,page,size,sortBy,isAsc) => instance.get(`/api/main/${param}?page=${page}&size=${size}&sortBy=${sortBy}&isAsc=${isAsc}`),
-   // 찜하기 기능(Post)
-   // couponId가 request값 ->json값으로 보내줘야 함
-   // 보내줘야 하는 json값은 컴포넌트에서 보내준다.
-   
+   // 로그인 메인 페이지,카테고리 할인 정보 리스트 가지고오기
+   getList: (param,page,size,sortBy,isAsc) => instance.get(`/api/main/${param}?page=${page}&size=${size}&sortBy=${sortBy}&isAsc=${isAsc}`),   
    // 메인페이지 정보리스트 불러오기
    getDcList: ()=>instance.get('api/main/rank'),
+   // 찜한 쿠폰 가지고 오기
+   getFolders:() => instance.get('api/folders/read'), 
    // 관리자 페이지 api
    getCoupon:()=>instance.get('api/admin/main'),
    addCoupon:(coupon_content)=>instance.post('api/admin/coupon',coupon_content),

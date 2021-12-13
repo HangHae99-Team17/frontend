@@ -55,10 +55,21 @@ export const loginFB = (user) => {
         if (token) {
           sessionStorage.setItem("token", `${token}`);
         }
-        if(res.data.data.status === true){
+      if(res.data.data.status === true){
           dispatch(setUser(res.data.data));
-          history.push('/loginmain');
-        }else{
+      // 쿠폰 마감일 알람 
+      if(res.data.data.alertCoupon === 1){
+        const alert = window.confirm("곧 마감되는 쿠폰이 있어요! 확인 하시겠습니까?")
+        console.log(res.data.data.alertCoupon)
+       if(alert){
+        history.push('/salebox')
+       }
+       else {  history.push('/loginmain');  }
+      }
+      else { history.push('/loginmain') }
+        }
+
+      else{
           dispatch(setUser(res.data.data));
           history.push('/useractive');
         }

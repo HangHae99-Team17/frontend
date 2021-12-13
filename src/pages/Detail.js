@@ -49,19 +49,16 @@ const Detail = (props) => {
     }
   }
 
+// 할인 상세 정보 가지고 오기
   const getSearch = async(Id) => {
-    try{
-        const detail_result = await apis.getDetail(Id);
-        if(detail_result.data.data.couponSelect===1){
+        const detailList = await apis.getDetail(Id);
+        if(detailList.data.data.couponSelect===1){
           setZzim(true);
         }else{
           setZzim(false);
         }
-        setDetail(detail_result.data.data);
-        setNum(detail_result.data.data.couponLike);
-    }catch(e){
-      console.log('에러');
-    }
+        setDetail(detailList.data.data);
+        setNum(detailList.data.data.couponLike);
   }
 
   const zzimz = async() => {
