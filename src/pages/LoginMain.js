@@ -34,13 +34,16 @@ const LoginMain = () => {
     ,[userMenu])
     // 리덕스에서 할인정보 리스트 가지고 오기
     const dc_list = useSelector(( state )=> state.main.pagingList);
-    // 카테골리 별로 나눠주기위해 같은 카테고리의 쿠폰끼리 그룹화 해주기
+    // 카테고리 별로 나눠주기위해 같은 카테고리의 쿠폰끼리 그룹화 해주기
     const type1 = [dc_list?.[0],dc_list?.[1],dc_list?.[2]]
     const type2 = [dc_list?.[3],dc_list?.[4],dc_list?.[5]]
     const type3 = [dc_list?.[6],dc_list?.[7],dc_list?.[8]]
     const telecom = [dc_list?.[9],dc_list?.[10],dc_list?.[11]]
+
     const cards = [dc_list?.[12],dc_list?.[13],dc_list?.[14]]
 
+
+    // const cards = [dc_list?.[16],dc_list?.[17],dc_list?.[18],dc_list?.[19]]
 
      
     return(
@@ -168,9 +171,9 @@ display:flex;
 flex-flow: column nowrap;
 @media screen and (min-width:1028px){
   width:100%;
-  
+}
+`;
 
-`
 const Button = styled.button`
 width : 335px;
 height : 43px;

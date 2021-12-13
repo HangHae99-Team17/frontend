@@ -7,17 +7,16 @@ import { edit } from "../image";
 
 const Coupon = (props) => {
   const dispatch = useDispatch();
-  console.log("salelist_props", props);
-  const delsale = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    dispatch(saleActions.delSaleFB(props.id));
-  };
+  
+  // const delsale = (e) => {
+
+  //   dispatch(saleActions.delSaleFB(props.id));
+  // };
 
   const editsale = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    
     history.push(`/salewrite/${props.id}`);
+    
   };
 
   return (
