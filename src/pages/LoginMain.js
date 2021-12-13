@@ -12,34 +12,29 @@ const LoginMain = () => {
   const dispatch = useDispatch();
   // 유저 관심사, 카드사, 통신사 뽑아 오기
     const userMenu = useSelector((state)=>state.user.user)
-    
     const MenuArr = [userMenu?.type1,userMenu?.type2,userMenu?.type3,userMenu?.telecom, userMenu?.cardType]
-    
 
-  // 디스패치 시에 type을 보내줘야 정보를 가지고 올 수 있다.
+  // 디스패치 시에 type과 무한스크롤 적용에 필요한 데잍터를 보내줘야 정보를 가지고 올 수 있다.
     React.useEffect(()=>{
-      
-        // 확인을 위해 삼항 조건연산자 사용
         if(MenuArr.length > 0){
-      
+      const type = [MenuArr[0],MenuArr[1],MenuArr[2],MenuArr[3],MenuArr[4]]
        dispatch(listCreators.getListMW(MenuArr[0],1,3,"couponLike",false));
        dispatch(listCreators.getListMW(MenuArr[1],1,3,"couponLike",false));
        dispatch(listCreators.getListMW(MenuArr[2],1,3,"couponLike",false));
-      //  제대로 된 데이터 들어오면 주석처리 해제할 예정
        dispatch(listCreators.getListMW(MenuArr[3],1,3,"couponLike",false));
        dispatch(listCreators.getListMW(MenuArr[4],1,3,"couponLike",false));
+    
 
-      // 언마운트시 데이터 비우기
-      return()=>{
-        dispatch(listCreators.clearList())
-      }
-
+  // 언마운트시 데이터 비우기
+    return()=>{
+      dispatch(listCreators.clearList())
         }
-    }
+      }
+      }
     ,[userMenu])
     // 리덕스에서 할인정보 리스트 가지고 오기
     const dc_list = useSelector(( state )=> state.main.pagingList);
-    
+    // 카테고리 별로 나눠주기위해 같은 카테고리의 쿠폰끼리 그룹화 해주기
     const type1 = [dc_list?.[0],dc_list?.[1],dc_list?.[2]]
     const type2 = [dc_list?.[3],dc_list?.[4],dc_list?.[5]]
     const type3 = [dc_list?.[6],dc_list?.[7],dc_list?.[8]]
@@ -47,7 +42,6 @@ const LoginMain = () => {
 
     const cards = [dc_list?.[12],dc_list?.[13],dc_list?.[14]]
 
-    console.log(type2)
 
     // const cards = [dc_list?.[16],dc_list?.[17],dc_list?.[18],dc_list?.[19]]
 
@@ -83,7 +77,6 @@ const LoginMain = () => {
         <CardBox>
         {
         type2?.map((item) => {
-          console.log(item)
           return (
               <MainCoupon  {...item} key={item?.id} mode="rank"/>
         );
