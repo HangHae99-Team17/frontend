@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import {useSelector, useDispatch} from 'react-redux'
 import styled from 'styled-components'
 import { history } from "../redux/configureStore";
@@ -24,7 +24,6 @@ const LoginMain = () => {
        dispatch(listCreators.getListMW(MenuArr[3],1,3,"couponLike",false));
        dispatch(listCreators.getListMW(MenuArr[4],1,3,"couponLike",false));
     
-
   // 언마운트시 데이터 비우기
     return()=>{
       dispatch(listCreators.clearList())
@@ -39,15 +38,13 @@ const LoginMain = () => {
     const type2 = [dc_list?.[3],dc_list?.[4],dc_list?.[5]]
     const type3 = [dc_list?.[6],dc_list?.[7],dc_list?.[8]]
     const telecom = [dc_list?.[9],dc_list?.[10],dc_list?.[11]]
-
     const cards = [dc_list?.[12],dc_list?.[13],dc_list?.[14]]
 
 
-    // const cards = [dc_list?.[16],dc_list?.[17],dc_list?.[18],dc_list?.[19]]
 
      
     return(
-          <AllBox>
+    <AllBox>
       {/* 유저 관심사 타입1 */}
         <InfoWrap>
           <Title>
@@ -58,16 +55,16 @@ const LoginMain = () => {
         {
         type1?.map((item) => {
           return (
-              <MainCoupon {...item} key={item?.id} mode="rank"/>
-        );
-        })
-        
+            <MainCoupon {...item} key={item?.id} mode="rank"/>
+            );
+          })
         }
         </CardBox>
         </InfoWrap>
         <BtWrap>
           <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[0]?.couponType}`);history.go(0)}}>더보기</Button>
         </BtWrap>
+
       {/* 유저 관심사 타입2 */}
         <InfoWrap>
         <Title>
@@ -79,9 +76,8 @@ const LoginMain = () => {
         type2?.map((item) => {
           return (
               <MainCoupon  {...item} key={item?.id} mode="rank"/>
-        );
-        })
-        
+            );
+         })
         }
         </CardBox>
         </InfoWrap>
@@ -89,7 +85,6 @@ const LoginMain = () => {
           <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[3]?.couponType}`);history.go(0)}}>더보기</Button>
         </BtWrap>
 
-        {/* 배열로 잘라화면을 그려서 각 타입별로 3개 이상 있어야 함 */}
        {/* 유저 관심사 타입3 */}
         <InfoWrap>
         <Title>
@@ -101,15 +96,15 @@ const LoginMain = () => {
         type3?.map((item) => {
           return (
               <MainCoupon {...item} key={item?.id} mode="rank"/>
-        );
-        })
-        
+            );
+          })
         }
         </CardBox>
         </InfoWrap>
         <BtWrap>
           <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[6]?.couponType}`);history.go(0)}}>더보기</Button>
         </BtWrap>
+
       {/* 유저 통신사 */}
       <InfoWrap>
         <Title>
@@ -121,15 +116,15 @@ const LoginMain = () => {
         telecom?.map((item) => {
           return (
               <MainCoupon {...item} key={item?.id} mode="rank"/>
-        );
-        })
-        
+            );
+          })
         }
         </CardBox>
         </InfoWrap>
         <BtWrap>
           <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[9]?.couponType}`);history.go(0)}}>더보기</Button>
         </BtWrap>
+
       {/* 유저 카드사 */}
       <InfoWrap>
         <Title>
@@ -141,9 +136,8 @@ const LoginMain = () => {
         cards?.map((item) => {
           return (
               <MainCoupon {...item} key={item?.id} mode="rank"/>
-        );
-        })
-        
+            );
+          })
         }
         </CardBox>
         </InfoWrap>
@@ -151,7 +145,7 @@ const LoginMain = () => {
           <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[12]?.couponType}`);history.go(0)}}>더보기</Button>
         </BtWrap>
         <Main/>
-        </AllBox>
+  </AllBox>
     )    
 }
 
