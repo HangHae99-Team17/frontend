@@ -16,6 +16,7 @@ const SaleBox = () => {
     // 보관함 리스트 가지고 오기
     const getList = async () => {
         const list = await apis.getFolders();
+        console.log(list.data.coupons)
         setList(list.data.coupons);
     };
   
@@ -29,11 +30,11 @@ const SaleBox = () => {
           <Notice>{list?.length}개가 보관되어있어요</Notice>
             {list?.map((item)=>{
               return(
+                item.couponDespire !== new Date()?
                 <Grid key={item.id} margin="0 auto" width="375px" padding="10px 0"> 
-                  <Couponbox>
-
-                    <Img onClick={()=>{history.push(`/api/detail/${item?.id}`)}}><img width="40px" src={item.couponLogo}/></Img>
-                    <Textbox onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
+                  <Couponbox onClick={()=>{history.push(`/api/detail/${item?.id}`)}}>
+                    <Img ><img width="40px" src={item.couponLogo}/></Img>
+                    <Textbox>
                       <P1>{item.couponBrand} 에서</P1>
                       <P2>{item.couponSubTitle} 할인 받기</P2>
                     </Textbox>
@@ -43,6 +44,18 @@ const SaleBox = () => {
                   }}><img src={fullBookmark} /></BUTTON>
                   </Couponbox>
                 </Grid>
+                : 
+                
+                <Grid key={item.id} margin="0 auto" width="375px" padding="10px 0"> 
+                <Notice>기간이 지났어요!</Notice>
+                <Couponbox>
+                  <Img><img width="40px" src={item.couponLogo}/></Img>
+                  <Textbox>
+                    <P1>{item.couponBrand} 에서</P1>
+                    <P2>{item.couponSubTitle} 할인 받기</P2>
+                  </Textbox>
+                </Couponbox>
+              </Grid>
               )
           })}
         </AllBox>

@@ -58,7 +58,7 @@ export const loginFB = (user) => {
       if(res.data.data.status === true){
           dispatch(setUser(res.data.data));
       // 쿠폰 마감일 알람 
-      if(res.data.data.alertCoupon === 1){
+      if(res.data.data.alertCoupon > 0){
         const alert = window.confirm("곧 마감되는 쿠폰이 있어요! 확인 하시겠습니까?")
         console.log(res.data.data.alertCoupon)
        if(alert){
