@@ -51,6 +51,7 @@ const Filter = (props)=>{
         <P>다 모아두었어요</P>
         </div>
         <SortBy>
+          {/* 필터링 버튼 클릭시 이벤트 */}
         <SortImg
             onClick={()=>{history.push(`/ranking/${type}/${"couponCreate"}/${false}`);history.go(0)}}>✓ 최신순</SortImg>
           <SortImg

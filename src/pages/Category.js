@@ -76,7 +76,7 @@ const Category = () => {
             <Li
               key={item.id}
               onClick={() => {
-                history.push(`/api/categorydetail/${item.title}`);
+                history.push(`/categorydetail/${item.title}`);
                 history.go(0);
               }}
             >
@@ -95,7 +95,7 @@ const Category = () => {
           return (
             <Li
               onClick={() => {
-                history.push(`/api/categorydetail/${item.title}`);
+                history.push(`/categorydetail/${item.title}`);
                 history.go(0);
               }}
             >
@@ -114,7 +114,7 @@ const Category = () => {
           return (
             <Li
               onClick={() => {
-                history.push(`/api/categorydetail/${item.title}`);
+                history.push(`/categorydetail/${item.title}`);
                 history.go(0);
               }}
             >

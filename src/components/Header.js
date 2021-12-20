@@ -154,7 +154,7 @@ const Header = () => {
             <>
               <li
                 onClick={() => {
-                  history.push("/salebox");
+                  history.push("/couponfolder");
                   setOpen(!open);
                 }}
               >

@@ -8,7 +8,7 @@ import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import EditUser from "../pages/EditUser";
 import Detail from "../pages/Detail";
-import SaleBox from "../pages/SaleBox";
+import CouponFolder from "../pages/CouponFolder";
 import SaleList from "../pages/SaleList";
 import SaleWrite from "../pages/SaleWrite";
 import AdminSignup from "../pages/AdminSignup";
@@ -49,7 +49,7 @@ function App() {
       <ConnectedRouter history={history}>
       <Header></Header>
         <Route path="/loginmain" exact component={LoginMain}/>
-        <Route path='/api/categorydetail/:type' exact component={CategoryDetail} />
+        <Route path='/categorydetail/:type' exact component={CategoryDetail} />
         <Route path="/" exact component={Main} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/adminsignup" exact component={AdminSignup} />
@@ -58,7 +58,7 @@ function App() {
         <Route path="/salelist" exact component={SaleList} />
         <Route path="/salewrite" exact component={SaleWrite} />
         <Route path="/salewrite/:id" exact component={SaleWrite} />
-        <Route path="/salebox" exact component={SaleBox} />
+        <Route path="/couponfolder" exact component={CouponFolder} />
         <Route path="/errpage" exact component={Errpage} />
         <Route path="/api/detail/:id" exact component={Detail} mode="rank"/>
         <Route path="/category" exact component={Category} />
