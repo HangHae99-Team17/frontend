@@ -10,14 +10,21 @@ import ReactGA from 'react-ga';
 const MainCoupon = (props) => {
   const is_login = useSelector((state) => state.user.is_login);
   const [zzim, setZzim] = useState(props.couponSelect === 1 ? true : false);
+  const [like, setLike] = useState(props.couponLike)
 
+
+  // 쿠폰 찜 기능
   const zzimz = async () => {
     if (zzim === false) {
       await apis.postCoupon(props.id);
       setZzim(true);
+      setLike(like=>like+1);
+      console.log(like)
     } else if (zzim === true) {
       await apis.delFolders(props.id);
       setZzim(false);
+      setLike(like=>like-1);
+
       ReactGA.event({
         category: "Button",
         action: "zzim coupon",
@@ -28,6 +35,7 @@ const MainCoupon = (props) => {
 if(props.mode === "rank" && props.mini === "mini"){  
   return (
   <Allbox2>
+    {/* props 모드가 랭크이자 미니인 경우 */}
     <Wrap2>
       <Box2
         onClick={() => {
@@ -63,51 +71,53 @@ if(props.mode === "rank" && props.mini === "mini"){
       </Bookmarker2>
     </Wrap2>
   </Allbox2>
-);
-          }else{
-            return (
-              <Allbox>
-                <Wrap>
-                  <Box
-                    onClick={() => {
-                      history.push(`/api/detail/${props.id}`);
-                    }}
-                  >
-                    <ImgBox2>
-                      <IMG2 src={props.couponImage} />
-                    </ImgBox2>
-                    <ImgBox>
-                      <IMG src={props.couponLogo} />
-                    </ImgBox>
+    );
+  }
+
+    else{
+          return (
+            <Allbox>
+              <Wrap>
+                <Box
+                  onClick={() => {
+                    history.push(`/api/detail/${props.id}`);
+                  }}
+                >
+                  <ImgBox2>
+                    <IMG2 src={props.couponImage} />
+                  </ImgBox2>
+                  <ImgBox>
+                    <IMG src={props.couponLogo} />
+                  </ImgBox>
+                  <div>
+                    <Title>{props.couponBrand}에서 </Title>
+                    <Dsec>
+                      <Strong>{props.couponSubTitle} 할인 받기</Strong>
+                    </Dsec>
+                  </div>
+                </Box>
+                <CouponButton>할인 받기</CouponButton>
+                <Bookmarker>
+                  {!is_login ? (
                     <div>
-                      <Title>{props.couponBrand}에서 </Title>
-                      <Dsec>
-                        <Strong>{props.couponSubTitle} 할인 받기</Strong>
-                      </Dsec>
+                    <img
+                      src={colorBookmark}
+                      onClick={() => {
+                        alert("로그인이 필요한 서비스 입니다!");
+                        history.push("/login");
+                      }}
+                    />
+                    <CouponLike> {props.like} </CouponLike>
                     </div>
-                  </Box>
-                  <CouponButton>할인 받기</CouponButton>
-                  <Bookmarker>
-                    {!is_login ? (
-                      <div>
-                      <img
-                        src={colorBookmark}
-                        onClick={() => {
-                          alert("로그인이 필요한 서비스 입니다!");
-                          history.push("/login");
-                        }}
-                      />
-                      <CouponLike> {props.couponLike} </CouponLike>
-                      </div>
-                    ) : (
-                      <div>
-                      <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
-                      <CouponLike>{props.couponLike}</CouponLike>
-                      </div>
-                    )}
-                  </Bookmarker>
-                </Wrap>
-              </Allbox>
+                  ) : (
+                    <div>
+                    <img src={!zzim ? colorBookmark : fullBookmark} onClick={zzimz} />
+                    <CouponLike>{like}</CouponLike>
+                    </div>
+                  )}
+                </Bookmarker>
+              </Wrap>
+            </Allbox>
             );
 
 
@@ -123,8 +133,13 @@ const Allbox = styled.div`
 
 
 const Wrap = styled.div`
-  position: relative;
   cursor: pointer;
+  width : 375px;
+  height :80px;
+  border : 1px solid #fff;
+  background-color : #fff;
+  padding : 0 5px 15px 0;
+  border-radius : 0 15px 15px 15px;
 @media screen and (min-width:1028px){
 height:335px;
 width:360px;
@@ -138,10 +153,10 @@ transform:scale(0.9);
 `;
 const Box = styled.div`
   
-  width: 380px;
+  width: 350px;
   height: 80px;
   display: flex;
-  margin: 11px auto;
+  margin: auto;
   position: relative;
   @media screen and (min-width:1028px){
   top:155px;
@@ -218,7 +233,7 @@ const Bookmarker = styled.div`
   height: 35px;
   position: absolute;
   top: 15px;
-  right: -11px;
+  right: 2px;
   @media screen and (min-width:1028px){
     top:183px;
     right:10px;
