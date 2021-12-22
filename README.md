@@ -27,10 +27,11 @@
    <br> ✔️ Merge하기 전에는 오류가 없는지 확인하고 합니다.
     <br><br>
     <p><strong> GOODDA.FRONTEND </strong></p>
-     🌱 <a href = "https://github.com/jaake97">정혜원</a>
+     🌱 <a href = "https://github.com/jaake97">정혜원(프로젝트 팀장)</a>
     <br> 🌱 <a href = "mingab91.github.com ">조민갑</a>
     <br> 🌱 <a href = "https://github.com/parksangsoo">박상수</a>
-    <p><strong> GOODDA.FRONTEND </strong></p>
+    <br><br><strong> GOODDA.BACKEND </strong>
+    <br>
     <br> 🌱 <a href = "https://github.com/ohchon">오성현</a>
     <br> 🌱 <a href = "https://github.com/parksangsoo">심우진</a>
     <h1>3.기술스택 및 패키지</h1>
