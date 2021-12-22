@@ -52,7 +52,7 @@
     <ul>
       <li> Spring (<a href = "https://github.com/HangHae99-Team17/backend/blob/master/README.md"> Backend Repository 이동 </a>)</li>
     </ul>
-    <h1>4. 굳다는 앞으로,</h1>
+    <h1>4. 굳다는 앞으로</h1>
     <ul>
       <li><strong>렌더링 최적화</strong>를 시도중이에요</li>
       <li>유저들의 꾸준한 <strong>피드백</strong>을 기반으로 <strong>개선사항을 업데이트</strong> 할 예정이에요</li>
