@@ -48,8 +48,6 @@ const LoginMain = () => {
 
     // 오늘 마감인 쿠폰 가지고 오기
     const despire_today = useSelector((state)=>state.main.desList);
-    console.log(despire_today)
-
      
      
     return(
@@ -59,7 +57,7 @@ const LoginMain = () => {
       <DesWrap>
       <DespireToday>
       <Br2>종료까지</Br2>
-      <Br3><BrSpan>{Math.ceil(1000*60*60*24)} </BrSpan>  남았어요!</Br3>
+      <Br3><BrSpan>하루 </BrSpan>  남았어요!</Br3>
       </DespireToday>
       <DesCoupon>
       {despire_today?  
@@ -203,7 +201,7 @@ margin-bottom : 30px;
 }
 `
 const DesWrap = styled.div`
-width : 375px;
+width : 100%;
 height : auto;
 position : relative;
 padding-bottom : 8px;
