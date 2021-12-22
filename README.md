@@ -5,10 +5,15 @@
   </head>
   <body>
     <h1>GOODDA</h1>
+    <br> 넘쳐나는 할인 속,
+    <br> 내가 받을 수 있는 할인은?
+    <br><br>
+    <strong>돈이 굳다, <a href="http://goodda.co.kr/">GOODDA</a></strong>
+    <br><br>
     <img src="https://user-images.githubusercontent.com/80829340/147077728-4b595894-eed2-4952-b91e-f6e30486a942.jpeg" width="500px" height="400px"
     <br> 📌시연영상 : https://www.youtube.com/watch?v=HwcFkGJ19-c
     <br> 📌발표자료 : <a href="https://docs.google.com/presentation/d/1b50NotMMKwUWukIuU2MthVASxrdW-RcRldKd31EDLNY/edit#slide=id.g105bfcaaf62_2_340">발표 프레젠테이션 </a>
-    <h1>1. GOOD.DA 소개</h1>
+    <h1>1. GOODDA 소개</h1>
     <h3> 📌 유저 맞춤형 할인정보 제공 사이트 </h3>
     <p> <span style="color:orange" >"내가 사용할 수 있는 할인정보를 한곳에 모아둔 사이트는 없을까?"</span>
       <br> 통신사 할인을 사용하려면 통신사 어플을, 카드사 할인을 보고싶을땐 카드사 홈페이지를 방문해야 하는 불편함이 있었습니다.
@@ -25,6 +30,9 @@
      🌱 <a href = "https://github.com/jaake97">정혜원</a>
     <br> 🌱 <a href = "mingab91.github.com ">조민갑</a>
     <br> 🌱 <a href = "https://github.com/parksangsoo">박상수</a>
+    <p><strong> GOODDA.FRONTEND </strong></p>
+    <br> 🌱 <a href = "https://github.com/ohchon">오성현</a>
+    <br> 🌱 <a href = "https://github.com/parksangsoo">심우진</a>
     <h1>3.기술스택 및 패키지</h1>
    <h3>🛠Frontend</h3>
     <strong>기술 스택</strong>
@@ -44,8 +52,15 @@
     <ul>
       <li> Spring (<a href = "https://github.com/HangHae99-Team17/backend/blob/master/README.md"> Backend Repository 이동 </a>)</li>
     </ul>
-    <h1>4.프로젝트 설계</h1>
+    <h1>4. 굳다는 앞으로,</h1>
+    <ul>
+      <li><strong>렌더링 최적화</strong>를 시도중이에요</li>
+      <li>유저들의 꾸준한 <strong>피드백</strong>을 기반으로 <strong>개선사항을 업데이트</strong> 할 예정이에요</li>
+      <li><strong>유지보수가 원활</strong>하도록 코드리뷰를 통해 컴포넌트들을 개선할 예정이에요</li>
+      <li>좀 더 <strong>퀄리티 있는 데이터</strong>를 추가할 예정이에요</li>
+    </ul>
+    <h1>5.프로젝트 설계</h1>
     <strong><a href = "https://www.notion.so/API-Design-2118b599a6e646ed9aba62158283065a">API 설계</a></strong>
-     <strong><a href = "">DATABASE Design</a></strong>
+    <br> <strong><a href = "">DATABASE Design</a></strong>
   </body>
 </html>
