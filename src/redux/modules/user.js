@@ -62,7 +62,7 @@ export const loginFB = (user) => {
         const alert = window.confirm("곧 마감되는 쿠폰이 있어요! 확인 하시겠습니까?")
         console.log(res.data.data.alertCoupon)
        if(alert){
-        history.push('/salebox')
+        history.push('/couponfolder')
        }
        else {  history.push('/loginmain');  }
       }

@@ -16,7 +16,7 @@ const CouponFolder = () => {
         console.log(list.data.coupons)
         setList(list.data.coupons); }
         catch (e) {console.log("보관함 에러발생!")}
-      }, []);
+      }, [list]);
 
     return (
       <React.Fragment>
@@ -40,6 +40,7 @@ const CouponFolder = () => {
                 {/* 찜한 쿠폰 보관함에서 삭제하기 */}
                   <DesBUTTON onClick={async()=>{
                     const del = await apis.delFolders(item.id);
+                    // setList(await apis.delFolders(item.id))
                   }}><img src={fullBookmark} /></DesBUTTON>
                   </DesCouponBox>
 
@@ -57,6 +58,7 @@ const CouponFolder = () => {
                 {/* 찜한 쿠폰 보관함에서 삭제하기 */}
                   <BUTTON onClick={async()=>{
                     const del = await apis.delFolders(item.id)
+                    // setList(await apis.delFolders(item.id))
                   }}><img src={fullBookmark} /></BUTTON>
                   </Couponbox>
                   }
