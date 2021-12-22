@@ -1,29 +1,40 @@
 # 돈이 굳다, GOOD.DA 
 어, 돈굳었다. 안녕하세요 저희는 17조 굳다 입니다.</br>
 우선 저희 굳다 프로젝트는 </br>
-[내가 사용할 수 있는 할인정보를 놓치지 않고 한 눈에 볼 수 있도록 모아둔 웹사이트는 없을까?</br>
+내가 사용할 수 있는 할인정보를 놓치지 않고 한 눈에 볼 수 있도록 모아둔 웹사이트는 없을까?</br>
 라는 물음표에서부터 시작하게 됩니다.</br>
-물음표에 대한 해답을 담기위해 저희조는 기획으로 두가지를 정하게 되었습니니다.</br>
-첫번째로는 유저맞춤형 할인 정보 웹을 만들자였고,</br>
-두번째는 무작위 하링ㄴ정보만 받는것이 아닌, 유저가 필요한 정보 또한 받아갈 수 있도록 하자 였습니다.</br>
-이렇게 탄생한 저희 프로젝트 굳다는 유저에게 추천할인정보를 제공할 뿐만 아니라,</br>
-원하는 할인정보 또한 검색을 통해 얻어갈 수 있는 웹사이트가 되었습니다.
 
 
-# 목차
+## 목차
 
-# 제작기간 팀원소개 
+## 제작기간 팀원소개 
 <li> 2021년 10월25일 ~ 2021 12월 3일</li> 
 <li>5인 팀프로젝트<br>
   front-end: 정혜원, 박상수, 조민갑 <br> 
   back-end: 오성현, 심우진<br>
   
-<h2>사용기술</h2> 
+## 사용기술
+<li>HTML</li>
+<li>CSS</li>
 <li>javascript</li> 
 <li>React</li> 
+
+## 사용 라이브러리
 <li>Redux</li> 
+<li>axios</li>
+<li>connect-react-router</li>
+<li>immer</li>
+<li>react-datepicker</li>
+<li>react-infinite-scroll-component</li>
 <li>react-router-dom</li>
-<h2>주요기능</h2> 
+<li>redux-actions</li>
+<li>redux-logger</li>
+<li>redux-thuck</li>
+<li>styled-components</li>
+
+
+
+## 주요기능 
 <li>상품 읽기, 수정, 삭제, 등록기능</li>
 <li>이미지 업로드기능</li>
 <li>덧글입력, 덧글수정, 덧글삭제기능</li>
