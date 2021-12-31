@@ -22,7 +22,7 @@ const RankList = () => {
       <MainBox>
       </MainBox>
       <RankListBox>
-        <P>지금 <span style={{color : "#FFF"}}>핫</span> 한</P>
+        <P>지금 <span style={{color : "#F09643"}}>핫</span> 한</P>
         <P>이런 할인 어때요 ?</P>
         <CardBox>
           {rank?.map((coupon) => {
