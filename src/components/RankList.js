@@ -42,7 +42,10 @@ const RankListBox = styled.div`
   width: 375px;
   margin:0 auto;
   @media screen and (min-width: 1028px) {
-    width: 1460px;
+    width: 100%;
+    margin:20px auto;
+    height:790px;
+    overflow:hidden;
   }
 `;
 
@@ -51,6 +54,9 @@ const P = styled.p`
   font-size: 20px;
   font-weight: 700;
   line-height: 28px;
+  @media screen and (min-width: 1028px) {
+    padding-left:20px;
+  }
 `;
 
 const CardBox = styled.div`

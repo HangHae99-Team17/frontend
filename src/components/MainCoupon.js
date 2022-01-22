@@ -96,7 +96,9 @@ if(props.mode === "rank" && props.mini === "mini"){
                     </Dsec>
                   </div>
                 </Box>
-                <CouponButton>할인 받기</CouponButton>
+                <CouponButton onClick={() => {
+                    history.push(`/api/detail/${props.id}`);
+                  }}>할인 받기</CouponButton>
                 <Bookmarker>
                   {!is_login ? (
                     <div>

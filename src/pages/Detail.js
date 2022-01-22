@@ -152,7 +152,7 @@ const Wrap = styled.div`
   
   @media screen and (min-width: 1028px) {
     width: 740px;
-    margin: 80px 0 0 1000px;
+    margin: 80px 0 0 800px;
     left:270px;
     top:28px;
     transform: scale(1.2);
