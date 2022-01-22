@@ -17,7 +17,7 @@
     <br> 📌발표자료 : <a href="https://docs.google.com/presentation/d/1b50NotMMKwUWukIuU2MthVASxrdW-RcRldKd31EDLNY/edit#slide=id.g105bfcaaf62_2_340">발표 프레젠테이션 </a>
     <h1>1. GOODDA 소개</h1>
     <h3> 📌 유저 맞춤형 할인정보 제공 사이트 </h3>
-    <p>프로젝트 기간 : 2021. 10. 25 ~ 2021. 12. 03(6주)<p><br>
+    <p>프로젝트 기간 : 2021. 10. 25 ~ 2021. 12. 03(6주)<p>
     <p> <span style="color:orange" >"내가 사용할 수 있는 할인정보를 한곳에 모아둔 사이트는 없을까?"</span>
       <br> 통신사 할인을 사용하려면 통신사 어플을, 카드사 할인을 보고싶을땐 카드사 홈페이지를 방문해야 하는 불편함이<br> 있었습니다.
       <br> 그렇게 우리는 신선한 물음표에대한 답을 얻기 위해 <strong><a href= "http://goodda.co.kr/">GOODDA</a></strong>를 기획하게 되었습니다.</p> 
