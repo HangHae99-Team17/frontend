@@ -5,7 +5,6 @@ import { connectRouter } from "connected-react-router";
 
 import main from "./modules/main";
 import User from "./modules/user";
-import SaleBox from "./modules/salebox";
 import Sale from "./modules/sale";
 import Image from "./modules/image";
 
@@ -15,7 +14,6 @@ export const history = createBrowserHistory();
 const rootReducer = combineReducers({ 
     main: main,
     user: User,
-    salebox: SaleBox,
     sale:Sale,
     image:Image,
 
