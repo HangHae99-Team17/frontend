@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import {useSelector, useDispatch} from 'react-redux'
 import styled from 'styled-components'
 import { history } from "../redux/configureStore";
@@ -12,42 +12,39 @@ const LoginMain = () => {
   const dispatch = useDispatch();
   // 유저 관심사, 카드사, 통신사 뽑아 오기
     const userMenu = useSelector((state)=>state.user.user)
-    
     const MenuArr = [userMenu?.type1,userMenu?.type2,userMenu?.type3,userMenu?.telecom, userMenu?.cardType]
-    
 
-  // 디스패치 시에 type을 보내줘야 정보를 가지고 올 수 있다.
+  // 디스패치 시에 type과 무한스크롤 적용에 필요한 데잍터를 보내줘야 정보를 가지고 올 수 있다.
     React.useEffect(()=>{
-      
-        // 확인을 위해 삼항 조건연산자 사용
         if(MenuArr.length > 0){
-      
+      const type = [MenuArr[0],MenuArr[1],MenuArr[2],MenuArr[3],MenuArr[4]]
        dispatch(listCreators.getListMW(MenuArr[0],1,3,"couponLike",false));
        dispatch(listCreators.getListMW(MenuArr[1],1,3,"couponLike",false));
        dispatch(listCreators.getListMW(MenuArr[2],1,3,"couponLike",false));
-      //  제대로 된 데이터 들어오면 주석처리 해제할 예정
-      //  dispatch(listCreators.getListMW(MenuArr[4],1,3,"couponLike",false));
-      //  dispatch(listCreators.getListMW(MenuArr[5],1,3,"couponLike",false));
-
-      // 언마운트시 데이터 비우기
-      return()=>{
-        dispatch(listCreators.clearList())
-      }
-
+       dispatch(listCreators.getListMW(MenuArr[3],1,3,"couponLike",false));
+       dispatch(listCreators.getListMW(MenuArr[4],1,3,"couponLike",false));
+    
+  // 언마운트시 데이터 비우기
+    return()=>{
+      dispatch(listCreators.clearList())
         }
-    }
+      }
+      }
     ,[userMenu])
     // 리덕스에서 할인정보 리스트 가지고 오기
     const dc_list = useSelector(( state )=> state.main.pagingList);
-    
+    // 카테고리 별로 나눠주기위해 같은 카테고리의 쿠폰끼리 그룹화 해주기
     const type1 = [dc_list?.[0],dc_list?.[1],dc_list?.[2]]
     const type2 = [dc_list?.[3],dc_list?.[4],dc_list?.[5]]
     const type3 = [dc_list?.[6],dc_list?.[7],dc_list?.[8]]
-    // const telecom = [dc_list?.[12],dc_list?.[13],dc_list?.[14],dc_list?.[15]]
-    // const cards = [dc_list?.[16],dc_list?.[17],dc_list?.[18],dc_list?.[19]]
+    const telecom = [dc_list?.[9],dc_list?.[10],dc_list?.[11]]
+    const cards = [dc_list?.[12],dc_list?.[13],dc_list?.[14]]
+
+
+
      
     return(
-          <AllBox>
+    <AllBox>
       {/* 유저 관심사 타입1 */}
         <InfoWrap>
           <Title>
@@ -58,31 +55,29 @@ const LoginMain = () => {
         {
         type1?.map((item) => {
           return (
-              <MainCoupon {...item} key={item?.id} mode="rank"/>
-        );
-        })
-        
+            <MainCoupon {...item} key={item?.id} mode="rank"/>
+            );
+          })
         }
         </CardBox>
         </InfoWrap>
         <BtWrap>
           <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[0]?.couponType}`);history.go(0)}}>더보기</Button>
         </BtWrap>
+
       {/* 유저 관심사 타입2 */}
         <InfoWrap>
         <Title>
         <Br>당신을 위한</Br>
         <Span>{dc_list?.[3]?.couponType}</Span> 추천
         </Title>
-<CardBox>
+        <CardBox>
         {
         type2?.map((item) => {
-          console.log(item)
           return (
               <MainCoupon  {...item} key={item?.id} mode="rank"/>
-        );
-        })
-        
+            );
+         })
         }
         </CardBox>
         </InfoWrap>
@@ -90,70 +85,67 @@ const LoginMain = () => {
           <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[3]?.couponType}`);history.go(0)}}>더보기</Button>
         </BtWrap>
 
-        {/* 배열로 잘라화면을 그려서 각 타입별로 3개 이상 있어야 함 */}
        {/* 유저 관심사 타입3 */}
         <InfoWrap>
         <Title>
         <Br>당신을 위한</Br>
           <Span>{dc_list?.[6]?.couponType}</Span> 추천
         </Title>
-<CardBox>
+        <CardBox>
         {
         type3?.map((item) => {
           return (
               <MainCoupon {...item} key={item?.id} mode="rank"/>
-        );
-        })
-        
+            );
+          })
         }
         </CardBox>
         </InfoWrap>
         <BtWrap>
           <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[6]?.couponType}`);history.go(0)}}>더보기</Button>
         </BtWrap>
-      {/* 유저 통신사 */}
-      {/* <Title>
-          <Br>당신을 위한</Br>
-          <Span>{userMenu?.telecom}</Span> 추천
-      </Title>
 
+      {/* 유저 통신사 */}
       <InfoWrap>
+        <Title>
+        <Br>당신을 위한</Br>
+          <Span>{dc_list?.[9]?.couponType}</Span> 추천
+        </Title>
+        <CardBox>
         {
         telecom?.map((item) => {
           return (
-            <DcList>
-              <MainCoupon {...item}/>
-            </DcList>
-        );
-        })
+              <MainCoupon {...item} key={item?.id} mode="rank"/>
+            );
+          })
         }
+        </CardBox>
         </InfoWrap>
         <BtWrap>
-          <Button onClick={()=>{history.push(`/api/categorydetail/${userMenu?.telecom}?page=1&size=6&sortBy=couponCreate&isAsc=true`);history.go(0)}}>더보기</Button>
-        </BtWrap> */}
-      {/* 유저 카드사 */}
-      {/* <InfoWrap>
-      <Title>
-          <Br>당신을 위한</Br>
-          <Span>{userMenu?.cardType}</Span> 추천
-      </Title>
+          <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[9]?.couponType}`);history.go(0)}}>더보기</Button>
+        </BtWrap>
 
+      {/* 유저 카드사 */}
+      <InfoWrap>
+        <Title>
+        <Br>당신을 위한</Br>
+          <Span>{dc_list?.[12]?.couponType}</Span> 추천
+        </Title>
+        <CardBox>
         {
         cards?.map((item) => {
           return (
-            <DcList>
-              <MainCoupon {...item}/>
-            </DcList>
-        );
-        })
+              <MainCoupon {...item} key={item?.id} mode="rank"/>
+            );
+          })
         }
+        </CardBox>
         </InfoWrap>
         <BtWrap>
-          <Button onClick={()=>{history.push(`/api/categorydetail/${userMenu?.cardType}?page=1&size=7&sortBy=couponCreate&isAsc=true`);history.go(0)}}>더보기</Button>
+          <Button onClick={()=>{history.push(`/api/categorydetail/${dc_list?.[12]?.couponType}`);history.go(0)}}>더보기</Button>
         </BtWrap>
-  */}
         <Main/>
-        </AllBox>
+  </AllBox>
     )    
 }
 
